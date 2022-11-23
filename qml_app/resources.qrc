@@ -1,0 +1,15 @@
+<RCC>
+	<qresource prefix="/">
+		<file>./qml/AutoComplete.qml</file>
+		<file>./qml/Button.qml</file>
+		<file>./qml/Filter.qml</file>
+		<file>./qml/LineEdit.qml</file>
+		<file>./qml/main.qml</file>
+		<file>./qml/Main.qml</file>
+		<file>./qml/PreviewDelegate.qml</file>
+		<file>./qml/SuggestionBox.qml</file>
+		<file>./qml/SuggestionsPreview.qml</file>
+		<file>./qml/Suggestions.qml</file>
+		<file>./resources/icons/clear-text-rtl.png</file>
+	</qresource>
+</RCC>
