@@ -29,8 +29,8 @@ class FirstFragment : Fragment() {
 
     var Searchtext: EditText? = null
     private var adapter: ExampleAdapter? = null
-    private var exampleList: MutableList<ExampleItem?>? = null
-    private val examples: List<ExampleItem>? = null
+    //private var exampleList: MutableList<ExampleItem?>? = null
+    //private val examples: List<ExampleItem>? = null
 
 
     override fun onCreateView(
@@ -50,7 +50,7 @@ class FirstFragment : Fragment() {
         /*binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }*/
-        fillExampleList()
+        //fillExampleList()
         setUpRecyclerView()
         initToolbar()
         /*view.findViewById<View>(R.id.filter).setOnClickListener {
@@ -75,7 +75,7 @@ class FirstFragment : Fragment() {
         _binding = null
     }
 
-    private fun fillExampleList() {
+    /*private fun fillExampleList() {
         exampleList = ArrayList<ExampleItem?>()
         exampleList!!.add(ExampleItem(R.drawable.ic_filter_list_black_24dp, "One", "sub title"))
         exampleList!!.add(ExampleItem(R.drawable.ic_filter_list_black_24dp, "Two", "sub title"))
@@ -87,14 +87,18 @@ class FirstFragment : Fragment() {
         exampleList!!.add(ExampleItem(R.drawable.ic_filter_list_black_24dp, "Eight", "sub title"))
         exampleList!!.add(ExampleItem(R.drawable.ic_filter_list_black_24dp, "Nine", "sub title"))
         exampleList!!.add(ExampleItem(R.drawable.ic_filter_list_black_24dp, "Ten", "sub title"))
-    }
+    }*/
 
     private fun setUpRecyclerView() {
         val recyclerView = view?.findViewById<View>(R.id.RecyclerView) as RecyclerView
         recyclerView.setHasFixedSize(true)
+
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-        adapter = exampleList?.let { ExampleAdapter(it) }
         recyclerView.layoutManager = layoutManager
+
+        //adapter = exampleList?.let { ExampleAdapter(it) }
+        val pokemons = (activity as MainActivity)?.getPokemons()
+        adapter = pokemons?.let { ExampleAdapter(context, it) }
         recyclerView.adapter = adapter
 
         recyclerView.addOnItemTouchListener(
@@ -103,8 +107,12 @@ class FirstFragment : Fragment() {
                 recyclerView,
                 object : ClickListener {
                     override fun onClick(view: View?, position: Int) {
-                        val pokemonId = exampleList?.get(position)?.text1
-                        val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(pokemonId)
+                        //val pokemons = (activity as MainActivity)?.getPokemons()
+                        //val pokemonData = pokemons?.get(position)
+                        val pokemonData = adapter?.getExampleList()?.get(position)
+                        val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(
+                            pokemonData?.names?.fr
+                        )
                         findNavController().navigate(action)
                     }
 
@@ -163,15 +171,19 @@ class FirstFragment : Fragment() {
 
     /* access modifiers changed from: private */
     fun filterQuery(text: String?) {
-        val filterdNames = ArrayList<ExampleItem?>()
-        for (s in exampleList!!) {
-            if (s!!.text1.lowercase(Locale.getDefault()).contains(text!!) || s.text2.lowercase(
-                    Locale.getDefault()
-                ).contains(
-                    text
-                )
-            ) {
-                filterdNames.add(s)
+        val pokemons = (activity as MainActivity)?.getPokemons()
+
+        val filterdNames = ArrayList<PokemonData>()
+        if (pokemons != null) {
+            for (s in pokemons) {
+                val found1 = s!!.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
+                val found2 = s!!.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
+                val found3 = s!!.names.fr.lowercase(Locale.getDefault()).contains(text!!)
+                val found4 = s!!.names.en.lowercase(Locale.getDefault()).contains(text!!)
+
+                if ( found1 || found2 || found3 || found4 ) {
+                    filterdNames.add(s)
+                }
             }
         }
         adapter!!.setFilter(filterdNames)

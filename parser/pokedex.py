@@ -14,22 +14,22 @@ class EvolutionType(Enum):
 class Pokedex:
     def __init__(self, type: PokedexType):
         self.type = type
-        self.pokemons = dict()
+        self.pokemons = list()
         self.evolutions = dict()
 
     def add_pokemon_entry(self, unique_id: str, paldea_id: str, name_fr: str, name_en: str, thumbnail_filename: str):
         pokemon = {}
 
+        ids = {"unique": unique_id, "paldea": paldea_id}
+        pokemon["ids"] = ids
+
         names = {"fr": name_fr, "en": name_en}
         pokemon["names"] = names
-
-        ids = {"paldea": paldea_id}
-        pokemon["ids"] = ids
 
         images = {"thumbnail": thumbnail_filename}
         pokemon["images"] = images
 
-        self.pokemons[unique_id] = pokemon
+        self.pokemons.append(pokemon)
 
     def add_evolution_tree(self, evolution_table: list):
         pass

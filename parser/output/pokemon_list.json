@@ -1,0 +1,5813 @@
+[
+    {
+        "ids": {
+            "unique": "906",
+            "paldea": "1"
+        },
+        "names": {
+            "fr": "Poussacha",
+            "en": "Sprigatito"
+        },
+        "images": {
+            "thumbnail": "Miniature_906_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "907",
+            "paldea": "2"
+        },
+        "names": {
+            "fr": "Matourgeon",
+            "en": "Floragato"
+        },
+        "images": {
+            "thumbnail": "Miniature_907_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "908",
+            "paldea": "3"
+        },
+        "names": {
+            "fr": "Miascarade",
+            "en": "Meowscarada"
+        },
+        "images": {
+            "thumbnail": "Miniature_908_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "909",
+            "paldea": "4"
+        },
+        "names": {
+            "fr": "Chochodile",
+            "en": "Fuecoco"
+        },
+        "images": {
+            "thumbnail": "Miniature_909_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "910",
+            "paldea": "5"
+        },
+        "names": {
+            "fr": "Crocogril",
+            "en": "Crocalor"
+        },
+        "images": {
+            "thumbnail": "Miniature_910_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "911",
+            "paldea": "6"
+        },
+        "names": {
+            "fr": "Flâmigator",
+            "en": "Skeledirge"
+        },
+        "images": {
+            "thumbnail": "Miniature_911_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "912",
+            "paldea": "7"
+        },
+        "names": {
+            "fr": "Coiffeton",
+            "en": "Quaxly"
+        },
+        "images": {
+            "thumbnail": "Miniature_912_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "913",
+            "paldea": "8"
+        },
+        "names": {
+            "fr": "Canarbello",
+            "en": "Quaxwell"
+        },
+        "images": {
+            "thumbnail": "Miniature_913_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "914",
+            "paldea": "9"
+        },
+        "names": {
+            "fr": "Palmaval",
+            "en": "Quaquaval"
+        },
+        "images": {
+            "thumbnail": "Miniature_914_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "915",
+            "paldea": "10"
+        },
+        "names": {
+            "fr": "Gourmelet",
+            "en": "Lechonk"
+        },
+        "images": {
+            "thumbnail": "Miniature_915_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "916",
+            "paldea": "11"
+        },
+        "names": {
+            "fr": "Fragroin",
+            "en": "Oinkologne"
+        },
+        "images": {
+            "thumbnail": "Miniature_916_♂_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "916",
+            "paldea": "11"
+        },
+        "names": {
+            "fr": "Fragroin",
+            "en": "Oinkologne"
+        },
+        "images": {
+            "thumbnail": "Miniature_916_♀_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "918",
+            "paldea": "12"
+        },
+        "names": {
+            "fr": "Tissenboule",
+            "en": "Tarountula"
+        },
+        "images": {
+            "thumbnail": "Miniature_918_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "919",
+            "paldea": "13"
+        },
+        "names": {
+            "fr": "Filentrappe",
+            "en": "Spidops"
+        },
+        "images": {
+            "thumbnail": "Miniature_919_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "920",
+            "paldea": "14"
+        },
+        "names": {
+            "fr": "Lilliterelle",
+            "en": "Nymble"
+        },
+        "images": {
+            "thumbnail": "Miniature_920_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "921",
+            "paldea": "15"
+        },
+        "names": {
+            "fr": "Gambex",
+            "en": "Lokix"
+        },
+        "images": {
+            "thumbnail": "Miniature_921_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "187",
+            "paldea": "16"
+        },
+        "names": {
+            "fr": "Granivol",
+            "en": "Hoppip"
+        },
+        "images": {
+            "thumbnail": "Miniature_187_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "188",
+            "paldea": "17"
+        },
+        "names": {
+            "fr": "Floravol",
+            "en": "Skiploom"
+        },
+        "images": {
+            "thumbnail": "Miniature_188_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "189",
+            "paldea": "18"
+        },
+        "names": {
+            "fr": "Cotovol",
+            "en": "Jumpluff"
+        },
+        "images": {
+            "thumbnail": "Miniature_189_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "661",
+            "paldea": "19"
+        },
+        "names": {
+            "fr": "Passerouge",
+            "en": "Fletchling"
+        },
+        "images": {
+            "thumbnail": "Miniature_661_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "662",
+            "paldea": "20"
+        },
+        "names": {
+            "fr": "Braisillon",
+            "en": "Fletchinder"
+        },
+        "images": {
+            "thumbnail": "Miniature_662_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "663",
+            "paldea": "21"
+        },
+        "names": {
+            "fr": "Flambusard",
+            "en": "Talonflame"
+        },
+        "images": {
+            "thumbnail": "Miniature_663_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "954",
+            "paldea": "22"
+        },
+        "names": {
+            "fr": "Pohm",
+            "en": "Pawmi"
+        },
+        "images": {
+            "thumbnail": "Miniature_954_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "955",
+            "paldea": "23"
+        },
+        "names": {
+            "fr": "Pohmotte",
+            "en": "Pawmo"
+        },
+        "images": {
+            "thumbnail": "Miniature_955_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "956",
+            "paldea": "24"
+        },
+        "names": {
+            "fr": "Pohmarmotte",
+            "en": "Pawmot"
+        },
+        "images": {
+            "thumbnail": "Miniature_956_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "228",
+            "paldea": "25"
+        },
+        "names": {
+            "fr": "Malosse",
+            "en": "Houndour"
+        },
+        "images": {
+            "thumbnail": "Miniature_228_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "229",
+            "paldea": "26"
+        },
+        "names": {
+            "fr": "Démolosse",
+            "en": "Houndoom"
+        },
+        "images": {
+            "thumbnail": "Miniature_229_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "734",
+            "paldea": "27"
+        },
+        "names": {
+            "fr": "Manglouton",
+            "en": "Yungoos"
+        },
+        "images": {
+            "thumbnail": "Miniature_734_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "735",
+            "paldea": "28"
+        },
+        "names": {
+            "fr": "Argouste",
+            "en": "Gumshoos"
+        },
+        "images": {
+            "thumbnail": "Miniature_735_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "819",
+            "paldea": "29"
+        },
+        "names": {
+            "fr": "Rongourmand",
+            "en": "Skwovet"
+        },
+        "images": {
+            "thumbnail": "Miniature_819_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "820",
+            "paldea": "30"
+        },
+        "names": {
+            "fr": "Rongrigou",
+            "en": "Greedent"
+        },
+        "images": {
+            "thumbnail": "Miniature_820_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "191",
+            "paldea": "31"
+        },
+        "names": {
+            "fr": "Tournegrin",
+            "en": "Sunkern"
+        },
+        "images": {
+            "thumbnail": "Miniature_191_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "192",
+            "paldea": "32"
+        },
+        "names": {
+            "fr": "Héliatronc",
+            "en": "Sunflora"
+        },
+        "images": {
+            "thumbnail": "Miniature_192_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "401",
+            "paldea": "33"
+        },
+        "names": {
+            "fr": "Crikzik",
+            "en": "Kricketot"
+        },
+        "images": {
+            "thumbnail": "Miniature_401_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "402",
+            "paldea": "34"
+        },
+        "names": {
+            "fr": "Mélokrik",
+            "en": "Kricketune"
+        },
+        "images": {
+            "thumbnail": "Miniature_402_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "664",
+            "paldea": "35"
+        },
+        "names": {
+            "fr": "Lépidonille",
+            "en": "Scatterbug"
+        },
+        "images": {
+            "thumbnail": "Miniature_664_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "665",
+            "paldea": "36"
+        },
+        "names": {
+            "fr": "Pérégrain",
+            "en": "Spewpa"
+        },
+        "images": {
+            "thumbnail": "Miniature_665_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "666",
+            "paldea": "37"
+        },
+        "names": {
+            "fr": "Prismillon",
+            "en": "Vivillon"
+        },
+        "images": {
+            "thumbnail": "Miniature_666_Fantaisie_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "415",
+            "paldea": "38"
+        },
+        "names": {
+            "fr": "Apitrini",
+            "en": "Combee"
+        },
+        "images": {
+            "thumbnail": "Miniature_415_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "416",
+            "paldea": "39"
+        },
+        "names": {
+            "fr": "Apireine",
+            "en": "Vespiquen"
+        },
+        "images": {
+            "thumbnail": "Miniature_416_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "821",
+            "paldea": "40"
+        },
+        "names": {
+            "fr": "Minisange",
+            "en": "Rookidee"
+        },
+        "images": {
+            "thumbnail": "Miniature_821_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "822",
+            "paldea": "41"
+        },
+        "names": {
+            "fr": "Bleuseille",
+            "en": "Corvisquire"
+        },
+        "images": {
+            "thumbnail": "Miniature_822_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "823",
+            "paldea": "42"
+        },
+        "names": {
+            "fr": "Corvaillus",
+            "en": "Corviknight"
+        },
+        "images": {
+            "thumbnail": "Miniature_823_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "440",
+            "paldea": "43"
+        },
+        "names": {
+            "fr": "Ptiravi",
+            "en": "Happiny"
+        },
+        "images": {
+            "thumbnail": "Miniature_440_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "113",
+            "paldea": "44"
+        },
+        "names": {
+            "fr": "Leveinard",
+            "en": "Chansey"
+        },
+        "images": {
+            "thumbnail": "Miniature_113_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "242",
+            "paldea": "45"
+        },
+        "names": {
+            "fr": "Leuphorie",
+            "en": "Blissey"
+        },
+        "images": {
+            "thumbnail": "Miniature_242_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "298",
+            "paldea": "46"
+        },
+        "names": {
+            "fr": "Azurill",
+            "en": "Azurill"
+        },
+        "images": {
+            "thumbnail": "Miniature_298_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "183",
+            "paldea": "47"
+        },
+        "names": {
+            "fr": "Marill",
+            "en": "Marill"
+        },
+        "images": {
+            "thumbnail": "Miniature_183_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "184",
+            "paldea": "48"
+        },
+        "names": {
+            "fr": "Azumarill",
+            "en": "Azumarill"
+        },
+        "images": {
+            "thumbnail": "Miniature_184_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "283",
+            "paldea": "49"
+        },
+        "names": {
+            "fr": "Arakdo",
+            "en": "Surskit"
+        },
+        "images": {
+            "thumbnail": "Miniature_283_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "284",
+            "paldea": "50"
+        },
+        "names": {
+            "fr": "Maskadra",
+            "en": "Masquerain"
+        },
+        "images": {
+            "thumbnail": "Miniature_284_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "418",
+            "paldea": "51"
+        },
+        "names": {
+            "fr": "Mustébouée",
+            "en": "Buizel"
+        },
+        "images": {
+            "thumbnail": "Miniature_418_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "419",
+            "paldea": "52"
+        },
+        "names": {
+            "fr": "Mustéflott",
+            "en": "Floatzel"
+        },
+        "images": {
+            "thumbnail": "Miniature_419_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "194",
+            "paldea": "53"
+        },
+        "names": {
+            "fr": "Axoloto",
+            "en": "Wooper"
+        },
+        "images": {
+            "thumbnail": "Miniature_194_Paldea_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1009",
+            "paldea": "54"
+        },
+        "names": {
+            "fr": "Terraiste",
+            "en": "Clodsire"
+        },
+        "images": {
+            "thumbnail": "Miniature_1009_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "054",
+            "paldea": "55"
+        },
+        "names": {
+            "fr": "Psykokwak",
+            "en": "Psyduck"
+        },
+        "images": {
+            "thumbnail": "Miniature_054_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "055",
+            "paldea": "56"
+        },
+        "names": {
+            "fr": "Akwakwak",
+            "en": "Golduck"
+        },
+        "images": {
+            "thumbnail": "Miniature_055_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "833",
+            "paldea": "57"
+        },
+        "names": {
+            "fr": "Khélocrok",
+            "en": "Chewtle"
+        },
+        "images": {
+            "thumbnail": "Miniature_833_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "834",
+            "paldea": "58"
+        },
+        "names": {
+            "fr": "Torgamord",
+            "en": "Drednaw"
+        },
+        "images": {
+            "thumbnail": "Miniature_834_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "174",
+            "paldea": "59"
+        },
+        "names": {
+            "fr": "Toudoudou",
+            "en": "Igglybuff"
+        },
+        "images": {
+            "thumbnail": "Miniature_174_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "039",
+            "paldea": "60"
+        },
+        "names": {
+            "fr": "Rondoudou",
+            "en": "Jigglypuff"
+        },
+        "images": {
+            "thumbnail": "Miniature_039_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "040",
+            "paldea": "61"
+        },
+        "names": {
+            "fr": "Grodoudou",
+            "en": "Wigglytuff"
+        },
+        "images": {
+            "thumbnail": "Miniature_040_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "280",
+            "paldea": "62"
+        },
+        "names": {
+            "fr": "Tarsal",
+            "en": "Ralts"
+        },
+        "images": {
+            "thumbnail": "Miniature_280_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "281",
+            "paldea": "63"
+        },
+        "names": {
+            "fr": "Kirlia",
+            "en": "Kirlia"
+        },
+        "images": {
+            "thumbnail": "Miniature_281_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "282",
+            "paldea": "64"
+        },
+        "names": {
+            "fr": "Gardevoir",
+            "en": "Gardevoir"
+        },
+        "images": {
+            "thumbnail": "Miniature_282_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "475",
+            "paldea": "65"
+        },
+        "names": {
+            "fr": "Gallame",
+            "en": "Gallade"
+        },
+        "images": {
+            "thumbnail": "Miniature_475_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "096",
+            "paldea": "66"
+        },
+        "names": {
+            "fr": "Soporifik",
+            "en": "Drowzee"
+        },
+        "images": {
+            "thumbnail": "Miniature_096_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "097",
+            "paldea": "67"
+        },
+        "names": {
+            "fr": "Hypnomade",
+            "en": "Hypno"
+        },
+        "images": {
+            "thumbnail": "Miniature_097_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "092",
+            "paldea": "68"
+        },
+        "names": {
+            "fr": "Fantominus",
+            "en": "Gastly"
+        },
+        "images": {
+            "thumbnail": "Miniature_092_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "093",
+            "paldea": "69"
+        },
+        "names": {
+            "fr": "Spectrum",
+            "en": "Haunter"
+        },
+        "images": {
+            "thumbnail": "Miniature_093_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "094",
+            "paldea": "70"
+        },
+        "names": {
+            "fr": "Ectoplasma",
+            "en": "Gengar"
+        },
+        "images": {
+            "thumbnail": "Miniature_094_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "945",
+            "paldea": "71"
+        },
+        "names": {
+            "fr": "Compagnol",
+            "en": "Tandemaus"
+        },
+        "images": {
+            "thumbnail": "Miniature_945_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "946",
+            "paldea": "72"
+        },
+        "names": {
+            "fr": "Famignol",
+            "en": "Maushold"
+        },
+        "images": {
+            "thumbnail": "Miniature_946_Trois_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "946",
+            "paldea": "72"
+        },
+        "names": {
+            "fr": "Famignol",
+            "en": "Maushold"
+        },
+        "images": {
+            "thumbnail": "Miniature_946_Quatre_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "172",
+            "paldea": "73"
+        },
+        "names": {
+            "fr": "Pichu",
+            "en": "Pichu"
+        },
+        "images": {
+            "thumbnail": "Miniature_172_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "025",
+            "paldea": "74"
+        },
+        "names": {
+            "fr": "Pikachu",
+            "en": "Pikachu"
+        },
+        "images": {
+            "thumbnail": "Miniature_025_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "026",
+            "paldea": "75"
+        },
+        "names": {
+            "fr": "Raichu",
+            "en": "Raichu"
+        },
+        "images": {
+            "thumbnail": "Miniature_026_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "970",
+            "paldea": "76"
+        },
+        "names": {
+            "fr": "Pâtachiot",
+            "en": "Fidough"
+        },
+        "images": {
+            "thumbnail": "Miniature_970_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "971",
+            "paldea": "77"
+        },
+        "names": {
+            "fr": "Briochien",
+            "en": "Dachsbun"
+        },
+        "images": {
+            "thumbnail": "Miniature_971_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "287",
+            "paldea": "78"
+        },
+        "names": {
+            "fr": "Parecool",
+            "en": "Slakoth"
+        },
+        "images": {
+            "thumbnail": "Miniature_287_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "288",
+            "paldea": "79"
+        },
+        "names": {
+            "fr": "Vigoroth",
+            "en": "Vigoroth"
+        },
+        "images": {
+            "thumbnail": "Miniature_288_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "289",
+            "paldea": "80"
+        },
+        "names": {
+            "fr": "Monaflèmit",
+            "en": "Slaking"
+        },
+        "images": {
+            "thumbnail": "Miniature_289_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "761",
+            "paldea": "81"
+        },
+        "names": {
+            "fr": "Croquine",
+            "en": "Bounsweet"
+        },
+        "images": {
+            "thumbnail": "Miniature_761_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "762",
+            "paldea": "82"
+        },
+        "names": {
+            "fr": "Candine",
+            "en": "Steenee"
+        },
+        "images": {
+            "thumbnail": "Miniature_762_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "763",
+            "paldea": "83"
+        },
+        "names": {
+            "fr": "Sucreine",
+            "en": "Tsareena"
+        },
+        "images": {
+            "thumbnail": "Miniature_763_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "935",
+            "paldea": "84"
+        },
+        "names": {
+            "fr": "Olivini",
+            "en": "Smoliv"
+        },
+        "images": {
+            "thumbnail": "Miniature_935_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "936",
+            "paldea": "85"
+        },
+        "names": {
+            "fr": "Olivado",
+            "en": "Dolliv"
+        },
+        "images": {
+            "thumbnail": "Miniature_936_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "937",
+            "paldea": "86"
+        },
+        "names": {
+            "fr": "Arboliva",
+            "en": "Arboliva"
+        },
+        "images": {
+            "thumbnail": "Miniature_937_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "438",
+            "paldea": "87"
+        },
+        "names": {
+            "fr": "Manzaï",
+            "en": "Bonsly"
+        },
+        "images": {
+            "thumbnail": "Miniature_438_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "185",
+            "paldea": "88"
+        },
+        "names": {
+            "fr": "Simularbre",
+            "en": "Sudowoodo"
+        },
+        "images": {
+            "thumbnail": "Miniature_185_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "744",
+            "paldea": "89"
+        },
+        "names": {
+            "fr": "Rocabot",
+            "en": "Rockruff"
+        },
+        "images": {
+            "thumbnail": "Miniature_744_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "745",
+            "paldea": "90"
+        },
+        "names": {
+            "fr": "Lougaroc",
+            "en": "Lycanroc"
+        },
+        "images": {
+            "thumbnail": "Miniature_745_Diurne_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "745",
+            "paldea": "90"
+        },
+        "names": {
+            "fr": "Lougaroc",
+            "en": "Lycanroc"
+        },
+        "images": {
+            "thumbnail": "Miniature_745_Nocturne_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "745",
+            "paldea": "90"
+        },
+        "names": {
+            "fr": "Lougaroc",
+            "en": "Lycanroc"
+        },
+        "images": {
+            "thumbnail": "Miniature_745_Crépusculaire_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "837",
+            "paldea": "91"
+        },
+        "names": {
+            "fr": "Charbi",
+            "en": "Rolycoly"
+        },
+        "images": {
+            "thumbnail": "Miniature_837_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "838",
+            "paldea": "92"
+        },
+        "names": {
+            "fr": "Wagomine",
+            "en": "Carkol"
+        },
+        "images": {
+            "thumbnail": "Miniature_838_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "839",
+            "paldea": "93"
+        },
+        "names": {
+            "fr": "Monthracite",
+            "en": "Coalossal"
+        },
+        "images": {
+            "thumbnail": "Miniature_839_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "403",
+            "paldea": "94"
+        },
+        "names": {
+            "fr": "Lixy",
+            "en": "Shinx"
+        },
+        "images": {
+            "thumbnail": "Miniature_403_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "404",
+            "paldea": "95"
+        },
+        "names": {
+            "fr": "Luxio",
+            "en": "Luxio"
+        },
+        "images": {
+            "thumbnail": "Miniature_404_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "405",
+            "paldea": "96"
+        },
+        "names": {
+            "fr": "Luxray",
+            "en": "Luxray"
+        },
+        "images": {
+            "thumbnail": "Miniature_405_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "396",
+            "paldea": "97"
+        },
+        "names": {
+            "fr": "Étourmi",
+            "en": "Starly"
+        },
+        "images": {
+            "thumbnail": "Miniature_396_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "397",
+            "paldea": "98"
+        },
+        "names": {
+            "fr": "Étourvol",
+            "en": "Staravia"
+        },
+        "images": {
+            "thumbnail": "Miniature_397_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "398",
+            "paldea": "99"
+        },
+        "names": {
+            "fr": "Étouraptor",
+            "en": "Staraptor"
+        },
+        "images": {
+            "thumbnail": "Miniature_398_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "741",
+            "paldea": "100"
+        },
+        "names": {
+            "fr": "Plumeline",
+            "en": "Oricorio"
+        },
+        "images": {
+            "thumbnail": "Miniature_741_Flamenco_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "741",
+            "paldea": "100"
+        },
+        "names": {
+            "fr": "Plumeline",
+            "en": "Oricorio"
+        },
+        "images": {
+            "thumbnail": "Miniature_741_Pom-Pom_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "741",
+            "paldea": "100"
+        },
+        "names": {
+            "fr": "Plumeline",
+            "en": "Oricorio"
+        },
+        "images": {
+            "thumbnail": "Miniature_741_Hula_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "741",
+            "paldea": "100"
+        },
+        "names": {
+            "fr": "Plumeline",
+            "en": "Oricorio"
+        },
+        "images": {
+            "thumbnail": "Miniature_741_Buyō_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "179",
+            "paldea": "101"
+        },
+        "names": {
+            "fr": "Wattouat",
+            "en": "Mareep"
+        },
+        "images": {
+            "thumbnail": "Miniature_179_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "180",
+            "paldea": "102"
+        },
+        "names": {
+            "fr": "Lainergie",
+            "en": "Flaaffy"
+        },
+        "images": {
+            "thumbnail": "Miniature_180_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "181",
+            "paldea": "103"
+        },
+        "names": {
+            "fr": "Pharamp",
+            "en": "Ampharos"
+        },
+        "images": {
+            "thumbnail": "Miniature_181_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "548",
+            "paldea": "104"
+        },
+        "names": {
+            "fr": "Chlorobule",
+            "en": "Petilil"
+        },
+        "images": {
+            "thumbnail": "Miniature_548_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "549",
+            "paldea": "105"
+        },
+        "names": {
+            "fr": "Fragilady",
+            "en": "Lilligant"
+        },
+        "images": {
+            "thumbnail": "Miniature_549_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "285",
+            "paldea": "106"
+        },
+        "names": {
+            "fr": "Balignon",
+            "en": "Shroomish"
+        },
+        "images": {
+            "thumbnail": "Miniature_285_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "286",
+            "paldea": "107"
+        },
+        "names": {
+            "fr": "Chapignon",
+            "en": "Breloom"
+        },
+        "images": {
+            "thumbnail": "Miniature_286_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "840",
+            "paldea": "108"
+        },
+        "names": {
+            "fr": "Verpom",
+            "en": "Applin"
+        },
+        "images": {
+            "thumbnail": "Miniature_840_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "841",
+            "paldea": "109"
+        },
+        "names": {
+            "fr": "Pomdrapi",
+            "en": "Flapple"
+        },
+        "images": {
+            "thumbnail": "Miniature_841_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "842",
+            "paldea": "110"
+        },
+        "names": {
+            "fr": "Dratatin",
+            "en": "Appletun"
+        },
+        "images": {
+            "thumbnail": "Miniature_842_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "325",
+            "paldea": "111"
+        },
+        "names": {
+            "fr": "Spoink",
+            "en": "Spoink"
+        },
+        "images": {
+            "thumbnail": "Miniature_325_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "326",
+            "paldea": "112"
+        },
+        "names": {
+            "fr": "Groret",
+            "en": "Grumpig"
+        },
+        "images": {
+            "thumbnail": "Miniature_326_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "960",
+            "paldea": "113"
+        },
+        "names": {
+            "fr": "Tapatoès",
+            "en": "Squawkabilly"
+        },
+        "images": {
+            "thumbnail": "Miniature_960_Vert_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "960",
+            "paldea": "113"
+        },
+        "names": {
+            "fr": "Tapatoès",
+            "en": "Squawkabilly"
+        },
+        "images": {
+            "thumbnail": "Miniature_960_Bleu_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "960",
+            "paldea": "113"
+        },
+        "names": {
+            "fr": "Tapatoès",
+            "en": "Squawkabilly"
+        },
+        "images": {
+            "thumbnail": "Miniature_960_Jaune_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "960",
+            "paldea": "113"
+        },
+        "names": {
+            "fr": "Tapatoès",
+            "en": "Squawkabilly"
+        },
+        "images": {
+            "thumbnail": "Miniature_960_Blanc_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "200",
+            "paldea": "114"
+        },
+        "names": {
+            "fr": "Feuforêve",
+            "en": "Misdreavus"
+        },
+        "images": {
+            "thumbnail": "Miniature_200_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "429",
+            "paldea": "115"
+        },
+        "names": {
+            "fr": "Magirêve",
+            "en": "Mismagius"
+        },
+        "images": {
+            "thumbnail": "Miniature_429_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "296",
+            "paldea": "116"
+        },
+        "names": {
+            "fr": "Makuhita",
+            "en": "Makuhita"
+        },
+        "images": {
+            "thumbnail": "Miniature_296_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "297",
+            "paldea": "117"
+        },
+        "names": {
+            "fr": "Hariyama",
+            "en": "Hariyama"
+        },
+        "images": {
+            "thumbnail": "Miniature_297_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "739",
+            "paldea": "118"
+        },
+        "names": {
+            "fr": "Crabagarre",
+            "en": "Crabrawler"
+        },
+        "images": {
+            "thumbnail": "Miniature_739_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "740",
+            "paldea": "119"
+        },
+        "names": {
+            "fr": "Crabominable",
+            "en": "Crabominable"
+        },
+        "images": {
+            "thumbnail": "Miniature_740_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "757",
+            "paldea": "120"
+        },
+        "names": {
+            "fr": "Tritox",
+            "en": "Salandit"
+        },
+        "images": {
+            "thumbnail": "Miniature_757_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "758",
+            "paldea": "121"
+        },
+        "names": {
+            "fr": "Malamandre",
+            "en": "Salazzle"
+        },
+        "images": {
+            "thumbnail": "Miniature_758_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "231",
+            "paldea": "122"
+        },
+        "names": {
+            "fr": "Phanpy",
+            "en": "Phanpy"
+        },
+        "images": {
+            "thumbnail": "Miniature_231_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "232",
+            "paldea": "123"
+        },
+        "names": {
+            "fr": "Donphan",
+            "en": "Donphan"
+        },
+        "images": {
+            "thumbnail": "Miniature_232_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "878",
+            "paldea": "124"
+        },
+        "names": {
+            "fr": "Charibari",
+            "en": "Cufant"
+        },
+        "images": {
+            "thumbnail": "Miniature_878_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "879",
+            "paldea": "125"
+        },
+        "names": {
+            "fr": "Pachyradjah",
+            "en": "Copperajah"
+        },
+        "images": {
+            "thumbnail": "Miniature_879_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "443",
+            "paldea": "126"
+        },
+        "names": {
+            "fr": "Griknot",
+            "en": "Gible"
+        },
+        "images": {
+            "thumbnail": "Miniature_443_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "444",
+            "paldea": "127"
+        },
+        "names": {
+            "fr": "Carmache",
+            "en": "Gabite"
+        },
+        "images": {
+            "thumbnail": "Miniature_444_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "445",
+            "paldea": "128"
+        },
+        "names": {
+            "fr": "Carchacrok",
+            "en": "Garchomp"
+        },
+        "images": {
+            "thumbnail": "Miniature_445_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "963",
+            "paldea": "129"
+        },
+        "names": {
+            "fr": "Selutin",
+            "en": "Nacli"
+        },
+        "images": {
+            "thumbnail": "Miniature_963_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "964",
+            "paldea": "130"
+        },
+        "names": {
+            "fr": "Amassel",
+            "en": "Naclstack"
+        },
+        "images": {
+            "thumbnail": "Miniature_964_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "965",
+            "paldea": "131"
+        },
+        "names": {
+            "fr": "Gigansel",
+            "en": "Garganacl"
+        },
+        "images": {
+            "thumbnail": "Miniature_965_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "278",
+            "paldea": "132"
+        },
+        "names": {
+            "fr": "Goélise",
+            "en": "Wingull"
+        },
+        "images": {
+            "thumbnail": "Miniature_278_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "279",
+            "paldea": "133"
+        },
+        "names": {
+            "fr": "Bekipan",
+            "en": "Pelipper"
+        },
+        "images": {
+            "thumbnail": "Miniature_279_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "129",
+            "paldea": "134"
+        },
+        "names": {
+            "fr": "Magicarpe",
+            "en": "Magikarp"
+        },
+        "images": {
+            "thumbnail": "Miniature_129_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "130",
+            "paldea": "135"
+        },
+        "names": {
+            "fr": "Léviator",
+            "en": "Gyarados"
+        },
+        "images": {
+            "thumbnail": "Miniature_130_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "846",
+            "paldea": "136"
+        },
+        "names": {
+            "fr": "Embrochet",
+            "en": "Arrokuda"
+        },
+        "images": {
+            "thumbnail": "Miniature_846_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "847",
+            "paldea": "137"
+        },
+        "names": {
+            "fr": "Hastacuda",
+            "en": "Barraskewda"
+        },
+        "images": {
+            "thumbnail": "Miniature_847_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "550",
+            "paldea": "138"
+        },
+        "names": {
+            "fr": "Bargantua",
+            "en": "Basculin"
+        },
+        "images": {
+            "thumbnail": "Miniature_550_Rouge_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "550",
+            "paldea": "138"
+        },
+        "names": {
+            "fr": "Bargantua",
+            "en": "Basculin"
+        },
+        "images": {
+            "thumbnail": "Miniature_550_Bleu_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "316",
+            "paldea": "139"
+        },
+        "names": {
+            "fr": "Gloupti",
+            "en": "Gulpin"
+        },
+        "images": {
+            "thumbnail": "Miniature_316_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "317",
+            "paldea": "140"
+        },
+        "names": {
+            "fr": "Avaltout",
+            "en": "Swalot"
+        },
+        "images": {
+            "thumbnail": "Miniature_317_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "052",
+            "paldea": "141"
+        },
+        "names": {
+            "fr": "Miaouss",
+            "en": "Meowth"
+        },
+        "images": {
+            "thumbnail": "Miniature_052_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "053",
+            "paldea": "142"
+        },
+        "names": {
+            "fr": "Persian",
+            "en": "Persian"
+        },
+        "images": {
+            "thumbnail": "Miniature_053_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "425",
+            "paldea": "143"
+        },
+        "names": {
+            "fr": "Baudrive",
+            "en": "Drifloon"
+        },
+        "images": {
+            "thumbnail": "Miniature_425_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "426",
+            "paldea": "144"
+        },
+        "names": {
+            "fr": "Grodrive",
+            "en": "Drifblim"
+        },
+        "images": {
+            "thumbnail": "Miniature_426_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "669",
+            "paldea": "145"
+        },
+        "names": {
+            "fr": "Flabébé",
+            "en": "Flabébé"
+        },
+        "images": {
+            "thumbnail": "Miniature_669_Rouge_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "669",
+            "paldea": "145"
+        },
+        "names": {
+            "fr": "Flabébé",
+            "en": "Flabébé"
+        },
+        "images": {
+            "thumbnail": "Miniature_669_Jaune_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "669",
+            "paldea": "145"
+        },
+        "names": {
+            "fr": "Flabébé",
+            "en": "Flabébé"
+        },
+        "images": {
+            "thumbnail": "Miniature_669_Orange_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "669",
+            "paldea": "145"
+        },
+        "names": {
+            "fr": "Flabébé",
+            "en": "Flabébé"
+        },
+        "images": {
+            "thumbnail": "Miniature_669_Bleue_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "669",
+            "paldea": "145"
+        },
+        "names": {
+            "fr": "Flabébé",
+            "en": "Flabébé"
+        },
+        "images": {
+            "thumbnail": "Miniature_669_Blanche_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "670",
+            "paldea": "146"
+        },
+        "names": {
+            "fr": "Floette",
+            "en": "Floette"
+        },
+        "images": {
+            "thumbnail": "Miniature_670_Rouge_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "670",
+            "paldea": "146"
+        },
+        "names": {
+            "fr": "Floette",
+            "en": "Floette"
+        },
+        "images": {
+            "thumbnail": "Miniature_670_Jaune_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "670",
+            "paldea": "146"
+        },
+        "names": {
+            "fr": "Floette",
+            "en": "Floette"
+        },
+        "images": {
+            "thumbnail": "Miniature_670_Orange_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "670",
+            "paldea": "146"
+        },
+        "names": {
+            "fr": "Floette",
+            "en": "Floette"
+        },
+        "images": {
+            "thumbnail": "Miniature_670_Bleue_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "670",
+            "paldea": "146"
+        },
+        "names": {
+            "fr": "Floette",
+            "en": "Floette"
+        },
+        "images": {
+            "thumbnail": "Miniature_670_Blanche_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "671",
+            "paldea": "147"
+        },
+        "names": {
+            "fr": "Florges",
+            "en": "Florges"
+        },
+        "images": {
+            "thumbnail": "Miniature_671_Rouge_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "671",
+            "paldea": "147"
+        },
+        "names": {
+            "fr": "Florges",
+            "en": "Florges"
+        },
+        "images": {
+            "thumbnail": "Miniature_671_Jaune_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "671",
+            "paldea": "147"
+        },
+        "names": {
+            "fr": "Florges",
+            "en": "Florges"
+        },
+        "images": {
+            "thumbnail": "Miniature_671_Orange_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "671",
+            "paldea": "147"
+        },
+        "names": {
+            "fr": "Florges",
+            "en": "Florges"
+        },
+        "images": {
+            "thumbnail": "Miniature_671_Bleue_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "671",
+            "paldea": "147"
+        },
+        "names": {
+            "fr": "Florges",
+            "en": "Florges"
+        },
+        "images": {
+            "thumbnail": "Miniature_671_Blanche_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "050",
+            "paldea": "148"
+        },
+        "names": {
+            "fr": "Taupiqueur",
+            "en": "Diglett"
+        },
+        "images": {
+            "thumbnail": "Miniature_050_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "051",
+            "paldea": "149"
+        },
+        "names": {
+            "fr": "Triopikeur",
+            "en": "Dugtrio"
+        },
+        "images": {
+            "thumbnail": "Miniature_051_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "324",
+            "paldea": "150"
+        },
+        "names": {
+            "fr": "Chartor",
+            "en": "Torkoal"
+        },
+        "images": {
+            "thumbnail": "Miniature_324_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "322",
+            "paldea": "151"
+        },
+        "names": {
+            "fr": "Chamallot",
+            "en": "Numel"
+        },
+        "images": {
+            "thumbnail": "Miniature_322_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "323",
+            "paldea": "152"
+        },
+        "names": {
+            "fr": "Camérupt",
+            "en": "Camerupt"
+        },
+        "images": {
+            "thumbnail": "Miniature_323_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "436",
+            "paldea": "153"
+        },
+        "names": {
+            "fr": "Archéomire",
+            "en": "Bronzor"
+        },
+        "images": {
+            "thumbnail": "Miniature_436_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "437",
+            "paldea": "154"
+        },
+        "names": {
+            "fr": "Archéodong",
+            "en": "Bronzong"
+        },
+        "images": {
+            "thumbnail": "Miniature_437_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "610",
+            "paldea": "155"
+        },
+        "names": {
+            "fr": "Coupenotte",
+            "en": "Axew"
+        },
+        "images": {
+            "thumbnail": "Miniature_610_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "611",
+            "paldea": "156"
+        },
+        "names": {
+            "fr": "Incisache",
+            "en": "Fraxure"
+        },
+        "images": {
+            "thumbnail": "Miniature_611_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "612",
+            "paldea": "157"
+        },
+        "names": {
+            "fr": "Tranchodon",
+            "en": "Haxorus"
+        },
+        "images": {
+            "thumbnail": "Miniature_612_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "056",
+            "paldea": "158"
+        },
+        "names": {
+            "fr": "Férosinge",
+            "en": "Mankey"
+        },
+        "images": {
+            "thumbnail": "Miniature_056_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "057",
+            "paldea": "159"
+        },
+        "names": {
+            "fr": "Colossinge",
+            "en": "Primeape"
+        },
+        "images": {
+            "thumbnail": "Miniature_057_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1010",
+            "paldea": "160"
+        },
+        "names": {
+            "fr": "Courrousinge",
+            "en": "Annihilape"
+        },
+        "images": {
+            "thumbnail": "Miniature_1010_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "307",
+            "paldea": "161"
+        },
+        "names": {
+            "fr": "Méditikka",
+            "en": "Meditite"
+        },
+        "images": {
+            "thumbnail": "Miniature_307_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "308",
+            "paldea": "162"
+        },
+        "names": {
+            "fr": "Charmina",
+            "en": "Medicham"
+        },
+        "images": {
+            "thumbnail": "Miniature_308_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "447",
+            "paldea": "163"
+        },
+        "names": {
+            "fr": "Riolu",
+            "en": "Riolu"
+        },
+        "images": {
+            "thumbnail": "Miniature_447_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "448",
+            "paldea": "164"
+        },
+        "names": {
+            "fr": "Lucario",
+            "en": "Lucario"
+        },
+        "images": {
+            "thumbnail": "Miniature_448_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1003",
+            "paldea": "165"
+        },
+        "names": {
+            "fr": "Charbambin",
+            "en": "Charcadet"
+        },
+        "images": {
+            "thumbnail": "Miniature_1003_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1004",
+            "paldea": "166"
+        },
+        "names": {
+            "fr": "Carmadura",
+            "en": "Armarouge"
+        },
+        "images": {
+            "thumbnail": "Miniature_1004_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1005",
+            "paldea": "167"
+        },
+        "names": {
+            "fr": "Malvalame",
+            "en": "Ceruledge"
+        },
+        "images": {
+            "thumbnail": "Miniature_1005_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "339",
+            "paldea": "168"
+        },
+        "names": {
+            "fr": "Barloche",
+            "en": "Barboach"
+        },
+        "images": {
+            "thumbnail": "Miniature_339_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "340",
+            "paldea": "169"
+        },
+        "names": {
+            "fr": "Barbicha",
+            "en": "Whiscash"
+        },
+        "images": {
+            "thumbnail": "Miniature_340_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "940",
+            "paldea": "170"
+        },
+        "names": {
+            "fr": "Têtampoule",
+            "en": "Tadbulb"
+        },
+        "images": {
+            "thumbnail": "Miniature_940_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "941",
+            "paldea": "171"
+        },
+        "names": {
+            "fr": "Ampibidou",
+            "en": "Bellibolt"
+        },
+        "images": {
+            "thumbnail": "Miniature_941_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "704",
+            "paldea": "172"
+        },
+        "names": {
+            "fr": "Mucuscule",
+            "en": "Goomy"
+        },
+        "images": {
+            "thumbnail": "Miniature_704_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "705",
+            "paldea": "173"
+        },
+        "names": {
+            "fr": "Colimucus",
+            "en": "Sliggoo"
+        },
+        "images": {
+            "thumbnail": "Miniature_705_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "706",
+            "paldea": "174"
+        },
+        "names": {
+            "fr": "Muplodocus",
+            "en": "Goodra"
+        },
+        "images": {
+            "thumbnail": "Miniature_706_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "453",
+            "paldea": "175"
+        },
+        "names": {
+            "fr": "Cradopaud",
+            "en": "Croagunk"
+        },
+        "images": {
+            "thumbnail": "Miniature_453_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "454",
+            "paldea": "176"
+        },
+        "names": {
+            "fr": "Coatox",
+            "en": "Toxicroak"
+        },
+        "images": {
+            "thumbnail": "Miniature_454_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "957",
+            "paldea": "177"
+        },
+        "names": {
+            "fr": "Zapétrel",
+            "en": "Wattrel"
+        },
+        "images": {
+            "thumbnail": "Miniature_957_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "958",
+            "paldea": "178"
+        },
+        "names": {
+            "fr": "Fulgulairo",
+            "en": "Kilowattrel"
+        },
+        "images": {
+            "thumbnail": "Miniature_958_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "133",
+            "paldea": "179"
+        },
+        "names": {
+            "fr": "Évoli",
+            "en": "Eevee"
+        },
+        "images": {
+            "thumbnail": "Miniature_133_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "134",
+            "paldea": "180"
+        },
+        "names": {
+            "fr": "Aquali",
+            "en": "Vaporeon"
+        },
+        "images": {
+            "thumbnail": "Miniature_134_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "135",
+            "paldea": "181"
+        },
+        "names": {
+            "fr": "Voltali",
+            "en": "Jolteon"
+        },
+        "images": {
+            "thumbnail": "Miniature_135_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "136",
+            "paldea": "182"
+        },
+        "names": {
+            "fr": "Pyroli",
+            "en": "Flareon"
+        },
+        "images": {
+            "thumbnail": "Miniature_136_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "196",
+            "paldea": "183"
+        },
+        "names": {
+            "fr": "Mentali",
+            "en": "Espeon"
+        },
+        "images": {
+            "thumbnail": "Miniature_196_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "197",
+            "paldea": "184"
+        },
+        "names": {
+            "fr": "Noctali",
+            "en": "Umbreon"
+        },
+        "images": {
+            "thumbnail": "Miniature_197_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "470",
+            "paldea": "185"
+        },
+        "names": {
+            "fr": "Phyllali",
+            "en": "Leafeon"
+        },
+        "images": {
+            "thumbnail": "Miniature_470_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "471",
+            "paldea": "186"
+        },
+        "names": {
+            "fr": "Givrali",
+            "en": "Glaceon"
+        },
+        "images": {
+            "thumbnail": "Miniature_471_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "700",
+            "paldea": "187"
+        },
+        "names": {
+            "fr": "Nymphali",
+            "en": "Sylveon"
+        },
+        "images": {
+            "thumbnail": "Miniature_700_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "206",
+            "paldea": "188"
+        },
+        "names": {
+            "fr": "Insolourdo",
+            "en": "Dunsparce"
+        },
+        "images": {
+            "thumbnail": "Miniature_206_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "917",
+            "paldea": "189"
+        },
+        "names": {
+            "fr": "Deusolourdo",
+            "en": "Dudunsparce"
+        },
+        "images": {
+            "thumbnail": "Miniature_917_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "917",
+            "paldea": "189"
+        },
+        "names": {
+            "fr": "Deusolourdo",
+            "en": "Dudunsparce"
+        },
+        "images": {
+            "thumbnail": "Miniature_917_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "585",
+            "paldea": "190"
+        },
+        "names": {
+            "fr": "Vivaldaim",
+            "en": "Deerling"
+        },
+        "images": {
+            "thumbnail": "Miniature_585_Printemps_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "585",
+            "paldea": "190"
+        },
+        "names": {
+            "fr": "Vivaldaim",
+            "en": "Deerling"
+        },
+        "images": {
+            "thumbnail": "Miniature_585_Été_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "585",
+            "paldea": "190"
+        },
+        "names": {
+            "fr": "Vivaldaim",
+            "en": "Deerling"
+        },
+        "images": {
+            "thumbnail": "Miniature_585_Automne_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "585",
+            "paldea": "190"
+        },
+        "names": {
+            "fr": "Vivaldaim",
+            "en": "Deerling"
+        },
+        "images": {
+            "thumbnail": "Miniature_585_Hiver_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "586",
+            "paldea": "191"
+        },
+        "names": {
+            "fr": "Haydaim",
+            "en": "Sawsbuck"
+        },
+        "images": {
+            "thumbnail": "Miniature_586_Printemps_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "586",
+            "paldea": "191"
+        },
+        "names": {
+            "fr": "Haydaim",
+            "en": "Sawsbuck"
+        },
+        "images": {
+            "thumbnail": "Miniature_586_Été_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "586",
+            "paldea": "191"
+        },
+        "names": {
+            "fr": "Haydaim",
+            "en": "Sawsbuck"
+        },
+        "images": {
+            "thumbnail": "Miniature_586_Automne_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "586",
+            "paldea": "191"
+        },
+        "names": {
+            "fr": "Haydaim",
+            "en": "Sawsbuck"
+        },
+        "images": {
+            "thumbnail": "Miniature_586_Hiver_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "203",
+            "paldea": "192"
+        },
+        "names": {
+            "fr": "Girafarig",
+            "en": "Girafarig"
+        },
+        "images": {
+            "thumbnail": "Miniature_203_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "928",
+            "paldea": "193"
+        },
+        "names": {
+            "fr": "Farigiraf",
+            "en": "Farigiraf"
+        },
+        "images": {
+            "thumbnail": "Miniature_928_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "088",
+            "paldea": "194"
+        },
+        "names": {
+            "fr": "Tadmorv",
+            "en": "Grimer"
+        },
+        "images": {
+            "thumbnail": "Miniature_088_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "089",
+            "paldea": "195"
+        },
+        "names": {
+            "fr": "Grotadmorv",
+            "en": "Muk"
+        },
+        "images": {
+            "thumbnail": "Miniature_089_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "972",
+            "paldea": "196"
+        },
+        "names": {
+            "fr": "Grondogue",
+            "en": "Maschiff"
+        },
+        "images": {
+            "thumbnail": "Miniature_972_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "973",
+            "paldea": "197"
+        },
+        "names": {
+            "fr": "Dogrino",
+            "en": "Mabosstiff"
+        },
+        "images": {
+            "thumbnail": "Miniature_973_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "848",
+            "paldea": "198"
+        },
+        "names": {
+            "fr": "Toxizap",
+            "en": "Toxel"
+        },
+        "images": {
+            "thumbnail": "Miniature_848_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "849",
+            "paldea": "199"
+        },
+        "names": {
+            "fr": "Salarsen",
+            "en": "Toxtricity"
+        },
+        "images": {
+            "thumbnail": "Miniature_849_Aigüe_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "702",
+            "paldea": "200"
+        },
+        "names": {
+            "fr": "Dedenne",
+            "en": "Dedenne"
+        },
+        "images": {
+            "thumbnail": "Miniature_702_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "417",
+            "paldea": "201"
+        },
+        "names": {
+            "fr": "Pachirisu",
+            "en": "Pachirisu"
+        },
+        "images": {
+            "thumbnail": "Miniature_417_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "968",
+            "paldea": "202"
+        },
+        "names": {
+            "fr": "Gribouraigne",
+            "en": "Shroodle"
+        },
+        "images": {
+            "thumbnail": "Miniature_968_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "969",
+            "paldea": "203"
+        },
+        "names": {
+            "fr": "Tag-Tag",
+            "en": "Grafaiai"
+        },
+        "images": {
+            "thumbnail": "Miniature_969_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "234",
+            "paldea": "204"
+        },
+        "names": {
+            "fr": "Cerfrousse",
+            "en": "Stantler"
+        },
+        "images": {
+            "thumbnail": "Miniature_234_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "590",
+            "paldea": "205"
+        },
+        "names": {
+            "fr": "Trompignon",
+            "en": "Foongus"
+        },
+        "images": {
+            "thumbnail": "Miniature_590_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "591",
+            "paldea": "206"
+        },
+        "names": {
+            "fr": "Gaulet",
+            "en": "Amoonguss"
+        },
+        "images": {
+            "thumbnail": "Miniature_591_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "100",
+            "paldea": "207"
+        },
+        "names": {
+            "fr": "Voltorbe",
+            "en": "Voltorb"
+        },
+        "images": {
+            "thumbnail": "Miniature_100_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "101",
+            "paldea": "208"
+        },
+        "names": {
+            "fr": "Électrode",
+            "en": "Electrode"
+        },
+        "images": {
+            "thumbnail": "Miniature_101_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "081",
+            "paldea": "209"
+        },
+        "names": {
+            "fr": "Magnéti",
+            "en": "Magnemite"
+        },
+        "images": {
+            "thumbnail": "Miniature_081_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "082",
+            "paldea": "210"
+        },
+        "names": {
+            "fr": "Magnéton",
+            "en": "Magneton"
+        },
+        "images": {
+            "thumbnail": "Miniature_082_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "462",
+            "paldea": "211"
+        },
+        "names": {
+            "fr": "Magnézone",
+            "en": "Magnezone"
+        },
+        "images": {
+            "thumbnail": "Miniature_462_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "132",
+            "paldea": "212"
+        },
+        "names": {
+            "fr": "Métamorph",
+            "en": "Ditto"
+        },
+        "images": {
+            "thumbnail": "Miniature_132_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "058",
+            "paldea": "213"
+        },
+        "names": {
+            "fr": "Caninos",
+            "en": "Growlithe"
+        },
+        "images": {
+            "thumbnail": "Miniature_058_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "059",
+            "paldea": "214"
+        },
+        "names": {
+            "fr": "Arcanin",
+            "en": "Arcanine"
+        },
+        "images": {
+            "thumbnail": "Miniature_059_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "216",
+            "paldea": "215"
+        },
+        "names": {
+            "fr": "Teddiursa",
+            "en": "Teddiursa"
+        },
+        "images": {
+            "thumbnail": "Miniature_216_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "217",
+            "paldea": "216"
+        },
+        "names": {
+            "fr": "Ursaring",
+            "en": "Ursaring"
+        },
+        "images": {
+            "thumbnail": "Miniature_217_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "335",
+            "paldea": "217"
+        },
+        "names": {
+            "fr": "Mangriff",
+            "en": "Zangoose"
+        },
+        "images": {
+            "thumbnail": "Miniature_335_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "336",
+            "paldea": "218"
+        },
+        "names": {
+            "fr": "Séviper",
+            "en": "Seviper"
+        },
+        "images": {
+            "thumbnail": "Miniature_336_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "333",
+            "paldea": "219"
+        },
+        "names": {
+            "fr": "Tylton",
+            "en": "Swablu"
+        },
+        "images": {
+            "thumbnail": "Miniature_333_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "334",
+            "paldea": "220"
+        },
+        "names": {
+            "fr": "Altaria",
+            "en": "Altaria"
+        },
+        "images": {
+            "thumbnail": "Miniature_334_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "672",
+            "paldea": "221"
+        },
+        "names": {
+            "fr": "Cabriolaine",
+            "en": "Skiddo"
+        },
+        "images": {
+            "thumbnail": "Miniature_672_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "673",
+            "paldea": "222"
+        },
+        "names": {
+            "fr": "Chevroum",
+            "en": "Gogoat"
+        },
+        "images": {
+            "thumbnail": "Miniature_673_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "128",
+            "paldea": "223"
+        },
+        "names": {
+            "fr": "Tauros",
+            "en": "Tauros"
+        },
+        "images": {
+            "thumbnail": "Miniature_128_Paldea_Combative_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "128",
+            "paldea": "223"
+        },
+        "names": {
+            "fr": "Tauros",
+            "en": "Tauros"
+        },
+        "images": {
+            "thumbnail": "Miniature_128_Paldea_Flamboyante_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "128",
+            "paldea": "223"
+        },
+        "names": {
+            "fr": "Tauros",
+            "en": "Tauros"
+        },
+        "images": {
+            "thumbnail": "Miniature_128_Paldea_Aquatique_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "667",
+            "paldea": "224"
+        },
+        "names": {
+            "fr": "Hélionceau",
+            "en": "Litleo"
+        },
+        "images": {
+            "thumbnail": "Miniature_667_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "668",
+            "paldea": "225"
+        },
+        "names": {
+            "fr": "Némélios",
+            "en": "Pyroar"
+        },
+        "images": {
+            "thumbnail": "Miniature_668_♂_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "434",
+            "paldea": "226"
+        },
+        "names": {
+            "fr": "Moufouette",
+            "en": "Stunky"
+        },
+        "images": {
+            "thumbnail": "Miniature_434_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "435",
+            "paldea": "227"
+        },
+        "names": {
+            "fr": "Moufflair",
+            "en": "Skuntank"
+        },
+        "images": {
+            "thumbnail": "Miniature_435_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "570",
+            "paldea": "228"
+        },
+        "names": {
+            "fr": "Zorua",
+            "en": "Zorua"
+        },
+        "images": {
+            "thumbnail": "Miniature_570_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "571",
+            "paldea": "229"
+        },
+        "names": {
+            "fr": "Zoroark",
+            "en": "Zoroark"
+        },
+        "images": {
+            "thumbnail": "Miniature_571_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "215",
+            "paldea": "230"
+        },
+        "names": {
+            "fr": "Farfuret",
+            "en": "Sneasel"
+        },
+        "images": {
+            "thumbnail": "Miniature_215_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "461",
+            "paldea": "231"
+        },
+        "names": {
+            "fr": "Dimoret",
+            "en": "Weavile"
+        },
+        "images": {
+            "thumbnail": "Miniature_461_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "198",
+            "paldea": "232"
+        },
+        "names": {
+            "fr": "Cornèbre",
+            "en": "Murkrow"
+        },
+        "images": {
+            "thumbnail": "Miniature_198_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "430",
+            "paldea": "233"
+        },
+        "names": {
+            "fr": "Corboss",
+            "en": "Honchkrow"
+        },
+        "images": {
+            "thumbnail": "Miniature_430_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "574",
+            "paldea": "234"
+        },
+        "names": {
+            "fr": "Scrutella",
+            "en": "Gothita"
+        },
+        "images": {
+            "thumbnail": "Miniature_574_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "575",
+            "paldea": "235"
+        },
+        "names": {
+            "fr": "Mesmérella",
+            "en": "Gothorita"
+        },
+        "images": {
+            "thumbnail": "Miniature_575_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "576",
+            "paldea": "236"
+        },
+        "names": {
+            "fr": "Sidérella",
+            "en": "Gothitelle"
+        },
+        "images": {
+            "thumbnail": "Miniature_576_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "854",
+            "paldea": "237"
+        },
+        "names": {
+            "fr": "Théffroi",
+            "en": "Sinistea"
+        },
+        "images": {
+            "thumbnail": "Miniature_854_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "854",
+            "paldea": "237"
+        },
+        "names": {
+            "fr": "Théffroi",
+            "en": "Sinistea"
+        },
+        "images": {
+            "thumbnail": "Miniature_854_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "855",
+            "paldea": "238"
+        },
+        "names": {
+            "fr": "Polthégeist",
+            "en": "Polteageist"
+        },
+        "images": {
+            "thumbnail": "Miniature_855_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "855",
+            "paldea": "238"
+        },
+        "names": {
+            "fr": "Polthégeist",
+            "en": "Polteageist"
+        },
+        "images": {
+            "thumbnail": "Miniature_855_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "778",
+            "paldea": "239"
+        },
+        "names": {
+            "fr": "Mimiqui",
+            "en": "Mimikyu"
+        },
+        "images": {
+            "thumbnail": "Miniature_778_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "778",
+            "paldea": "239"
+        },
+        "names": {
+            "fr": "Mimiqui",
+            "en": "Mimikyu"
+        },
+        "images": {
+            "thumbnail": "Miniature_778_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "707",
+            "paldea": "240"
+        },
+        "names": {
+            "fr": "Trousselin",
+            "en": "Klefki"
+        },
+        "images": {
+            "thumbnail": "Miniature_707_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "876",
+            "paldea": "241"
+        },
+        "names": {
+            "fr": "Wimessir",
+            "en": "Indeedee"
+        },
+        "images": {
+            "thumbnail": "Miniature_876_♂_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "876",
+            "paldea": "241"
+        },
+        "names": {
+            "fr": "Wimessir",
+            "en": "Indeedee"
+        },
+        "images": {
+            "thumbnail": "Miniature_876_♀_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "974",
+            "paldea": "242"
+        },
+        "names": {
+            "fr": "Virovent",
+            "en": "Bramblin"
+        },
+        "images": {
+            "thumbnail": "Miniature_974_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "975",
+            "paldea": "243"
+        },
+        "names": {
+            "fr": "Virevorreur",
+            "en": "Brambleghast"
+        },
+        "images": {
+            "thumbnail": "Miniature_975_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1006",
+            "paldea": "244"
+        },
+        "names": {
+            "fr": "Terracool",
+            "en": "Toedscool"
+        },
+        "images": {
+            "thumbnail": "Miniature_1006_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1007",
+            "paldea": "245"
+        },
+        "names": {
+            "fr": "Terracruel",
+            "en": "Toedscruel"
+        },
+        "images": {
+            "thumbnail": "Miniature_1007_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "357",
+            "paldea": "246"
+        },
+        "names": {
+            "fr": "Tropius",
+            "en": "Tropius"
+        },
+        "images": {
+            "thumbnail": "Miniature_357_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "753",
+            "paldea": "247"
+        },
+        "names": {
+            "fr": "Mimantis",
+            "en": "Fomantis"
+        },
+        "images": {
+            "thumbnail": "Miniature_753_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "754",
+            "paldea": "248"
+        },
+        "names": {
+            "fr": "Floramantis",
+            "en": "Lurantis"
+        },
+        "images": {
+            "thumbnail": "Miniature_754_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "962",
+            "paldea": "249"
+        },
+        "names": {
+            "fr": "Craparoi",
+            "en": "Klawf"
+        },
+        "images": {
+            "thumbnail": "Miniature_962_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "938",
+            "paldea": "250"
+        },
+        "names": {
+            "fr": "Pimito",
+            "en": "Capsakid"
+        },
+        "images": {
+            "thumbnail": "Miniature_938_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "939",
+            "paldea": "251"
+        },
+        "names": {
+            "fr": "Scovilain",
+            "en": "Scovillain"
+        },
+        "images": {
+            "thumbnail": "Miniature_939_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "331",
+            "paldea": "252"
+        },
+        "names": {
+            "fr": "Cacnea",
+            "en": "Cacnea"
+        },
+        "images": {
+            "thumbnail": "Miniature_331_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "332",
+            "paldea": "253"
+        },
+        "names": {
+            "fr": "Cacturne",
+            "en": "Cacturne"
+        },
+        "images": {
+            "thumbnail": "Miniature_332_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "922",
+            "paldea": "254"
+        },
+        "names": {
+            "fr": "Léboulérou",
+            "en": "Rellor"
+        },
+        "images": {
+            "thumbnail": "Miniature_922_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "923",
+            "paldea": "255"
+        },
+        "names": {
+            "fr": "Bérasca",
+            "en": "Rabsca"
+        },
+        "images": {
+            "thumbnail": "Miniature_923_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "048",
+            "paldea": "256"
+        },
+        "names": {
+            "fr": "Mimitoss",
+            "en": "Venonat"
+        },
+        "images": {
+            "thumbnail": "Miniature_048_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "049",
+            "paldea": "257"
+        },
+        "names": {
+            "fr": "Aéromite",
+            "en": "Venomoth"
+        },
+        "images": {
+            "thumbnail": "Miniature_049_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "204",
+            "paldea": "258"
+        },
+        "names": {
+            "fr": "Pomdepik",
+            "en": "Pineco"
+        },
+        "images": {
+            "thumbnail": "Miniature_204_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "205",
+            "paldea": "259"
+        },
+        "names": {
+            "fr": "Foretress",
+            "en": "Forretress"
+        },
+        "images": {
+            "thumbnail": "Miniature_205_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "123",
+            "paldea": "260"
+        },
+        "names": {
+            "fr": "Insécateur",
+            "en": "Scyther"
+        },
+        "images": {
+            "thumbnail": "Miniature_123_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "212",
+            "paldea": "261"
+        },
+        "names": {
+            "fr": "Cizayox",
+            "en": "Scizor"
+        },
+        "images": {
+            "thumbnail": "Miniature_212_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "214",
+            "paldea": "262"
+        },
+        "names": {
+            "fr": "Scarhino",
+            "en": "Heracross"
+        },
+        "images": {
+            "thumbnail": "Miniature_214_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "926",
+            "paldea": "263"
+        },
+        "names": {
+            "fr": "Flotillon",
+            "en": "Flittle"
+        },
+        "images": {
+            "thumbnail": "Miniature_926_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "927",
+            "paldea": "264"
+        },
+        "names": {
+            "fr": "Cléopsytra",
+            "en": "Espathra"
+        },
+        "images": {
+            "thumbnail": "Miniature_927_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "449",
+            "paldea": "265"
+        },
+        "names": {
+            "fr": "Hippopotas",
+            "en": "Hippopotas"
+        },
+        "images": {
+            "thumbnail": "Miniature_449_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "450",
+            "paldea": "266"
+        },
+        "names": {
+            "fr": "Hippodocus",
+            "en": "Hippowdon"
+        },
+        "images": {
+            "thumbnail": "Miniature_450_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "551",
+            "paldea": "267"
+        },
+        "names": {
+            "fr": "Mascaïman",
+            "en": "Sandile"
+        },
+        "images": {
+            "thumbnail": "Miniature_551_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "552",
+            "paldea": "268"
+        },
+        "names": {
+            "fr": "Escroco",
+            "en": "Krokorok"
+        },
+        "images": {
+            "thumbnail": "Miniature_552_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "553",
+            "paldea": "269"
+        },
+        "names": {
+            "fr": "Crocorible",
+            "en": "Krookodile"
+        },
+        "images": {
+            "thumbnail": "Miniature_553_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "843",
+            "paldea": "270"
+        },
+        "names": {
+            "fr": "Dunaja",
+            "en": "Silicobra"
+        },
+        "images": {
+            "thumbnail": "Miniature_843_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "844",
+            "paldea": "271"
+        },
+        "names": {
+            "fr": "Dunaconda",
+            "en": "Sandaconda"
+        },
+        "images": {
+            "thumbnail": "Miniature_844_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "749",
+            "paldea": "272"
+        },
+        "names": {
+            "fr": "Tiboudet",
+            "en": "Mudbray"
+        },
+        "images": {
+            "thumbnail": "Miniature_749_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "750",
+            "paldea": "273"
+        },
+        "names": {
+            "fr": "Bourrinos",
+            "en": "Mudsdale"
+        },
+        "images": {
+            "thumbnail": "Miniature_750_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "636",
+            "paldea": "274"
+        },
+        "names": {
+            "fr": "Pyronille",
+            "en": "Larvesta"
+        },
+        "images": {
+            "thumbnail": "Miniature_636_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "637",
+            "paldea": "275"
+        },
+        "names": {
+            "fr": "Pyrax",
+            "en": "Volcarona"
+        },
+        "images": {
+            "thumbnail": "Miniature_637_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "371",
+            "paldea": "276"
+        },
+        "names": {
+            "fr": "Draby",
+            "en": "Bagon"
+        },
+        "images": {
+            "thumbnail": "Miniature_371_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "372",
+            "paldea": "277"
+        },
+        "names": {
+            "fr": "Drackhaus",
+            "en": "Shelgon"
+        },
+        "images": {
+            "thumbnail": "Miniature_372_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "373",
+            "paldea": "278"
+        },
+        "names": {
+            "fr": "Drattak",
+            "en": "Salamence"
+        },
+        "images": {
+            "thumbnail": "Miniature_373_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1000",
+            "paldea": "279"
+        },
+        "names": {
+            "fr": "Forgerette",
+            "en": "Tinkatink"
+        },
+        "images": {
+            "thumbnail": "Miniature_1000_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1001",
+            "paldea": "280"
+        },
+        "names": {
+            "fr": "Forgella",
+            "en": "Tinkatuff"
+        },
+        "images": {
+            "thumbnail": "Miniature_1001_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1002",
+            "paldea": "281"
+        },
+        "names": {
+            "fr": "Forgelina",
+            "en": "Tinkaton"
+        },
+        "images": {
+            "thumbnail": "Miniature_1002_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "856",
+            "paldea": "282"
+        },
+        "names": {
+            "fr": "Bibichut",
+            "en": "Hatenna"
+        },
+        "images": {
+            "thumbnail": "Miniature_856_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "857",
+            "paldea": "283"
+        },
+        "names": {
+            "fr": "Chapotus",
+            "en": "Hattrem"
+        },
+        "images": {
+            "thumbnail": "Miniature_857_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "858",
+            "paldea": "284"
+        },
+        "names": {
+            "fr": "Sorcilence",
+            "en": "Hatterene"
+        },
+        "images": {
+            "thumbnail": "Miniature_858_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "859",
+            "paldea": "285"
+        },
+        "names": {
+            "fr": "Grimalin",
+            "en": "Impidimp"
+        },
+        "images": {
+            "thumbnail": "Miniature_859_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "860",
+            "paldea": "286"
+        },
+        "names": {
+            "fr": "Fourbelin",
+            "en": "Morgrem"
+        },
+        "images": {
+            "thumbnail": "Miniature_860_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "861",
+            "paldea": "287"
+        },
+        "names": {
+            "fr": "Angoliath",
+            "en": "Grimmsnarl"
+        },
+        "images": {
+            "thumbnail": "Miniature_861_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "929",
+            "paldea": "288"
+        },
+        "names": {
+            "fr": "Taupikeau",
+            "en": "Wiglett"
+        },
+        "images": {
+            "thumbnail": "Miniature_929_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "930",
+            "paldea": "289"
+        },
+        "names": {
+            "fr": "Triopikeau",
+            "en": "Wugtrio"
+        },
+        "images": {
+            "thumbnail": "Miniature_930_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "959",
+            "paldea": "290"
+        },
+        "names": {
+            "fr": "Lestombaile",
+            "en": "Bombirdier"
+        },
+        "images": {
+            "thumbnail": "Miniature_959_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "933",
+            "paldea": "291"
+        },
+        "names": {
+            "fr": "Dofin",
+            "en": "Finizen"
+        },
+        "images": {
+            "thumbnail": "Miniature_933_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "934",
+            "paldea": "292"
+        },
+        "names": {
+            "fr": "Superdofin",
+            "en": "Palafin"
+        },
+        "images": {
+            "thumbnail": "Miniature_934_Ordinaire_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "934",
+            "paldea": "292"
+        },
+        "names": {
+            "fr": "Superdofin",
+            "en": "Palafin"
+        },
+        "images": {
+            "thumbnail": "Miniature_934_Super_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "942",
+            "paldea": "293"
+        },
+        "names": {
+            "fr": "Vrombi",
+            "en": "Varoom"
+        },
+        "images": {
+            "thumbnail": "Miniature_942_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "943",
+            "paldea": "294"
+        },
+        "names": {
+            "fr": "Vrombotor",
+            "en": "Revavroom"
+        },
+        "images": {
+            "thumbnail": "Miniature_943_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "953",
+            "paldea": "295"
+        },
+        "names": {
+            "fr": "Motorizard",
+            "en": "Cyclizar"
+        },
+        "images": {
+            "thumbnail": "Miniature_953_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "944",
+            "paldea": "296"
+        },
+        "names": {
+            "fr": "Ferdeter",
+            "en": "Orthworm"
+        },
+        "images": {
+            "thumbnail": "Miniature_944_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "302",
+            "paldea": "297"
+        },
+        "names": {
+            "fr": "Ténéfix",
+            "en": "Sableye"
+        },
+        "images": {
+            "thumbnail": "Miniature_302_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "353",
+            "paldea": "298"
+        },
+        "names": {
+            "fr": "Polichombr",
+            "en": "Shuppet"
+        },
+        "images": {
+            "thumbnail": "Miniature_353_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "354",
+            "paldea": "299"
+        },
+        "names": {
+            "fr": "Branette",
+            "en": "Banette"
+        },
+        "images": {
+            "thumbnail": "Miniature_354_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "870",
+            "paldea": "300"
+        },
+        "names": {
+            "fr": "Hexadron",
+            "en": "Falinks"
+        },
+        "images": {
+            "thumbnail": "Miniature_870_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "701",
+            "paldea": "301"
+        },
+        "names": {
+            "fr": "Brutalibré",
+            "en": "Hawlucha"
+        },
+        "images": {
+            "thumbnail": "Miniature_701_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "442",
+            "paldea": "302"
+        },
+        "names": {
+            "fr": "Spiritomb",
+            "en": "Spiritomb"
+        },
+        "images": {
+            "thumbnail": "Miniature_442_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "714",
+            "paldea": "303"
+        },
+        "names": {
+            "fr": "Sonistrelle",
+            "en": "Noibat"
+        },
+        "images": {
+            "thumbnail": "Miniature_714_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "715",
+            "paldea": "304"
+        },
+        "names": {
+            "fr": "Bruyverne",
+            "en": "Noivern"
+        },
+        "images": {
+            "thumbnail": "Miniature_715_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "885",
+            "paldea": "305"
+        },
+        "names": {
+            "fr": "Fantyrm",
+            "en": "Dreepy"
+        },
+        "images": {
+            "thumbnail": "Miniature_885_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "886",
+            "paldea": "306"
+        },
+        "names": {
+            "fr": "Dispareptil",
+            "en": "Drakloak"
+        },
+        "images": {
+            "thumbnail": "Miniature_886_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "887",
+            "paldea": "307"
+        },
+        "names": {
+            "fr": "Lanssorien",
+            "en": "Dragapult"
+        },
+        "images": {
+            "thumbnail": "Miniature_887_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "966",
+            "paldea": "308"
+        },
+        "names": {
+            "fr": "Germéclat",
+            "en": "Glimmet"
+        },
+        "images": {
+            "thumbnail": "Miniature_966_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "967",
+            "paldea": "309"
+        },
+        "names": {
+            "fr": "Floréclat",
+            "en": "Glimmora"
+        },
+        "images": {
+            "thumbnail": "Miniature_967_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "479",
+            "paldea": "310"
+        },
+        "names": {
+            "fr": "Motisma",
+            "en": "Rotom"
+        },
+        "images": {
+            "thumbnail": "Miniature_479_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "479",
+            "paldea": "310"
+        },
+        "names": {
+            "fr": "Motisma",
+            "en": "Rotom"
+        },
+        "images": {
+            "thumbnail": "Miniature_479_Chaleur_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "479",
+            "paldea": "310"
+        },
+        "names": {
+            "fr": "Motisma",
+            "en": "Rotom"
+        },
+        "images": {
+            "thumbnail": "Miniature_479_Lavage_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "479",
+            "paldea": "310"
+        },
+        "names": {
+            "fr": "Motisma",
+            "en": "Rotom"
+        },
+        "images": {
+            "thumbnail": "Miniature_479_Froid_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "479",
+            "paldea": "310"
+        },
+        "names": {
+            "fr": "Motisma",
+            "en": "Rotom"
+        },
+        "images": {
+            "thumbnail": "Miniature_479_Hélice_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "479",
+            "paldea": "310"
+        },
+        "names": {
+            "fr": "Motisma",
+            "en": "Rotom"
+        },
+        "images": {
+            "thumbnail": "Miniature_479_Tonte_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "924",
+            "paldea": "311"
+        },
+        "names": {
+            "fr": "Toutombe",
+            "en": "Greavard"
+        },
+        "images": {
+            "thumbnail": "Miniature_924_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "925",
+            "paldea": "312"
+        },
+        "names": {
+            "fr": "Tomberro",
+            "en": "Houndstone"
+        },
+        "images": {
+            "thumbnail": "Miniature_925_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "765",
+            "paldea": "313"
+        },
+        "names": {
+            "fr": "Gouroutan",
+            "en": "Oranguru"
+        },
+        "images": {
+            "thumbnail": "Miniature_765_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "766",
+            "paldea": "314"
+        },
+        "names": {
+            "fr": "Quartermac",
+            "en": "Passimian"
+        },
+        "images": {
+            "thumbnail": "Miniature_766_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "775",
+            "paldea": "315"
+        },
+        "names": {
+            "fr": "Dodoala",
+            "en": "Komala"
+        },
+        "images": {
+            "thumbnail": "Miniature_775_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "246",
+            "paldea": "316"
+        },
+        "names": {
+            "fr": "Embrylex",
+            "en": "Larvitar"
+        },
+        "images": {
+            "thumbnail": "Miniature_246_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "247",
+            "paldea": "317"
+        },
+        "names": {
+            "fr": "Ymphect",
+            "en": "Pupitar"
+        },
+        "images": {
+            "thumbnail": "Miniature_247_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "248",
+            "paldea": "318"
+        },
+        "names": {
+            "fr": "Tyranocif",
+            "en": "Tyranitar"
+        },
+        "images": {
+            "thumbnail": "Miniature_248_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "874",
+            "paldea": "319"
+        },
+        "names": {
+            "fr": "Dolman",
+            "en": "Stonjourner"
+        },
+        "images": {
+            "thumbnail": "Miniature_874_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "875",
+            "paldea": "320"
+        },
+        "names": {
+            "fr": "Bekaglaçon",
+            "en": "Eiscue"
+        },
+        "images": {
+            "thumbnail": "Miniature_875_Tête_de_Gel_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "875",
+            "paldea": "320"
+        },
+        "names": {
+            "fr": "Bekaglaçon",
+            "en": "Eiscue"
+        },
+        "images": {
+            "thumbnail": "Miniature_875_Tête_Dégel_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "871",
+            "paldea": "321"
+        },
+        "names": {
+            "fr": "Wattapik",
+            "en": "Pincurchin"
+        },
+        "images": {
+            "thumbnail": "Miniature_871_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "769",
+            "paldea": "322"
+        },
+        "names": {
+            "fr": "Bacabouh",
+            "en": "Sandygast"
+        },
+        "images": {
+            "thumbnail": "Miniature_769_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "770",
+            "paldea": "323"
+        },
+        "names": {
+            "fr": "Trépassable",
+            "en": "Palossand"
+        },
+        "images": {
+            "thumbnail": "Miniature_770_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "079",
+            "paldea": "324"
+        },
+        "names": {
+            "fr": "Ramoloss",
+            "en": "Slowpoke"
+        },
+        "images": {
+            "thumbnail": "Miniature_079_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "080",
+            "paldea": "325"
+        },
+        "names": {
+            "fr": "Flagadoss",
+            "en": "Slowbro"
+        },
+        "images": {
+            "thumbnail": "Miniature_080_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "199",
+            "paldea": "326"
+        },
+        "names": {
+            "fr": "Roigada",
+            "en": "Slowking"
+        },
+        "images": {
+            "thumbnail": "Miniature_199_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "422",
+            "paldea": "327"
+        },
+        "names": {
+            "fr": "Sancoki",
+            "en": "Shellos"
+        },
+        "images": {
+            "thumbnail": "Miniature_422_Occident_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "422",
+            "paldea": "327"
+        },
+        "names": {
+            "fr": "Sancoki",
+            "en": "Shellos"
+        },
+        "images": {
+            "thumbnail": "Miniature_422_Orient_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "423",
+            "paldea": "328"
+        },
+        "names": {
+            "fr": "Tritosor",
+            "en": "Gastrodon"
+        },
+        "images": {
+            "thumbnail": "Miniature_423_Occident_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "423",
+            "paldea": "328"
+        },
+        "names": {
+            "fr": "Tritosor",
+            "en": "Gastrodon"
+        },
+        "images": {
+            "thumbnail": "Miniature_423_Orient_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "090",
+            "paldea": "329"
+        },
+        "names": {
+            "fr": "Kokiyas",
+            "en": "Shellder"
+        },
+        "images": {
+            "thumbnail": "Miniature_090_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "091",
+            "paldea": "330"
+        },
+        "names": {
+            "fr": "Crustabri",
+            "en": "Cloyster"
+        },
+        "images": {
+            "thumbnail": "Miniature_091_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "211",
+            "paldea": "331"
+        },
+        "names": {
+            "fr": "Qwilfish",
+            "en": "Qwilfish"
+        },
+        "images": {
+            "thumbnail": "Miniature_211_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "370",
+            "paldea": "332"
+        },
+        "names": {
+            "fr": "Lovdisc",
+            "en": "Luvdisc"
+        },
+        "images": {
+            "thumbnail": "Miniature_370_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "456",
+            "paldea": "333"
+        },
+        "names": {
+            "fr": "Écayon",
+            "en": "Finneon"
+        },
+        "images": {
+            "thumbnail": "Miniature_456_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "457",
+            "paldea": "334"
+        },
+        "names": {
+            "fr": "Luminéon",
+            "en": "Lumineon"
+        },
+        "images": {
+            "thumbnail": "Miniature_457_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "779",
+            "paldea": "335"
+        },
+        "names": {
+            "fr": "Denticrisse",
+            "en": "Bruxish"
+        },
+        "images": {
+            "thumbnail": "Miniature_779_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "594",
+            "paldea": "336"
+        },
+        "names": {
+            "fr": "Mamanbo",
+            "en": "Alomomola"
+        },
+        "images": {
+            "thumbnail": "Miniature_594_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "690",
+            "paldea": "337"
+        },
+        "names": {
+            "fr": "Venalgue",
+            "en": "Skrelp"
+        },
+        "images": {
+            "thumbnail": "Miniature_690_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "691",
+            "paldea": "338"
+        },
+        "names": {
+            "fr": "Kravarech",
+            "en": "Dragalge"
+        },
+        "images": {
+            "thumbnail": "Miniature_691_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "692",
+            "paldea": "339"
+        },
+        "names": {
+            "fr": "Flingouste",
+            "en": "Clauncher"
+        },
+        "images": {
+            "thumbnail": "Miniature_692_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "693",
+            "paldea": "340"
+        },
+        "names": {
+            "fr": "Gamblast",
+            "en": "Clawitzer"
+        },
+        "images": {
+            "thumbnail": "Miniature_693_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "602",
+            "paldea": "341"
+        },
+        "names": {
+            "fr": "Anchwatt",
+            "en": "Tynamo"
+        },
+        "images": {
+            "thumbnail": "Miniature_602_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "603",
+            "paldea": "342"
+        },
+        "names": {
+            "fr": "Lampéroie",
+            "en": "Eelektrik"
+        },
+        "images": {
+            "thumbnail": "Miniature_603_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "604",
+            "paldea": "343"
+        },
+        "names": {
+            "fr": "Ohmassacre",
+            "en": "Eelektross"
+        },
+        "images": {
+            "thumbnail": "Miniature_604_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "747",
+            "paldea": "344"
+        },
+        "names": {
+            "fr": "Vorastérie",
+            "en": "Mareanie"
+        },
+        "images": {
+            "thumbnail": "Miniature_747_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "748",
+            "paldea": "345"
+        },
+        "names": {
+            "fr": "Prédastérie",
+            "en": "Toxapex"
+        },
+        "images": {
+            "thumbnail": "Miniature_748_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "961",
+            "paldea": "346"
+        },
+        "names": {
+            "fr": "Flamenroule",
+            "en": "Flamigo"
+        },
+        "images": {
+            "thumbnail": "Miniature_961_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "147",
+            "paldea": "347"
+        },
+        "names": {
+            "fr": "Minidraco",
+            "en": "Dratini"
+        },
+        "images": {
+            "thumbnail": "Miniature_147_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "148",
+            "paldea": "348"
+        },
+        "names": {
+            "fr": "Draco",
+            "en": "Dragonair"
+        },
+        "images": {
+            "thumbnail": "Miniature_148_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "149",
+            "paldea": "349"
+        },
+        "names": {
+            "fr": "Dracolosse",
+            "en": "Dragonite"
+        },
+        "images": {
+            "thumbnail": "Miniature_149_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "872",
+            "paldea": "350"
+        },
+        "names": {
+            "fr": "Frissonille",
+            "en": "Snom"
+        },
+        "images": {
+            "thumbnail": "Miniature_872_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "873",
+            "paldea": "351"
+        },
+        "names": {
+            "fr": "Beldeneige",
+            "en": "Frosmoth"
+        },
+        "images": {
+            "thumbnail": "Miniature_873_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "459",
+            "paldea": "352"
+        },
+        "names": {
+            "fr": "Blizzi",
+            "en": "Snover"
+        },
+        "images": {
+            "thumbnail": "Miniature_459_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "460",
+            "paldea": "353"
+        },
+        "names": {
+            "fr": "Blizzaroi",
+            "en": "Abomasnow"
+        },
+        "images": {
+            "thumbnail": "Miniature_460_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "225",
+            "paldea": "354"
+        },
+        "names": {
+            "fr": "Cadoizo",
+            "en": "Delibird"
+        },
+        "images": {
+            "thumbnail": "Miniature_225_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "613",
+            "paldea": "355"
+        },
+        "names": {
+            "fr": "Polarhume",
+            "en": "Cubchoo"
+        },
+        "images": {
+            "thumbnail": "Miniature_613_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "614",
+            "paldea": "356"
+        },
+        "names": {
+            "fr": "Polagriffe",
+            "en": "Beartic"
+        },
+        "images": {
+            "thumbnail": "Miniature_614_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "361",
+            "paldea": "357"
+        },
+        "names": {
+            "fr": "Stalgamin",
+            "en": "Snorunt"
+        },
+        "images": {
+            "thumbnail": "Miniature_361_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "362",
+            "paldea": "358"
+        },
+        "names": {
+            "fr": "Oniglali",
+            "en": "Glalie"
+        },
+        "images": {
+            "thumbnail": "Miniature_362_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "478",
+            "paldea": "359"
+        },
+        "names": {
+            "fr": "Momartik",
+            "en": "Froslass"
+        },
+        "images": {
+            "thumbnail": "Miniature_478_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "615",
+            "paldea": "360"
+        },
+        "names": {
+            "fr": "Hexagel",
+            "en": "Cryogonal"
+        },
+        "images": {
+            "thumbnail": "Miniature_615_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "947",
+            "paldea": "361"
+        },
+        "names": {
+            "fr": "Piétacé",
+            "en": "Cetoddle"
+        },
+        "images": {
+            "thumbnail": "Miniature_947_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "948",
+            "paldea": "362"
+        },
+        "names": {
+            "fr": "Balbalèze",
+            "en": "Cetitan"
+        },
+        "images": {
+            "thumbnail": "Miniature_948_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "712",
+            "paldea": "363"
+        },
+        "names": {
+            "fr": "Grelaçon",
+            "en": "Bergmite"
+        },
+        "images": {
+            "thumbnail": "Miniature_712_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "713",
+            "paldea": "364"
+        },
+        "names": {
+            "fr": "Séracrawl",
+            "en": "Avalugg"
+        },
+        "images": {
+            "thumbnail": "Miniature_713_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "627",
+            "paldea": "365"
+        },
+        "names": {
+            "fr": "Furaiglon",
+            "en": "Rufflet"
+        },
+        "images": {
+            "thumbnail": "Miniature_627_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "628",
+            "paldea": "366"
+        },
+        "names": {
+            "fr": "Gueriaigle",
+            "en": "Braviary"
+        },
+        "images": {
+            "thumbnail": "Miniature_628_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "624",
+            "paldea": "367"
+        },
+        "names": {
+            "fr": "Scalpion",
+            "en": "Pawniard"
+        },
+        "images": {
+            "thumbnail": "Miniature_624_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "625",
+            "paldea": "368"
+        },
+        "names": {
+            "fr": "Scalproie",
+            "en": "Bisharp"
+        },
+        "images": {
+            "thumbnail": "Miniature_625_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "1008",
+            "paldea": "369"
+        },
+        "names": {
+            "fr": "Scalpereur",
+            "en": "Kingambit"
+        },
+        "images": {
+            "thumbnail": "Miniature_1008_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "633",
+            "paldea": "370"
+        },
+        "names": {
+            "fr": "Solochi",
+            "en": "Deino"
+        },
+        "images": {
+            "thumbnail": "Miniature_633_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "634",
+            "paldea": "371"
+        },
+        "names": {
+            "fr": "Diamat",
+            "en": "Zweilous"
+        },
+        "images": {
+            "thumbnail": "Miniature_634_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "635",
+            "paldea": "372"
+        },
+        "names": {
+            "fr": "Trioxhydre",
+            "en": "Hydreigon"
+        },
+        "images": {
+            "thumbnail": "Miniature_635_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "932",
+            "paldea": "373"
+        },
+        "names": {
+            "fr": "Délestin",
+            "en": "Veluza"
+        },
+        "images": {
+            "thumbnail": "Miniature_932_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "931",
+            "paldea": "374"
+        },
+        "names": {
+            "fr": "Oyacata",
+            "en": "Dondozo"
+        },
+        "images": {
+            "thumbnail": "Miniature_931_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "952",
+            "paldea": "375"
+        },
+        "names": {
+            "fr": "Nigirigon",
+            "en": "Tatsugiri"
+        },
+        "images": {
+            "thumbnail": "Miniature_952_Courbée_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "952",
+            "paldea": "375"
+        },
+        "names": {
+            "fr": "Nigirigon",
+            "en": "Tatsugiri"
+        },
+        "images": {
+            "thumbnail": "Miniature_952_Affalée_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "952",
+            "paldea": "375"
+        },
+        "names": {
+            "fr": "Nigirigon",
+            "en": "Tatsugiri"
+        },
+        "images": {
+            "thumbnail": "Miniature_952_Raide_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "978",
+            "paldea": "376"
+        },
+        "names": {
+            "fr": "Fort-Ivoire",
+            "en": "Great Tusk"
+        },
+        "images": {
+            "thumbnail": "Miniature_978_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "982",
+            "paldea": "377"
+        },
+        "names": {
+            "fr": "Hurle-Queue",
+            "en": "Scream Tail"
+        },
+        "images": {
+            "thumbnail": "Miniature_982_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "979",
+            "paldea": "378"
+        },
+        "names": {
+            "fr": "Fongus-Furie",
+            "en": "Brute Bonnet"
+        },
+        "images": {
+            "thumbnail": "Miniature_979_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "983",
+            "paldea": "379"
+        },
+        "names": {
+            "fr": "Flotte-Mèche",
+            "en": "Flutter Mane"
+        },
+        "images": {
+            "thumbnail": "Miniature_983_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "984",
+            "paldea": "380"
+        },
+        "names": {
+            "fr": "Rampe-Ailes",
+            "en": "Slither Wing"
+        },
+        "images": {
+            "thumbnail": "Miniature_984_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "981",
+            "paldea": "381"
+        },
+        "names": {
+            "fr": "Pelage-Sablé",
+            "en": "Sandy Shocks"
+        },
+        "images": {
+            "thumbnail": "Miniature_981_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "986",
+            "paldea": "382"
+        },
+        "names": {
+            "fr": "Roue-de-Fer",
+            "en": "Iron Treads"
+        },
+        "images": {
+            "thumbnail": "Miniature_986_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "992",
+            "paldea": "383"
+        },
+        "names": {
+            "fr": "Hotte-de-Fer",
+            "en": "Iron Bundle"
+        },
+        "images": {
+            "thumbnail": "Miniature_992_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "989",
+            "paldea": "384"
+        },
+        "names": {
+            "fr": "Paume-de-Fer",
+            "en": "Iron Hands"
+        },
+        "images": {
+            "thumbnail": "Miniature_989_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "990",
+            "paldea": "385"
+        },
+        "names": {
+            "fr": "Têtes-de-Fer",
+            "en": "Iron Jugulis"
+        },
+        "images": {
+            "thumbnail": "Miniature_990_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "988",
+            "paldea": "386"
+        },
+        "names": {
+            "fr": "Mite-de-Fer",
+            "en": "Iron Moth"
+        },
+        "images": {
+            "thumbnail": "Miniature_988_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "991",
+            "paldea": "387"
+        },
+        "names": {
+            "fr": "Épine-de-Fer",
+            "en": "Iron Thorns"
+        },
+        "images": {
+            "thumbnail": "Miniature_991_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "949",
+            "paldea": "388"
+        },
+        "names": {
+            "fr": "Frigodo",
+            "en": "Frigibax"
+        },
+        "images": {
+            "thumbnail": "Miniature_949_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "950",
+            "paldea": "389"
+        },
+        "names": {
+            "fr": "Cryodo",
+            "en": "Arctibax"
+        },
+        "images": {
+            "thumbnail": "Miniature_950_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "951",
+            "paldea": "390"
+        },
+        "names": {
+            "fr": "Glaivodo",
+            "en": "Baxcalibur"
+        },
+        "images": {
+            "thumbnail": "Miniature_951_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "976",
+            "paldea": "391"
+        },
+        "names": {
+            "fr": "Mordudor",
+            "en": "Gimmighoul"
+        },
+        "images": {
+            "thumbnail": "Miniature_976_Coffre_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "977",
+            "paldea": "392"
+        },
+        "names": {
+            "fr": "Gromago",
+            "en": "Gholdengo"
+        },
+        "images": {
+            "thumbnail": "Miniature_977_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "996",
+            "paldea": "393"
+        },
+        "names": {
+            "fr": "Chongjian",
+            "en": "Wo-Chien"
+        },
+        "images": {
+            "thumbnail": "Miniature_996_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "995",
+            "paldea": "394"
+        },
+        "names": {
+            "fr": "Baojian",
+            "en": "Chien-Pao"
+        },
+        "images": {
+            "thumbnail": "Miniature_995_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "994",
+            "paldea": "395"
+        },
+        "names": {
+            "fr": "Dinglu",
+            "en": "Ting-Lu"
+        },
+        "images": {
+            "thumbnail": "Miniature_994_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "997",
+            "paldea": "396"
+        },
+        "names": {
+            "fr": "Yuyu",
+            "en": "Chi-Yu"
+        },
+        "images": {
+            "thumbnail": "Miniature_997_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "985",
+            "paldea": "397"
+        },
+        "names": {
+            "fr": "Rugit-Lune",
+            "en": "Roaring Moon"
+        },
+        "images": {
+            "thumbnail": "Miniature_985_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "993",
+            "paldea": "398"
+        },
+        "names": {
+            "fr": "Garde-de-Fer",
+            "en": "Iron Valiant"
+        },
+        "images": {
+            "thumbnail": "Miniature_993_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "998",
+            "paldea": "399"
+        },
+        "names": {
+            "fr": "Koraidon",
+            "en": "Koraidon"
+        },
+        "images": {
+            "thumbnail": "Miniature_998_Finale_EV.png"
+        }
+    },
+    {
+        "ids": {
+            "unique": "999",
+            "paldea": "400"
+        },
+        "names": {
+            "fr": "Miraidon",
+            "en": "Miraidon"
+        },
+        "images": {
+            "thumbnail": "Miniature_999_Ultime_EV.png"
+        }
+    }
+]

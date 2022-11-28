@@ -2,6 +2,9 @@ package com.example.pokechu_material3
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.res.AssetManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -10,13 +13,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import com.example.pokechu_material3.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,11 +29,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var menu: Menu
+    private var pokemons: List<PokemonData> = ArrayList<PokemonData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
+        loadJsonData()
+
+        // Initialize ui
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -98,5 +107,22 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    private fun loadJsonData() {
+        val jsonFileString = Utils.getJsonDataFromAsset(applicationContext, "pokemon_list.json")
+        val pokemonDictType = object : TypeToken<List<PokemonData>>() {}.type
+
+        pokemons = Gson().fromJson(jsonFileString, pokemonDictType)
+        //pokemons.forEachIndexed { idx, pokemon -> Log.i("data", "> Item $idx:\n$person") }
+        //pokemons.forEach { (key, value) -> println("$key = $value") }
+        /*pokemons.forEach { entry ->
+            //print("${entry.key} : ${entry.value.names.fr}")
+            Log.d("TAG", "Pokemon ${entry.ids.unique} = ${entry.names.fr}" )
+        }*/
+    }
+
+    public fun getPokemons():List<PokemonData> {
+        return pokemons
     }
 }

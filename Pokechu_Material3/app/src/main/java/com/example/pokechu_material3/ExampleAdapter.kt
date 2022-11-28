@@ -1,5 +1,8 @@
 package com.example.pokechu_material3
 
+import android.content.Context
+import android.content.res.AssetManager
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokechu_material3.ExampleAdapter.ExampleViewHolder
+import java.io.IOException
+import java.io.InputStream
+import java.util.*
 
-class ExampleAdapter internal constructor(private var exampleList: List<ExampleItem?>) :
+
+class ExampleAdapter internal constructor(private var context: Context?, private var exampleList: List<PokemonData>) :
     RecyclerView.Adapter<ExampleViewHolder>() {
-    private val exampleListFull: List<ExampleItem?>
+    private val exampleListFull: List<PokemonData>
 
     inner class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView
@@ -26,7 +33,7 @@ class ExampleAdapter internal constructor(private var exampleList: List<ExampleI
     }
 
     init {
-        exampleListFull = ArrayList<ExampleItem?>(exampleList)
+        exampleListFull = ArrayList<PokemonData>(exampleList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
@@ -36,16 +43,25 @@ class ExampleAdapter internal constructor(private var exampleList: List<ExampleI
     }
 
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
+
         val currentItem = exampleList[position]
-        holder.imageView.setImageResource(currentItem!!.imageResource)
-        holder.textView1.text = currentItem.text1
-        holder.textView2.text = currentItem.text2
+        //holder.imageView.setImageResource(currentItem!!.imageResource)
+
+        val assetManager: AssetManager? = context!!.assets
+        val bitmap = assetManager?.let { Utils.getBitmapFromAsset(it, "images/" + currentItem.images.thumbnail) }
+
+        holder.imageView.setImageBitmap(bitmap)
+        holder.textView1.text = currentItem.ids.paldea
+        holder.textView2.text = currentItem.names.fr
         holder.itemView.setOnClickListener { v ->
             Toast.makeText(
                 v.context,
-                "" + currentItem.text1,
+                "" + currentItem.names.fr,
                 Toast.LENGTH_SHORT
             ).show()
+
+            //val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(currentItem.names.fr)
+            //findNavController().navigate(action)
         }
     }
 
@@ -53,8 +69,12 @@ class ExampleAdapter internal constructor(private var exampleList: List<ExampleI
         return exampleList.size
     }
 
+    public fun getExampleList():List<PokemonData> {
+        return exampleList
+    }
+
     /* access modifiers changed from: 0000 */
-    fun setFilter(filterdNames: List<ExampleItem?>) {
+    fun setFilter(filterdNames: List<PokemonData>) {
         exampleList = filterdNames
         notifyDataSetChanged()
     }
