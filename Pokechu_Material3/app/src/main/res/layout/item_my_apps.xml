@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view_item_my_apps"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/my_apps_card_margin_horizontal"

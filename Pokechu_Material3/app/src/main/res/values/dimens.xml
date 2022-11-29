@@ -10,8 +10,7 @@
     <dimen name="main_card_margin_vertical">8.0dip</dimen>
     <dimen name="my_apps_card_margin_horizontal">16.0dip</dimen>
 
-    <dimen name="spacing_large">15.0dip</dimen>
     <dimen name="text_margin">16.0dip</dimen>
     <dimen name="text_margin_very_small">4.0dip</dimen>
-    <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
 </resources>

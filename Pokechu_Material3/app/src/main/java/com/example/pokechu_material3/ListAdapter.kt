@@ -2,7 +2,6 @@ package com.example.pokechu_material3
 
 import android.content.Context
 import android.content.res.AssetManager
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pokechu_material3.ExampleAdapter.ExampleViewHolder
-import java.io.IOException
-import java.io.InputStream
+import com.example.pokechu_material3.ListAdapter.ExampleViewHolder
 import java.util.*
 
 
-class ExampleAdapter internal constructor(private var context: Context?, private var exampleList: List<PokemonData>) :
+class ListAdapter internal constructor(private var context: Context?, private var exampleList: List<PokemonData>) :
     RecyclerView.Adapter<ExampleViewHolder>() {
     private val exampleListFull: List<PokemonData>
 
