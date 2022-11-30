@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 from enum import Enum, auto
 
 class PokedexType(Enum):
@@ -33,20 +34,21 @@ class Pokedex:
 
     def add_evolution_tree(self, evolution_table: list):
         pass
-        # row = evolution_table[0]
-        # if len(row) != 1:
-        #     raise Exception("error while parsing evolution table")
-        #
-        # root = row[0]
-        # name_fr = root[0]
-        # evolution_type: EvolutionType = root[1]
-        # pokemon = {id: name_fr}
-        #
-        # self.add_evolutions(evolution_table[1:], pokemon )
 
     def add_evolutions(evolution_table: list):
         pass
 
+    def save_pokemon_list(self, file_path: str):
+        pretty_json = json.dumps(self.pokemons, indent=4, ensure_ascii=False)
+        with open(file_path, "w") as outfile:
+            # json.dump(parser.pokedex.pokemons, outfile)
+            outfile.write(pretty_json)
+
+    def save_evolution_list(self, file_path: str):
+        pretty_json = json.dumps(self.evolutions, indent=4, ensure_ascii=False)
+        with open(file_path, "w") as outfile:
+            # json.dump(parser.pokedex.evolutions, outfile)
+            outfile.write(pretty_json)
 
     def test(self, evolution_table: list):
 

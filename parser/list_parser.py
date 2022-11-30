@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from enum import Enum, auto
 from parsel import Selector
 from urllib.request import urlopen
 import re
@@ -10,15 +9,15 @@ import os.path
 import urllib.parse
 
 import pokedex
+from lxml import etree
 
+class ListParser:
+    def __init__(self, pokedex: pokedex.Pokedex):
+        self.pokedex = pokedex
 
-class PokepediaParser:
-    def __init__(self, pokedex_type: pokedex.PokedexType):
-        self.pokedex = pokedex.Pokedex(pokedex_type)
+    def process_pokedex_list_page(self):
 
-    def fetch_pokedex_page(self):
-
-        print("+ Fetching Pokedex page")
+        print("+ Processing Pokemon list page")
 
         # Fetch pokemon list
         base_url = "https://www.pokepedia.fr"
@@ -81,7 +80,30 @@ class PokepediaParser:
             # Add pokemon to pokedex
             self.pokedex.add_pokemon_entry(unique_id, paldea_id, name_fr, name_en, thumbnail_filename)
 
-            self.fetch_pokemon_page(unique_id, name_fr)
+            #self.fetch_pokemon_page(unique_id, name_fr)
+
+    def process_evolution_list_page(self):
+        print(f"+ Processing evolution list page")
+
+        full_url = "https://www.pokepedia.fr/Liste_des_Pok%C3%A9mon_par_famille_d%27%C3%A9volution"
+        html = urlopen(full_url).read().decode("utf-8")
+
+        # Get evolution tables
+        xpath_selector = Selector(html)
+        results = xpath_selector.xpath(
+            "//table[@class = 'tableaustandard centre']/tbody/tr/td").getall()
+
+        # Get evolution tables
+        # xpath_selector = Selector(html)
+        # results = xpath_selector.xpath(f"//table[tbody/tr/th[contains(text(), 'évolution')]]")
+        if len(results) != 1:
+            # raise Exception("error while parsing evolution table")
+            # No evolutions
+            # continue
+            return
+
+
+
 
     def download_thumbnail(self, thumbnail_url: str) -> str:
         base_url = "https://www.pokepedia.fr"
@@ -100,7 +122,7 @@ class PokepediaParser:
 
         return file_name
 
-    def fetch_pokemon_page(self, unique_id: str, name_fr: str):
+    def process_pokemon_page(self, unique_id: str, name_fr: str):
 
         print(f"+ Processing {name_fr}")
 
@@ -179,42 +201,3 @@ class PokepediaParser:
             evolution_table.append(current_row)
 
         self.pokedex.add_evolution_tree(evolution_table)
-
-        # Find pokemon indexes in list
-        # row_index = -1
-        # column_index = -1
-        # for i in range(len(evolution_table)):
-        #     for j in range(len(evolution_table[i])):
-        #         if evolution_table[i][j][0] == name_fr:
-        #             row_index = i
-        #             column_index = j
-        #             break
-        #
-        # if row_index < 0 or column_index < 0:
-        #     raise Exception("error while parsing evolutions")
-        #
-        # subevolutions = []
-        # if row_index != 0: # has subevolutions
-        #     previous_column_index = column_index if column_index < len(evolution_table[row_index-1]) else 0
-        #
-        #     subevolution_name = evolution_table[row_index-1][previous_column_index][0] # previous row name
-        #     subevolution_type = evolution_table[row_index][column_index][1] # current row evolution type
-        #     subevolutions.append((subevolution_name, subevolution_type))
-        #
-        # surevolutions = []
-        # if row_index != len(evolution_table) - 1: # has surevolutions
-        #
-        #     # Split next row by current number of pokemons in current row
-        #     current_count = len(evolution_table[row_index])
-        #     next_count = len(evolution_table[row_index+1])
-        #
-        #     if next_count % current_count != 0:
-        #         raise Exception("error while parsing surevolutions: current and next row pokemon count arent multiples")
-        #
-        #     evolutions_per_pokemon = next_count//current_count
-        #     start_index = column_index * evolutions_per_pokemon
-        #     last_index = start_index + evolutions_per_pokemon
-        #
-        #     for i in range(start_index, last_index):
-        #         surevolutions.append(evolution_table[row_index + 1][i])
-

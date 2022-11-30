@@ -1,32 +1,16 @@
 #!/usr/bin/env python3
 
-import json
-
-from pokedex import PokedexType
-from pokepedia_parser import PokepediaParser
+from pokedex import PokedexType, Pokedex
+from list_parser import ListParser
+from evolutions_parser import EvolutionsParser
 
 if __name__ == "__main__":
-    # try:
-    #     with open("list.txt", "r") as file:
-    #         text = file.read()
-    # except (IOError, OSError, FileNotFoundError, PermissionError, OSError):
-    #     print("Error reading file")
+    pokedex = Pokedex(PokedexType.DEX_PALDEA_EV)
 
-    parser = PokepediaParser(PokedexType.DEX_PALDEA_EV)
-    parser.fetch_pokedex_page()
-    print("Pokemon list:")
-    pretty_json = json.dumps(parser.pokedex.pokemons, indent=4, ensure_ascii=False)
-    with open("./output/pokemon_list.json", "w") as outfile:
-        # json.dump(parser.pokedex.pokemons, outfile)
-        outfile.write(pretty_json)
+    # parser = ListParser(pokedex)
+    # parser.process_pokedex_list_page()
+    # pokedex.save_pokemon_list("./output/pokemon_list.json")
 
-    print("Evolution trees:")
-    pretty_json = json.dumps(parser.pokedex.evolutions, indent=4, ensure_ascii=False)
-    with open("./output/pokemon_evolutions.json", "w") as outfile:
-        # json.dump(parser.pokedex.evolutions, outfile)
-        outfile.write(pretty_json)
-
-    # ordered = collections.OrderedDict(sorted(pokemons.items()))
-    # print(json.dumps(ordered, indent=4, ensure_ascii=False))
-
-
+    parser = EvolutionsParser(pokedex)
+    parser.process_evolution_list_page()
+    pokedex.save_evolution_list("./output/pokemon_evolutions.json")
