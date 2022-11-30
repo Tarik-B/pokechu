@@ -1,4 +1,4 @@
-package com.example.pokechu_material3
+package com.example.pokechu_material3.utils
 
 import android.content.Context
 import android.content.res.AssetManager
@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory
 import java.io.IOException
 import java.io.InputStream
 
-class Utils {
+class AssetUtils {
     companion object {
 
         fun getJsonDataFromAsset(context: Context, fileName: String): String? {

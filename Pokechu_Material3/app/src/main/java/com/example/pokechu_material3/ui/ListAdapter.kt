@@ -1,16 +1,17 @@
-package com.example.pokechu_material3
+package com.example.pokechu_material3.ui
 
 import android.content.Context
 import android.content.res.AssetManager
-import android.graphics.Color
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pokechu_material3.ListAdapter.ListViewHolder
+import com.example.pokechu_material3.managers.PokemonManager
+import com.example.pokechu_material3.R
+import com.example.pokechu_material3.utils.AssetUtils
+import com.example.pokechu_material3.ui.ListAdapter.ListViewHolder
 import java.util.*
 
 
@@ -51,7 +52,7 @@ class ListAdapter internal constructor(private var context: Context?, private va
         val assetManager: AssetManager? = context!!.assets
 
         if (isDiscovered == true) {
-            var bitmap = assetManager?.let { Utils.getBitmapFromAsset(it, "images/" + currentData.images.thumbnail) }
+            var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + currentData.images.thumbnail) }
             holder.imageView.setImageBitmap(bitmap)
             //holder.imageView.clearColorFilter()
         }

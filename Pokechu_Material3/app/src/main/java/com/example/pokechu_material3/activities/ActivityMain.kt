@@ -1,4 +1,4 @@
-package com.example.pokechu_material3
+package com.example.pokechu_material3.activities
 
 import android.app.SearchManager
 import android.content.Context
@@ -8,13 +8,16 @@ import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pokechu_material3.*
+import com.example.pokechu_material3.managers.PokemonManager
 import com.example.pokechu_material3.databinding.ActivityMainBinding
+import com.example.pokechu_material3.ui.ListAdapter
+import com.example.pokechu_material3.ui.RecyclerTouchListener
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 

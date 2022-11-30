@@ -1,7 +1,8 @@
-package com.example.pokechu_material3
+package com.example.pokechu_material3.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pokechu_material3.R
 import com.example.pokechu_material3.databinding.ActivityDetailsBinding
 import com.google.android.material.snackbar.Snackbar
 

@@ -1,4 +1,4 @@
-package com.example.pokechu_material3
+package com.example.pokechu_material3.ui
 
 import android.content.Context
 import android.view.GestureDetector
