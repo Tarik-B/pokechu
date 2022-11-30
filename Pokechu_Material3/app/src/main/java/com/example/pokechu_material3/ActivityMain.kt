@@ -5,23 +5,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokechu_material3.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
-import android.view.*
 
 
 class ActivityMain : AppCompatActivity() {
@@ -53,9 +48,17 @@ class ActivityMain : AppCompatActivity() {
                 .setAnchorView(R.id.fab)
                 .setAction("Action", null).show()
 
+            val searchMenuItem = menu.findItem(R.id.search)
+            searchMenuItem.expandActionView()
+            menu.performIdentifierAction(R.id.search, 0)
             val searchView = (menu.findItem(R.id.search).actionView as SearchView)
+            //searchView.requestFocus()
+            //searchView.isFocusable = true
             searchView.requestFocus()
+
+            //searchView.focusSearch(View.FOCUS_RIGHT)
             val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
             imm.showSoftInput(searchView, InputMethodManager.SHOW_IMPLICIT)
         }
 
@@ -105,6 +108,15 @@ class ActivityMain : AppCompatActivity() {
             }
         })
 
+        // Required to make the searchview manually focusable
+        searchView.isIconifiedByDefault = false
+
+        val prefs = applicationContext.getSharedPreferences("Settings", MODE_PRIVATE)
+        val searchAllFields = prefs.getBoolean("search_all_fields", true)
+
+        val searchAllMenuItem = menu.findItem(R.id.search_all_fields)
+        searchAllMenuItem.isChecked = searchAllFields
+
         return true
     }
 
@@ -112,9 +124,16 @@ class ActivityMain : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.action_settings -> return true
+            R.id.search_all_fields -> {
+                item.isChecked = !item.isChecked
+                val prefs = applicationContext.getSharedPreferences("Settings", MODE_PRIVATE)
+                prefs.edit().putBoolean("search_all_fields", item.isChecked).apply()
+
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 
@@ -132,25 +151,34 @@ class ActivityMain : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         //adapter = exampleList?.let { ExampleAdapter(it) }
-        val pokemons = PokemonManager.getPokemons()
-        adapter = pokemons?.let { ListAdapter(applicationContext, it) }
+        //val pokemonIds = PokemonManager.getPokemonIds()
+        // Build sorted list of unique ids based on paldea ids
+        val pokemonData = PokemonManager.getPokemonMap().values
+        var sortedData = pokemonData
+            .sortedWith<PokemonData> (object : Comparator <PokemonData> {
+                override fun compare (p0: PokemonData, p1: PokemonData) : Int {
+                    if (p0.ids.paldea.toInt() > p1.ids.paldea.toInt()) {
+                        return 1
+                    }
+                    return -1
+                }
+            })
+        val pokemonIds = ArrayList<String>()
+        sortedData.forEach { data ->
+            pokemonIds.add(data.ids.unique)
+        }
+
+        adapter = pokemonIds?.let { ListAdapter(applicationContext, pokemonIds) }
         recyclerView.adapter = adapter
 
-        // Move to Adapter's onBindViewHolder()
         recyclerView.addOnItemTouchListener(
             RecyclerTouchListener(
                 applicationContext,
                 recyclerView,
                 object : RecyclerTouchListener.ClickListener {
                     override fun onClick(view: View?, position: Int) {
-                        //val pokemons = (activity as MainActivity)?.getPokemons()
-                        //val pokemonData = pokemons?.get(position)
-                        val pokemonData = adapter?.getExampleList()?.get(position)
-                        //val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(
-                        //    pokemonData?.names?.fr
-                        //)
-                        //findNavController().navigate(action)
-
+                        val pokemonId = adapter?.getCurrentIds()?.get(position)
+                        val pokemonData = pokemonId?.let { PokemonManager.findData(it) }
                         if (pokemonData != null) {
                             val intent = Intent(applicationContext, ActivityDetails::class.java)
                             intent.putExtra("PokemonId", pokemonData.ids.unique)
@@ -159,7 +187,12 @@ class ActivityMain : AppCompatActivity() {
                     }
 
                     override fun onLongClick(view: View?, position: Int) {
-
+                        val pokemonId = adapter?.getCurrentIds()?.get(position)
+                        if (pokemonId != null) {
+                            val discovered = PokemonManager.isDiscovered(applicationContext, pokemonId)
+                            PokemonManager.setIsDiscovered(applicationContext,pokemonId, !discovered )
+                            adapter?.notifyItemChanged(position)
+                        }
                     }
                 })
         )
@@ -167,21 +200,25 @@ class ActivityMain : AppCompatActivity() {
 
     /* access modifiers changed from: private */
     fun filterQuery(text: String?) {
-        val pokemons = PokemonManager.getPokemons()
+        val pokemonIds = adapter?.getAllIds()
 
-        val filterdNames = ArrayList<PokemonData>()
-        if (pokemons != null) {
-            for (s in pokemons) {
-                val found1 = s!!.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
-                val found2 = s!!.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
-                val found3 = s!!.names.fr.lowercase(Locale.getDefault()).contains(text!!)
-                val found4 = s!!.names.en.lowercase(Locale.getDefault()).contains(text!!)
+        val filteredIds = ArrayList<String>()
+        if (pokemonIds != null) {
+            for (id in pokemonIds) {
+                val pokemonData = PokemonManager.findData(id)
+                if (pokemonData == null)
+                    continue
+
+                val found1 = pokemonData.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
+                val found2 = pokemonData.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
+                val found3 = pokemonData.names.fr.lowercase(Locale.getDefault()).contains(text!!)
+                val found4 = pokemonData.names.en.lowercase(Locale.getDefault()).contains(text!!)
 
                 if ( found1 || found2 || found3 || found4 ) {
-                    filterdNames.add(s)
+                    filteredIds.add(id)
                 }
             }
         }
-        adapter!!.setFilter(filterdNames)
+        adapter!!.setFilter(filteredIds)
     }
 }

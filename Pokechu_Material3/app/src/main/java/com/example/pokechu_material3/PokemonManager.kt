@@ -1,26 +1,48 @@
 package com.example.pokechu_material3
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-object PokemonManager {
-    private var pokemons: List<PokemonData> = ArrayList<PokemonData>()
 
-    public fun getPokemons():List<PokemonData> {
-        return pokemons
-    }
+object PokemonManager {
+    private var pokemonMap = HashMap<String, PokemonData>()
 
     public fun loadJsonData(context: Context) {
         val jsonFileString = Utils.getJsonDataFromAsset(context, "pokemon_list.json")
         val pokemonDictType = object : TypeToken<List<PokemonData>>() {}.type
 
-        pokemons = Gson().fromJson(jsonFileString, pokemonDictType)
-        //pokemons.forEachIndexed { idx, pokemon -> Log.i("data", "> Item $idx:\n$person") }
-        //pokemons.forEach { (key, value) -> println("$key = $value") }
-        /*pokemons.forEach { entry ->
-            //print("${entry.key} : ${entry.value.names.fr}")
-            Log.d("TAG", "Pokemon ${entry.ids.unique} = ${entry.names.fr}" )
-        }*/
+        val pokemonList: List<PokemonData> = Gson().fromJson(jsonFileString, pokemonDictType)
+        pokemonList.forEach { data -> pokemonMap[data.ids.unique] = data }
+    }
+
+    public fun getPokemonMap() : Map<String, PokemonData> {
+        return pokemonMap
+    }
+
+    public fun getPokemonIds() : List<String> {
+        val idList = ArrayList<String>()
+        pokemonMap.forEach { (key, data) -> idList.add(key) }
+
+        return idList
+    }
+
+    public fun findData(id: String): PokemonData? {
+        return pokemonMap[id]
+    }
+
+    public fun isDiscovered(context: Context, pokemonId: String): Boolean {
+        val prefs = context.getSharedPreferences("Data", MODE_PRIVATE)
+        val discovered = prefs.getBoolean("pokemon_${pokemonId}_discovered", false)
+
+        return discovered
+    }
+
+    public fun setIsDiscovered(context: Context, pokemonId: String, discovered: Boolean) {
+        val prefs = context.getSharedPreferences("Data", MODE_PRIVATE)
+        prefs.edit().putBoolean("pokemon_${pokemonId}_discovered", discovered).apply()
     }
 }

@@ -34,8 +34,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-
+                android:layout_height="fill_parent"
+                android:scrollbars="vertical" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -47,6 +47,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_search"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
