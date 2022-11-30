@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 
-from lxml import etree
-from xml.etree import ElementTree as ET
-import requests
 from bs4 import BeautifulSoup
-from pprint import pprint
 from itertools import product
 
+# Code by Martijn Pieters (https://stackoverflow.com/a/48451104)
 def table_to_2d(html_table: str):
     #soup = BeautifulSoup(result, 'lxml')
     soup = BeautifulSoup(html_table, 'html.parser')

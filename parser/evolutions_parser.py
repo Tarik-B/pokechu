@@ -19,10 +19,9 @@ class EvolutionsParser:
 
         # Get evolution tables
         xpath_selector = Selector(html)
-        # results = xpath_selector.xpath(
-        #     "//table[@class = 'tableaustandard centre']/tbody/tr/td").getall()
         results = xpath_selector.xpath("//table[@class = 'tableaustandard centre']").getall()
 
+        # Clean tables
         cleaned_table = []
         for result in results:
             table: list[list[str]] = table_to_2d(result)
@@ -32,110 +31,89 @@ class EvolutionsParser:
                 if len(row) == 0:
                     continue
 
-                if row[0].startswith("Famille"):
-                    continue
-
                 cleaned_row = []
+                cleaned_index = 0
                 for cell in row:
 
-                    # Remove ending \n
-                    cell = cell.rstrip()
-                    # Remove "Gen. X"
+                    cell = cell.replace('"', '')
 
+                    if cell.startswith("Famille"):
+                        break
+
+                    # Remove "Gen. X"
+                    cell = re.sub('Gen. [0-9]', '', cell)
+
+                    cell = re.sub('Fichier:.*\.png', '', cell)
+
+                    # Remove non breaking spaces
+                    cell = cell.replace(u'\xa0', u' ')
+
+                    cell = cell.replace("►", "")
+
+                    # Remove leading/trailing whitespaces/line breaks
+                    cell = cell.strip()
 
                     if cell not in cleaned_row:
+
+                        # Pokemon names
+                        if cleaned_index % 2 == 0:
+                            pokemon_name = cell
+
+                            if not self.pokedex.has_pokemon_entry(pokemon_name):
+                                print("pokemon not found = " + pokemon_name)
+
                         cleaned_row.append(cell)
+                        cleaned_index += 1
 
-                cleaned_table.append(cleaned_row)
+                if len(cleaned_row) > 1:
 
+                    if len(cleaned_row) % 2 == 0:
+                        raise Exception("error while parsing evolution rows")
+
+                    cleaned_table.append(cleaned_row)
+
+        # [' Bulbizarre', 'Niveau 16 ►', ' Herbizarre', 'Niveau 32 ►', ' Florizarre', '◄ Méga-Évolution ►', ' Méga-Florizarre']
+        # [' Bulbizarre', 'Niveau 16 ►', ' Herbizarre', 'Niveau 32 ►', ' Florizarre', '◄ Gigamax ►', ' Florizarre Gigamax']
+
+        # Build evolution trees
         for row in cleaned_table:
-            print(row)
 
-        # Get evolution tables
-        # xpath_selector = Selector(html)
-        # results = xpath_selector.xpath(f"//table[tbody/tr/th[contains(text(), 'évolution')]]")
-        if len(results) != 1:
-            # raise Exception("error while parsing evolution table")
-            # No evolutions
-            # continue
-            return
+            current_tree = None
+            current_node = None
 
-    def process_pokemon_page(self, unique_id: str, name_fr: str):
+            for i in range(0, len(row), 2):
+                pokemon_name = row[i]
 
-        print(f"+ Processing {name_fr}")
+                if not self.pokedex.has_pokemon_entry(pokemon_name):
+                    print(f"unknown pokemon '{pokemon_name}', skipping the rest of the tree")
+                    break
 
-        # Fetch pokepedia page
-        base_url = "https://www.pokepedia.fr/Pok%C3%A9mon_n%C2%B0"
+                # Find if already in a tree
+                if current_tree is None:
+                    current_tree, current_node = self.pokedex.find_in_evolution_trees(pokemon_name)
 
-        full_url = base_url + unique_id
-        html = urlopen(full_url).read().decode("utf-8")
+                if current_tree is None:
+                    if i != 0:
+                        raise Exception("error while parsing evolution trees")
 
-        # Get evolution table
-        xpath_selector = Selector(html)
-        results = xpath_selector.xpath(f"//table[tbody/tr/th[contains(text(), 'évolution')]]")
-        if len(results) != 1:
-            # raise Exception("error while parsing evolution table")
-            # No evolutions
-            # continue
-            return
-
-        self.process_evolution_table(name_fr, results.get())
-
-    def process_evolution_table(self, name_fr: str, html_table: str):
-
-        xpath_selector = Selector(html_table)
-        results = xpath_selector.xpath(f"//table/tbody/tr/td/a[not(*)]/text() | "
-                                       f"//table/tbody/tr/td/small").getall()
-
-        # Parse evolutions
-        evolution_table = []
-        current_row = []
-        is_name_row = True
-        cell_index = 0
-
-        for i in range(len(results)):
-            row = results[i]
-            # Evolution rows (level or something else)
-            if row.startswith("<"):
-
-                if is_name_row:
-                    is_name_row = False
-                    cell_index = 0
-
-                    # Validate current evolution row
-                    evolution_table.append(current_row)
-                    current_row = []
-
-                # Flatten text from node and children
-                subselector = Selector(row)
-                rowtext = "".join(subselector.xpath(f"//small//text()").getall())
-                rowtext = rowtext.removesuffix("  ▼")
-
-                match = re.search(r"^Niveau (\d+)*", rowtext)
-
-                if match is not None:
-                    evolution_type = pokedex.EvolutionType.LEVEL
-                    data = match.group(1)  # lvl number
+                    # Not found, create new tree
+                    current_tree = current_node = self.pokedex.add_evolution_node(None, pokemon_name, "")
                 else:
-                    evolution_type = pokedex.EvolutionType.OTHER
-                    data = rowtext  # other info
+                    # Skip to next if we found the pokemon
+                    if self.pokedex.is_pokemon_evolution_node(current_node, pokemon_name):
+                        continue
 
-                current_row.append((None, (evolution_type, data)))
+                    # Search in current tree
+                    node = self.pokedex.find_in_evolution_tree(current_node, pokemon_name)
+                    if node:
+                        current_node = node
+                    else:
+                        # Not found, add to tree
+                        evolution_condition = row[i-1]
 
-            else:  # Pokemon name rows
+                        current_node = self.pokedex.add_evolution_node(current_node, pokemon_name, evolution_condition)
 
-                if not is_name_row:
-                    is_name_row = True
-                    cell_index = 0
+        # Remove trees with only one node
+        self.pokedex.remove_single_node_evolution_trees()
 
-                if len(evolution_table) == 0:
-                    current_row.append((row, None))
-                else:
-                    current_row[cell_index] = (row, current_row[cell_index][1])
-
-            cell_index += 1
-
-        if current_row:
-            evolution_table.append(current_row)
-
-        self.pokedex.add_evolution_tree(evolution_table)
+        # self.pokedex.print_trees()
