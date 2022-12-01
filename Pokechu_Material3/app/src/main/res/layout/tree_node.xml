@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/tree_node_bg"
-    android:padding="10dp"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:foreground="?selectableItemBackground"
+    app:cardCornerRadius="@dimen/card_recycler_corner_radius"
+    app:cardElevation="@dimen/card_recycler_elevation">
 
-    <ImageView
-        android:id="@+id/image_thumbnail"
-        android:layout_width="56.0dip"
-        android:layout_height="56.0dip" />
-
-    <TextView
-        android:id="@+id/text_name"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        tools:text="Node text here"/>
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/image_thumbnail"
+            android:layout_width="56.0dip"
+            android:layout_height="56.0dip"
+            app:srcCompat="@drawable/question_mark" />
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Node text here" />
+        <TextView
+            android:id="@+id/text_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="7sp"
+            tools:text="Node text here" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

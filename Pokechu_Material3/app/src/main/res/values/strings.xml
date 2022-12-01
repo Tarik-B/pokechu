@@ -1,9 +1,20 @@
 <resources>
     <string name="app_name">Pokechu_Material3</string>
+    <string name="test_string">Test</string>
+
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
 
     <string name="search_title">Search</string>
 
     <string name="title_activity_details">ActivityDetails</string>
+
+    <string name="search_dialog_title">Find Pokemon by ID</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="unique_id">Unique ID</string>
+    <string name="pokemon_id">Pokemon ID</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

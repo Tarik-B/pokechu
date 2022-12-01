@@ -64,7 +64,7 @@ class ListAdapter internal constructor(private var context: Context?, private va
         }
 
         holder.textView1.text = "#${currentData.ids.paldea} - ${currentData.names.fr}"
-        holder.textView2.text = "English name: ${currentData.names.en}\nNational id: #${currentData.ids.unique}"
+        holder.textView2.text = "English name: ${currentData.names.en}"
         holder.itemView.setOnClickListener { v ->
         }
     }

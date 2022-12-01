@@ -1,12 +1,19 @@
 package com.example.pokechu_material3.activities
 
+import android.app.SearchManager
+import android.content.Context
+import android.content.Intent
 import android.content.res.AssetManager
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import android.view.View.OnLongClickListener
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokechu_material3.R
@@ -15,8 +22,6 @@ import com.example.pokechu_material3.databinding.ActivityDetailsBinding
 import com.example.pokechu_material3.managers.PokemonManager
 import com.example.pokechu_material3.managers.SettingsManager
 import com.example.pokechu_material3.utils.AssetUtils
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import dev.bandb.graphview.AbstractGraphAdapter
 import dev.bandb.graphview.graph.Graph
 import dev.bandb.graphview.graph.Node
@@ -33,10 +38,10 @@ class ActivityDetails : AppCompatActivity() {
     protected lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
 
     private lateinit var pokemonId: String
-    private lateinit var evolutionTree: EvolutionTreeData
+    private var evolutionTree: EvolutionTreeData? = null
     private var currentNode: Node? = null
-    private var nodeCount = 1
 
+    val OPEN_DETAILS = 123456
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,18 +50,60 @@ class ActivityDetails : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        binding.toolbarLayout.title = title
+//        binding.toolbarLayout.title = title
 
         pokemonId = intent.getStringExtra("PokemonId").toString()
-        evolutionTree = PokemonManager.findEvolutionTree(pokemonId)!!
+        evolutionTree = PokemonManager.findEvolutionTree(pokemonId)
 
-//        binding.textView.text = tree_to_string(evolutionTree)
+        // Setup header
+        val pokemonData = PokemonManager.findPokemonData(pokemonId)!!
 
-        val graph = createGraph()
-        recyclerView = findViewById(R.id.recycler)
-        setLayoutManager()
-        setEdgeDecoration()
-        setupGraphView(graph)
+        getSupportActionBar()?.setTitle("#${pokemonData.ids.paldea} - ${pokemonData.names.fr}");
+
+        val textView = binding.textView
+        val imageView = binding.imageHeader
+
+        val isDiscovered = SettingsManager.isPokemonDiscovered(applicationContext, pokemonId)
+        val assetManager: AssetManager? = applicationContext.assets
+
+        var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.images.thumbnail) }
+        imageView.setImageBitmap(bitmap)
+
+        textView.text = "English name: ${pokemonData.names.en}\n" +
+                        "National ID: ${pokemonData.ids.unique}\n" +
+                        "Paldea ID: ${pokemonData.ids.paldea}"
+
+
+        if (isDiscovered == true) {
+            imageView.clearColorFilter()
+        }
+        else {
+            imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
+        }
+
+        if ( evolutionTree != null ) {
+            // Setup graph
+            val graph = createGraph()
+            recyclerView = findViewById(R.id.recycler)
+            setLayoutManager()
+            setEdgeDecoration()
+            setupGraphView(graph)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_details, menu)
+
+        return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == OPEN_DETAILS) {
+            adapter?.notifyDataSetChanged()
+        }
     }
 
     private fun createGraph(): Graph {
@@ -64,7 +111,7 @@ class ActivityDetails : AppCompatActivity() {
         if (evolutionTree == null)
             return graph
 
-        val root = Node(evolutionTree)
+        val root = Node(evolutionTree!!)
         createNodeHierarchy(graph, root)
 
         return graph
@@ -95,6 +142,7 @@ class ActivityDetails : AppCompatActivity() {
 
     private fun setupGraphView(graph: Graph) {
         adapter = object : AbstractGraphAdapter<NodeViewHolder>() {
+
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.tree_node, parent, false)
@@ -142,38 +190,33 @@ class ActivityDetails : AppCompatActivity() {
         init {
             itemView.setOnClickListener {
                 currentNode = adapter.getNode(bindingAdapterPosition)
+                var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as EvolutionTreeData
+
+                val intent = Intent(applicationContext, ActivityDetails::class.java)
+                intent.putExtra("PokemonId", currentNodeData.id)
+                startActivityForResult(intent, OPEN_DETAILS)
+
+                true
+            }
+            itemView.setOnLongClickListener{
+                currentNode = adapter.getNode(bindingAdapterPosition)
 //                Snackbar.make(itemView, "Clicked on " + adapter.getNodeData(bindingAdapterPosition)?.toString(),
 //                    Snackbar.LENGTH_SHORT).show()
 
                 var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as EvolutionTreeData
                 SettingsManager.togglePokemonDiscovered(applicationContext, currentNodeData.id)
-                adapter.notifyDataSetChanged()
+                if ( currentNodeData.id == pokemonId) {
+                    finish()
+                    overridePendingTransition(0, 0)
+                    startActivity(intent)
+                    overridePendingTransition(0, 0)
+                }
+                else {
+                    adapter.notifyDataSetChanged()
+                }
+
+                true
             }
         }
-    }
-
-    private val nodeText: String
-        get() = "Node " + nodeCount++
-
-    //    def print_tree(self, node, level=0):
-    //
-    //        how = ( " (" + node["condition"] + ")" ) if node["condition"] else ""
-    //        print("    " * (level - 1) + "+---" * (level > 0) + node["id"] + how )
-    //
-    //        for child in node["evolutions"]:
-    //            self.print_tree(child, level + 1)
-    fun tree_to_string(tree: EvolutionTreeData, level: Int = 0): String {
-        var text = String()
-        if (level >0)
-            text += "    ".repeat(level - 1)
-        if (level > 0)
-            text += "+---"
-        text += tree.id + "\n"
-
-        tree.evolutions.forEach { child ->
-            text += tree_to_string(child, level + 1)
-        }
-
-        return text
     }
 }

@@ -12,16 +12,17 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokechu_material3.R
 import com.example.pokechu_material3.data.PokemonData
 import com.example.pokechu_material3.databinding.ActivityMainBinding
+import com.example.pokechu_material3.fragments.StartSearchDialogFragment
 import com.example.pokechu_material3.managers.PokemonManager
 import com.example.pokechu_material3.managers.SettingsManager
 import com.example.pokechu_material3.ui.ListAdapter
 import com.example.pokechu_material3.ui.RecyclerTouchListener
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 
@@ -45,12 +46,14 @@ class ActivityMain : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        getSupportActionBar()?.setTitle("Pokechu");
 
         binding.fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAnchorView(R.id.fab)
-//                .setAction("Action", null).show()
+            val newFragment = StartSearchDialogFragment()
+            newFragment.show(supportFragmentManager, "test")
 
+            /*
+            // Put focus on search view
             val searchMenuItem = menu.findItem(R.id.search)
             searchMenuItem.expandActionView()
             menu.performIdentifierAction(R.id.search, 0)
@@ -58,19 +61,13 @@ class ActivityMain : AppCompatActivity() {
             //searchView.requestFocus()
             //searchView.isFocusable = true
             searchView.requestFocus()
-
             //searchView.focusSearch(View.FOCUS_RIGHT)
-            val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-            imm.showSoftInput(searchView, InputMethodManager.SHOW_IMPLICIT)
+             */
         }
 
         setUpRecyclerView()
 
-        /*view.findViewById<View>(R.id.filter).setOnClickListener {
-            val intent = Intent(context, Country_A::class.java)
-            startActivity(intent)
-        }
+        /*
         Searchtext = view.findViewById<View>(R.id.search_input) as EditText
         Searchtext!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
@@ -87,13 +84,6 @@ class ActivityMain : AppCompatActivity() {
 //        super.onResume()
 //        //Code to refresh listview
 //    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == OPEN_DETAILS) {
-            adapter?.notifyDataSetChanged()
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
@@ -163,11 +153,20 @@ class ActivityMain : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == OPEN_DETAILS) {
+            adapter?.notifyDataSetChanged()
+        }
+    }
+
     private fun setUpRecyclerView() {
         val recyclerView = binding.recyclerView
         recyclerView.setHasFixedSize(true)
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
+//        val layoutManager = GridLayoutManager(applicationContext, 2)
+
         recyclerView.layoutManager = layoutManager
 
         //adapter = exampleList?.let { ExampleAdapter(it) }

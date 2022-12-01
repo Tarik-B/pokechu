@@ -40,6 +40,15 @@ object PokemonManager {
         return pokemonMap[id]
     }
 
+    public fun findPokemonDataPaldea(paldea_id: String): PokemonData? {
+        pokemonMap.forEach { (key, data) ->
+            if (data.ids.paldea == paldea_id)
+                return data
+        }
+
+        return null
+    }
+
     public fun findEvolutionTree(id: String): EvolutionTreeData? {
         evolutionTrees.forEach{ tree ->
             val node = findEvolutionTreeNode(tree, id)
