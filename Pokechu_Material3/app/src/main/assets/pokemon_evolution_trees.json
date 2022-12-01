@@ -1,0 +1,1859 @@
+[
+    {
+        "id": "172",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "025",
+                "condition": "Bonheur",
+                "evolutions": [
+                    {
+                        "id": "026",
+                        "condition": "Pierre Foudre",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "174",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "039",
+                "condition": "Bonheur",
+                "evolutions": [
+                    {
+                        "id": "040",
+                        "condition": "Pierre Lune",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "048",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "049",
+                "condition": "Niveau 31",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "050",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "051",
+                "condition": "Niveau 26",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "052",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "053",
+                "condition": "Niveau 28",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "054",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "055",
+                "condition": "Niveau 33",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "056",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "057",
+                "condition": "Niveau 28",
+                "evolutions": [
+                    {
+                        "id": "1010",
+                        "condition": "Utiliser 20 fois la capacité Poing de Colère + gain de niveau",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "058",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "059",
+                "condition": "Pierre Feu",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "079",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "080",
+                "condition": "Niveau 37",
+                "evolutions": []
+            },
+            {
+                "id": "199",
+                "condition": "Échange en tenant Roche Royale",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "081",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "082",
+                "condition": "Niveau 30",
+                "evolutions": [
+                    {
+                        "id": "462",
+                        "condition": "Gain de niveau dans un champ magnétique spécial  ouPierre Foudre (Pokémon Épée et Bouclier)",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "088",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "089",
+                "condition": "Niveau 38",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "090",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "091",
+                "condition": "Pierre Eau",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "092",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "093",
+                "condition": "Niveau 25",
+                "evolutions": [
+                    {
+                        "id": "094",
+                        "condition": "Échange Au contact d'unFil de Liaison",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "096",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "097",
+                "condition": "Niveau 26",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "100",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "101",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "440",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "113",
+                "condition": "Gain de niveau en journée  en tenant une Pierre Ovale",
+                "evolutions": [
+                    {
+                        "id": "242",
+                        "condition": "Bonheur",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "123",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "212",
+                "condition": "Échange en tenant Peau Métal",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "129",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "130",
+                "condition": "Niveau 20",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "133",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "134",
+                "condition": "Pierre Eau",
+                "evolutions": []
+            },
+            {
+                "id": "135",
+                "condition": "Pierre Foudre",
+                "evolutions": []
+            },
+            {
+                "id": "136",
+                "condition": "Pierre Feu",
+                "evolutions": []
+            },
+            {
+                "id": "196",
+                "condition": "Bonheur de jour+Gain de niveauouGain de niveau en tenant un Éclat Soleil (Pokémon XD)",
+                "evolutions": []
+            },
+            {
+                "id": "197",
+                "condition": "Bonheur de nuit+Gain de niveauouGain de niveau en tenant un Éclat Lune (Pokémon XD)",
+                "evolutions": []
+            },
+            {
+                "id": "470",
+                "condition": "Gain de niveau près d'une Pierre Mousse ouPierre Plante (Pokémon Épée et Bouclier)",
+                "evolutions": []
+            },
+            {
+                "id": "471",
+                "condition": "Gain de niveau près d'une Pierre Glacée ouPierre Glace (Pokémon Épée et Bouclier)",
+                "evolutions": []
+            },
+            {
+                "id": "700",
+                "condition": "2 cœurs d'affection (ou plus) à la Poké Récré / Poké Détente + gagner un niveau en ayant une capacité   ouBonheur + apprendre une capacité de type  (Pokémon Épée et Bouclier)",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "147",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "148",
+                "condition": "Niveau 30",
+                "evolutions": [
+                    {
+                        "id": "149",
+                        "condition": "Niveau 55",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "179",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "180",
+                "condition": "Niveau 15",
+                "evolutions": [
+                    {
+                        "id": "181",
+                        "condition": "Niveau 30",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "298",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "183",
+                "condition": "Bonheur",
+                "evolutions": [
+                    {
+                        "id": "184",
+                        "condition": "Niveau 18",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "438",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "185",
+                "condition": "Apprendre la capacité Copie",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "187",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "188",
+                "condition": "Niveau 18",
+                "evolutions": [
+                    {
+                        "id": "189",
+                        "condition": "Niveau 27",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "191",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "192",
+                "condition": "Pierre Soleil",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "198",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "430",
+                "condition": "Pierre Nuit",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "200",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "429",
+                "condition": "Pierre Nuit",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "203",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "928",
+                "condition": "Connaître la capacité Double Laser + gagner un niveau",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "204",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "205",
+                "condition": "Niveau 31",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "206",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "917",
+                "condition": "Connaître la capacité Hyperceuse + gagner un niveau",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "215",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "461",
+                "condition": "Gagner un niveau de nuit en tenant une Griffe Rasoir",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "216",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "217",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "228",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "229",
+                "condition": "Niveau 24",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "231",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "232",
+                "condition": "Niveau 25",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "246",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "247",
+                "condition": "Niveau 30",
+                "evolutions": [
+                    {
+                        "id": "248",
+                        "condition": "Niveau 55",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "278",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "279",
+                "condition": "Niveau 25",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "280",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "281",
+                "condition": "Niveau 20",
+                "evolutions": [
+                    {
+                        "id": "282",
+                        "condition": "Niveau 30",
+                        "evolutions": []
+                    },
+                    {
+                        "id": "475",
+                        "condition": "Mâle (♂) + Pierre Aube",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "283",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "284",
+                "condition": "Niveau 22",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "285",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "286",
+                "condition": "Niveau 23",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "287",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "288",
+                "condition": "Niveau 18",
+                "evolutions": [
+                    {
+                        "id": "289",
+                        "condition": "Niveau 36",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "296",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "297",
+                "condition": "Niveau 24",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "307",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "308",
+                "condition": "Niveau 37",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "316",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "317",
+                "condition": "Niveau 26",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "322",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "323",
+                "condition": "Niveau 33",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "325",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "326",
+                "condition": "Niveau 32",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "331",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "332",
+                "condition": "Niveau 32",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "333",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "334",
+                "condition": "Niveau 35",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "339",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "340",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "353",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "354",
+                "condition": "Niveau 37",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "361",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "362",
+                "condition": "Niveau 42",
+                "evolutions": []
+            },
+            {
+                "id": "478",
+                "condition": "Femelle (♀) + Pierre Aube",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "371",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "372",
+                "condition": "Niveau 30",
+                "evolutions": [
+                    {
+                        "id": "373",
+                        "condition": "Niveau 50",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "396",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "397",
+                "condition": "Niveau 14",
+                "evolutions": [
+                    {
+                        "id": "398",
+                        "condition": "Niveau 34",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "401",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "402",
+                "condition": "Niveau 10",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "403",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "404",
+                "condition": "Niveau 15",
+                "evolutions": [
+                    {
+                        "id": "405",
+                        "condition": "Niveau 30",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "415",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "416",
+                "condition": "Niveau 21, Femelle (♀)",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "418",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "419",
+                "condition": "Niveau 26",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "422",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "423",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "425",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "426",
+                "condition": "Niveau 28",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "434",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "435",
+                "condition": "Niveau 34",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "436",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "437",
+                "condition": "Niveau 33",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "443",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "444",
+                "condition": "Niveau 24",
+                "evolutions": [
+                    {
+                        "id": "445",
+                        "condition": "Niveau 48",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "447",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "448",
+                "condition": "Bonheur + gagner un niveau de jour",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "449",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "450",
+                "condition": "Niveau 34",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "453",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "454",
+                "condition": "Niveau 37",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "456",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "457",
+                "condition": "Niveau 31",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "459",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "460",
+                "condition": "Niveau 40",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "548",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "549",
+                "condition": "Pierre Soleil",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "551",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "552",
+                "condition": "Niveau 29",
+                "evolutions": [
+                    {
+                        "id": "553",
+                        "condition": "Niveau 40",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "570",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "571",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "574",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "575",
+                "condition": "Niveau 32",
+                "evolutions": [
+                    {
+                        "id": "576",
+                        "condition": "Niveau 41",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "585",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "586",
+                "condition": "Niveau 34",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "590",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "591",
+                "condition": "Niveau 39",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "602",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "603",
+                "condition": "Niveau 39",
+                "evolutions": [
+                    {
+                        "id": "604",
+                        "condition": "Pierre Foudre",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "610",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "611",
+                "condition": "Niveau 38",
+                "evolutions": [
+                    {
+                        "id": "612",
+                        "condition": "Niveau 48",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "613",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "614",
+                "condition": "Niveau 37",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "624",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "625",
+                "condition": "Niveau 52",
+                "evolutions": [
+                    {
+                        "id": "1008",
+                        "condition": "Vaincre 3 Scalproie tenant un Emblème du Général",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "627",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "628",
+                "condition": "Niveau 54",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "633",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "634",
+                "condition": "Niveau 50",
+                "evolutions": [
+                    {
+                        "id": "635",
+                        "condition": "Niveau 64",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "636",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "637",
+                "condition": "Niveau 59",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "661",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "662",
+                "condition": "Niveau 17",
+                "evolutions": [
+                    {
+                        "id": "663",
+                        "condition": "Niveau 35",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "664",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "665",
+                "condition": "Niveau 9",
+                "evolutions": [
+                    {
+                        "id": "666",
+                        "condition": "Niveau 12",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "667",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "668",
+                "condition": "Niveau 35",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "669",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "670",
+                "condition": "Niveau 19",
+                "evolutions": [
+                    {
+                        "id": "671",
+                        "condition": "Pierre Éclat",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "672",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "673",
+                "condition": "Niveau 32",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "690",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "691",
+                "condition": "Niveau 48",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "692",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "693",
+                "condition": "Niveau 37",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "704",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "705",
+                "condition": "Niveau 40",
+                "evolutions": [
+                    {
+                        "id": "706",
+                        "condition": "Niveau 50 sous la pluie",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "712",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "713",
+                "condition": "Niveau 37",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "714",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "715",
+                "condition": "Niveau 48",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "734",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "735",
+                "condition": "Niveau 20, Jour",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "739",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "740",
+                "condition": "Gain de niveau au Mont Lanakila",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "747",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "748",
+                "condition": "Niveau 38",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "749",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "750",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "753",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "754",
+                "condition": "Niveau 34, Jour",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "757",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "758",
+                "condition": "Niveau 33, Femelle (♀)",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "761",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "762",
+                "condition": "Niveau 18",
+                "evolutions": [
+                    {
+                        "id": "763",
+                        "condition": "Monter d'un niveau en connaissant Écrasement",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "769",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "770",
+                "condition": "Niveau 42",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "819",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "820",
+                "condition": "Niveau 24",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "821",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "822",
+                "condition": "Niveau 18",
+                "evolutions": [
+                    {
+                        "id": "823",
+                        "condition": "Niveau 38",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "833",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "834",
+                "condition": "Niveau 22",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "837",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "838",
+                "condition": "Niveau 18",
+                "evolutions": [
+                    {
+                        "id": "839",
+                        "condition": "Niveau 34",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "840",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "841",
+                "condition": "Pomme Acidulée",
+                "evolutions": []
+            },
+            {
+                "id": "842",
+                "condition": "Pomme Sucrée",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "843",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "844",
+                "condition": "Niveau 36",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "846",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "847",
+                "condition": "Niveau 26",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "848",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "849",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "854",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "855",
+                "condition": "Théière Fêlée ou Théière Ébréchée",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "856",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "857",
+                "condition": "Niveau 32",
+                "evolutions": [
+                    {
+                        "id": "858",
+                        "condition": "Niveau 42",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "859",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "860",
+                "condition": "Niveau 32",
+                "evolutions": [
+                    {
+                        "id": "861",
+                        "condition": "Niveau 42",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "872",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "873",
+                "condition": "Bonheur de Nuit",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "878",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "879",
+                "condition": "Niveau 34",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "885",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "886",
+                "condition": "Niveau 50",
+                "evolutions": [
+                    {
+                        "id": "887",
+                        "condition": "Niveau 60",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "906",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "907",
+                "condition": "Niveau 16",
+                "evolutions": [
+                    {
+                        "id": "908",
+                        "condition": "Niveau 36",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "909",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "910",
+                "condition": "Niveau 16",
+                "evolutions": [
+                    {
+                        "id": "911",
+                        "condition": "Niveau 36",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "912",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "913",
+                "condition": "Niveau 16",
+                "evolutions": [
+                    {
+                        "id": "914",
+                        "condition": "Niveau 36",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "915",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "916",
+                "condition": "Niveau 18",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "918",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "919",
+                "condition": "Niveau 15",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "920",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "921",
+                "condition": "Niveau 24",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "922",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "923",
+                "condition": "Marcher 1000 pas avec la fonction En avant !",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "924",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "925",
+                "condition": "Niveau 24 de nuit",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "926",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "927",
+                "condition": "Niveau 35",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "929",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "930",
+                "condition": "Niveau 26",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "933",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "934",
+                "condition": "Niveau 38 avec un autre joueur et son Pokémon à proximité en mode coop",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "935",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "936",
+                "condition": "Niveau 25",
+                "evolutions": [
+                    {
+                        "id": "937",
+                        "condition": "Niveau 35",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "938",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "939",
+                "condition": "Pierre Feu",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "940",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "941",
+                "condition": "Pierre Foudre",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "942",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "943",
+                "condition": "Niveau 40",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "945",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "946",
+                "condition": "Niveau 25",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "947",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "948",
+                "condition": "Pierre Glace",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "949",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "950",
+                "condition": "Niveau 35",
+                "evolutions": [
+                    {
+                        "id": "951",
+                        "condition": "Niveau 54",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "954",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "955",
+                "condition": "Niveau 18",
+                "evolutions": [
+                    {
+                        "id": "956",
+                        "condition": "Marcher 1000 pas avec la fonction En avant !",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "957",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "958",
+                "condition": "Niveau 25",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "963",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "964",
+                "condition": "Niveau 24",
+                "evolutions": [
+                    {
+                        "id": "965",
+                        "condition": "Niveau 38",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "966",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "967",
+                "condition": "Niveau 35",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "968",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "969",
+                "condition": "Niveau 28",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "970",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "971",
+                "condition": "Niveau 26",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "972",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "973",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "974",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "975",
+                "condition": "Marcher 1000 pas avec la fonction En avant !",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "976",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "977",
+                "condition": "Collecter 999 Pièces de Mordudor",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "1000",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "1001",
+                "condition": "Niveau 24",
+                "evolutions": [
+                    {
+                        "id": "1002",
+                        "condition": "Niveau 38",
+                        "evolutions": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "1003",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "1004",
+                "condition": "Armure de la Fortune",
+                "evolutions": []
+            },
+            {
+                "id": "1005",
+                "condition": "Armure de la Rancune",
+                "evolutions": []
+            }
+        ]
+    },
+    {
+        "id": "1006",
+        "condition": "",
+        "evolutions": [
+            {
+                "id": "1007",
+                "condition": "Niveau 30",
+                "evolutions": []
+            }
+        ]
+    }
+]

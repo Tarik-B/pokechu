@@ -5,17 +5,20 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pokechu_material3.*
-import com.example.pokechu_material3.managers.PokemonManager
+import com.example.pokechu_material3.R
+import com.example.pokechu_material3.data.PokemonData
 import com.example.pokechu_material3.databinding.ActivityMainBinding
+import com.example.pokechu_material3.managers.PokemonManager
+import com.example.pokechu_material3.managers.SettingsManager
 import com.example.pokechu_material3.ui.ListAdapter
 import com.example.pokechu_material3.ui.RecyclerTouchListener
 import com.google.android.material.snackbar.Snackbar
@@ -24,11 +27,12 @@ import java.util.*
 
 class ActivityMain : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var menu: Menu
 
     private var adapter: ListAdapter? = null
+
+    val OPEN_DETAILS = 123456
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -42,14 +46,10 @@ class ActivityMain : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        //val navController = findNavController(R.id.nav_host_fragment_content_main)
-        //appBarConfiguration = AppBarConfiguration(navController.graph)
-        //setupActionBarWithNavController(navController, appBarConfiguration)
-
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.fab)
-                .setAction("Action", null).show()
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAnchorView(R.id.fab)
+//                .setAction("Action", null).show()
 
             val searchMenuItem = menu.findItem(R.id.search)
             searchMenuItem.expandActionView()
@@ -83,6 +83,18 @@ class ActivityMain : AppCompatActivity() {
         // Associate searchable configuration with the SearchView
     }
 
+//    override fun onResume() {
+//        super.onResume()
+//        //Code to refresh listview
+//    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == OPEN_DETAILS) {
+            adapter?.notifyDataSetChanged()
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
         this.menu = menu
@@ -111,11 +123,23 @@ class ActivityMain : AppCompatActivity() {
             }
         })
 
+        menu.findItem(R.id.search).setOnActionExpandListener( object : MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                    Log.i("TAG", "onMenuItemActionExpand")
+                    return true
+                }
+
+                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                    // Clear text and apply
+                    searchView.setQuery("", true)
+                    return true
+                }
+            })
+
         // Required to make the searchview manually focusable
         searchView.isIconifiedByDefault = false
 
-        val prefs = applicationContext.getSharedPreferences("Settings", MODE_PRIVATE)
-        val searchAllFields = prefs.getBoolean("search_all_fields", true)
+        val searchAllFields = SettingsManager.isSearchAllFieldsEnabled(applicationContext)
 
         val searchAllMenuItem = menu.findItem(R.id.search_all_fields)
         searchAllMenuItem.isChecked = searchAllFields
@@ -131,20 +155,13 @@ class ActivityMain : AppCompatActivity() {
             R.id.action_settings -> return true
             R.id.search_all_fields -> {
                 item.isChecked = !item.isChecked
-                val prefs = applicationContext.getSharedPreferences("Settings", MODE_PRIVATE)
-                prefs.edit().putBoolean("search_all_fields", item.isChecked).apply()
+                SettingsManager.setSearchAllFieldsEnabled(applicationContext,item.isChecked)
 
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
-    /*override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }*/
 
     private fun setUpRecyclerView() {
         val recyclerView = binding.recyclerView
@@ -179,21 +196,23 @@ class ActivityMain : AppCompatActivity() {
                 applicationContext,
                 recyclerView,
                 object : RecyclerTouchListener.ClickListener {
+
+                    // Open details activity on click
                     override fun onClick(view: View?, position: Int) {
                         val pokemonId = adapter?.getCurrentIds()?.get(position)
-                        val pokemonData = pokemonId?.let { PokemonManager.findData(it) }
+                        val pokemonData = pokemonId?.let { PokemonManager.findPokemonData(it) }
                         if (pokemonData != null) {
                             val intent = Intent(applicationContext, ActivityDetails::class.java)
                             intent.putExtra("PokemonId", pokemonData.ids.unique)
-                            startActivity(intent)
+                            startActivityForResult(intent, OPEN_DETAILS)
                         }
                     }
 
+                    // Toggle discovered status on long click
                     override fun onLongClick(view: View?, position: Int) {
                         val pokemonId = adapter?.getCurrentIds()?.get(position)
                         if (pokemonId != null) {
-                            val discovered = PokemonManager.isDiscovered(applicationContext, pokemonId)
-                            PokemonManager.setIsDiscovered(applicationContext,pokemonId, !discovered )
+                            SettingsManager.togglePokemonDiscovered(applicationContext, pokemonId)
                             adapter?.notifyItemChanged(position)
                         }
                     }
@@ -208,7 +227,7 @@ class ActivityMain : AppCompatActivity() {
         val filteredIds = ArrayList<String>()
         if (pokemonIds != null) {
             for (id in pokemonIds) {
-                val pokemonData = PokemonManager.findData(id)
+                val pokemonData = PokemonManager.findPokemonData(id)
                 if (pokemonData == null)
                     continue
 

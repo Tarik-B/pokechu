@@ -79,9 +79,9 @@ class Pokedex:
             return node
 
         for child in node["evolutions"]:
-            node = self.find_in_evolution_tree(child, name_fr)
-            if node:
-                return node
+            found = self.find_in_evolution_tree(child, name_fr)
+            if found:
+                return found
 
         return None
 

@@ -1,8 +1,8 @@
 package com.example.pokechu_material3.managers
 
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
-import com.example.pokechu_material3.PokemonData
+import com.example.pokechu_material3.data.EvolutionTreeData
+import com.example.pokechu_material3.data.PokemonData
 import com.example.pokechu_material3.utils.AssetUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -10,13 +10,19 @@ import com.google.gson.reflect.TypeToken
 
 object PokemonManager {
     private var pokemonMap = HashMap<String, PokemonData>()
+    private var evolutionTrees = ArrayList<EvolutionTreeData>()
 
     public fun loadJsonData(context: Context) {
-        val jsonFileString = AssetUtils.getJsonDataFromAsset(context, "pokemon_list.json")
+        // Pokemon list
+        var jsonFileString = AssetUtils.getJsonDataFromAsset(context, "pokemon_list.json")
         val pokemonDictType = object : TypeToken<List<PokemonData>>() {}.type
-
         val pokemonList: List<PokemonData> = Gson().fromJson(jsonFileString, pokemonDictType)
         pokemonList.forEach { data -> pokemonMap[data.ids.unique] = data }
+
+        // Evolution trees
+        jsonFileString = AssetUtils.getJsonDataFromAsset(context, "pokemon_evolution_trees.json")
+        val evolutionTreeListType = object : TypeToken<List<EvolutionTreeData>>() {}.type
+        evolutionTrees = Gson().fromJson(jsonFileString, evolutionTreeListType)
     }
 
     public fun getPokemonMap() : Map<String, PokemonData> {
@@ -30,19 +36,30 @@ object PokemonManager {
         return idList
     }
 
-    public fun findData(id: String): PokemonData? {
+    public fun findPokemonData(id: String): PokemonData? {
         return pokemonMap[id]
     }
 
-    public fun isDiscovered(context: Context, pokemonId: String): Boolean {
-        val prefs = context.getSharedPreferences("Data", MODE_PRIVATE)
-        val discovered = prefs.getBoolean("pokemon_${pokemonId}_discovered", false)
+    public fun findEvolutionTree(id: String): EvolutionTreeData? {
+        evolutionTrees.forEach{ tree ->
+            val node = findEvolutionTreeNode(tree, id)
+            if (node != null)
+                return tree
+        }
 
-        return discovered
+        return null
     }
 
-    public fun setIsDiscovered(context: Context, pokemonId: String, discovered: Boolean) {
-        val prefs = context.getSharedPreferences("Data", MODE_PRIVATE)
-        prefs.edit().putBoolean("pokemon_${pokemonId}_discovered", discovered).apply()
+    public fun findEvolutionTreeNode(node: EvolutionTreeData, id: String): EvolutionTreeData? {
+        if (node.id == id)
+            return node
+
+        node.evolutions.forEach{ child ->
+            val found = findEvolutionTreeNode(child, id)
+            if (found != null)
+                return found
+        }
+
+        return null
     }
 }

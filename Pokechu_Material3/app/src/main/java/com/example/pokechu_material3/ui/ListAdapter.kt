@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokechu_material3.managers.PokemonManager
 import com.example.pokechu_material3.R
+import com.example.pokechu_material3.managers.SettingsManager
 import com.example.pokechu_material3.utils.AssetUtils
 import com.example.pokechu_material3.ui.ListAdapter.ListViewHolder
 import java.util.*
@@ -37,18 +38,18 @@ class ListAdapter internal constructor(private var context: Context?, private va
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         return ListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_my_apps, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
 
         val currentId = pokemonIds[position]
-        val currentData = PokemonManager.findData(currentId)
+        val currentData = PokemonManager.findPokemonData(currentId)
         if (currentData == null)
             return
 
-        val isDiscovered = context?.let { PokemonManager.isDiscovered(it, currentId) }
+        val isDiscovered = context?.let { SettingsManager.isPokemonDiscovered(it, currentId) }
         val assetManager: AssetManager? = context!!.assets
 
         if (isDiscovered == true) {
