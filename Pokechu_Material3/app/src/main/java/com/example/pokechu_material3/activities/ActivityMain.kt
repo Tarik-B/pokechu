@@ -1,5 +1,6 @@
 package com.example.pokechu_material3.activities
 
+import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -23,6 +24,7 @@ import com.example.pokechu_material3.managers.PokemonManager
 import com.example.pokechu_material3.managers.SettingsManager
 import com.example.pokechu_material3.ui.ListAdapter
 import com.example.pokechu_material3.ui.RecyclerTouchListener
+import com.example.pokechu_material3.utils.UIUtils
 import java.util.*
 
 
@@ -40,6 +42,7 @@ class ActivityMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         PokemonManager.loadJsonData(applicationContext)
+        SettingsManager.with(application)
 
         // Initialize ui
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -48,7 +51,7 @@ class ActivityMain : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         getSupportActionBar()?.setTitle("Pokechu");
 
-        binding.fab.setOnClickListener { view ->
+        binding.buttonSearch.setOnClickListener { view ->
             val newFragment = StartSearchDialogFragment()
             newFragment.show(supportFragmentManager, "test")
 
@@ -66,6 +69,10 @@ class ActivityMain : AppCompatActivity() {
         }
 
         setUpRecyclerView()
+
+        val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
+        val totalPokemonCount = PokemonManager.getPokemonMap().count()
+         binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount} discovered"
 
         /*
         Searchtext = view.findViewById<View>(R.id.search_input) as EditText
@@ -126,6 +133,34 @@ class ActivityMain : AppCompatActivity() {
                 }
             })
 
+        val gridEnabled = !SettingsManager.isListViewEnabled()
+        val listButton = menu.findItem(R.id.button_list_view)
+        val gridButton = menu.findItem(R.id.button_grid_view)
+        val currentActivity = this
+        gridButton.isVisible = !gridEnabled
+        listButton.isVisible = gridEnabled
+        if ( gridEnabled ) {
+            listButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+                override fun onMenuItemClick(item: MenuItem): Boolean {
+                    SettingsManager.setListViewEnabled(true)
+                    UIUtils.reloadActivity(currentActivity, true)
+
+                    return true
+                }
+            })
+        }
+        else {
+            gridButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+                override fun onMenuItemClick(item: MenuItem): Boolean {
+                    SettingsManager.setListViewEnabled(false)
+                    UIUtils.reloadActivity(currentActivity, true)
+
+                    return true
+                }
+            })
+        }
+
+
         // Required to make the searchview manually focusable
         searchView.isIconifiedByDefault = false
 
@@ -164,13 +199,17 @@ class ActivityMain : AppCompatActivity() {
         val recyclerView = binding.recyclerView
         recyclerView.setHasFixedSize(true)
 
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
-//        val layoutManager = GridLayoutManager(applicationContext, 2)
+        val gridEnabled = !SettingsManager.isListViewEnabled()
+        var layoutManager: RecyclerView.LayoutManager? = null
+        if ( gridEnabled )
+            layoutManager = GridLayoutManager(applicationContext, 2)
+        else
+        layoutManager  = LinearLayoutManager(applicationContext)
 
         recyclerView.layoutManager = layoutManager
 
         //adapter = exampleList?.let { ExampleAdapter(it) }
-        //val pokemonIds = PokemonManager.getPokemonIds()
+        //val pokemonIds = PokemonManager.buildPokemonIdsList()
         // Build sorted list of unique ids based on paldea ids
         val pokemonData = PokemonManager.getPokemonMap().values
         var sortedData = pokemonData
@@ -187,7 +226,9 @@ class ActivityMain : AppCompatActivity() {
             pokemonIds.add(data.ids.unique)
         }
 
-        adapter = pokemonIds?.let { ListAdapter(applicationContext, pokemonIds) }
+        val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
+
+        adapter = ListAdapter(applicationContext, pokemonIds, uiItemId)
         recyclerView.adapter = adapter
 
         recyclerView.addOnItemTouchListener(
@@ -211,7 +252,7 @@ class ActivityMain : AppCompatActivity() {
                     override fun onLongClick(view: View?, position: Int) {
                         val pokemonId = adapter?.getCurrentIds()?.get(position)
                         if (pokemonId != null) {
-                            SettingsManager.togglePokemonDiscovered(applicationContext, pokemonId)
+                            SettingsManager.togglePokemonDiscovered(pokemonId)
                             adapter?.notifyItemChanged(position)
                         }
                     }

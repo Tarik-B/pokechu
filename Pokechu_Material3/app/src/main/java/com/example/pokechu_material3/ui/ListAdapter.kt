@@ -16,19 +16,25 @@ import com.example.pokechu_material3.ui.ListAdapter.ListViewHolder
 import java.util.*
 
 
-class ListAdapter internal constructor(private var context: Context?, private var pokemonIds: List<String>) :
+class ListAdapter internal constructor(
+    private var context: Context?,
+    private var pokemonIds: List<String>,
+    private var uiItemId: Int
+    ) :
     RecyclerView.Adapter<ListViewHolder>() {
     private val pokemonIdsFull: List<String>
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView
+//        var textViewId: TextView
         var textView1: TextView
-        var textView2: TextView
+        var textView2: TextView?
 
         init {
             imageView = itemView.findViewById<View>(R.id.image_app) as ImageView
-            textView1 = itemView.findViewById<View>(R.id.textview) as TextView
-            textView2 = itemView.findViewById<View>(R.id.textview2) as TextView
+//            textViewId = itemView.findViewById<View>(R.id.text_view_id) as TextView
+            textView1 = itemView.findViewById<View>(R.id.text_view) as TextView
+            textView2 = itemView.findViewById<View>(R.id.text_view2) as TextView?
         }
     }
 
@@ -38,7 +44,7 @@ class ListAdapter internal constructor(private var context: Context?, private va
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         return ListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(uiItemId, parent, false)
         )
     }
 
@@ -49,7 +55,7 @@ class ListAdapter internal constructor(private var context: Context?, private va
         if (currentData == null)
             return
 
-        val isDiscovered = context?.let { SettingsManager.isPokemonDiscovered(it, currentId) }
+        val isDiscovered = SettingsManager.isPokemonDiscovered(currentId)
         val assetManager: AssetManager? = context!!.assets
 
         if (isDiscovered == true) {
@@ -63,8 +69,10 @@ class ListAdapter internal constructor(private var context: Context?, private va
             //holder.imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
         }
 
+//        holder.textViewId.text = "#${currentData.ids.paldea}"
         holder.textView1.text = "#${currentData.ids.paldea} - ${currentData.names.fr}"
-        holder.textView2.text = "English name: ${currentData.names.en}"
+        if (holder.textView2 != null)
+            holder.textView2!!.text = "English name: ${currentData.names.en}"
         holder.itemView.setOnClickListener { v ->
         }
     }

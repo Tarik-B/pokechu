@@ -29,7 +29,7 @@ object PokemonManager {
         return pokemonMap
     }
 
-    public fun getPokemonIds() : List<String> {
+    public fun buildPokemonIdsList() : List<String> {
         val idList = ArrayList<String>()
         pokemonMap.forEach { (key, data) -> idList.add(key) }
 

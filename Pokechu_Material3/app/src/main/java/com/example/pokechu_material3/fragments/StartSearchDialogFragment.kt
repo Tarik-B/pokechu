@@ -66,10 +66,10 @@ class StartSearchDialogFragment : DialogFragment() {
                             }
                         }
                     })
-                .setNegativeButton(R.string.dialog_cancel,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        getDialog()?.cancel()
-                    })
+//                .setNegativeButton(R.string.dialog_cancel,
+//                    DialogInterface.OnClickListener { dialog, id ->
+//                        getDialog()?.cancel()
+//                    })
 
             editText.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {

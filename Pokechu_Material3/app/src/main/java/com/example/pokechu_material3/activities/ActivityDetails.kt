@@ -1,19 +1,15 @@
 package com.example.pokechu_material3.activities
 
-import android.app.SearchManager
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.content.res.AssetManager
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.view.View.OnLongClickListener
 import android.widget.ImageView
-import android.widget.SearchView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokechu_material3.R
@@ -21,13 +17,14 @@ import com.example.pokechu_material3.data.EvolutionTreeData
 import com.example.pokechu_material3.databinding.ActivityDetailsBinding
 import com.example.pokechu_material3.managers.PokemonManager
 import com.example.pokechu_material3.managers.SettingsManager
+import com.example.pokechu_material3.ui.EvolutionTreeEdgeDecoration
 import com.example.pokechu_material3.utils.AssetUtils
+import com.example.pokechu_material3.utils.UIUtils
 import dev.bandb.graphview.AbstractGraphAdapter
 import dev.bandb.graphview.graph.Graph
 import dev.bandb.graphview.graph.Node
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
-import dev.bandb.graphview.layouts.tree.TreeEdgeDecoration
 import java.util.*
 
 
@@ -50,6 +47,9 @@ class ActivityDetails : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.toolbar))
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+
 //        binding.toolbarLayout.title = title
 
         pokemonId = intent.getStringExtra("PokemonId").toString()
@@ -63,7 +63,7 @@ class ActivityDetails : AppCompatActivity() {
         val textView = binding.textView
         val imageView = binding.imageHeader
 
-        val isDiscovered = SettingsManager.isPokemonDiscovered(applicationContext, pokemonId)
+        val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
         val assetManager: AssetManager? = applicationContext.assets
 
         var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.images.thumbnail) }
@@ -99,12 +99,21 @@ class ActivityDetails : AppCompatActivity() {
         return true
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == OPEN_DETAILS) {
-            adapter?.notifyDataSetChanged()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // handle arrow click here
+        if (item.getItemId() === android.R.id.home) {
+            finish() // close this activity and return to previous activity (if there is any)
         }
+        return super.onOptionsItemSelected(item)
     }
+
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == OPEN_DETAILS) {
+//            adapter?.notifyDataSetChanged()
+//        }
+//    }
 
     private fun createGraph(): Graph {
         val graph = Graph()
@@ -137,7 +146,18 @@ class ActivityDetails : AppCompatActivity() {
     }
 
     private fun setEdgeDecoration() {
-        recyclerView.addItemDecoration(TreeEdgeDecoration())
+//        recyclerView.addItemDecoration(TreeEdgeDecoration())
+
+        val edgeStyle = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            strokeWidth = 5f
+            color = Color.BLACK
+//            style = Paint.Style.STROKE
+//            strokeJoin = Paint.Join.ROUND
+//            pathEffect = CornerPathEffect(10f)
+            textSize = 50F
+        }
+
+        recyclerView.addItemDecoration(EvolutionTreeEdgeDecoration(edgeStyle))
     }
 
     private fun setupGraphView(graph: Graph) {
@@ -156,15 +176,20 @@ class ActivityDetails : AppCompatActivity() {
                 if (pokemonData == null)
                     return
 
-                // Set thumbnail
-                val isDiscovered = SettingsManager.isPokemonDiscovered(applicationContext, nodeData.id)
+                val isDiscovered = SettingsManager.isPokemonDiscovered(nodeData.id)
                 val assetManager: AssetManager? = applicationContext.assets
 
+                // Setup texts
                 if ( isDiscovered || pokemonId == nodeData.id )
                     holder.textViewName.text = pokemonData.names.fr
                 else
                     holder.textViewName.text = ""
 
+//                val evolutionTreeNode = PokemonManager.findEvolutionTreeNode(evolutionTree!!, nodeData.id)
+//                if ( evolutionTreeNode != null && isDiscovered )
+//                    holder.textViewSub.text = evolutionTreeNode.condition
+
+                // Set thumbnail image
                 if (isDiscovered == true) {
 
                     var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.images.thumbnail) }
@@ -185,6 +210,7 @@ class ActivityDetails : AppCompatActivity() {
 
     protected inner class NodeViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var textViewName: TextView = itemView.findViewById(R.id.text_name)
+//        var textViewSub: TextView = itemView.findViewById(R.id.text_sub)
         var imageThumbnail: ImageView = itemView.findViewById(R.id.image_thumbnail)
 
         init {
@@ -194,7 +220,17 @@ class ActivityDetails : AppCompatActivity() {
 
                 val intent = Intent(applicationContext, ActivityDetails::class.java)
                 intent.putExtra("PokemonId", currentNodeData.id)
-                startActivityForResult(intent, OPEN_DETAILS)
+
+//                intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+//                startActivityForResult(intent, OPEN_DETAILS)
+//                startActivity(intent)
+
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+                startActivity(intent)
+                finish()
 
                 true
             }
@@ -204,12 +240,10 @@ class ActivityDetails : AppCompatActivity() {
 //                    Snackbar.LENGTH_SHORT).show()
 
                 var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as EvolutionTreeData
-                SettingsManager.togglePokemonDiscovered(applicationContext, currentNodeData.id)
+                SettingsManager.togglePokemonDiscovered(currentNodeData.id)
                 if ( currentNodeData.id == pokemonId) {
-                    finish()
-                    overridePendingTransition(0, 0)
-                    startActivity(intent)
-                    overridePendingTransition(0, 0)
+                    var host: Activity = itemView.getContext() as Activity
+                    UIUtils.reloadActivity(host, true)
                 }
                 else {
                     adapter.notifyDataSetChanged()
