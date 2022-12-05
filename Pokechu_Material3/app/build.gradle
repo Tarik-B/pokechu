@@ -52,4 +52,11 @@ dependencies {
     // GraphView
     implementation 'dev.bandb.graphview:graphview:0.8.1'
     implementation 'com.otaliastudios:zoomlayout:1.9.0'
+
+    // Android x preferences
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+
+    // Localization
+    implementation 'com.akexorcist:localization:1.2.11'
 }

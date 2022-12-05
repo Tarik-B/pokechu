@@ -28,7 +28,7 @@ import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import java.util.*
 
 
-class ActivityDetails : AppCompatActivity() {
+class ActivityDetails : BaseActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
     protected lateinit var recyclerView: RecyclerView
@@ -47,8 +47,8 @@ class ActivityDetails : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
 
 //        binding.toolbarLayout.title = title
 
@@ -58,7 +58,7 @@ class ActivityDetails : AppCompatActivity() {
         // Setup header
         val pokemonData = PokemonManager.findPokemonData(pokemonId)!!
 
-        getSupportActionBar()?.setTitle("#${pokemonData.ids.paldea} - ${pokemonData.names.fr}");
+        supportActionBar?.setTitle("#${pokemonData.ids.paldea} - ${pokemonData.names.fr}");
 
         val textView = binding.textView
         val imageView = binding.imageHeader
@@ -197,7 +197,7 @@ class ActivityDetails : AppCompatActivity() {
                     //holder.imageView.clearColorFilter()
                 }
                 else {
-                    val unknownImage = R.drawable.question_mark
+                    val unknownImage = R.drawable.ic_question_mark
                     holder.imageThumbnail.setImageResource(unknownImage)
                     //holder.imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
                 }

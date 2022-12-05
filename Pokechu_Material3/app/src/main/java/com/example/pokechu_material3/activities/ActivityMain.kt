@@ -1,6 +1,5 @@
 package com.example.pokechu_material3.activities
 
-import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -9,9 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,21 +25,22 @@ import com.example.pokechu_material3.utils.UIUtils
 import java.util.*
 
 
-class ActivityMain : AppCompatActivity() {
+class ActivityMain : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var menu: Menu
 
     private var adapter: ListAdapter? = null
 
-    val OPEN_DETAILS = 123456
+    private val OPEN_DETAILS = 123
+    private val OPEN_SETTINGS = 456
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
         PokemonManager.loadJsonData(applicationContext)
-        SettingsManager.with(application)
+//        SettingsManager.with(applicationContext)
 
         // Initialize ui
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -72,7 +70,7 @@ class ActivityMain : AppCompatActivity() {
 
         val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
         val totalPokemonCount = PokemonManager.getPokemonMap().count()
-         binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount} discovered"
+         binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
 
         /*
         Searchtext = view.findViewById<View>(R.id.search_input) as EditText
@@ -86,11 +84,6 @@ class ActivityMain : AppCompatActivity() {
 
         // Associate searchable configuration with the SearchView
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        //Code to refresh listview
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
@@ -108,21 +101,21 @@ class ActivityMain : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.i("TAG", "onQueryTextChange = $newText")
+                Log.i(this::class.toString(), "onQueryTextChange = $newText")
 
                 filterQuery(newText)
 
                 return false
             }
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.i("TAG", "onQueryTextSubmit = $query")
+                Log.i(this::class.toString(), "onQueryTextSubmit = $query")
                 return false
             }
         })
 
         menu.findItem(R.id.search).setOnActionExpandListener( object : MenuItem.OnActionExpandListener {
                 override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                    Log.i("TAG", "onMenuItemActionExpand")
+                    Log.i(this::class.toString(), "onMenuItemActionExpand")
                     return true
                 }
 
@@ -132,6 +125,14 @@ class ActivityMain : AppCompatActivity() {
                     return true
                 }
             })
+
+        val customizeButton = menu.findItem(R.id.button_customize)
+        customizeButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem): Boolean {
+                Log.i(this::class.toString(), "onMenuItemActionExpand")
+                return true
+            }
+        })
 
         val gridEnabled = !SettingsManager.isListViewEnabled()
         val listButton = menu.findItem(R.id.button_list_view)
@@ -164,10 +165,14 @@ class ActivityMain : AppCompatActivity() {
         // Required to make the searchview manually focusable
         searchView.isIconifiedByDefault = false
 
-        val searchAllFields = SettingsManager.isSearchAllFieldsEnabled(applicationContext)
+        // Added customize search submenu
+        val subMenuItem = menu.findItem(R.id.button_customize)
+        menuInflater.inflate(R.menu.menu_main_filter, subMenuItem.subMenu)
 
+        val searchAllFields = SettingsManager.isSearchAllFieldsEnabled(applicationContext)
         val searchAllMenuItem = menu.findItem(R.id.search_all_fields)
         searchAllMenuItem.isChecked = searchAllFields
+
 
         return true
     }
@@ -177,7 +182,12 @@ class ActivityMain : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> {
+                val intent = Intent(applicationContext, ActivitySettings::class.java)
+                startActivityForResult(intent, OPEN_SETTINGS)
+
+                return true
+            }
             R.id.search_all_fields -> {
                 item.isChecked = !item.isChecked
                 SettingsManager.setSearchAllFieldsEnabled(applicationContext,item.isChecked)

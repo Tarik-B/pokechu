@@ -64,7 +64,7 @@ class ListAdapter internal constructor(
             //holder.imageView.clearColorFilter()
         }
         else {
-            val unknownImage = R.drawable.question_mark
+            val unknownImage = R.drawable.ic_question_mark
             holder.imageView.setImageResource(unknownImage)
             //holder.imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
         }

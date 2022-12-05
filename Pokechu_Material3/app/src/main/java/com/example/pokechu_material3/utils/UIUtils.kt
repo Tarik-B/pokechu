@@ -27,6 +27,7 @@ class UIUtils {
         }
 
         fun reloadActivity(activity: Activity, skipTransition: Boolean) {
+//            activity.recreate()
             activity.finish()
 
             if (skipTransition)

@@ -1,0 +1,12 @@
+<resources>
+    <!-- Language settings -->
+    <string-array name="language_entries">
+        <item>@string/language_english</item>
+        <item>@string/language_french</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>en</item>
+        <item>fr</item>
+    </string-array>
+</resources>
