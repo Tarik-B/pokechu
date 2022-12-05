@@ -1,11 +1,15 @@
 package com.example.pokechu_material3.managers
 
+import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
+import com.example.pokechu_material3.R
 import com.example.pokechu_material3.data.EvolutionTreeData
 import com.example.pokechu_material3.data.PokemonData
 import com.example.pokechu_material3.utils.AssetUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.util.*
 
 
 object PokemonManager {
@@ -34,6 +38,22 @@ object PokemonManager {
         pokemonMap.forEach { (key, data) -> idList.add(key) }
 
         return idList
+    }
+
+    public fun getLocalizedPokemonName(context: Activity, id: String, language: String = ""): String {
+
+        var lang = language
+        if (lang == "")
+            lang = SettingsManager.getDataLanguage()
+
+        val configuration = Configuration(context.resources.configuration)
+        configuration.setLocale(Locale(lang))
+
+        val newContext = context.createConfigurationContext(configuration)
+
+        val resId: Int = newContext.resources.getIdentifier("pokemon_name_${id}", "string", "fr.amazer.pokechu")
+
+        return newContext.resources.getString(resId)
     }
 
     public fun findPokemonData(id: String): PokemonData? {

@@ -1,10 +1,12 @@
 package com.example.pokechu_material3.activities
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.pokechu_material3.R
+import com.example.pokechu_material3.managers.SettingsManager
 
 interface PreferenceChangeListener {
     fun onLanguagePreferenceChanged(language: String)
@@ -21,8 +23,11 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
                 .replace(R.id.settings, SettingsFragment())
                 .commit()
         }
+        setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setDisplayShowHomeEnabled(true);
+
+
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -33,11 +38,27 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
             val dataLanguage: ListPreference? = findPreference("setting_data_language")
 
             if (appLanguage != null) {
-                val currentActivity = activity
                 appLanguage.onPreferenceChangeListener =
                     Preference.OnPreferenceChangeListener { _, newValue ->
                         val language = newValue.toString()
                         (activity as PreferenceChangeListener).onLanguagePreferenceChanged(language)
+                        true
+                    }
+            };
+
+            val clearData: Preference? = findPreference("setting_clear_data")
+            if (clearData != null) {
+                clearData.onPreferenceClickListener =
+                    Preference.OnPreferenceClickListener { preference ->
+                        val builder = AlertDialog.Builder(activity)
+                        builder.setMessage(R.string.dialog_are_you_sure)
+                            .setPositiveButton(R.string.dialog_yes) { dialog, id ->
+                                SettingsManager.clearPokemonDiscovered()
+                            }
+                            .setNegativeButton(R.string.dialog_no) { dialog, id ->
+                            }
+                        val alert = builder.create()
+                        alert.show()
                         true
                     }
             };

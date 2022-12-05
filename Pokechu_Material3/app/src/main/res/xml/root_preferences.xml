@@ -2,10 +2,6 @@
 
     <PreferenceCategory app:title="@string/settings_general">
 
-        <SwitchPreferenceCompat
-            app:key="setting_test"
-            app:title="@string/test_string" />
-
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/settings_language">
@@ -25,6 +21,14 @@
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
             app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_data">
+
+        <Preference
+            app:key="setting_clear_data"
+            app:title="@string/setting_clear_data" />
 
     </PreferenceCategory>
 

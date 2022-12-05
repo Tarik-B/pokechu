@@ -5,8 +5,6 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -73,7 +71,7 @@ class StartSearchDialogFragment : DialogFragment() {
 
             editText.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    Log.i(this::class.toString(), "setOnEditorActionListener = ${actionId} ")
+                    Log.i(this::class.simpleName, "setOnEditorActionListener = ${actionId} ")
 
                     val alertDialog = dialog as AlertDialog
                     alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick()

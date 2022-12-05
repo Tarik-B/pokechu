@@ -1,5 +1,6 @@
 package com.example.pokechu_material3.activities
 
+import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,8 +35,8 @@ class ActivityMain : BaseActivity() {
 
     private var adapter: ListAdapter? = null
 
-    private val OPEN_DETAILS = 123
-    private val OPEN_SETTINGS = 456
+    private lateinit var settingsActivityLauncher: ActivityResultLauncher<Intent>
+    private lateinit var detailsActivityLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -70,7 +73,7 @@ class ActivityMain : BaseActivity() {
 
         val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
         val totalPokemonCount = PokemonManager.getPokemonMap().count()
-         binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
+        binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
 
         /*
         Searchtext = view.findViewById<View>(R.id.search_input) as EditText
@@ -83,6 +86,18 @@ class ActivityMain : BaseActivity() {
         })*/
 
         // Associate searchable configuration with the SearchView
+
+        settingsActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//            if (result.resultCode == Activity.RESULT_OK) {
+//            }
+            adapter?.notifyDataSetChanged()
+        }
+
+        detailsActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//            if (result.resultCode == Activity.RESULT_OK) {
+//            }
+            adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -101,21 +116,21 @@ class ActivityMain : BaseActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.i(this::class.toString(), "onQueryTextChange = $newText")
+                Log.i(this::class.simpleName, "onQueryTextChange = $newText")
 
                 filterQuery(newText)
 
                 return false
             }
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.i(this::class.toString(), "onQueryTextSubmit = $query")
+                Log.i(this::class.simpleName, "onQueryTextSubmit = $query")
                 return false
             }
         })
 
         menu.findItem(R.id.search).setOnActionExpandListener( object : MenuItem.OnActionExpandListener {
                 override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                    Log.i(this::class.toString(), "onMenuItemActionExpand")
+                    Log.i(this::class.simpleName, "onMenuItemActionExpand")
                     return true
                 }
 
@@ -129,7 +144,7 @@ class ActivityMain : BaseActivity() {
         val customizeButton = menu.findItem(R.id.button_customize)
         customizeButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem): Boolean {
-                Log.i(this::class.toString(), "onMenuItemActionExpand")
+                Log.i(this::class.simpleName, "onMenuItemActionExpand")
                 return true
             }
         })
@@ -178,13 +193,22 @@ class ActivityMain : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> {
-                val intent = Intent(applicationContext, ActivitySettings::class.java)
-                startActivityForResult(intent, OPEN_SETTINGS)
+
+                val intent = Intent(this, ActivitySettings::class.java)
+                settingsActivityLauncher.launch(intent)
+
+                return true
+            }
+            R.id.action_about -> {
+
+                val intent = Intent(this, ActivityAbout::class.java)
+                settingsActivityLauncher.launch(intent)
 
                 return true
             }
@@ -195,13 +219,6 @@ class ActivityMain : BaseActivity() {
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == OPEN_DETAILS) {
-            adapter?.notifyDataSetChanged()
         }
     }
 
@@ -238,7 +255,7 @@ class ActivityMain : BaseActivity() {
 
         val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
 
-        adapter = ListAdapter(applicationContext, pokemonIds, uiItemId)
+        adapter = ListAdapter(this, pokemonIds, uiItemId)
         recyclerView.adapter = adapter
 
         recyclerView.addOnItemTouchListener(
@@ -254,7 +271,8 @@ class ActivityMain : BaseActivity() {
                         if (pokemonData != null) {
                             val intent = Intent(applicationContext, ActivityDetails::class.java)
                             intent.putExtra("PokemonId", pokemonData.ids.unique)
-                            startActivityForResult(intent, OPEN_DETAILS)
+
+                            detailsActivityLauncher.launch(intent)
                         }
                     }
 
@@ -281,10 +299,13 @@ class ActivityMain : BaseActivity() {
                 if (pokemonData == null)
                     continue
 
+                val localizedNameFr = PokemonManager.getLocalizedPokemonName(this, id, "fr")
+                val localizedNameEn = PokemonManager.getLocalizedPokemonName(this, id, "en")
+
                 val found1 = pokemonData.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
                 val found2 = pokemonData.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
-                val found3 = pokemonData.names.fr.lowercase(Locale.getDefault()).contains(text!!)
-                val found4 = pokemonData.names.en.lowercase(Locale.getDefault()).contains(text!!)
+                val found3 = localizedNameFr.lowercase(Locale.getDefault()).contains(text!!)
+                val found4 = localizedNameEn.lowercase(Locale.getDefault()).contains(text!!)
 
                 if ( found1 || found2 || found3 || found4 ) {
                     filteredIds.add(id)

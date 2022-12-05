@@ -7,11 +7,12 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pokechu_material3.BuildConfig
 import com.example.pokechu_material3.R
 import com.example.pokechu_material3.data.EvolutionTreeData
 import com.example.pokechu_material3.databinding.ActivityDetailsBinding
@@ -58,7 +59,9 @@ class ActivityDetails : BaseActivity() {
         // Setup header
         val pokemonData = PokemonManager.findPokemonData(pokemonId)!!
 
-        supportActionBar?.setTitle("#${pokemonData.ids.paldea} - ${pokemonData.names.fr}");
+        val localizedName = PokemonManager.getLocalizedPokemonName(this, pokemonId)
+
+        supportActionBar?.setTitle("#${pokemonData.ids.paldea} - ${localizedName}");
 
         val textView = binding.textView
         val imageView = binding.imageHeader
@@ -69,7 +72,7 @@ class ActivityDetails : BaseActivity() {
         var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.images.thumbnail) }
         imageView.setImageBitmap(bitmap)
 
-        textView.text = "English name: ${pokemonData.names.en}\n" +
+        textView.text = //"English name: ${pokemonData.names.en}\n" +
                         "National ID: ${pokemonData.ids.unique}\n" +
                         "Paldea ID: ${pokemonData.ids.paldea}"
 
@@ -98,15 +101,6 @@ class ActivityDetails : BaseActivity() {
 
         return true
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // handle arrow click here
-        if (item.getItemId() === android.R.id.home) {
-            finish() // close this activity and return to previous activity (if there is any)
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
 
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
@@ -161,6 +155,7 @@ class ActivityDetails : BaseActivity() {
     }
 
     private fun setupGraphView(graph: Graph) {
+
         adapter = object : AbstractGraphAdapter<NodeViewHolder>() {
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
@@ -179,9 +174,11 @@ class ActivityDetails : BaseActivity() {
                 val isDiscovered = SettingsManager.isPokemonDiscovered(nodeData.id)
                 val assetManager: AssetManager? = applicationContext.assets
 
+                val localizedName = PokemonManager.getLocalizedPokemonName(this@ActivityDetails, nodeData.id)
+
                 // Setup texts
                 if ( isDiscovered || pokemonId == nodeData.id )
-                    holder.textViewName.text = pokemonData.names.fr
+                    holder.textViewName.text = localizedName
                 else
                     holder.textViewName.text = ""
 
@@ -253,4 +250,12 @@ class ActivityDetails : BaseActivity() {
             }
         }
     }
+
+//    override fun onBackPressed() {
+//        // TODO Auto-generated method stub
+//        val intent = Intent()
+//        intent.putExtra("MESSAGE", "Toto")
+//        setResult(2, intent)
+//        super.onBackPressed()
+//    }
 }

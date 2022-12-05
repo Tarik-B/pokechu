@@ -1,5 +1,6 @@
 package com.example.pokechu_material3.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.AssetManager
 import android.view.LayoutInflater
@@ -69,10 +70,12 @@ class ListAdapter internal constructor(
             //holder.imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
         }
 
+        val localizedName = PokemonManager.getLocalizedPokemonName(context as Activity, currentId)
+
 //        holder.textViewId.text = "#${currentData.ids.paldea}"
-        holder.textView1.text = "#${currentData.ids.paldea} - ${currentData.names.fr}"
-        if (holder.textView2 != null)
-            holder.textView2!!.text = "English name: ${currentData.names.en}"
+        holder.textView1.text = "#${currentData.ids.paldea} - ${localizedName}"
+//        if (holder.textView2 != null)
+//            holder.textView2!!.text = "English name: ${currentData.names.en}"
         holder.itemView.setOnClickListener { v ->
         }
     }

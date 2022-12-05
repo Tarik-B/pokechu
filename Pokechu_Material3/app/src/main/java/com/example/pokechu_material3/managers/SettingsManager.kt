@@ -1,11 +1,14 @@
 package com.example.pokechu_material3.managers
 
-import android.app.Application
+import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.os.Build
 import androidx.preference.PreferenceManager
-import com.google.gson.GsonBuilder
 import java.util.*
+
 
 object SettingsManager {
 
@@ -43,9 +46,9 @@ object SettingsManager {
     public fun isListViewEnabled(): Boolean { return getSetting(KEY_SETTING_LIST_VIEW, DEFAULT_LIST_VIEW)!! }
     public fun setListViewEnabled(enabled: Boolean) { setSetting(KEY_SETTING_LIST_VIEW, enabled) }
 
-    private val DEFAULT_APP_LANGUAGE = Locale.getDefault().language // "sys_def" // LocaleUtils.OPTION_PHONE_LANGUAGE
-    public fun getAppLanguage(): String { return getSetting(KEY_SETTING_APP_LANGUAGE, DEFAULT_APP_LANGUAGE)!! }
-    public fun setAppLanguage(language: String) { setSetting(KEY_SETTING_APP_LANGUAGE, language) }
+//    private val DEFAULT_APP_LANGUAGE = Locale.getDefault().language // "sys_def" // LocaleUtils.OPTION_PHONE_LANGUAGE
+//    public fun getAppLanguage(): String { return getSetting(KEY_SETTING_APP_LANGUAGE, DEFAULT_APP_LANGUAGE)!! }
+//    public fun setAppLanguage(language: String) { setSetting(KEY_SETTING_APP_LANGUAGE, language) }
 
     private val DEFAULT_DATA_LANGUAGE = Locale.getDefault().language
     public fun getDataLanguage(): String { return getSetting(KEY_SETTING_DATA_LANGUAGE, DEFAULT_DATA_LANGUAGE)!! }
@@ -70,12 +73,20 @@ object SettingsManager {
         var count = 0
         preferences.all.forEach { (key, value) ->
             if ( key.endsWith(KEY_POKEMON_DISCOVERED_SUFFIX) && (value as Boolean) )
-                count = count + 1
+                count += 1
         }
 
         return count
     }
 
+    public fun clearPokemonDiscovered() {
+        val editor = preferences.edit()
+        preferences.all.forEach { (key, value) ->
+            if ( key.endsWith(KEY_POKEMON_DISCOVERED_SUFFIX) && value is Boolean )
+                editor.putBoolean(key, false)
+        }
+        editor.apply()
+    }
 
 //    private fun loadPreferences() {
 //        val jsonString = preferences.getString(KEY_DATA, null)
