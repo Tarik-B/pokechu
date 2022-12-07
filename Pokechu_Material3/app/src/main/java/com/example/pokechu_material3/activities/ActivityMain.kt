@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -12,6 +13,7 @@ import android.view.View
 import android.widget.SearchView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.MenuCompat
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,7 +52,6 @@ class ActivityMain : BaseActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        getSupportActionBar()?.setTitle("Pokechu");
 
         binding.buttonSearch.setOnClickListener { view ->
             val newFragment = StartSearchDialogFragment()
@@ -106,6 +107,8 @@ class ActivityMain : BaseActivity() {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
+        //MenuCompat.setGroupDividerEnabled(menu, true)
 
         // Associate searchable configuration with the SearchView
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager

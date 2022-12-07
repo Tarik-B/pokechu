@@ -26,8 +26,6 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setDisplayShowHomeEnabled(true);
-
-
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

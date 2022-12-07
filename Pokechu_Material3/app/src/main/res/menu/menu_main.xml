@@ -2,32 +2,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.pokechu_material3.activities.ActivityMain">
-    <item android:id="@+id/search"
-        android:title="@string/search_title"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="collapseActionView|always"
-        app:actionViewClass="android.widget.SearchView"/>
-    <item android:id="@+id/button_customize"
-        android:title="@string/search_title"
-        android:icon="@drawable/ic_customize"
-        app:showAsAction="collapseActionView|always">
-        <!-- A empty SubMenu -->
-        <menu></menu>
-    </item>
-    <item android:id="@+id/button_list_view"
-        android:title="@string/search_title"
-        android:icon="@drawable/ic_list_view"
-        app:showAsAction="collapseActionView|always"/>
-    <item android:id="@+id/button_grid_view"
-        android:title="@string/search_title"
-        android:icon="@drawable/ic_grid_view"
-        app:showAsAction="collapseActionView|always"/>
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/menu_main_settings"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_about"
-        android:title="@string/menu_main_about"
-        app:showAsAction="never" />
+    <group>
+        <item android:id="@+id/search"
+            android:title="@string/menu_main_search"
+            android:icon="@drawable/ic_search"
+            app:showAsAction="collapseActionView|always"
+            app:actionViewClass="android.widget.SearchView"/>
+    </group>
+
+    <group>
+        <item android:id="@+id/button_list_view"
+            android:title="@string/menu_main_list_view"
+            android:icon="@drawable/ic_list_view"
+            app:showAsAction="collapseActionView|always"/>
+        <item android:id="@+id/button_grid_view"
+            android:title="@string/menu_main_grid_view"
+            android:icon="@drawable/ic_grid_view"
+            app:showAsAction="collapseActionView|always"/>
+    </group>
+
+    <group>
+        <item android:id="@+id/button_sort"
+            android:title="@string/menu_main_sort"
+            android:icon="@drawable/ic_sort"
+            app:showAsAction="collapseActionView|always">
+            <!-- A empty SubMenu -->
+            <menu></menu>
+        </item>
+        <item android:id="@+id/button_customize"
+            android:title="@string/menu_main_customize"
+            android:icon="@drawable/ic_customize"
+            app:showAsAction="collapseActionView|always">
+            <!-- A empty SubMenu -->
+            <menu></menu>
+        </item>
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/action_settings"
+            android:title="@string/menu_main_settings"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/action_about"
+            android:title="@string/menu_main_about"
+            app:showAsAction="never" />
+    </group>
 </menu>

@@ -2,13 +2,17 @@
 <resources>
     <string name="app_name" translatable="false">Pokechu</string>
 
-    <string name="test_string" />
-    <string name="search_title" />
+    <string name="placeholder_string" />
 
     <!-- Main activity -->
     <string name="pokemon_discovered" />
 
     <!-- Main activity menu -->
+    <string name="menu_main_search" />
+    <string name="menu_main_list_view" />
+    <string name="menu_main_grid_view" />
+    <string name="menu_main_sort" />
+    <string name="menu_main_customize" />
     <string name="menu_main_settings" />
     <string name="menu_main_about" />
 
@@ -24,7 +28,7 @@
     <string name="language_french" />
 
     <!-- Settings activity -->
-    <string name="title_activity_settings" />
+    <string name="title_activity_settings" translatable="false">@string/menu_main_settings</string>
     <string name="settings_general" />
     <string name="settings_language" />
     <string name="settings_app_language" />
@@ -43,6 +47,7 @@
     <string name="search_dialog_title" />
 
     <!-- About activity -->
+    <string name="title_activity_about" translatable="false">@string/menu_main_about</string>
     <string name="about_created_by"/>
     <string name="about_version_name"/>
     <string name="about_version_code"/>
