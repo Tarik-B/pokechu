@@ -1,11 +1,33 @@
 #!/usr/bin/env python3
 
+import urllib.error
 from bs4 import BeautifulSoup
 from itertools import product
+from urllib.request import urlopen, Request
+import bs4.element
+import re
+
+def download_page(url: str) -> str:
+    # Use custom user agent to bypass blocking of known spider/bot user agents
+    request = Request(
+        url=url,
+        headers={"User-Agent": "Mozilla/5.0"}
+    )
+
+    try:
+        page = urlopen(request)
+    except urllib.error.URLError as e:
+        raise Exception(f"error '{e}' while downloading page {url}")
+
+    page_source = page.read()
+    html = page_source.decode("utf-8")
+
+    return html
+
 
 # Code by Martijn Pieters (https://stackoverflow.com/a/48451104)
 def table_to_2d(html_table: str):
-    #soup = BeautifulSoup(result, 'lxml')
+    # soup = BeautifulSoup(result, 'lxml')
     soup = BeautifulSoup(html_table, 'html.parser')
 
     rowspans = []  # track pending rowspans
@@ -52,11 +74,19 @@ def table_to_2d(html_table: str):
             colspan = int(cell.get('colspan', 1)) or colcount - col
             # next column is offset by the colspan
             span_offset += colspan - 1
-            value = cell.get_text()
+
+            types = (bs4.element.NavigableString, bs4.element.CData)
+            value = cell.get_text(separator=" ", strip=True, types=types)
+
             for drow, dcol in product(range(rowspan), range(colspan)):
                 try:
-                    if "Mentali" in value:
-                        print("break")
+
+                    # types = (bs4.element.PageElement, bs4.element.NavigableString, bs4.element.PreformattedString,
+                    #  bs4.element.CData, bs4.element.ProcessingInstruction, bs4.element.XMLProcessingInstruction,
+                    #  bs4.element.Comment, bs4.element.Declaration, bs4.element.Doctype, bs4.element.Stylesheet,
+                    #  bs4.element.Script, bs4.element.TemplateString, bs4.element.RubyTextString,
+                    #  bs4.element.RubyParenthesisString, bs4.element.SoupStrainer, bs4.element.ResultSet)
+                    # value1 = cell.get_text(separator=" ", strip=True, types=types)
 
                     table[row + drow][col + dcol] = value
                     rowspans[col + dcol] = rowspan
@@ -68,3 +98,33 @@ def table_to_2d(html_table: str):
         rowspans = {c: s - 1 for c, s in rowspans.items() if s > 1}
 
     return table
+
+def replace_imgs_by_alt_texts(html: str):
+    # soup = BeautifulSoup(html, 'html.parser')
+    #
+    # for img in soup.find_all('img'):
+    #     img.replaceWith(img["alt"])
+
+    # <img .*alt=\"([0-9]+)\".*?\/>
+    #
+
+    newstring = ""
+    start = 0
+    for match in re.finditer(r"<img\s+alt=\"(.*?)\".*?>", html):
+        end, newstart = match.span()
+        newstring += html[start:end] # Add what precedes
+
+        rep = match.group(1).replace(" ", "_") # Add img alt text with spaces replaced by _
+        newstring += rep
+
+        start = newstart
+    newstring += html[start:]
+
+    return newstring
+
+    html = re.sub("<img\s+alt=\"(.*?)\".*?>", "\\1", html, flags=re.DOTALL) # DOTALL/s to match multiline img tags
+
+    ## html = re.sub("<img\s+alt=\"([0-9]+)\".*?\/>", "$1", html, flags=re.DOTALL)
+    ## re.findall("<img\s+alt=\"[0-9]+\".*?>", html)
+
+    return html

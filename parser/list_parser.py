@@ -1,27 +1,25 @@
 #!/usr/bin/env python3
 
 from parsel import Selector
-from urllib.request import urlopen
 import requests
 import os
 import os.path
 import urllib.parse
 
 import pokedex
+from utils import download_page
+
 
 class ListParser:
     def __init__(self, pokedex: pokedex.Pokedex):
         self.pokedex = pokedex
 
     def process_pokedex_list_page(self, download_thumbnails: bool):
-
-        print("+ Processing Pokemon list page")
-
         # Fetch pokemon list
         base_url = "https://www.pokepedia.fr"
         full_url = base_url + "/" + self.pokedex.type.name
 
-        html = urlopen(full_url).read().decode("utf-8")
+        html = download_page(full_url)
 
         # Get pokemon list table
         xpath_selector = Selector(html)
@@ -38,8 +36,6 @@ class ListParser:
         for pokemon_index in range(len(ids)):
             if ids[pokemon_index] is None:
                 ids[pokemon_index] = ids[pokemon_index - 1]
-
-        print(f"Pokemon count = {len(ids)}")
 
         # Names
         names_fr = xpath_selector.xpath("//tr/td[@id]/a/text()").getall()
@@ -60,6 +56,7 @@ class ListParser:
 
         # results = sel.xpath("//tr/td[3]/a/text()").getall()
 
+        # Process pokemons
         for pokemon_index in range(len(ids)):
             paldea_id = ids[pokemon_index]
             unique_id = unique_ids[pokemon_index]
@@ -77,7 +74,8 @@ class ListParser:
             # Add pokemon to pokedex
             self.pokedex.add_pokemon_entry(unique_id, paldea_id, name_fr, name_en, thumbnail_filename)
 
-            #self.fetch_pokemon_page(unique_id, name_fr)
+            # self.fetch_pokemon_page(unique_id, name_fr)
+
 
     def download_thumbnail(self, thumbnail_url: str):
         base_url = "https://www.pokepedia.fr"
@@ -95,11 +93,8 @@ class ListParser:
                 file.write(resp.content)
 
     # def process_pokemon_page(self, unique_id: str, name_fr: str):
-    #
-    #     print(f"+ Processing {name_fr}")
-    #
     #     # Fetch pokepedia page
     #     base_url = "https://www.pokepedia.fr/Pok%C3%A9mon_n%C2%B0"
     #
     #     full_url = base_url + unique_id
-    #     html = urlopen(full_url).read().decode("utf-8")
+    #     html = download_page(full_url)

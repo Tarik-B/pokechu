@@ -13,15 +13,9 @@
                         "id": "026",
                         "condition": "Pierre Foudre  ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "ITEM_USE"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "FRIENDSHIP"
-                }
+                ]
             }
         ]
     },
@@ -39,15 +33,9 @@
                         "id": "040",
                         "condition": "Pierre Lune  ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "ITEM_USE"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "FRIENDSHIP"
-                }
+                ]
             }
         ]
     },
@@ -60,11 +48,7 @@
                 "id": "049",
                 "condition": "Niveau 31",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 31"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -77,11 +61,7 @@
                 "id": "051",
                 "condition": "Niveau 26",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 26"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -94,11 +74,7 @@
                 "id": "053",
                 "condition": "Niveau 28",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 28"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -111,11 +87,7 @@
                 "id": "055",
                 "condition": "Niveau 33",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 33"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -128,11 +100,7 @@
                 "id": "057",
                 "condition": "Niveau 28",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 28"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -145,10 +113,7 @@
                 "id": "059",
                 "condition": "Pierre Feu  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -161,20 +126,13 @@
                 "id": "080",
                 "condition": "Niveau 37",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 37"
-                }
+                "evolutions": []
             },
             {
                 "id": "199",
                 "condition": "Échange en tenant Roche Royale  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "TRADE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -192,25 +150,9 @@
                         "id": "462",
                         "condition": " Gain de niveau dans un champ magnétique spécial  ou  Pierre Foudre ( Pokémon Épée et Bouclier )",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "OR",
-                            "conditions": [
-                                {
-                                    "type": "LEVEL_GAIN",
-                                    "data": "gain de niveau"
-                                },
-                                {
-                                    "type": "ITEM_USE"
-                                }
-                            ]
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                ]
             }
         ]
     },
@@ -223,11 +165,7 @@
                 "id": "089",
                 "condition": "Niveau 38",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 38"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -240,10 +178,7 @@
                 "id": "091",
                 "condition": "Pierre Eau  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -261,16 +196,9 @@
                         "id": "094",
                         "condition": "Échange  Au contact d'un Fil de Liaison ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "TRADE"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 25"
-                }
+                ]
             }
         ]
     },
@@ -283,11 +211,7 @@
                 "id": "097",
                 "condition": "Niveau 26",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 26"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -300,11 +224,7 @@
                 "id": "101",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -322,28 +242,9 @@
                         "id": "242",
                         "condition": "Bonheur  ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "FRIENDSHIP"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEVEL_GAIN",
-                            "data": "gain de niveau"
-                        },
-                        {
-                            "type": "DAY"
-                        },
-                        {
-                            "type": "ITEM_HOLD",
-                            "data": "en tenant une pierre ovale"
-                        }
-                    ]
-                }
+                ]
             }
         ]
     },
@@ -356,10 +257,7 @@
                 "id": "212",
                 "condition": "Échange en tenant Peau Métal  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "TRADE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -372,11 +270,7 @@
                 "id": "130",
                 "condition": "Niveau 20",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 20"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -389,187 +283,49 @@
                 "id": "134",
                 "condition": "Pierre Eau  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             },
             {
                 "id": "135",
                 "condition": "Pierre Foudre  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             },
             {
                 "id": "136",
                 "condition": "Pierre Feu  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             },
             {
                 "id": "196",
                 "condition": " Bonheur de jour +Gain de niveau ou Gain de niveau en tenant un Éclat Soleil ( Pokémon XD )",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "OR",
-                    "conditions": [
-                        {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "AND",
-                                    "conditions": [
-                                        {
-                                            "type": "FRIENDSHIP"
-                                        },
-                                        {
-                                            "type": "DAY"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "LEVEL_GAIN",
-                                    "data": "gain de niveau"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "LEVEL_GAIN",
-                                    "data": "gain de niveau"
-                                },
-                                {
-                                    "type": "ITEM_HOLD",
-                                    "data": "en tenant un éclat soleil"
-                                }
-                            ]
-                        }
-                    ]
-                }
+                "evolutions": []
             },
             {
                 "id": "197",
                 "condition": " Bonheur de nuit +Gain de niveau ou Gain de niveau en tenant un Éclat Lune ( Pokémon XD )",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "OR",
-                    "conditions": [
-                        {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "AND",
-                                    "conditions": [
-                                        {
-                                            "type": "FRIENDSHIP"
-                                        },
-                                        {
-                                            "type": "NIGHT"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "LEVEL_GAIN",
-                                    "data": "gain de niveau"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "LEVEL_GAIN",
-                                    "data": "gain de niveau"
-                                },
-                                {
-                                    "type": "ITEM_HOLD",
-                                    "data": "en tenant un éclat lune"
-                                }
-                            ]
-                        }
-                    ]
-                }
+                "evolutions": []
             },
             {
                 "id": "470",
                 "condition": " Gain de niveau près d'une Pierre Mousse  ou  Pierre Plante ( Pokémon Épée et Bouclier )",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "OR",
-                    "conditions": [
-                        {
-                            "type": "LEVEL_GAIN",
-                            "data": "gain de niveau"
-                        },
-                        {
-                            "type": "ITEM_USE"
-                        }
-                    ]
-                }
+                "evolutions": []
             },
             {
                 "id": "471",
                 "condition": " Gain de niveau près d'une Pierre Glacée  ou  Pierre Glace ( Pokémon Épée et Bouclier )",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "OR",
-                    "conditions": [
-                        {
-                            "type": "LEVEL_GAIN",
-                            "data": "gain de niveau"
-                        },
-                        {
-                            "type": "ITEM_USE"
-                        }
-                    ]
-                }
+                "evolutions": []
             },
             {
                 "id": "700",
                 "condition": "2 cœurs d'affection (ou plus) à la Poké Récré / Poké Détente + gagner un niveau en ayant une capacité fée  ou  Bonheur + apprendre une capacité de type fée ( Pokémon Épée et Bouclier )",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "OR",
-                    "conditions": [
-                        {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "UNKNOWN"
-                                },
-                                {
-                                    "type": "LEVEL_GAIN",
-                                    "data": "gagner un niveau"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "FRIENDSHIP"
-                                },
-                                {
-                                    "type": "KNOW_SKILL",
-                                    "data": "apprendre une capacité de type fée"
-                                }
-                            ]
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -587,17 +343,9 @@
                         "id": "149",
                         "condition": "Niveau 55",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 55"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                ]
             }
         ]
     },
@@ -615,17 +363,9 @@
                         "id": "181",
                         "condition": "Niveau 30",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 30"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 15"
-                }
+                ]
             }
         ]
     },
@@ -643,16 +383,9 @@
                         "id": "184",
                         "condition": "Niveau 18",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 18"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "FRIENDSHIP"
-                }
+                ]
             }
         ]
     },
@@ -665,11 +398,7 @@
                 "id": "185",
                 "condition": "Apprendre la capacité Copie  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "KNOW_SKILL",
-                    "data": "apprendre la capacité copie"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -687,17 +416,9 @@
                         "id": "189",
                         "condition": "Niveau 27",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 27"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 18"
-                }
+                ]
             }
         ]
     },
@@ -710,10 +431,7 @@
                 "id": "192",
                 "condition": "Pierre Soleil  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -726,10 +444,7 @@
                 "id": "430",
                 "condition": "Pierre Nuit  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -742,10 +457,7 @@
                 "id": "429",
                 "condition": "Pierre Nuit  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -758,20 +470,7 @@
                 "id": "928",
                 "condition": "Connaître la capacité Double Laser + gagner un niveau",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEARN_SKILL",
-                            "data": "connaître la capacité double laser"
-                        },
-                        {
-                            "type": "LEVEL_GAIN",
-                            "data": "gagner un niveau"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -784,11 +483,7 @@
                 "id": "205",
                 "condition": "Niveau 31",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 31"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -801,20 +496,7 @@
                 "id": "917",
                 "condition": "Connaître la capacité Hyperceuse + gagner un niveau",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEARN_SKILL",
-                            "data": "connaître la capacité hyperceuse"
-                        },
-                        {
-                            "type": "LEVEL_GAIN",
-                            "data": "gagner un niveau"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -827,23 +509,7 @@
                 "id": "461",
                 "condition": " Gagner un niveau de nuit en tenant une Griffe Rasoir  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEVEL_GAIN",
-                            "data": "gagner un niveau"
-                        },
-                        {
-                            "type": "NIGHT"
-                        },
-                        {
-                            "type": "ITEM_HOLD",
-                            "data": "en tenant une griffe rasoir"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -856,11 +522,7 @@
                 "id": "217",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -873,11 +535,7 @@
                 "id": "229",
                 "condition": "Niveau 24",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 24"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -890,11 +548,7 @@
                 "id": "232",
                 "condition": "Niveau 25",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 25"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -912,17 +566,9 @@
                         "id": "248",
                         "condition": "Niveau 55",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 55"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                ]
             }
         ]
     },
@@ -935,11 +581,7 @@
                 "id": "279",
                 "condition": "Niveau 25",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 25"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -957,35 +599,15 @@
                         "id": "282",
                         "condition": "Niveau 30",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 30"
-                        }
+                        "evolutions": []
                     },
                     {
                         "id": "475",
                         "condition": "Mâle (♂) + Pierre Aube  ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "GENDER",
-                                    "data": "mâle"
-                                },
-                                {
-                                    "type": "ITEM_USE"
-                                }
-                            ]
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 20"
-                }
+                ]
             }
         ]
     },
@@ -998,11 +620,7 @@
                 "id": "284",
                 "condition": "Niveau 22",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 22"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1015,11 +633,7 @@
                 "id": "286",
                 "condition": "Niveau 23",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 23"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1037,17 +651,9 @@
                         "id": "289",
                         "condition": "Niveau 36",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 36"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 18"
-                }
+                ]
             }
         ]
     },
@@ -1060,11 +666,7 @@
                 "id": "297",
                 "condition": "Niveau 24",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 24"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1077,11 +679,7 @@
                 "id": "308",
                 "condition": "Niveau 37",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 37"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1094,11 +692,7 @@
                 "id": "317",
                 "condition": "Niveau 26",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 26"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1111,11 +705,7 @@
                 "id": "323",
                 "condition": "Niveau 33",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 33"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1128,11 +718,7 @@
                 "id": "326",
                 "condition": "Niveau 32",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 32"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1145,11 +731,7 @@
                 "id": "332",
                 "condition": "Niveau 32",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 32"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1162,11 +744,7 @@
                 "id": "334",
                 "condition": "Niveau 35",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 35"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1179,11 +757,7 @@
                 "id": "340",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1196,11 +770,7 @@
                 "id": "354",
                 "condition": "Niveau 37",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 37"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1213,29 +783,13 @@
                 "id": "362",
                 "condition": "Niveau 42",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 42"
-                }
+                "evolutions": []
             },
             {
                 "id": "478",
                 "condition": "Femelle (♀) + Pierre Aube  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "GENDER",
-                            "data": "femelle"
-                        },
-                        {
-                            "type": "ITEM_USE"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1253,17 +807,9 @@
                         "id": "373",
                         "condition": "Niveau 50",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 50"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                ]
             }
         ]
     },
@@ -1281,17 +827,9 @@
                         "id": "398",
                         "condition": "Niveau 34",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 34"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 14"
-                }
+                ]
             }
         ]
     },
@@ -1304,11 +842,7 @@
                 "id": "402",
                 "condition": "Niveau 10",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 10"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1326,17 +860,9 @@
                         "id": "405",
                         "condition": "Niveau 30",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 30"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 15"
-                }
+                ]
             }
         ]
     },
@@ -1349,20 +875,7 @@
                 "id": "416",
                 "condition": "Niveau 21, Femelle (♀)",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEVEL",
-                            "data": "niveau 21"
-                        },
-                        {
-                            "type": "GENDER",
-                            "data": "femelle"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1375,11 +888,7 @@
                 "id": "419",
                 "condition": "Niveau 26",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 26"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1392,11 +901,7 @@
                 "id": "423",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1409,11 +914,7 @@
                 "id": "426",
                 "condition": "Niveau 28",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 28"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1426,11 +927,7 @@
                 "id": "435",
                 "condition": "Niveau 34",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 34"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1443,11 +940,7 @@
                 "id": "437",
                 "condition": "Niveau 33",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 33"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1465,17 +958,9 @@
                         "id": "445",
                         "condition": "Niveau 48",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 48"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 24"
-                }
+                ]
             }
         ]
     },
@@ -1488,27 +973,7 @@
                 "id": "448",
                 "condition": " Bonheur + gagner un niveau de jour  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "FRIENDSHIP"
-                        },
-                        {
-                            "type": "AND",
-                            "conditions": [
-                                {
-                                    "type": "LEVEL_GAIN",
-                                    "data": "gagner un niveau"
-                                },
-                                {
-                                    "type": "DAY"
-                                }
-                            ]
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1521,11 +986,7 @@
                 "id": "450",
                 "condition": "Niveau 34",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 34"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1538,11 +999,7 @@
                 "id": "454",
                 "condition": "Niveau 37",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 37"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1555,11 +1012,7 @@
                 "id": "457",
                 "condition": "Niveau 31",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 31"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1572,11 +1025,7 @@
                 "id": "460",
                 "condition": "Niveau 40",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 40"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1589,10 +1038,7 @@
                 "id": "549",
                 "condition": "Pierre Soleil  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1610,17 +1056,9 @@
                         "id": "553",
                         "condition": "Niveau 40",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 40"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 29"
-                }
+                ]
             }
         ]
     },
@@ -1633,11 +1071,7 @@
                 "id": "571",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1655,17 +1089,9 @@
                         "id": "576",
                         "condition": "Niveau 41",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 41"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 32"
-                }
+                ]
             }
         ]
     },
@@ -1678,11 +1104,7 @@
                 "id": "586",
                 "condition": "Niveau 34",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 34"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1695,11 +1117,7 @@
                 "id": "591",
                 "condition": "Niveau 39",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 39"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1717,16 +1135,9 @@
                         "id": "604",
                         "condition": "Pierre Foudre  ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "ITEM_USE"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 39"
-                }
+                ]
             }
         ]
     },
@@ -1744,17 +1155,9 @@
                         "id": "612",
                         "condition": "Niveau 48",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 48"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 38"
-                }
+                ]
             }
         ]
     },
@@ -1767,11 +1170,7 @@
                 "id": "614",
                 "condition": "Niveau 37",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 37"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1784,11 +1183,7 @@
                 "id": "625",
                 "condition": "Niveau 52",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 52"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1801,11 +1196,7 @@
                 "id": "628",
                 "condition": "Niveau 54",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 54"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1823,17 +1214,9 @@
                         "id": "635",
                         "condition": "Niveau 64",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 64"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 50"
-                }
+                ]
             }
         ]
     },
@@ -1846,11 +1229,7 @@
                 "id": "637",
                 "condition": "Niveau 59",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 59"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1868,17 +1247,9 @@
                         "id": "663",
                         "condition": "Niveau 35",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 35"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 17"
-                }
+                ]
             }
         ]
     },
@@ -1896,17 +1267,9 @@
                         "id": "666",
                         "condition": "Niveau 12",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 12"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 9"
-                }
+                ]
             }
         ]
     },
@@ -1919,11 +1282,7 @@
                 "id": "668",
                 "condition": "Niveau 35",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 35"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1941,16 +1300,9 @@
                         "id": "671",
                         "condition": "Pierre Éclat  ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "ITEM_USE"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 19"
-                }
+                ]
             }
         ]
     },
@@ -1963,11 +1315,7 @@
                 "id": "673",
                 "condition": "Niveau 32",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 32"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1980,11 +1328,7 @@
                 "id": "691",
                 "condition": "Niveau 48",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 48"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -1997,11 +1341,7 @@
                 "id": "693",
                 "condition": "Niveau 37",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 37"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2019,17 +1359,9 @@
                         "id": "706",
                         "condition": "Niveau 50 sous la pluie",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 50"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 40"
-                }
+                ]
             }
         ]
     },
@@ -2042,11 +1374,7 @@
                 "id": "713",
                 "condition": "Niveau 37",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 37"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2059,11 +1387,7 @@
                 "id": "715",
                 "condition": "Niveau 48",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 48"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2076,19 +1400,7 @@
                 "id": "735",
                 "condition": "Niveau 20, Jour",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEVEL",
-                            "data": "niveau 20"
-                        },
-                        {
-                            "type": "DAY"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2101,11 +1413,7 @@
                 "id": "740",
                 "condition": " Gain de niveau au Mont Lanakila",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL_GAIN",
-                    "data": "gain de niveau"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2118,11 +1426,7 @@
                 "id": "748",
                 "condition": "Niveau 38",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 38"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2135,11 +1439,7 @@
                 "id": "750",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2152,19 +1452,7 @@
                 "id": "754",
                 "condition": "Niveau 34, Jour",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEVEL",
-                            "data": "niveau 34"
-                        },
-                        {
-                            "type": "DAY"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2177,20 +1465,7 @@
                 "id": "758",
                 "condition": "Niveau 33, Femelle (♀)",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEVEL",
-                            "data": "niveau 33"
-                        },
-                        {
-                            "type": "GENDER",
-                            "data": "femelle"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2208,16 +1483,9 @@
                         "id": "763",
                         "condition": " Monter d'un niveau en connaissant Écrasement  ",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "UNKNOWN"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 18"
-                }
+                ]
             }
         ]
     },
@@ -2230,11 +1498,7 @@
                 "id": "770",
                 "condition": "Niveau 42",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 42"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2247,11 +1511,7 @@
                 "id": "820",
                 "condition": "Niveau 24",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 24"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2269,17 +1529,9 @@
                         "id": "823",
                         "condition": "Niveau 38",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 38"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 18"
-                }
+                ]
             }
         ]
     },
@@ -2292,11 +1544,7 @@
                 "id": "834",
                 "condition": "Niveau 22",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 22"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2314,17 +1562,9 @@
                         "id": "839",
                         "condition": "Niveau 34",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 34"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 18"
-                }
+                ]
             }
         ]
     },
@@ -2337,19 +1577,13 @@
                 "id": "841",
                 "condition": "Pomme Acidulée  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             },
             {
                 "id": "842",
                 "condition": "Pomme Sucrée  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2362,11 +1596,7 @@
                 "id": "844",
                 "condition": "Niveau 36",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 36"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2379,11 +1609,7 @@
                 "id": "847",
                 "condition": "Niveau 26",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 26"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2396,11 +1622,7 @@
                 "id": "849",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2413,18 +1635,7 @@
                 "id": "855",
                 "condition": "Théière Fêlée ou Théière Ébréchée   ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "OR",
-                    "conditions": [
-                        {
-                            "type": "ITEM_USE"
-                        },
-                        {
-                            "type": "ITEM_USE"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2442,17 +1653,9 @@
                         "id": "858",
                         "condition": "Niveau 42",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 42"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 32"
-                }
+                ]
             }
         ]
     },
@@ -2470,17 +1673,9 @@
                         "id": "861",
                         "condition": "Niveau 42",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 42"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 32"
-                }
+                ]
             }
         ]
     },
@@ -2493,18 +1688,7 @@
                 "id": "873",
                 "condition": "Bonheur de Nuit  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "FRIENDSHIP"
-                        },
-                        {
-                            "type": "NIGHT"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2517,11 +1701,7 @@
                 "id": "879",
                 "condition": "Niveau 34",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 34"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2539,17 +1719,9 @@
                         "id": "887",
                         "condition": "Niveau 60",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 60"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 50"
-                }
+                ]
             }
         ]
     },
@@ -2567,17 +1739,9 @@
                         "id": "908",
                         "condition": "Niveau 36",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 36"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 16"
-                }
+                ]
             }
         ]
     },
@@ -2595,17 +1759,9 @@
                         "id": "911",
                         "condition": "Niveau 36",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 36"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 16"
-                }
+                ]
             }
         ]
     },
@@ -2623,17 +1779,9 @@
                         "id": "914",
                         "condition": "Niveau 36",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 36"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 16"
-                }
+                ]
             }
         ]
     },
@@ -2646,11 +1794,7 @@
                 "id": "916",
                 "condition": "Niveau 18",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 18"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2663,11 +1807,7 @@
                 "id": "919",
                 "condition": "Niveau 15",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 15"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2680,11 +1820,7 @@
                 "id": "921",
                 "condition": "Niveau 24",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 24"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2697,10 +1833,7 @@
                 "id": "923",
                 "condition": "Marcher 1000 pas avec la fonction En avant !",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "UNKNOWN"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2713,19 +1846,7 @@
                 "id": "925",
                 "condition": "Niveau 24 de nuit",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "AND",
-                    "conditions": [
-                        {
-                            "type": "LEVEL",
-                            "data": "niveau 24"
-                        },
-                        {
-                            "type": "NIGHT"
-                        }
-                    ]
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2738,11 +1859,7 @@
                 "id": "927",
                 "condition": "Niveau 35",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 35"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2755,11 +1872,7 @@
                 "id": "930",
                 "condition": "Niveau 26",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 26"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2772,11 +1885,7 @@
                 "id": "934",
                 "condition": "Niveau 38 avec un autre joueur et son Pokémon à proximité en mode coop",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 38"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2794,17 +1903,9 @@
                         "id": "937",
                         "condition": "Niveau 35",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 35"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 25"
-                }
+                ]
             }
         ]
     },
@@ -2817,10 +1918,7 @@
                 "id": "939",
                 "condition": "Pierre Feu  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2833,10 +1931,7 @@
                 "id": "941",
                 "condition": "Pierre Foudre  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2849,11 +1944,7 @@
                 "id": "943",
                 "condition": "Niveau 40",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 40"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2866,11 +1957,7 @@
                 "id": "946",
                 "condition": "Niveau 25",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 25"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2883,10 +1970,7 @@
                 "id": "948",
                 "condition": "Pierre Glace  ",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "ITEM_USE"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2904,17 +1988,9 @@
                         "id": "951",
                         "condition": "Niveau 54",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 54"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 35"
-                }
+                ]
             }
         ]
     },
@@ -2932,16 +2008,9 @@
                         "id": "956",
                         "condition": "Marcher 1000 pas avec la fonction En avant !",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "UNKNOWN"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 18"
-                }
+                ]
             }
         ]
     },
@@ -2954,11 +2023,7 @@
                 "id": "958",
                 "condition": "Niveau 25",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 25"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -2976,17 +2041,9 @@
                         "id": "965",
                         "condition": "Niveau 38",
                         "condition_en": "",
-                        "evolutions": [],
-                        "conditions": {
-                            "type": "LEVEL",
-                            "data": "niveau 38"
-                        }
+                        "evolutions": []
                     }
-                ],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 24"
-                }
+                ]
             }
         ]
     },
@@ -2999,11 +2056,7 @@
                 "id": "967",
                 "condition": "Niveau 35",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 35"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -3016,11 +2069,7 @@
                 "id": "969",
                 "condition": "Niveau 28",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 28"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -3033,11 +2082,7 @@
                 "id": "971",
                 "condition": "Niveau 26",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 26"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -3050,11 +2095,7 @@
                 "id": "973",
                 "condition": "Niveau 30",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "LEVEL",
-                    "data": "niveau 30"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -3067,10 +2108,7 @@
                 "id": "975",
                 "condition": "Marcher 1000 pas avec la fonction En avant !",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "UNKNOWN"
-                }
+                "evolutions": []
             }
         ]
     },
@@ -3083,10 +2121,7 @@
                 "id": "977",
                 "condition": "Collecter  Pièces de Mordudor",
                 "condition_en": "",
-                "evolutions": [],
-                "conditions": {
-                    "type": "UNKNOWN"
-                }
+                "evolutions": []
             }
         ]
     }

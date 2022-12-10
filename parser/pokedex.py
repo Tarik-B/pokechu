@@ -2,27 +2,19 @@
 
 import json
 import os
-import re
-from enum import Enum, auto
+from enums import Item, PokedexType
 
-class PokedexType(Enum):
-    DEX_PALDEA_EV = auto()
-    NDEX = auto()
-
-
-class EvolutionType(Enum):
-    NAME = auto()
-    LEVEL = auto()
-    OTHER = auto()
-
-class VariantType(Enum):
-    GIGAMAX = auto()
-    HISUI = auto()
-    GALAR = auto()
-    ALOLA = auto()
-    PALDEA = auto()
+class PokedexTypeData:
+    def __init__(self, name_fr: str, gen_fr: str):
+        self.name_fr = name_fr
+        self.gen_fr = gen_fr
 
 class Pokedex:
+    POKEDEX_TYPES = {
+        PokedexType.NDEX:           PokedexTypeData("Pokédex National", ""),
+        PokedexType.DEX_PALDEA_EV:  PokedexTypeData("Pokédex de Paldea", "Neuvième génération"),
+    }
+
     def __init__(self, type: PokedexType):
         self.type = type
         self.pokemons = list()
@@ -46,31 +38,21 @@ class Pokedex:
         self.pokemon_names["fr"][unique_id] = name_fr
         self.pokemon_names["en"][unique_id] = name_en
 
-    def has_pokemon_entry(self, name_fr: str) -> bool:
-        return self.convert_fr_name_to_unique_id(name_fr) is not None
+    def has_pokemon_entry(self, name: str, lang: str) -> bool:
+        return self.convert_name_to_unique_id(name, lang) is not None
 
-    def convert_fr_name_to_unique_id(self, name_fr: str) -> str:
-        for id in self.pokemon_names["fr"]:
-            if self.pokemon_names["fr"][id] == name_fr:
+    def convert_name_to_unique_id(self, name: str, lang: str) -> str:
+        for id in self.pokemon_names[lang]:
+            if self.pokemon_names[lang][id] == name:
                 return id
-
         return None
 
-    def add_evolution_node(self, parent: dict, name: str, condition: str) -> dict:
-        unique_id = self.convert_fr_name_to_unique_id(name)
+    def add_evolution_node(self, parent: dict, name: str, condition: str, lang: str) -> dict:
+        unique_id = self.convert_name_to_unique_id(name, lang)
+        if unique_id is None:
+            return None
 
-        if condition:
-            condition_strings = [s.strip() for s in condition.split("+")]
-            for condition_string in condition_strings:
-                if condition_string == "Bonheur":
-                    condition_type = "FRIENDSHIP"
-                elif re.match( r"Niveau [0-9]+", condition_string):
-                    condition_type = "LEVEL"
-                    condition_data = re.sub("Niveau ", "", condition_string)
-                else:
-                    print(f"unknown evolution condition '{condition_string}'")
-
-        new_node = {"id": unique_id, "condition": condition, "evolutions": []}
+        new_node = {"id": unique_id, "condition": condition, "condition_en": "", "evolutions": []}
         if parent:
             parent["evolutions"].append(new_node)
         else:
@@ -79,25 +61,28 @@ class Pokedex:
         # Return a reference to newly created node
         return new_node
 
-    def is_pokemon_evolution_node(self, node: dict, name_fr: str) -> dict:
-        unique_id = self.convert_fr_name_to_unique_id(name_fr)
+    def is_pokemon_evolution_node(self, node: dict, name: str, lang: str) -> bool:
+        unique_id = self.convert_name_to_unique_id(name, lang)
+        if unique_id is None:
+            return False
+
         return node["id"] == unique_id
 
-    def find_in_evolution_trees(self, name_fr: str):
+    def find_in_evolution_trees(self, name: str, lang: str):
         for tree in self.evolution_trees:
-            node = self.find_in_evolution_tree(tree, name_fr)
+            node = self.find_in_evolution_tree(tree, name, lang)
             if node:
                 return tree, node
 
         return None, None
 
-    def find_in_evolution_tree(self, node: dict, name_fr: str) -> dict:
+    def find_in_evolution_tree(self, node: dict, name: str, lang: str) -> dict:
 
-        if self.is_pokemon_evolution_node(node, name_fr):
+        if self.is_pokemon_evolution_node(node, name, lang):
             return node
 
         for child in node["evolutions"]:
-            found = self.find_in_evolution_tree(child, name_fr)
+            found = self.find_in_evolution_tree(child, name, lang)
             if found:
                 return found
 
@@ -112,11 +97,14 @@ class Pokedex:
 
     def print_tree(self, node, level=0):
 
-        how = ( " (" + node["condition"] + ")" ) if node["condition"] else ""
-        print("    " * (level - 1) + "+---" * (level > 0) + node["id"] + how )
+        how = (" (" + node["condition"] + ")") if node["condition"] else ""
+        print("    " * (level - 1) + "+---" * (level > 0) + node["id"] + how)
 
         for child in node["evolutions"]:
             self.print_tree(child, level + 1)
+
+    def clear_evolution_trees(self):
+        self.evolution_trees = list()
 
     def save_pokemon_list(self, file_path: str):
         pretty_json = json.dumps(self.pokemons, indent=4, ensure_ascii=False)
