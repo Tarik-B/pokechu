@@ -1,0 +1,68 @@
+package fr.amazer.pokechu.data
+
+enum class PokedexType {
+    NATIONAL,
+    /* 1st gen */   KANTO,  KANTO_PE,
+    /* 2nd gen */   JOHTO,  JOHTO_HGSS,
+    /* 3rd gen */   HOENN,  HOENN_ORAS,
+    /* 4th gen */   SINNOH, SINNOH_PT,
+    /* 5th gen */   UNOVA,  UNOVA_B2W2,
+    /* 6th gen */   KALOS,
+    /* 7th gen */   ALOLA,  ALOLA_USUM,
+    /* 8th gen */   GALAR,  ISLE_ARMOR, CROWN_TUNDRA, HISUI,
+    /* 9th gen */   PALDEA,
+}
+
+enum class EvolutionConditionType {
+    UNKNOWN,
+    AND, OR,
+    LEVEL, LEVEL_GAIN,
+    ITEM_USE, ITEM_HOLD,
+    FRIENDSHIP,
+    GENDER,
+    LOCATION,
+    DAY, NIGHT,
+    KNOW_SKILL, LEARN_SKILL,
+    TRADE,
+}
+
+enum class Item {
+    FIRE_STONE,
+    WATER_STONE,
+    LEAF_STONE,
+    THUNDER_STONE,
+    MOON_STONE,
+    SUN_STONE,
+    DAWN_STONE,
+    DUSK_STONE,
+    SHINY_STONE,
+    ICE_STONE,
+
+    KINGS_ROCK,
+    LINKING_CORD,
+    OVAL_STONE,
+    METAL_COAT,
+    SUN_SHARD,
+    MOON_SHARD,
+    RAZOR_CLAW,
+    TART_APPLE,
+    SWEET_APPLE,
+    CRACKED_POT,
+    CHIPPED_POT,
+    GIMMIGHOUL_COIN,
+
+    BLACK_AUGURITE,
+    PROTECTOR,
+    DRAGON_SCALE,
+    ELECTIRIZER,
+    MAGMARIZER,
+    UPGRADE,
+    DUBIOUS_DISC,
+    RAZOR_FANG,
+    PRISM_SCALE,
+    REAPER_CLOTH,
+    DEEP_SEA_TOOTH,
+    DEEP_SEA_SCALE,
+    SACHET,
+    WHIPPED_DREAM,
+}

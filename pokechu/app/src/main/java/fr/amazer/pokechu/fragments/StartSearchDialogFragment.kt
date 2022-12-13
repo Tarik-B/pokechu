@@ -14,8 +14,8 @@ import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.DialogFragment
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.activities.ActivityDetails
-import fr.amazer.pokechu.data.PokemonData
-import fr.amazer.pokechu.managers.PokemonManager
+import fr.amazer.pokechu.data.DataPokemon
+import fr.amazer.pokechu.managers.DataManager
 import fr.amazer.pokechu.utils.UIUtils
 
 
@@ -50,16 +50,16 @@ class StartSearchDialogFragment : DialogFragment() {
 
                         if ( pokemonId.toIntOrNull() != null ) {
                             val uniqueCheckbox = binding.findViewById(R.id.checkbox_unique) as CheckBox
-                            var pokemonData: PokemonData? = null
+                            var dataPokemon: DataPokemon? = null
 
                             if ( uniqueCheckbox.isChecked )
-                                pokemonData = PokemonManager.findPokemonData(pokemonId)
-                            else
-                                pokemonData = PokemonManager.findPokemonDataPaldea(pokemonId)
+                                dataPokemon = DataManager.findPokemonData(pokemonId)
+//                            else
+//                                dataPokemon = DataManager.findPokemonDataPaldea(pokemonId)
 
-                            if (pokemonData != null) {
+                            if (dataPokemon != null) {
                                 val intent = Intent(context, ActivityDetails::class.java)
-                                intent.putExtra("PokemonId", pokemonData.ids.unique)
+                                intent.putExtra("PokemonId", pokemonId)
                                 startActivityForResult(intent, OPEN_DETAILS)
                             }
                         }

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fr.amazer.pokechu.managers.PokemonManager
+import fr.amazer.pokechu.managers.DataManager
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
@@ -52,7 +52,7 @@ class ListAdapter internal constructor(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
 
         val currentId = pokemonIds[position]
-        val currentData = PokemonManager.findPokemonData(currentId)
+        val currentData = DataManager.findPokemonData(currentId)
         if (currentData == null)
             return
 
@@ -60,7 +60,7 @@ class ListAdapter internal constructor(
         val assetManager: AssetManager? = context!!.assets
 
         if (isDiscovered == true) {
-            var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + currentData.images.thumbnail) }
+            var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + currentData.thumbnail) }
             holder.imageView.setImageBitmap(bitmap)
             //holder.imageView.clearColorFilter()
         }
@@ -70,10 +70,10 @@ class ListAdapter internal constructor(
             //holder.imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
         }
 
-        val localizedName = PokemonManager.getLocalizedPokemonName(context as Activity, currentId)
+        val localizedName = DataManager.getLocalizedPokemonName(context as Activity, currentId)
 
 //        holder.textViewId.text = "#${currentData.ids.paldea}"
-        holder.textView1.text = "#${currentData.ids.paldea} - ${localizedName}"
+        holder.textView1.text = "#${currentId} - ${localizedName}"
 //        if (holder.textView2 != null)
 //            holder.textView2!!.text = "English name: ${currentData.names.en}"
         holder.itemView.setOnClickListener { v ->

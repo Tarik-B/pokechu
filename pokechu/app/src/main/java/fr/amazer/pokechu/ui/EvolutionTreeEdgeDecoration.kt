@@ -5,9 +5,8 @@ import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 
 import android.graphics.*
 import androidx.recyclerview.widget.RecyclerView
-import fr.amazer.pokechu.data.EvolutionTreeData
+import fr.amazer.pokechu.data.DataEvolutionTree
 import dev.bandb.graphview.AbstractGraphAdapter
-import kotlin.math.max
 
 
 open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -76,8 +75,8 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
                             val beforeTextSize = linePaint.textSize
 
-                            val nodeData = child.data as EvolutionTreeData
-                            val text = nodeData.condition
+                            val nodeData = child.data //as DataEvolutionTree
+                            val text = ":(" //nodeData.conditions.toString()
 
                             val maxHeight = configuration.levelSeparation / 2f
                             var size = linePaint.textSize

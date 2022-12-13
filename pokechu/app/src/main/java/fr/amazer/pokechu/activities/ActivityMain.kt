@@ -1,10 +1,8 @@
 package fr.amazer.pokechu.activities
 
-import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -13,16 +11,15 @@ import android.view.View
 import android.widget.SearchView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.MenuCompat
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.data.PokemonData
+import fr.amazer.pokechu.data.DataPokemon
 import fr.amazer.pokechu.databinding.ActivityMainBinding
 import fr.amazer.pokechu.fragments.StartSearchDialogFragment
-import fr.amazer.pokechu.managers.PokemonManager
+import fr.amazer.pokechu.managers.DataManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.ListAdapter
 import fr.amazer.pokechu.ui.RecyclerTouchListener
@@ -44,7 +41,7 @@ class ActivityMain : BaseActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-        PokemonManager.loadJsonData(applicationContext)
+        DataManager.loadJsonData(applicationContext)
 //        SettingsManager.with(applicationContext)
 
         // Initialize ui
@@ -73,7 +70,7 @@ class ActivityMain : BaseActivity() {
         setUpRecyclerView()
 
         val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
-        val totalPokemonCount = PokemonManager.getPokemonMap().count()
+        val totalPokemonCount = DataManager.getPokemonMap().count()
         binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
 
         /*
@@ -239,22 +236,22 @@ class ActivityMain : BaseActivity() {
         recyclerView.layoutManager = layoutManager
 
         //adapter = exampleList?.let { ExampleAdapter(it) }
-        //val pokemonIds = PokemonManager.buildPokemonIdsList()
+        //val pokemonIds = DataManager.buildPokemonIdsList()
         // Build sorted list of unique ids based on paldea ids
-        val pokemonData = PokemonManager.getPokemonMap().values
-        var sortedData = pokemonData
-            .sortedWith<PokemonData> (object : Comparator <PokemonData> {
-                override fun compare (p0: PokemonData, p1: PokemonData) : Int {
-                    if (p0.ids.paldea.toInt() > p1.ids.paldea.toInt()) {
-                        return 1
-                    }
-                    return -1
-                }
-            })
-        val pokemonIds = ArrayList<String>()
-        sortedData.forEach { data ->
-            pokemonIds.add(data.ids.unique)
-        }
+        val pokemonMap = DataManager.getPokemonMap()
+//        var sortedData = pokemonData
+//            .sortedWith<DataPokemon> (object : Comparator <DataPokemon> {
+//                override fun compare (p0: DataPokemon, p1: DataPokemon) : Int {
+//                    if (p0.ids.paldea.toInt() > p1.ids.paldea.toInt()) {
+//                        return 1
+//                    }
+//                    return -1
+//                }
+//            })
+        val pokemonIds = ArrayList<String>(pokemonMap.keys)
+//        sortedData.forEach { data ->
+//            pokemonIds.add(data.ids.unique)
+//        }
 
         val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
 
@@ -270,10 +267,10 @@ class ActivityMain : BaseActivity() {
                     // Open details activity on click
                     override fun onClick(view: View?, position: Int) {
                         val pokemonId = adapter?.getCurrentIds()?.get(position)
-                        val pokemonData = pokemonId?.let { PokemonManager.findPokemonData(it) }
+                        val pokemonData = pokemonId?.let { DataManager.findPokemonData(it) }
                         if (pokemonData != null) {
                             val intent = Intent(applicationContext, ActivityDetails::class.java)
-                            intent.putExtra("PokemonId", pokemonData.ids.unique)
+                            intent.putExtra("PokemonId", pokemonId)
 
                             detailsActivityLauncher.launch(intent)
                         }
@@ -298,19 +295,20 @@ class ActivityMain : BaseActivity() {
         val filteredIds = ArrayList<String>()
         if (pokemonIds != null) {
             for (id in pokemonIds) {
-                val pokemonData = PokemonManager.findPokemonData(id)
+                val pokemonData = DataManager.findPokemonData(id)
                 if (pokemonData == null)
                     continue
 
-                val localizedNameFr = PokemonManager.getLocalizedPokemonName(this, id, "fr")
-                val localizedNameEn = PokemonManager.getLocalizedPokemonName(this, id, "en")
+                val localizedNameFr = DataManager.getLocalizedPokemonName(this, id, "fr")
+                val localizedNameEn = DataManager.getLocalizedPokemonName(this, id, "en")
 
-                val found1 = pokemonData.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
-                val found2 = pokemonData.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
-                val found3 = localizedNameFr.lowercase(Locale.getDefault()).contains(text!!)
-                val found4 = localizedNameEn.lowercase(Locale.getDefault()).contains(text!!)
+                val found0 = id.lowercase(Locale.getDefault()).contains(text!!)
+//                val found1 = pokemonData.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
+//                val found2 = pokemonData.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
+                val found3 = localizedNameFr?.lowercase(Locale.getDefault())?.contains(text!!)
+                val found4 = localizedNameEn?.lowercase(Locale.getDefault())?.contains(text!!)
 
-                if ( found1 || found2 || found3 || found4 ) {
+                if ( found0 || found3 == true || found4 == true) {
                     filteredIds.add(id)
                 }
             }

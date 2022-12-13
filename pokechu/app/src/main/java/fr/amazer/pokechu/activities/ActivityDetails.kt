@@ -7,16 +7,14 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fr.amazer.pokechu.BuildConfig
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.data.EvolutionTreeData
+import fr.amazer.pokechu.data.DataEvolutionTree
 import fr.amazer.pokechu.databinding.ActivityDetailsBinding
-import fr.amazer.pokechu.managers.PokemonManager
+import fr.amazer.pokechu.managers.DataManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.EvolutionTreeEdgeDecoration
 import fr.amazer.pokechu.utils.AssetUtils
@@ -36,7 +34,7 @@ class ActivityDetails : BaseActivity() {
     protected lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
 
     private lateinit var pokemonId: String
-    private var evolutionTree: EvolutionTreeData? = null
+    private var evolutionTree: DataEvolutionTree? = null
     private var currentNode: Node? = null
 
     val OPEN_DETAILS = 123456
@@ -54,14 +52,14 @@ class ActivityDetails : BaseActivity() {
 //        binding.toolbarLayout.title = title
 
         pokemonId = intent.getStringExtra("PokemonId").toString()
-        evolutionTree = PokemonManager.findEvolutionTree(pokemonId)
+        evolutionTree = DataManager.findEvolutionTree(pokemonId)
 
         // Setup header
-        val pokemonData = PokemonManager.findPokemonData(pokemonId)!!
+        val pokemonData = DataManager.findPokemonData(pokemonId)!!
 
-        val localizedName = PokemonManager.getLocalizedPokemonName(this, pokemonId)
+        val localizedName = DataManager.getLocalizedPokemonName(this, pokemonId)
 
-        supportActionBar?.setTitle("#${pokemonData.ids.paldea} - ${localizedName}");
+        supportActionBar?.setTitle("#${pokemonId} - ${localizedName}");
 
         val textView = binding.textView
         val imageView = binding.imageHeader
@@ -69,12 +67,12 @@ class ActivityDetails : BaseActivity() {
         val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
         val assetManager: AssetManager? = applicationContext.assets
 
-        var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.images.thumbnail) }
+        var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.thumbnail) }
         imageView.setImageBitmap(bitmap)
 
-        textView.text = //"English name: ${pokemonData.names.en}\n" +
-                        "National ID: ${pokemonData.ids.unique}\n" +
-                        "Paldea ID: ${pokemonData.ids.paldea}"
+        textView.text = "" //"English name: ${pokemonData.names.en}\n" +
+//                        "National ID: ${pokemonData.ids.unique}\n" +
+//                        "Paldea ID: ${pokemonData.ids.paldea}"
 
 
         if (isDiscovered == true) {
@@ -84,14 +82,12 @@ class ActivityDetails : BaseActivity() {
             imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
         }
 
-        if ( evolutionTree != null ) {
-            // Setup graph
-            val graph = createGraph()
-            recyclerView = findViewById(R.id.recycler)
-            setLayoutManager()
-            setEdgeDecoration()
-            setupGraphView(graph)
-        }
+        // Setup graph
+        val graph = createGraph()
+        recyclerView = findViewById(R.id.recycler)
+        setLayoutManager()
+        setEdgeDecoration()
+        setupGraphView(graph)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,21 +107,28 @@ class ActivityDetails : BaseActivity() {
 
     private fun createGraph(): Graph {
         val graph = Graph()
-        if (evolutionTree == null)
-            return graph
 
-        val root = Node(evolutionTree!!)
-        createNodeHierarchy(graph, root)
+        if (evolutionTree != null) {
+            val root = Node(evolutionTree!!.id)
+            createNodeHierarchy(graph, root, evolutionTree!!)
+        }
+        else {
+            val root = Node(pokemonId)
+            graph.addNode(root)
+        }
 
         return graph
     }
 
-    private fun createNodeHierarchy(graph: Graph, node: Node) {
-        val nodeData = node.data as EvolutionTreeData
-        nodeData.evolutions.forEach{ childData ->
-            val child = Node(childData)
+    private fun createNodeHierarchy(graph: Graph, node: Node, treeNode: DataEvolutionTree) {
+//        val nodeData = node.data as DataEvolutionTree
+        if (treeNode.evolutions == null)
+            return
+
+        treeNode.evolutions.forEach{ childData ->
+            val child = Node(childData.id)
             graph.addEdge(node, child)
-            createNodeHierarchy(graph, child)
+            createNodeHierarchy(graph, child, childData)
         }
     }
 
@@ -166,30 +169,30 @@ class ActivityDetails : BaseActivity() {
 
             override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
                 // Set pokemon name
-                val nodeData = Objects.requireNonNull(getNodeData(position)) as EvolutionTreeData
-                val pokemonData = PokemonManager.findPokemonData(nodeData.id)
+                val nodeData = Objects.requireNonNull(getNodeData(position)) as String // as DataEvolutionTree
+                val pokemonData = DataManager.findPokemonData(nodeData)
                 if (pokemonData == null)
                     return
 
-                val isDiscovered = SettingsManager.isPokemonDiscovered(nodeData.id)
+                val isDiscovered = SettingsManager.isPokemonDiscovered(nodeData)
                 val assetManager: AssetManager? = applicationContext.assets
 
-                val localizedName = PokemonManager.getLocalizedPokemonName(this@ActivityDetails, nodeData.id)
+                val localizedName = DataManager.getLocalizedPokemonName(this@ActivityDetails, nodeData)
 
                 // Setup texts
-                if ( isDiscovered || pokemonId == nodeData.id )
+                if ( isDiscovered || pokemonId == nodeData )
                     holder.textViewName.text = localizedName
                 else
                     holder.textViewName.text = ""
 
-//                val evolutionTreeNode = PokemonManager.findEvolutionTreeNode(evolutionTree!!, nodeData.id)
+//                val evolutionTreeNode = DataManager.findEvolutionTreeNode(evolutionTree!!, nodeData.id)
 //                if ( evolutionTreeNode != null && isDiscovered )
 //                    holder.textViewSub.text = evolutionTreeNode.condition
 
                 // Set thumbnail image
                 if (isDiscovered == true) {
 
-                    var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.images.thumbnail) }
+                    var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, "images/" + pokemonData.thumbnail) }
                     holder.imageThumbnail.setImageBitmap(bitmap)
                     //holder.imageView.clearColorFilter()
                 }
@@ -213,10 +216,10 @@ class ActivityDetails : BaseActivity() {
         init {
             itemView.setOnClickListener {
                 currentNode = adapter.getNode(bindingAdapterPosition)
-                var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as EvolutionTreeData
+                var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as String//as DataEvolutionTree
 
                 val intent = Intent(applicationContext, ActivityDetails::class.java)
-                intent.putExtra("PokemonId", currentNodeData.id)
+                intent.putExtra("PokemonId", currentNodeData)
 
 //                intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
 //                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -236,9 +239,9 @@ class ActivityDetails : BaseActivity() {
 //                Snackbar.make(itemView, "Clicked on " + adapter.getNodeData(bindingAdapterPosition)?.toString(),
 //                    Snackbar.LENGTH_SHORT).show()
 
-                var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as EvolutionTreeData
-                SettingsManager.togglePokemonDiscovered(currentNodeData.id)
-                if ( currentNodeData.id == pokemonId) {
+                var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as String //as DataEvolutionTree
+                SettingsManager.togglePokemonDiscovered(currentNodeData)
+                if ( currentNodeData == pokemonId) {
                     var host: Activity = itemView.getContext() as Activity
                     UIUtils.reloadActivity(host, true)
                 }
