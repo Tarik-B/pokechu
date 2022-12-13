@@ -6,8 +6,9 @@ import pokedex
 import utils
 
 class EvolutionsParser:
-    def __init__(self, pokedex: pokedex.Pokedex):
+    def __init__(self, pokedex: pokedex.Pokedex, verbose: bool):
         self.pokedex = pokedex
+        self.verbose = verbose
 
     def process_evolution_list_page(self, lang: str):
         if lang == "fr":
@@ -25,30 +26,6 @@ class EvolutionsParser:
             results = xpath_selector.xpath("//table[@class = 'tableaustandard centre']").getall()
         else:
             results = xpath_selector.xpath("//table[@class = 'roundy']").getall()
-
-        # DISABLED, can't work, we need all pokemon evolution trees cause paldea pokedex includes old gen pokemons
-        #
-        # Use table titles to keep only table of selected pokedex
-        # if self.pokedex.type != PokedexType.NDEX:
-        #
-        #     # Get evolution tables titles
-        #     xpath_selector = parsel.Selector(html)
-        #     if lang == "fr":
-        #         # <span class="mw-headline">
-        #         result_titles = xpath_selector.xpath("//h3/span[@class = 'mw-headline']/text()").getall()
-        #     else:
-        #         pass
-        #
-        #     if len(results) != len(result_titles):
-        #         raise Exception("error while parsing evolution table titles, count different from tables")
-        #
-        #     # Get generation string
-        #     if lang == "fr":
-        #         gen_name = Pokedex.POKEDEX_TYPES[self.pokedex.type].gen_fr
-        #     else:
-        #         pass
-        #
-        #     results = [results[i] for i in range(len(results)) if gen_name.lower() in result_titles[i].lower()]
 
         # Clean tables and split in rows
         evolution_rows = self.split_html_tables_in_rows(lang, results)
@@ -156,11 +133,9 @@ class EvolutionsParser:
             for i in range(0, len(row), 2):
                 pokemon_name = row[i]
 
-                if pokemon_name == "Sprigatito":
-                    print("found it")
-
                 if not self.pokedex.has_pokemon_entry(pokemon_name, lang):
-                    # print(f"unknown pokemon '{pokemon_name}', skipping the rest of the tree")
+                    if self.verbose:
+                        print(f"unknown pokemon '{pokemon_name}', skipping the rest of the tree")
                     break
 
                 # Find if already in a tree
@@ -172,7 +147,7 @@ class EvolutionsParser:
                         raise Exception("error while parsing evolution trees")
 
                     # Not found, create new tree
-                    current_tree = current_node = self.pokedex.add_evolution_node(None, pokemon_name, "", lang)
+                    current_tree = current_node = self.pokedex.add_evolution_node(None, pokemon_name, None, lang)
 
                 else:
                     # Skip to next if we found the pokemon
@@ -180,7 +155,7 @@ class EvolutionsParser:
 
                         if i != 0 and lang == "en":
                             evolution_condition = row[i - 1]
-                            current_node["condition_en"] = evolution_condition
+                            # current_node["condition_en"] = evolution_condition
 
                         continue
 
@@ -191,12 +166,16 @@ class EvolutionsParser:
 
                         if i != 0 and lang == "en":
                             evolution_condition = row[i - 1]
-                            current_node["condition_en"] = evolution_condition
+                            # current_node["condition_en"] = evolution_condition
                     else:
                         # Not found, add to tree
                         evolution_condition = row[i - 1]
 
                         # self.process_evolution_condition(evolution_condition)
+
+                        # Remove everything between parenthesis
+                        evolution_condition = re.sub(r"\(.*?\)", "", evolution_condition)
+                        evolution_condition = evolution_condition.strip()
 
                         current_node = self.pokedex.add_evolution_node(current_node, pokemon_name,
                                                                        evolution_condition, lang)

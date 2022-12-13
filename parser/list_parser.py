@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 
 from parsel import Selector
 import requests
@@ -7,17 +8,20 @@ import os.path
 import urllib.parse
 
 import pokedex
+from data import Data
+from enums import PokedexType
 from utils import download_page
 
 
 class ListParser:
-    def __init__(self, pokedex: pokedex.Pokedex):
+    def __init__(self, pokedex: pokedex.Pokedex, verbose: bool):
         self.pokedex = pokedex
+        self.verbose = verbose
 
     def process_pokedex_list_page(self, download_thumbnails: bool):
         # Fetch pokemon list
         base_url = "https://www.pokepedia.fr"
-        full_url = base_url + "/" + self.pokedex.type.name
+        full_url = base_url + "/" + Data.POKEDEXES[self.pokedex.type].pokepedia_shortcut
 
         html = download_page(full_url)
 
@@ -33,9 +37,9 @@ class ListParser:
             ids.append(subselector.xpath("//td/text()").get())
 
         # Fill blanks in ids
-        for pokemon_index in range(len(ids)):
-            if ids[pokemon_index] is None:
-                ids[pokemon_index] = ids[pokemon_index - 1]
+        # for pokemon_index in range(len(ids)):
+        #     if ids[pokemon_index] is None:
+        #         ids[pokemon_index] = ids[pokemon_index - 1]
 
         # Names
         names_fr = xpath_selector.xpath("//tr/td[@id]/a/text()").getall()
@@ -50,20 +54,57 @@ class ListParser:
         if len(ids) != len(unique_ids):
             raise Exception("error while parsing real unique ids")
 
-        thumbnail_urls = xpath_selector.xpath("//tr//img[number(@alt) = @alt]/@src").getall()
+        # <img alt="742" src="Liste%20des%20Pok%C3%A9mon%20dans%20l'ordre%20du%20Pok%C3%A9dex%20National%20%E2%80%94
+        # %20Pok%C3%A9p%C3%A9dia_files/Miniature_742_EB.png" decoding="async" class="notpageimage miniature" width="52" height="52">
+
+        # Fast
+        # Get all img urls and then keep only those with 3 digits inside
+        thumbnail_urls = xpath_selector.xpath("//tr//img/@src").getall()
+        thumbnail_urls = [url for url in thumbnail_urls if re.search(r"\d{3}", url) != None]
+
+        # Also fast
+        # all_imgs = xpath_selector.xpath("//tr//img/@src").getall()
+        # all_imgs = [img for img in all_imgs if "/thumb/" not in img]
+
+        # Too slow
+        # thumbnail_urls = xpath_selector.xpath("//tr//img[number(@alt) = @alt]/@src").getall()
+
+        # Also too slow
+        # thumbnail_urls = xpath_selector.xpath("//tr//img[@class = 'notpageimage miniature']/@src").getall()
+        # thumbnail_urls = xpath_selector.xpath("//tr//img[contains(@class, 'miniature')]/@src").getall()
+        # thumbnail_urls = xpath_selector.xpath("//tr//img[ends-with(@class, 'miniature')]/@src").getall()
+        # thumbnail_urls = xpath_selector.xpath("//tr//img[@class]/@src").getall()
+
         if len(ids) != len(thumbnail_urls):
             raise Exception("error while parsing thumbnail urls")
 
         # results = sel.xpath("//tr/td[3]/a/text()").getall()
 
+        # Remove duplicates ids (mega evolutions, gigamax, etc.)
+        duplicates_ids_index = [index for index in range(len(ids)) if ids[index] is None]
+        ids = [ids[i] for i in range(len(ids)) if i not in duplicates_ids_index]
+        names_fr = [names_fr[i] for i in range(len(names_fr)) if i not in duplicates_ids_index]
+        names_en = [names_en[i] for i in range(len(names_en)) if i not in duplicates_ids_index]
+        unique_ids = [unique_ids[i] for i in range(len(unique_ids)) if i not in duplicates_ids_index]
+        thumbnail_urls = [thumbnail_urls[i] for i in range(len(thumbnail_urls)) if i not in duplicates_ids_index]
+
         # Process pokemons
         for pokemon_index in range(len(ids)):
-            paldea_id = ids[pokemon_index]
-            unique_id = unique_ids[pokemon_index]
-            name_fr = names_fr[pokemon_index]
-            name_en = names_en[pokemon_index]
-            thumbnail_url = thumbnail_urls[pokemon_index]
 
+            # paldea_id = ids[pokemon_index]
+            unique_id = unique_ids[pokemon_index]
+            names = { "fr": names_fr[pokemon_index], "en": names_en[pokemon_index]}
+
+            # Add local pokedex ids
+            local_ids = []
+            match self.pokedex.type:
+                case PokedexType.NATIONAL:
+                    pass
+                case PokedexType.PALDEA:
+                    paldea_id = ids[pokemon_index]
+                    local_ids.append({PokedexType.PALDEA: paldea_id})
+
+            thumbnail_url = thumbnail_urls[pokemon_index]
             url = urllib.parse.unquote(thumbnail_url)
             thumbnail_filename = os.path.basename(url)
 
@@ -72,7 +113,7 @@ class ListParser:
                 self.download_thumbnail(thumbnail_url)
 
             # Add pokemon to pokedex
-            self.pokedex.add_pokemon_entry(unique_id, paldea_id, name_fr, name_en, thumbnail_filename)
+            self.pokedex.add_pokemon_entry(unique_id, names, thumbnail_filename)
 
             # self.fetch_pokemon_page(unique_id, name_fr)
 
@@ -91,10 +132,3 @@ class ListParser:
 
             with open(file_path, "wb") as file:
                 file.write(resp.content)
-
-    # def process_pokemon_page(self, unique_id: str, name_fr: str):
-    #     # Fetch pokepedia page
-    #     base_url = "https://www.pokepedia.fr/Pok%C3%A9mon_n%C2%B0"
-    #
-    #     full_url = base_url + unique_id
-    #     html = download_page(full_url)

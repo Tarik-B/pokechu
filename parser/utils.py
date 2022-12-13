@@ -1,13 +1,29 @@
 #!/usr/bin/env python3
-
+import os
 import urllib.error
+
+import requests
 from bs4 import BeautifulSoup
 from itertools import product
 from urllib.request import urlopen, Request
 import bs4.element
 import re
 
+from os.path import basename
+from urllib.parse import unquote
 def download_page(url: str) -> str:
+
+    file_name = os.path.basename(unquote(url))
+    full_path = "./output/pages/" + file_name
+
+    # Check if file exists before dl it
+    if os.path.exists(full_path):
+        with open(file=full_path, mode="r", encoding="utf-8") as file:
+            try:
+                return file.read()
+            except OSError as e:
+                raise Exception(f"error '{e}' while reading page file {full_path}")
+
     # Use custom user agent to bypass blocking of known spider/bot user agents
     request = Request(
         url=url,
@@ -21,6 +37,13 @@ def download_page(url: str) -> str:
 
     page_source = page.read()
     html = page_source.decode("utf-8")
+
+    # Save file
+    with open(file=full_path, mode="w", encoding="utf-8") as file:
+        try:
+            file.write(html)
+        except OSError as e:
+            raise Exception(f"error '{e}' while reading page file {full_path}")
 
     return html
 

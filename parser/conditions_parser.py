@@ -7,8 +7,11 @@ from enums import EvolutionConditionType
 
 
 class ConditionsParser:
-    def __init__(self, pokedex: pokedex.Pokedex):
+    def __init__(self, pokedex: pokedex.Pokedex, verbose: bool):
         self.pokedex = pokedex
+        self.verbose = verbose
+
+        self.processed_condition_count = 0
 
     def process_evolution_trees_conditions(self):
 
@@ -17,16 +20,23 @@ class ConditionsParser:
 
     def process_evolution_tree_conditions(self, node: dict):
 
-        condition_fr = node["condition"]
-        # condition_en = node["condition_en"]
+        # Convert condition string to tree of condition types
+        if "condition_raw" in node:
+            condition_fr = node["condition_raw"]
 
-        if condition_fr:
-            node["conditions"] = self.process_condition_string(condition_fr)
+            if condition_fr:
+                node["conditions"] = self.clean_and_process_condition_string(condition_fr)
+                self.processed_condition_count += 1
 
-        for child in node["evolutions"]:
-            self.process_evolution_tree_conditions(child)
+                # Remove condition string from dict if it was perfectly parsed (no UNKNOWN condition)
+                # if self.is_condition_ok(node["conditions"]):
+                    # del node["*condition_raw"]
 
-    def process_condition_string(self, condition_string: str):
+        if "evolutions" in node:
+            for child in node["evolutions"]:
+                self.process_evolution_tree_conditions(child)
+
+    def clean_and_process_condition_string(self, condition_string: str):
         # We assume that conditions are as follows: (condition AND condition) OR (condition AND condition)
         # with AND = "+"/"dans"/"en"/etc. and OR = "ou"
         # Example: "Gain de niveau dans un champ magnétique spécial ou Pierre Foudre"
@@ -60,12 +70,12 @@ class ConditionsParser:
         results = [result.strip() for result in results ]
 
         if len(results) > 1:
-            condition = {"type": EvolutionConditionType.OR.name, "conditions": []}
+            condition = {"type": EvolutionConditionType.OR.name, "children": []}
             # conditions = self.create_operator_condition(results, EvolutionConditionType.OR)
 
             for result in results:
                 subcondition = self.split_into_and_condition(result)
-                condition["conditions"].append(subcondition)
+                condition["children"].append(subcondition)
         else:
             condition = self.split_into_and_condition(condition_string)
 
@@ -81,12 +91,12 @@ class ConditionsParser:
         results = [result.strip() for result in results]
 
         if len(results) > 1:
-            condition = {"type": EvolutionConditionType.AND.name, "conditions": []}
+            condition = {"type": EvolutionConditionType.AND.name, "children": []}
 
             for result in results:
                 subcondition = self.process_condition(result)
 
-                condition["conditions"].append(subcondition)
+                condition["children"].append(subcondition)
         else:
             condition = self.process_condition(condition_string)
 
@@ -95,7 +105,7 @@ class ConditionsParser:
     def split_into_conditions(self, condition_string: str):
 
         condition = self.process_condition(condition_string)
-        if condition["type"] == EvolutionConditionType.UNKNOWN.name:
+        if self.verbose and condition["type"] == EvolutionConditionType.UNKNOWN.name:
             print(f"unknown condition '{condition_string}'")
 
         return condition
@@ -122,21 +132,23 @@ class ConditionsParser:
             # EvolutionConditionType.GENDER_FEMALE: [r"femelle"],
 
             # ?: = non-capturing groups, is required to do an OR without capturing a group
-            EvolutionConditionType.LEVEL_GAIN: [r"(?:gagner|gain) (?:un|de) niveau"], # Merge both
+            EvolutionConditionType.LEVEL_GAIN: [r"(?:gagner|gain|monter) (?:un|de|d'un) niveau"], # Merge both
             # with or
 
-            EvolutionConditionType.DAY: [r"jour", r"de jour", r"en journée"],
-            EvolutionConditionType.NIGHT: [r"nuit", r"de nuit"],
+            EvolutionConditionType.DAY: [r"(?:de|en|pendant)?\s?(?:\w*\s)?(?:journée|jour)"],
+            EvolutionConditionType.NIGHT: [r"(?:de|pendant)?\s?(?:\w*\s)?nuit"],
 
             # EvolutionConditionType.ITEM_USE: [r"(?:au contact)+\s+\w+[\s|\']+" + item_name for item_name in
             #                                   item_names ],
-            EvolutionConditionType.ITEM_USE: item_names,
-            EvolutionConditionType.ITEM_HOLD: [r"en tenant\s\w+[\s|\']+" + item_name for item_name in item_names ],
+            EvolutionConditionType.ITEM_USE: [r"(?:au contact)?(?:\s\w[\s|\']\s)?(" + item_name + r")" for item_name in
+                                              item_names ],
+            EvolutionConditionType.ITEM_HOLD: [r"en tenant\s(?:\w*[\s|\'])?(" + item_name + r")" for item_name in
+                                               item_names ],
 
             EvolutionConditionType.TRADE: ["échange"],
 
             EvolutionConditionType.KNOW_SKILL: ["apprendre (?:la|une) capacité (.*)"],
-            EvolutionConditionType.LEARN_SKILL: ["connaître (?:la|une) capacité (.*)"],
+            EvolutionConditionType.LEARN_SKILL: ["(?:connaître|en connaissant) (?:la|une) capacité (.*)"],
         }
 
         keep_looking = True
@@ -144,9 +156,9 @@ class ConditionsParser:
 
             condition = None
 
-            for type in patterns:
+            for condition_type in patterns:
 
-                pattern_list = patterns[type]
+                pattern_list = patterns[condition_type]
 
                 for pattern in pattern_list:
 
@@ -155,10 +167,32 @@ class ConditionsParser:
                         # print("condition_string = " + condition_string)
                         # print("extracted = " + extracted)
 
-                        if extracted and extracted != pattern:
-                            condition = {"type": EvolutionConditionType(type).name, "data": extracted}
-                        else:
-                            condition = {"type": EvolutionConditionType(type).name}
+                        condition = {"type": EvolutionConditionType(condition_type).name}
+                        if type(extracted) is str:
+                            condition["data"] = extracted
+
+                        match condition_type:
+                            case EvolutionConditionType.LEVEL:
+                                pass
+                            case EvolutionConditionType.ITEM_USE:
+                                pass
+                            case EvolutionConditionType.ITEM_HOLD:
+                                pass
+                            case EvolutionConditionType.GENDER:
+                                pass
+                            case EvolutionConditionType.LOCATION:
+                                pass
+                            case EvolutionConditionType.DAY:
+                                pass
+                            case EvolutionConditionType.NIGHT:
+                                pass
+                            case EvolutionConditionType.KNOW_SKILL:
+                                pass
+                            case EvolutionConditionType.LEARN_SKILL:
+                                pass
+                            case EvolutionConditionType.TRADE:
+                                pass
+
 
                     if condition: break
                 if condition: break
@@ -170,17 +204,19 @@ class ConditionsParser:
                 keep_looking = False
 
         if condition_string:
-            print(f"no known condition pattern in '{condition_string}', full string = '{full_string}'")
-
-        if not conditions:
-            print(f"unknown condition '{condition_string}'")
+            if self.verbose:
+                print(f"no known condition pattern in '{condition_string}', full string = '{full_string}'")
 
             condition = {"type": EvolutionConditionType.UNKNOWN.name}
-            return condition
-        elif len(conditions) == 1:
+            conditions.append(condition)
+
+        # if not conditions:
+        #     print(f"unknown condition '{condition_string}'")
+
+        if len(conditions) == 1:
             return conditions[0]
         else:
-            condition = {"type": EvolutionConditionType.AND.name, "conditions": conditions}
+            condition = {"type": EvolutionConditionType.AND.name, "children": conditions}
             return condition
 
     def find_and_pop_pattern(self, pattern: str, string: str) -> str:
@@ -190,14 +226,27 @@ class ConditionsParser:
 
             start, end = match.span()
 
-            # if len(match.groups()) == 1:
-            if match.groups():
-                extracted = match.group(0)
+            # extracted is a str (if something was captured) or a bool
+            if len(match.groups()):
+                extracted = match.group(1)
             else:
-                extracted = string[start:end]
+                extracted = True
+            # else:
+            #     extracted = string[start:end]
 
             newstring = string[end:]
 
             return newstring, extracted
 
-        return string, None
+        return string, False
+
+    def is_condition_ok(self, condition: dict):
+        if condition["type"] == EvolutionConditionType.UNKNOWN.name:
+            return False
+
+        if "children" in condition:
+            for subcondition in condition["children"]:
+                if not self.is_condition_ok(subcondition):
+                    return False
+
+        return True

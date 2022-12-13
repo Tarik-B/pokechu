@@ -4,8 +4,35 @@ from enum import Enum, auto
 
 
 class PokedexType(Enum):
-    NDEX = auto()
-    DEX_PALDEA_EV = auto()
+    NATIONAL = auto()
+    # 1st gen
+    KANTO = auto()
+    KANTO_PE = auto()
+    # 2nd gen
+    JOHTO = auto()
+    JOHTO_HGSS = auto()
+    # 3rd gen
+    HOENN = auto()
+    HOENN_ORAS = auto()
+    # 4th gen
+    SINNOH = auto()
+    SINNOH_PT = auto()
+    # 5th gen
+    UNOVA = auto()
+    UNOVA_B2W2 = auto()
+    # 6th gen
+    KALOS = auto()
+    # 7th gen
+    ALOLA = auto()
+    ALOLA_USUM = auto()
+    # 8th gen
+    GALAR = auto()
+    ISLE_ARMOR = auto()
+    CROWN_TUNDRA = auto()
+    HISUI = auto()
+    # 9th gen
+    PALDEA = auto()
+
 class EvolutionConditionType(Enum):
     UNKNOWN = auto()
 
@@ -57,3 +84,18 @@ class Item(Enum):
     CRACKED_POT = auto()
     CHIPPED_POT = auto()
     GIMMIGHOUL_COIN = auto()
+
+    BLACK_AUGURITE = auto()
+    PROTECTOR = auto()
+    DRAGON_SCALE = auto()
+    ELECTIRIZER = auto()
+    MAGMARIZER = auto()
+    UPGRADE = auto()
+    DUBIOUS_DISC = auto()
+    RAZOR_FANG = auto()
+    PRISM_SCALE = auto()
+    REAPER_CLOTH = auto()
+    DEEP_SEA_TOOTH = auto()
+    DEEP_SEA_SCALE = auto()
+    SACHET = auto()
+    WHIPPED_DREAM = auto()
