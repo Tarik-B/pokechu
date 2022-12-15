@@ -3,9 +3,11 @@ from enums import Item, EvolutionConditionType, PokedexType
 
 
 class PokedexData:
-    def __init__(self, pokepedia_shortcut: str, abbrev_names: list):
+    def __init__(self, pokepedia_shortcut: str, abbrev_names: list, name_fr: str, name_en: str):
         self.pokepedia_shortcut = pokepedia_shortcut
         self.abbrev_names = abbrev_names
+        self.name_fr = name_fr
+        self.name_en = name_en
 
 class ItemData:
     def __init__(self, name_fr: str, name_en: str):
@@ -14,34 +16,34 @@ class ItemData:
 
 class Data:
     POKEDEXES = {
-        PokedexType.NATIONAL: PokedexData("NDEX", []),
+        PokedexType.NATIONAL: PokedexData("NDEX", [], "National", "National"),
         # 1st gen
-        PokedexType.KANTO: PokedexData("DEX_KANTO_RBJ", ["Kanto"]), # Kanto (also "DEX_KANTO_RFVF")
-        PokedexType.KANTO_PE: PokedexData("DEX_KANTO_LGPE", ["Kanto LGPE"]), # Kanto (Pokémon : Let's Go, Pikachu et Let's Go, Évoli)
+        PokedexType.KANTO: PokedexData("DEX_KANTO_RBJ", ["Kanto"], "Kanto", "Kanto"), # Kanto (also "DEX_KANTO_RFVF")
+        PokedexType.KANTO_PE: PokedexData("DEX_KANTO_LGPE", ["Kanto LGPE"], "Kanto LGPE", "Kanto LGPE"), # Kanto (Pokémon : Let's Go, Pikachu et Let's Go, Évoli)
         # 2nd gen
-        PokedexType.JOHTO: PokedexData("DEX_JOHTO_OAC", ["Johto OAC"]), # Johto
-        PokedexType.JOHTO_HGSS: PokedexData("DEX_JOHTO_HGSS", ["Johto HGSS"]), # Johto (Pokémon Or HeartGold et Argent SoulSilver)
+        PokedexType.JOHTO: PokedexData("DEX_JOHTO_OAC", ["Johto OAC"], "Johto OAC", "Johto"), # Johto
+        PokedexType.JOHTO_HGSS: PokedexData("DEX_JOHTO_HGSS", ["Johto HGSS"], "Johto HGSS", "Johto HGSS"), # Johto (Pokémon Or HeartGold et Argent SoulSilver)
         # 3rd gen
-        PokedexType.HOENN: PokedexData("DEX_HOENN_RSE", ["Hoenn RSE"]), # Hoenn
-        PokedexType.HOENN_ORAS: PokedexData("DEX_HOENN_ROSA", ["Hoenn ROSA"]), # Hoenn (Pokémon Rubis Oméga et Saphir Alpha)
+        PokedexType.HOENN: PokedexData("DEX_HOENN_RSE", ["Hoenn RSE"], "Hoenn RSE", "Hoenn"), # Hoenn
+        PokedexType.HOENN_ORAS: PokedexData("DEX_HOENN_ROSA", ["Hoenn ROSA"], "Hoenn ROSA", "Hoenn ROSA"), # Hoenn (Pokémon Rubis Oméga et Saphir Alpha)
         # 4th gen
-        PokedexType.SINNOH: PokedexData("DEX_SINNOH_DPP", ["Sinnoh"]), # Sinnoh (also "DEX_SINNOH_DEPS")
-        PokedexType.SINNOH_PT: PokedexData("", ["Sinnoh Pt"]), # Sinnoh (Pokémon Platine)
+        PokedexType.SINNOH: PokedexData("DEX_SINNOH_DPP", ["Sinnoh"], "Sinnoh", "Sinnoh"), # Sinnoh (also "DEX_SINNOH_DEPS")
+        PokedexType.SINNOH_PT: PokedexData("", ["Sinnoh Pt"], "Sinnoh Pt", "Sinnoh Pt"), # Sinnoh (Pokémon Platine)
         # 5th gen
-        PokedexType.UNOVA: PokedexData("DEX_UNYS_NB", ["Unys NB"]), # Unys
-        PokedexType.UNOVA_B2W2: PokedexData("DEX_UNYS_NB2", ["Unys N2B2"]), # Unys (Pokémon Noir 2 et Blanc 2)
+        PokedexType.UNOVA: PokedexData("DEX_UNYS_NB", ["Unys NB"], "Unys NB", "Unova"), # Unys
+        PokedexType.UNOVA_B2W2: PokedexData("DEX_UNYS_NB2", ["Unys N2B2"], "Unys N2B2", "Unova B2W2"), # Unys (Pokémon Noir 2 et Blanc 2)
         # 6th gen
-        PokedexType.KALOS: PokedexData("DEX_KALOS_XY", ["Kalos (Centre)", "Kalos (Côtes)", "Kalos (Monts)"]), # Kalos
+        PokedexType.KALOS: PokedexData("DEX_KALOS_XY", ["Kalos (Centre)", "Kalos (Côtes)", "Kalos (Monts)"], "Kalos", "Kalos"), # Kalos
         # 7th gen
-        PokedexType.ALOLA: PokedexData("DEX_ALOLA_SL", ["Alola SL"]), # Alola
-        PokedexType.ALOLA_USUM: PokedexData("DEX_ALOLA_USUL", ["Alola USUL"]), # Alola (Pokémon Ultra-Soleil et Ultra-Lune)
+        PokedexType.ALOLA: PokedexData("DEX_ALOLA_SL", ["Alola SL"], "Alola SL", "Alola"), # Alola
+        PokedexType.ALOLA_USUM: PokedexData("DEX_ALOLA_USUL", ["Alola USUL"], "Alola USUL", "Alola USUM"), # Alola (Pokémon Ultra-Soleil et Ultra-Lune)
         # 8th gen
-        PokedexType.GALAR: PokedexData("DEX_GALAR_EB", ["Galar"]), # Galar
-        PokedexType.ISLE_ARMOR: PokedexData("DEX_ISOLARMURE_EB", ["Isolarmure"]), # Isolarmure
-        PokedexType.CROWN_TUNDRA: PokedexData("DEX_COURONNEIGE_EB", ["Couronneige"]), # Couronneige
-        PokedexType.HISUI: PokedexData("DEX_HISUI_LPA", ["Hisui"]), # Hisui
+        PokedexType.GALAR: PokedexData("DEX_GALAR_EB", ["Galar"], "Galar", "Galar"), # Galar
+        PokedexType.ISLE_ARMOR: PokedexData("DEX_ISOLARMURE_EB", ["Isolarmure"], "Isolarmure", "Isle Armor"), # Isolarmure
+        PokedexType.CROWN_TUNDRA: PokedexData("DEX_COURONNEIGE_EB", ["Couronneige"], "Couronneige", "Crown Tundra"), # Couronneige
+        PokedexType.HISUI: PokedexData("DEX_HISUI_LPA", ["Hisui"], "Hisui", "Hisui"), # Hisui
         # 9th gen
-        PokedexType.PALDEA: PokedexData("DEX_PALDEA_EV", ["Paldea"]), # Paldea
+        PokedexType.PALDEA: PokedexData("DEX_PALDEA_EV", ["Paldea"], "Paldea", "Paldea"), # Paldea
     }
 
     ITEMS = {

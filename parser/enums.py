@@ -2,36 +2,38 @@
 
 from enum import Enum, auto
 
+# Color = Enum('Color', ['RED', 'GREEN', 'BLUE'], start=0)
 
-class PokedexType(Enum):
-    NATIONAL = auto()
+PokedexType = Enum( "PokedexType", [
+    "NATIONAL",
     # 1st gen
-    KANTO = auto()
-    KANTO_PE = auto()
+    "KANTO",
+    "KANTO_PE",
     # 2nd gen
-    JOHTO = auto()
-    JOHTO_HGSS = auto()
+    "JOHTO",
+    "JOHTO_HGSS",
     # 3rd gen
-    HOENN = auto()
-    HOENN_ORAS = auto()
+    "HOENN",
+    "HOENN_ORAS",
     # 4th gen
-    SINNOH = auto()
-    SINNOH_PT = auto()
+    "SINNOH",
+    "SINNOH_PT",
     # 5th gen
-    UNOVA = auto()
-    UNOVA_B2W2 = auto()
+    "UNOVA",
+    "UNOVA_B2W2",
     # 6th gen
-    KALOS = auto()
+    "KALOS",
     # 7th gen
-    ALOLA = auto()
-    ALOLA_USUM = auto()
+    "ALOLA",
+    "ALOLA_USUM",
     # 8th gen
-    GALAR = auto()
-    ISLE_ARMOR = auto()
-    CROWN_TUNDRA = auto()
-    HISUI = auto()
+    "GALAR",
+    "ISLE_ARMOR",
+    "CROWN_TUNDRA",
+    "HISUI",
     # 9th gen
-    PALDEA = auto()
+    "PALDEA"
+], start = 0 )
 
 class EvolutionConditionType(Enum):
     UNKNOWN = auto()

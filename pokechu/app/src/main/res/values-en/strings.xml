@@ -11,6 +11,7 @@
     <string name="menu_main_grid_view">Grid view</string>
     <string name="menu_main_sort">Sort</string>
     <string name="menu_main_customize">Search settings</string>
+    <string name="menu_main_filter">Filter</string>
     <string name="menu_main_settings">Settings</string>
     <string name="menu_main_about">About</string>
 

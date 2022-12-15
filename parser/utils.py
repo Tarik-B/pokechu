@@ -14,7 +14,7 @@ from urllib.parse import unquote
 def download_page(url: str) -> str:
 
     file_name = os.path.basename(unquote(url))
-    full_path = "./output/pages/" + file_name
+    full_path = "./output/pages/" + file_name + ".html"
 
     # Check if file exists before dl it
     if os.path.exists(full_path):

@@ -22,9 +22,16 @@
     </group>
 
     <group>
-        <item android:id="@+id/button_sort"
-            android:title="@string/menu_main_sort"
-            android:icon="@drawable/ic_sort"
+<!--        <item android:id="@+id/button_sort"-->
+<!--            android:title="@string/menu_main_sort"-->
+<!--            android:icon="@drawable/ic_sort"-->
+<!--            app:showAsAction="collapseActionView|always">-->
+<!--            &lt;!&ndash; A empty SubMenu &ndash;&gt;-->
+<!--            <menu></menu>-->
+<!--        </item>-->
+        <item android:id="@+id/button_filter"
+            android:title="@string/menu_main_filter"
+            android:icon="@drawable/ic_filter"
             app:showAsAction="collapseActionView|always">
             <!-- A empty SubMenu -->
             <menu></menu>

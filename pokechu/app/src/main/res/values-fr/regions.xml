@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="region_0">National</string>
+    <string name="region_1">Kanto</string>
+    <string name="region_2">Kanto LGPE</string>
+    <string name="region_3">Johto OAC</string>
+    <string name="region_4">Johto HGSS</string>
+    <string name="region_5">Hoenn RSE</string>
+    <string name="region_6">Hoenn ROSA</string>
+    <string name="region_7">Sinnoh</string>
+    <string name="region_8">Sinnoh Pt</string>
+    <string name="region_9">Unys NB</string>
+    <string name="region_10">Unys N2B2</string>
+    <string name="region_11">Kalos</string>
+    <string name="region_12">Alola SL</string>
+    <string name="region_13">Alola USUL</string>
+    <string name="region_14">Galar</string>
+    <string name="region_15">Isolarmure</string>
+    <string name="region_16">Couronneige</string>
+    <string name="region_17">Hisui</string>
+    <string name="region_18">Paldea</string>
+</resources>

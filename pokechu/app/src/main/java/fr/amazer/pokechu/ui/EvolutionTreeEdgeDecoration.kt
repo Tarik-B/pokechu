@@ -5,7 +5,6 @@ import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 
 import android.graphics.*
 import androidx.recyclerview.widget.RecyclerView
-import fr.amazer.pokechu.data.DataEvolutionTree
 import dev.bandb.graphview.AbstractGraphAdapter
 
 

@@ -12,18 +12,25 @@ import android.widget.SearchView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.WindowCompat
+import androidx.core.view.get
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.data.DataPokemon
+import fr.amazer.pokechu.data.PokedexType
+import fr.amazer.pokechu.data.Regions
 import fr.amazer.pokechu.databinding.ActivityMainBinding
 import fr.amazer.pokechu.fragments.StartSearchDialogFragment
-import fr.amazer.pokechu.managers.DataManager
+import fr.amazer.pokechu.managers.DatabaseManager
+import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.ListAdapter
 import fr.amazer.pokechu.ui.RecyclerTouchListener
 import fr.amazer.pokechu.utils.UIUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 
@@ -37,12 +44,11 @@ class ActivityMain : BaseActivity() {
     private lateinit var settingsActivityLauncher: ActivityResultLauncher<Intent>
     private lateinit var detailsActivityLauncher: ActivityResultLauncher<Intent>
 
+    private lateinit var regions: List<Regions>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
-
-        DataManager.loadJsonData(applicationContext)
-//        SettingsManager.with(applicationContext)
 
         // Initialize ui
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -50,50 +56,43 @@ class ActivityMain : BaseActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        // Bottom search button
         binding.buttonSearch.setOnClickListener { view ->
             val newFragment = StartSearchDialogFragment()
-            newFragment.show(supportFragmentManager, "test")
+            newFragment.show(supportFragmentManager, "search")
+        }
 
-            /*
-            // Put focus on search view
-            val searchMenuItem = menu.findItem(R.id.search)
-            searchMenuItem.expandActionView()
-            menu.performIdentifierAction(R.id.search, 0)
-            val searchView = (menu.findItem(R.id.search).actionView as SearchView)
-            //searchView.requestFocus()
-            //searchView.isFocusable = true
-            searchView.requestFocus()
-            //searchView.focusSearch(View.FOCUS_RIGHT)
-             */
+        // Discovered count
+        suspend fun getPokemonsCount(): Int = withContext(Dispatchers.IO) {
+            return@withContext DatabaseManager.findPokemonsCount()
+        }
+        lifecycleScope.launch { // coroutine on main
+            val totalPokemonCount = getPokemonsCount() // coroutine on IO
+            // back on main
+            val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
+            binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
+        }
+
+        // Get regions
+        suspend fun getRegions(): List<Regions> = withContext(Dispatchers.IO) {
+            return@withContext DatabaseManager.findRegions()
+        }
+        lifecycleScope.launch { // coroutine on main
+            // Find regions
+            regions = getRegions() // coroutine on IO
+            // back on main
         }
 
         setUpRecyclerView()
 
-        val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
-        val totalPokemonCount = DataManager.getPokemonMap().count()
-        binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
-
-        /*
-        Searchtext = view.findViewById<View>(R.id.search_input) as EditText
-        Searchtext!!.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                filterQuery(editable.toString())
-            }
-        })*/
-
-        // Associate searchable configuration with the SearchView
-
-        settingsActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//            if (result.resultCode == Activity.RESULT_OK) {
-//            }
+        // Create launcher for activities details/settings + notify data changed when they close
+        settingsActivityLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) { result ->
             adapter?.notifyDataSetChanged()
         }
 
-        detailsActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//            if (result.resultCode == Activity.RESULT_OK) {
-//            }
+        detailsActivityLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) { result ->
             adapter?.notifyDataSetChanged()
         }
     }
@@ -114,16 +113,13 @@ class ActivityMain : BaseActivity() {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
         }
 
+        // Setup search bar
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.i(this::class.simpleName, "onQueryTextChange = $newText")
-
                 filterQuery(newText)
-
                 return false
             }
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.i(this::class.simpleName, "onQueryTextSubmit = $query")
                 return false
             }
         })
@@ -141,6 +137,7 @@ class ActivityMain : BaseActivity() {
                 }
             })
 
+        // Setup customize menu
         val customizeButton = menu.findItem(R.id.button_customize)
         customizeButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem): Boolean {
@@ -149,6 +146,7 @@ class ActivityMain : BaseActivity() {
             }
         })
 
+        // Setup list/grid switch view button
         val gridEnabled = !SettingsManager.isListViewEnabled()
         val listButton = menu.findItem(R.id.button_list_view)
         val gridButton = menu.findItem(R.id.button_grid_view)
@@ -180,42 +178,53 @@ class ActivityMain : BaseActivity() {
         // Required to make the searchview manually focusable
         searchView.isIconifiedByDefault = false
 
-        // Added customize search submenu
-        val subMenuItem = menu.findItem(R.id.button_customize)
-        menuInflater.inflate(R.menu.menu_main_filter, subMenuItem.subMenu)
+        // Add customize search submenu
+        val customizeSubMenuItem = menu.findItem(R.id.button_customize)
+        menuInflater.inflate(R.menu.menu_main_customize, customizeSubMenuItem.subMenu)
 
         val searchAllFields = SettingsManager.isSearchAllFieldsEnabled(applicationContext)
         val searchAllMenuItem = menu.findItem(R.id.search_all_fields)
         searchAllMenuItem.isChecked = searchAllFields
 
+        // Add regions filter submenu
+        val selectedRegion = SettingsManager.getSelectedRegion()
+        val filterSubMenuItem = menu.findItem(R.id.button_filter)
+        menuInflater.inflate(R.menu.menu_main_filter, filterSubMenuItem.subMenu)
+        regions.forEach{ region ->
+            val resId: Int = applicationContext.resources.getIdentifier("region_${region.id}", "string", "fr.amazer.pokechu")
+            filterSubMenuItem.subMenu.add(0, region.id, region.id, resId)
+            val menuItem = filterSubMenuItem.subMenu[region.id]
+            menuItem.isCheckable = true
+            menuItem.isChecked = (region.id == selectedRegion)
+        }
 
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle action bar item clicks
         when (item.itemId) {
             R.id.action_settings -> {
-
                 val intent = Intent(this, ActivitySettings::class.java)
                 settingsActivityLauncher.launch(intent)
-
                 return true
             }
             R.id.action_about -> {
-
                 val intent = Intent(this, ActivityAbout::class.java)
                 settingsActivityLauncher.launch(intent)
-
                 return true
             }
             R.id.search_all_fields -> {
                 item.isChecked = !item.isChecked
                 SettingsManager.setSearchAllFieldsEnabled(applicationContext,item.isChecked)
-
+                return true
+            }
+            in PokedexType.NATIONAL.ordinal .. PokedexType.PALDEA.ordinal -> {
+                val regionId = PokedexType.values()[item.itemId]
+                SettingsManager.setSelectedRegion(regionId)
+//                adapter?.notifyDataSetChanged()
+                UIUtils.reloadActivity(this, true)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -226,83 +235,72 @@ class ActivityMain : BaseActivity() {
         val recyclerView = binding.recyclerView
         recyclerView.setHasFixedSize(true)
 
+        // Grid or list
         val gridEnabled = !SettingsManager.isListViewEnabled()
         var layoutManager: RecyclerView.LayoutManager? = null
         if ( gridEnabled )
             layoutManager = GridLayoutManager(applicationContext, 2)
         else
-        layoutManager  = LinearLayoutManager(applicationContext)
+            layoutManager  = LinearLayoutManager(applicationContext)
 
         recyclerView.layoutManager = layoutManager
 
-        //adapter = exampleList?.let { ExampleAdapter(it) }
-        //val pokemonIds = DataManager.buildPokemonIdsList()
-        // Build sorted list of unique ids based on paldea ids
-        val pokemonMap = DataManager.getPokemonMap()
-//        var sortedData = pokemonData
-//            .sortedWith<DataPokemon> (object : Comparator <DataPokemon> {
-//                override fun compare (p0: DataPokemon, p1: DataPokemon) : Int {
-//                    if (p0.ids.paldea.toInt() > p1.ids.paldea.toInt()) {
-//                        return 1
-//                    }
-//                    return -1
-//                }
-//            })
-        val pokemonIds = ArrayList<String>(pokemonMap.keys)
-//        sortedData.forEach { data ->
-//            pokemonIds.add(data.ids.unique)
-//        }
+        // Get pokemons for selected region
+        val selectedRegion = SettingsManager.getSelectedRegion()
 
-        val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
+        suspend fun getPokemonIds(region: Int): List<Int> = withContext(Dispatchers.IO) {
+            if (region == PokedexType.NATIONAL.ordinal)
+                return@withContext DatabaseManager.findPokemonIds()
+            else
+                return@withContext DatabaseManager.findPokemonIdsByRegion(selectedRegion)
+        }
+        lifecycleScope.launch { // coroutine on main
+            val pokemonIds = getPokemonIds(selectedRegion) // coroutine on IO
+            // back on main
+            val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
 
-        adapter = ListAdapter(this, pokemonIds, uiItemId)
-        recyclerView.adapter = adapter
+            adapter = ListAdapter(applicationContext, lifecycleScope, pokemonIds, uiItemId)
+            recyclerView.adapter = adapter
 
-        recyclerView.addOnItemTouchListener(
-            RecyclerTouchListener(
-                applicationContext,
-                recyclerView,
-                object : RecyclerTouchListener.ClickListener {
+            // Add click/long click listeners on items
+            recyclerView.addOnItemTouchListener(
+                RecyclerTouchListener(
+                    applicationContext,
+                    recyclerView,
+                    object : RecyclerTouchListener.ClickListener {
 
-                    // Open details activity on click
-                    override fun onClick(view: View?, position: Int) {
-                        val pokemonId = adapter?.getCurrentIds()?.get(position)
-                        val pokemonData = pokemonId?.let { DataManager.findPokemonData(it) }
-                        if (pokemonData != null) {
+                        // Open details activity on click
+                        override fun onClick(view: View?, position: Int) {
+                            val pokemonId = adapter?.getCurrentIds()?.get(position)
                             val intent = Intent(applicationContext, ActivityDetails::class.java)
                             intent.putExtra("PokemonId", pokemonId)
 
                             detailsActivityLauncher.launch(intent)
                         }
-                    }
 
-                    // Toggle discovered status on long click
-                    override fun onLongClick(view: View?, position: Int) {
-                        val pokemonId = adapter?.getCurrentIds()?.get(position)
-                        if (pokemonId != null) {
-                            SettingsManager.togglePokemonDiscovered(pokemonId)
-                            adapter?.notifyItemChanged(position)
+                        // Toggle discovered status on long click
+                        override fun onLongClick(view: View?, position: Int) {
+                            val pokemonId = adapter?.getCurrentIds()?.get(position)
+                            if (pokemonId != null) {
+                                SettingsManager.togglePokemonDiscovered(pokemonId)
+                                adapter?.notifyItemChanged(position)
+                            }
                         }
-                    }
-                })
-        )
+                    })
+            )
+        }
     }
 
-    /* access modifiers changed from: private */
-    fun filterQuery(text: String?) {
+    private fun filterQuery(text: String?) {
         val pokemonIds = adapter?.getAllIds()
 
-        val filteredIds = ArrayList<String>()
+        val filteredIds = ArrayList<Int>()
         if (pokemonIds != null) {
             for (id in pokemonIds) {
-                val pokemonData = DataManager.findPokemonData(id)
-                if (pokemonData == null)
-                    continue
+                val localizedNameFr = LocalizationManager.getLocalizedPokemonName(this, id, "fr")
+                val localizedNameEn = LocalizationManager.getLocalizedPokemonName(this, id, "en")
 
-                val localizedNameFr = DataManager.getLocalizedPokemonName(this, id, "fr")
-                val localizedNameEn = DataManager.getLocalizedPokemonName(this, id, "en")
-
-                val found0 = id.lowercase(Locale.getDefault()).contains(text!!)
+                val found0 = id.toString().lowercase(Locale.getDefault()).contains(text!!)
 //                val found1 = pokemonData.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
 //                val found2 = pokemonData.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
                 val found3 = localizedNameFr?.lowercase(Locale.getDefault())?.contains(text!!)

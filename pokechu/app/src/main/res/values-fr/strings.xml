@@ -11,6 +11,7 @@
     <string name="menu_main_grid_view">Vue en grille</string>
     <string name="menu_main_sort">Trier</string>
     <string name="menu_main_customize">Personnaliser</string>
+    <string name="menu_main_filter">Filtrer</string>
     <string name="menu_main_settings">Préférences</string>
     <string name="menu_main_about">À propos</string>
 

@@ -32,9 +32,8 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
+            // App language change
             val appLanguage: ListPreference? = findPreference("setting_app_language")
-            val dataLanguage: ListPreference? = findPreference("setting_data_language")
-
             if (appLanguage != null) {
                 appLanguage.onPreferenceChangeListener =
                     Preference.OnPreferenceChangeListener { _, newValue ->
@@ -44,17 +43,16 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
                     }
             };
 
+            // Data clearing
             val clearData: Preference? = findPreference("setting_clear_data")
             if (clearData != null) {
                 clearData.onPreferenceClickListener =
                     Preference.OnPreferenceClickListener { preference ->
+                        // Open confirmation dialog before clearing
                         val builder = AlertDialog.Builder(activity)
                         builder.setMessage(R.string.dialog_are_you_sure)
-                            .setPositiveButton(R.string.dialog_yes) { dialog, id ->
-                                SettingsManager.clearPokemonDiscovered()
-                            }
-                            .setNegativeButton(R.string.dialog_no) { dialog, id ->
-                            }
+                            .setPositiveButton(R.string.dialog_yes) { dialog, id -> SettingsManager.clearPokemonDiscovered() }
+                            .setNegativeButton(R.string.dialog_no) { dialog, id -> }
                         val alert = builder.create()
                         alert.show()
                         true

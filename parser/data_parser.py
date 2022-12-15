@@ -19,6 +19,8 @@ class DataParser:
         self.pokedex = pokedex
         self.verbose = verbose
 
+        self.types = set()
+
     def process_pokemon_pages(self):
         # self.process_pokemon_page("013")
 
@@ -40,18 +42,20 @@ class DataParser:
                     ids_by_regions[region] = []
                 ids_by_regions[region].append(id)
 
-        if self.verbose:
-            for region in PokedexType:
-                region_name = region.name
+        # if self.verbose:
+        #     for region in PokedexType:
+        #         region_name = region.name
+        #
+        #         print(f"========== region {region_name} ==========")
+        #
+        #         if region_name in ids_by_regions:
+        #             regions = ids_by_regions[region_name]
+        #             regions.sort()
+        #
+        #             print(f"count = {len(regions)}")
+        #             print(f"{regions}")
 
-                print(f"========== region {region_name} ==========")
-
-                if region_name in ids_by_regions:
-                    regions = ids_by_regions[region_name]
-                    regions.sort()
-
-                    print(f"count = {len(regions)}")
-                    print(f"{regions}")
+        print(f"Types = {self.types}")
 
     def process_pokemon_page(self, unique_id: str):
         # Fetch pokepedia page
@@ -86,19 +90,41 @@ class DataParser:
 
         html = html[:start]
 
-        # Replace all img by their alt texts
-        # table = utils.replace_imgs_by_alt_texts(html)
-        # table_2d: list[list[str]] = utils.table_to_2d(table)
-        # for row in table_2d:
-        #     print(row)
-
         # Get card/fiche info
         xpath_selector = parsel.Selector(html)
         results = xpath_selector.xpath("//table[contains(@class, 'ficheinfo')]").getall()
         if len(results) != 1:
             raise Exception("error while parsing pokemon card/fiche info")
 
-        xpath_selector = parsel.Selector(results[0])
+        self.process_pokemon_ids(unique_id, results[0])
+        #self.process_pokemon_types(unique_id, results[0])
+
+    def process_pokemon_types(self, unique_id: str, html_table: str):
+
+        # Replace all img by their alt texts
+        table = utils.replace_imgs_by_alt_texts(html_table)
+        table_2d: list[list[str]] = utils.table_to_2d(table)
+        types = None
+        for row in table_2d:
+            if row and "Type" in row[0]:
+                types = row
+
+        if types:
+            def uniqify_list(seq):
+                seen = set()
+                seen_add = seen.add
+                return [x for x in seq if not (x in seen or seen_add(x))]
+            types = uniqify_list(types)
+            # print(f"Types = {types}")
+
+            for type in types:
+                if " - " in type:
+                    self.types.update(type.split(" - "))
+                else:
+                    self.types.add(type)
+
+    def process_pokemon_ids(self, unique_id: str, html_table: str):
+        xpath_selector = parsel.Selector(html_table)
         ids_table = xpath_selector.xpath("//table//table[1]").get()
 
         xpath_selector = parsel.Selector(ids_table)

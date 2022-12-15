@@ -293,7 +293,13 @@
         "evolutions": [
             {
                 "id": "057",
-                "condition_raw": "Niveau 28"
+                "condition_raw": "Niveau 28",
+                "evolutions": [
+                    {
+                        "id": "1010",
+                        "condition_raw": "Utiliser 20 fois la capacité Poing de Colère + gain de niveau"
+                    }
+                ]
             }
         ]
     },
@@ -2573,7 +2579,13 @@
         "evolutions": [
             {
                 "id": "625",
-                "condition_raw": "Niveau 52"
+                "condition_raw": "Niveau 52",
+                "evolutions": [
+                    {
+                        "id": "1008",
+                        "condition_raw": "Vaincre 3 Scalproie tenant un Emblème du Général"
+                    }
+                ]
             }
         ]
     },
@@ -3520,7 +3532,7 @@
         "evolutions": [
             {
                 "id": "923",
-                "condition_raw": "Marcher 1000 pas avec la fonction En avant !"
+                "condition_raw": "Marcher  pas avec la fonction En avant !"
             }
         ]
     },
@@ -3644,7 +3656,7 @@
                 "evolutions": [
                     {
                         "id": "956",
-                        "condition_raw": "Marcher 1000 pas avec la fonction En avant !"
+                        "condition_raw": "Marcher  pas avec la fonction En avant !"
                     }
                 ]
             }
@@ -3715,7 +3727,7 @@
         "evolutions": [
             {
                 "id": "975",
-                "condition_raw": "Marcher 1000 pas avec la fonction En avant !"
+                "condition_raw": "Marcher  pas avec la fonction En avant !"
             }
         ]
     },
@@ -3725,6 +3737,43 @@
             {
                 "id": "977",
                 "condition_raw": "Collecter  Pièces de Mordudor"
+            }
+        ]
+    },
+    {
+        "id": "1000",
+        "evolutions": [
+            {
+                "id": "1001",
+                "condition_raw": "Niveau 24",
+                "evolutions": [
+                    {
+                        "id": "1002",
+                        "condition_raw": "Niveau 38"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "1003",
+        "evolutions": [
+            {
+                "id": "1004",
+                "condition_raw": "Armure de la Fortune"
+            },
+            {
+                "id": "1005",
+                "condition_raw": "Armure de la Rancune"
+            }
+        ]
+    },
+    {
+        "id": "1006",
+        "evolutions": [
+            {
+                "id": "1007",
+                "condition_raw": "Niveau 30"
             }
         ]
     }

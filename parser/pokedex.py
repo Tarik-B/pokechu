@@ -3,10 +3,10 @@
 import json
 import os
 from collections import OrderedDict
+
+from data import Data
 from enums import Item, PokedexType
 import csv
-import sqlite3
-from contextlib import closing
 class PokedexTypeData:
     def __init__(self, name_fr: str, gen_fr: str):
         self.name_fr = name_fr
@@ -151,44 +151,6 @@ class Pokedex:
         with open(file_path, "w") as outfile:
             # json.dump(parser.pokedex.pokemons, outfile)
             outfile.write(pretty_json)
-
-    def save_pokemon_list_sqlite(self, db_file_path: str):
-
-        try:
-            with closing(sqlite3.connect(db_file_path)) as connection:
-                with closing(connection.cursor()) as cursor:
-                    # INSERT INTO pokémons (id) VALUES ("001")
-                    query = "INSERT INTO pokémons (id) VALUES "
-                    query += ", ".join(f"('{id}')" for id in self.pokemons)
-                    result = cursor.execute(query)
-                    connection.commit()
-        except Exception as err:
-            print("error while inserting into db = " + str(err))
-                # for id in self.pokemons:
-                #     query += f"'{id}'"
-                # rows = cursor.execute("SELECT 1").fetchall()
-                # print(rows)
-
-        # cursor.execute("CREATE TABLE fish (name TEXT, species TEXT, tank_number INTEGER)")
-        # cursor.execute("INSERT INTO fish VALUES ('Sammy', 'shark', 1)")
-        # cursor.execute("INSERT INTO fish VALUES ('Jamie', 'cuttlefish', 7)")
-        # rows = cursor.execute("SELECT name, species, tank_number FROM fish").fetchall()
-        # print(rows)
-
-        # target_fish_name = "Jamie"
-        # rows = cursor.execute(
-        #     "SELECT name, species, tank_number FROM fish WHERE name = ?",
-        #     (target_fish_name,),
-        # ).fetchall()
-        # print(rows)
-        # new_tank_number = 2
-        # moved_fish_name = "Sammy"
-        # cursor.execute(
-        #     "UPDATE fish SET tank_number = ? WHERE name = ?",
-        #     (new_tank_number, moved_fish_name)
-        # )
-        # rows = cursor.execute("SELECT name, species, tank_number FROM fish").fetchall()
-        # print(rows)
     def save_pokemon_list_csv(self, file_path: str):
         #
         # with open(file_path, "w") as csvfile:
@@ -266,12 +228,51 @@ class Pokedex:
 
             output_file.write("<resources>\n")
             for id in self.pokemon_names:
+                int_id = int(id)
                 if lang == "":
-                    output_file.write(f"    <string name=\"pokemon_name_{id}\"/>\n")
+                    output_file.write(f"    <string name=\"pokemon_name_{int_id}\"/>\n")
                 else:
                     names = self.pokemon_names[id]
                     if lang in names:
                         name = json.dumps(names[lang]) # escapes quotes
-                        output_file.write(f"    <string name=\"pokemon_name_{id}\">{name}</string>\n")
+                        output_file.write(f"    <string name=\"pokemon_name_{int_id}\">{name}</string>\n")
+
+            output_file.write("</resources>")
+
+    def save_region_names(self, file_path: str):
+        if len(self.pokemon_names) == 0:
+            return
+
+        # Save strings.xml ids declaration
+        self.save_region_names_lang(file_path, "")
+
+        # Save strings-XXX.xml with localized names
+        self.save_region_names_lang(file_path, "fr")
+        self.save_region_names_lang(file_path, "en")
+
+    def save_region_names_lang(self, file_path: str, lang: str):
+
+        if lang != "":
+            file_name = os.path.splitext(file_path)[0]
+            extension = os.path.splitext(file_path)[1]
+            file_path = f"{file_name}-{lang}{extension}"
+
+        with open(file_path, "w") as output_file:
+
+            output_file.write("<?xml version='1.0' encoding='utf-8'?>\n")
+
+            output_file.write("<resources>\n")
+            for type in PokedexType:
+                if lang == "":
+                    output_file.write(f"    <string name=\"region_{type.value}\"/>\n")
+                else:
+                    pokedex_data = Data.POKEDEXES[type]
+                    if lang == "fr":
+                        name = pokedex_data.name_fr
+                    else:
+                        name = pokedex_data.name_en
+                    # name = json.dumps(name) # escapes quotes
+
+                    output_file.write(f"    <string name=\"region_{type.value}\">{name}</string>\n")
 
             output_file.write("</resources>")

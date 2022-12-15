@@ -1,130 +1,105 @@
 -- SQLite
 
-PRAGMA foreign_keys = ON;
+-- Pokemon ids by region
+-- SELECT id
+-- FROM pokemons p
+-- JOIN pokemon_regions pr ON pr.pokemon_id = p.id 
+-- WHERE pr.region_id = 1;
 
--- Reset
-DROP TABLE IF EXISTS pokemon_regions;
-DROP TABLE IF EXISTS regions;
-DROP TABLE IF EXISTS pokemon_evolutions;
-DROP TABLE IF EXISTS pokemons;
+-- Pokemon ids by region (properly)
+SELECT pokemon_id, local_id
+FROM regions
+INNER JOIN pokemon_regions pr ON regions.id=pr.region_id
+WHERE pr.region_id = 18
+ORDER BY local_id ASC
+;
 
-DROP VIEW IF EXISTS view_pokemons_by_regions;
-DROP VIEW IF EXISTS view_pokemons_evolutions;
+-- Local ids by region
+-- SELECT p.id as pokemon_id, pr.local_id
+-- FROM pokemons p
+--       JOIN pokemon_regions pr ON pr.pokemon_id = p.id 
+--       JOIN regions r ON pr.region_id = r.id
+-- WHERE pr.region_id = 18
+-- -- ORDER BY local_id ASC
+-- ;
 
--- Create tables
-CREATE TABLE pokemons (
-    id INTEGER PRIMARY KEY NOT NULL UNIQUE,
-    name VARCHAR(10) NOT NULL
-    -- user_id INTEGER NOT NULL,
-    -- FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-CREATE TABLE regions (
-    id INTEGER PRIMARY KEY NOT NULL,
-    name VARCHAR(10) NOT NULL
-);
-CREATE TABLE pokemon_regions (
-    pokemon_id INTEGER NOT NULL,
-    region_id INTEGER NOT NULL,
-    local_id INTEGER NOT NULL,
-    
-    PRIMARY KEY (pokemon_id, region_id),
-    UNIQUE (pokemon_id, region_id),
-    FOREIGN KEY (pokemon_id) REFERENCES pokemons(id) ON DELETE CASCADE,
-    FOREIGN KEY (region_id) REFERENCES regions(id) ON DELETE CASCADE
-);
-CREATE TABLE pokemon_evolutions (
-    base_id INTEGER NOT NULL,
-    evolved_id INTEGER NOT NULL,
-    condition_raw VARCHAR(150) NOT NULL,
+-- Local ids by pokemon (ultra slow)
+-- SELECT p.id as pokemon_id, r.id as region_id, pr.local_id
+-- FROM pokemons p
+--       JOIN pokemon_regions pr ON pr.pokemon_id = p.id 
+--       JOIN regions r ON pr.region_id = r.id
+-- WHERE p.id = 1
+-- ;
 
-    PRIMARY KEY (base_id, evolved_id),
-    UNIQUE (base_id, evolved_id),
-    FOREIGN KEY (base_id) REFERENCES pokemons(id) ON DELETE CASCADE,
-    FOREIGN KEY (evolved_id) REFERENCES pokemons(id) ON DELETE CASCADE
-);
+-- Pokemon regions
+-- SELECT p.id, p.name, GROUP_CONCAT(r.name, ", " ) AS region_names
+-- FROM pokemons p
+--     JOIN pokemon_regions pr ON pr.pokemon_id = p.id 
+--     JOIN regions r ON pr.region_id = r.id
+-- GROUP BY p.name;
 
--- Insert sample data
-INSERT INTO regions (id, name) VALUES
-    (1, "Kanto"), (3, "Johto"), (18, "Paldea");
--- SELECT * FROM regions;
 
-INSERT INTO pokemons
-    VALUES
-    (1, "Bulbizarre"), (2, "Herbizarre"), (3, "Florizarre"),
-    (280, "Tarsal"), (281, "Kirlia"),
-    (282, "Gardevoir"), (475, "Gallame");
--- SELECT * FROM pokemons;
+-- Evolution links count
+-- SELECT *, (
+--     SELECT COUNT(*) FROM pokemon_evolutions pe WHERE pe.base_id = p.id OR pe.evolved_id = p.id
+-- ) AS evolution_links
+-- FROM pokemons p;
 
-INSERT INTO pokemon_regions VALUES
-    (1, 1, 1), (1, 3, 226),
-    (2, 1, 2), (2, 3, 227),
-    (3, 1, 3), (3, 3, 228),
-    (280, 18, 62), (281, 18, 63),
-    (282, 18, 64), (475, 18, 65);
--- SELECT * FROM pokemon_regions;
+-- Find evolution root
+-- WITH RECURSIVE evolution_root AS (
+--       SELECT pe.base_id, pe.evolved_id, 0 as depth
+--       FROM pokemon_evolutions pe
+--       WHERE pe.evolved_id = 475
+      
+--       UNION ALL
+      
+--       SELECT pe.base_id, pe.evolved_id, evolution_root.depth + 1
+--       FROM evolution_root
+--       JOIN pokemon_evolutions pe ON pe.evolved_id = evolution_root.base_id
+-- )
+-- SELECT base_id
+-- FROM evolution_root
+-- ORDER BY depth DESC LIMIT 1 -- depth is only used to order and limit
+-- -- WHERE base_id NOT IN (SELECT evolved_id FROM evolution_root)
+-- -- JOIN pokemons p ON p.id = evolution_root.evolved_id
+-- ;
 
-INSERT INTO pokemon_evolutions /*(base_id, evolved_id, condition_raw)*/ VALUES
-    (1, 2, "Niveau 16"), (2, 3, "Niveau 32"),
-    (280, 281, "Niveau 20"),
-    (281, 282, "Niveau 30"), (281, 475, "Mâle (♂) + Pierre Aube");
--- SELECT * FROM pokemon_regions;
+-- Evolution chains
+-- WITH RECURSIVE evolution_chain AS (
+--       SELECT pe.evolved_id, pe.base_id, pe.condition_raw
+--       FROM pokemon_evolutions pe
+--       WHERE pe.base_id = 172
+      
+--       UNION ALL
+      
+--       SELECT pe.evolved_id, pe.base_id, pe.condition_raw
+--       FROM evolution_chain
+--       JOIN pokemon_evolutions pe ON pe.base_id = evolution_chain.evolved_id
+--      )
+-- SELECT base_id, evolved_id, condition_raw FROM evolution_chain
+-- JOIN pokemons p ON p.id = evolution_chain.evolved_id
+-- ;
 
--- Pokemons by regions
-CREATE VIEW view_pokemons_by_regions
-AS
-    SELECT p.id, p.name, GROUP_CONCAT(r.name, ", " ) AS region_names
-    FROM pokemons p
-        JOIN pokemon_regions pr ON pr.pokemon_id = p.id 
-        JOIN regions r ON pr.region_id = r.id
-    GROUP BY p.name;
--- SELECT * FROM view_pokemons_by_regions WHERE region_names LIKE "%";
-
--- Pokemons evolutions
-    -- base_id INTEGER NOT NULL,
-    -- evolved_id INTEGER NOT NULL,
-    -- condition_raw VARCHAR(150) NOT NULL,
-
--- SELECT * FROM pokemon_evolutions;
--- SELECT id, name FROM pokemons;
-
--- Pokemon evolutions
-CREATE VIEW view_pokemons_evolutions
-AS
-    SELECT p.id, p.name, GROUP_CONCAT(o.name, ", " ) AS evolutions
-    FROM pokemons p
-        LEFT JOIN pokemon_evolutions pe ON pe.base_id = p.id
-        LEFT JOIN pokemons o ON o.id = pe.evolved_id
-    GROUP BY p.id;
-SELECT * FROM view_pokemons_evolutions;
-
--- WITH RECURSIVE recursive_evolutions (base_id, evolved_id, level, path) AS (
---     SELECT base_id, evolved_id, 0, "" FROM pokemon_evolutions
+-- WITH RECURSIVE evolution_chain AS (
+--     SELECT
+--         base_id,
+--         evolved_id,
+--         base_id || " > " || evolved_id as path
+--     FROM pokemon_evolutions
 --     UNION ALL
 --     SELECT
---         e.base_id,
---         e.evolved_id,
---         recursive_evolutions.level + 1,
---         recursive_evolutions.path || recursive_evolutions.base_id || " > "
---     FROM pokemon_evolutions e, recursive_evolutions
---     WHERE e.evolved_id = recursive_evolutions.base_id
+--         evolution_chain.base_id,
+--         pe.evolved_id,
+--         evolution_chain.path || " > " || pe.evolved_id as path
+--     FROM pokemon_evolutions pe, evolution_chain
+--     -- JOIN evolution_chain ec ON ec.evolved_id = pe.base_id
+--     WHERE pe.base_id = evolution_chain.evolved_id
 -- )
--- SELECT evolved_id, level, path FROM recursive_evolutions;
+-- SELECT * FROM evolution_chain
+-- -- WHERE base_id = 1
+-- -- GROUP BY evolution_chain.base_id
+-- ;
 
--- WITH RECURSIVE children (evolved_id, base_id, level, path) AS (
---     SELECT evolved_id, base_id, 0, "" FROM pokemon_evolutions
---     UNION ALL
---     SELECT
---         e.evolved_id,
---         e.base_id,
---         children.level + 1,
---         children.path || children.evolved_id || " > "
---     FROM pokemon_evolutions e, children
---     WHERE e.base_id = children.evolved_id
--- )
--- SELECT base_id, level, path FROM children;
-
--- 
--- 
 
 -- DROP TABLE IF EXISTS categories;
 -- CREATE TABLE IF NOT EXISTS categories (
@@ -144,8 +119,12 @@ SELECT * FROM view_pokemons_evolutions;
 -- SELECT * FROM categories;
 
 -- WITH RECURSIVE children (id, name, parent_id, level, path) AS (
---     SELECT id, name, parent_id, 0, "" FROM categories WHERE id = 11
+--     SELECT id, name, parent_id, 0, ""
+--     FROM categories
+--     WHERE id = 11
+    
 --     UNION ALL
+    
 --     SELECT
 --         c.id,
 --         c.name,

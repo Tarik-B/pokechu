@@ -8,15 +8,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.activities.ActivityDetails
-import fr.amazer.pokechu.data.DataPokemon
-import fr.amazer.pokechu.managers.DataManager
+import fr.amazer.pokechu.data.Pokemons
+import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.utils.UIUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class StartSearchDialogFragment : DialogFragment() {
@@ -46,21 +50,31 @@ class StartSearchDialogFragment : DialogFragment() {
                 .setPositiveButton(R.string.dialog_ok,
                     DialogInterface.OnClickListener { dialog, id ->
                         val editText = binding.findViewById(R.id.text_id) as EditText
-                        val pokemonId = editText.text.toString()
+                        val pokemonId = editText.text.toString().toIntOrNull()
+                        if ( pokemonId != null ) {
 
-                        if ( pokemonId.toIntOrNull() != null ) {
-                            val uniqueCheckbox = binding.findViewById(R.id.checkbox_unique) as CheckBox
-                            var dataPokemon: DataPokemon? = null
+                            // Search id and open details
+                            suspend fun getPokemonById(id: Int): Pokemons? = withContext(Dispatchers.IO) {
+                                return@withContext DatabaseManager.findPokemonById(id)
+                            }
+                            lifecycleScope.launch { // coroutine on Main
+                                val pokemon = getPokemonById(pokemonId) // coroutine on IO
+                                // back on main
+//                                if ( uniqueCheckbox.isChecked )
+//                                    dataPokemon = DataManager.findPokemonData(pokemonId)
+//                                else
+//                                    dataPokemon = DataManager.findPokemonDataPaldea(pokemonId)
 
-                            if ( uniqueCheckbox.isChecked )
-                                dataPokemon = DataManager.findPokemonData(pokemonId)
-//                            else
-//                                dataPokemon = DataManager.findPokemonDataPaldea(pokemonId)
-
-                            if (dataPokemon != null) {
-                                val intent = Intent(context, ActivityDetails::class.java)
-                                intent.putExtra("PokemonId", pokemonId)
-                                startActivityForResult(intent, OPEN_DETAILS)
+                                // Id found, open details
+                                if (pokemon != null) {
+                                    val intent = Intent(context, ActivityDetails::class.java)
+                                    intent.putExtra("PokemonId", pokemonId.toInt())
+                                    startActivityForResult(intent, OPEN_DETAILS)
+                                }
+                                else {
+                                    Snackbar.make(requireActivity().findViewById(android.R.id.content),
+                                        "ID ${pokemonId} not found ", Snackbar.LENGTH_LONG).show();
+                                }
                             }
                         }
                     })

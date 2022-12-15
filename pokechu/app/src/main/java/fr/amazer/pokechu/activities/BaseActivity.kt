@@ -2,11 +2,11 @@ package fr.amazer.pokechu.activities
 
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.MenuItem
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 
-open class BaseActivity: LocalizationActivity() { //You can use your preferred activity instead of AppCompatActivity
+
+open class BaseActivity: LocalizationActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,9 +21,10 @@ open class BaseActivity: LocalizationActivity() { //You can use your preferred a
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // handle arrow click here
+        // Handle arrow click here
         if (item.getItemId() === android.R.id.home) {
-            finish() // close this activity and return to previous activity (if there is any)
+            // Close this activity and return to previous activity (if there is any)
+            finish()
         }
         return super.onOptionsItemSelected(item)
     }

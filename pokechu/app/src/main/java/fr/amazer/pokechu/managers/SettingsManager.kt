@@ -1,19 +1,20 @@
 package fr.amazer.pokechu.managers
 
-import android.annotation.TargetApi
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
-import android.os.Build
 import androidx.preference.PreferenceManager
+import fr.amazer.pokechu.data.PokedexType
 import java.util.*
 
 
 object SettingsManager {
 
-    lateinit var preferences: SharedPreferences
+    private lateinit var preferences: SharedPreferences
     private const val PREFERENCES_FILE_NAME = "settings"
+
+    fun with(context: Context) {
+        preferences = PreferenceManager.getDefaultSharedPreferences(context)
+    }
 
 //    data class PokemonPreferenceData(
 //        val discovered: Boolean
@@ -24,19 +25,14 @@ object SettingsManager {
     private const val KEY_POKEMON_DISCOVERED_SUFFIX = "_discovered"
     private const val KEY_SETTING_SEARCH_ALL_FIELDS = "setting_search_all_fields"
     private const val KEY_SETTING_LIST_VIEW = "setting_list_view"
-    private const val KEY_SETTING_APP_LANGUAGE = "setting_app_language"
+//    private const val KEY_SETTING_APP_LANGUAGE = "setting_app_language"
     private const val KEY_SETTING_DATA_LANGUAGE = "setting_data_language"
-
-    fun with(context: Context) {
-//        preferences = application.getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE)
-
-        preferences = PreferenceManager.getDefaultSharedPreferences(context)
-    }
+    private const val KEY_SETTING_SELECTED_REGION = "setting_selected_region"
 
     private const val DEFAULT_POKEMON_DISCOVERED = false
-    public fun isPokemonDiscovered(pokemonId: String): Boolean { return getSetting(KEY_POKEMON_DISCOVERED_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, DEFAULT_POKEMON_DISCOVERED)!! }
-    public fun setPokemonDiscovered(pokemonId: String, discovered: Boolean) { setSetting(KEY_POKEMON_DISCOVERED_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, discovered) }
-    public fun togglePokemonDiscovered(pokemonId: String) { setPokemonDiscovered(pokemonId, !isPokemonDiscovered(pokemonId) ) }
+    public fun isPokemonDiscovered(pokemonId: Int): Boolean { return getSetting(KEY_POKEMON_DISCOVERED_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, DEFAULT_POKEMON_DISCOVERED)!! }
+    public fun setPokemonDiscovered(pokemonId: Int, discovered: Boolean) { setSetting(KEY_POKEMON_DISCOVERED_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, discovered) }
+    public fun togglePokemonDiscovered(pokemonId: Int) { setPokemonDiscovered(pokemonId, !isPokemonDiscovered(pokemonId) ) }
 
     private const val DEFAULT_SEARCH_ALL_FIELDS = true
     public fun isSearchAllFieldsEnabled(context: Context): Boolean { return getSetting(KEY_SETTING_SEARCH_ALL_FIELDS, DEFAULT_SEARCH_ALL_FIELDS)!! }
@@ -52,12 +48,17 @@ object SettingsManager {
 
     private val DEFAULT_DATA_LANGUAGE = Locale.getDefault().language
     public fun getDataLanguage(): String { return getSetting(KEY_SETTING_DATA_LANGUAGE, DEFAULT_DATA_LANGUAGE)!! }
-    public fun setDataLanguage(language: String) { setSetting(KEY_SETTING_DATA_LANGUAGE, language) }
+//    public fun setDataLanguage(language: String) { setSetting(KEY_SETTING_DATA_LANGUAGE, language) }
+
+    private val DEFAULT_SELECTED_REGION = PokedexType.NATIONAL.ordinal
+    public fun getSelectedRegion(): Int { return getSetting(KEY_SETTING_SELECTED_REGION, DEFAULT_SELECTED_REGION)!! }
+    public fun setSelectedRegion(region: PokedexType) { setSetting(KEY_SETTING_SELECTED_REGION, region.ordinal) }
 
     private inline fun <reified T: Any> getSetting(key: String, defaultValue: T): T? {
         return when(T::class) {
             Boolean::class -> preferences.getBoolean(key, defaultValue as Boolean) as T
             String::class -> preferences.getString(key, defaultValue as String) as T
+            Integer::class -> preferences.getInt(key, defaultValue as Int) as T
             else -> null
         }
     }
@@ -66,6 +67,7 @@ object SettingsManager {
         when(T::class) {
             Boolean::class -> preferences.edit().putBoolean(key, value as Boolean).apply()
             String::class -> preferences.edit().putString(key, value as String).apply()
+            Integer::class -> preferences.edit().putInt(key, value as Int).apply()
         }
     }
 
@@ -87,18 +89,4 @@ object SettingsManager {
         }
         editor.apply()
     }
-
-//    private fun loadPreferences() {
-//        val jsonString = preferences.getString(KEY_DATA, null)
-//        if ( jsonString == null )
-//            return
-//
-//        data = GsonBuilder().create().fromJson(jsonString, Map::class.java) as HashMap<String, PokemonPreferenceData>
-//    }
-//
-//    private fun savePreferences() {
-//        val jsonString = GsonBuilder().create().toJson(data)
-//
-//        preferences.edit().putString(KEY_DATA, jsonString).apply()
-//    }
 }

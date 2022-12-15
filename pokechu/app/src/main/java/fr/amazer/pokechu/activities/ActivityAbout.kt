@@ -1,7 +1,6 @@
 package fr.amazer.pokechu.activities
 
 import android.os.Bundle
-import android.util.Log
 import fr.amazer.pokechu.BuildConfig
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.ActivityAboutBinding

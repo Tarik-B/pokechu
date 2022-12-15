@@ -31,5 +31,8 @@ class AssetUtils {
             return BitmapFactory.decodeStream(istr)
         }
 
+        fun getThumbnailPath(pokemon_id: Int): String {
+            return "images/${pokemon_id}.png"
+        }
     }
 }
