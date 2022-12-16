@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.R
+import fr.amazer.pokechu.data.NationalIdLocalId
 import fr.amazer.pokechu.data.PokedexType
 import fr.amazer.pokechu.data.Regions
 import fr.amazer.pokechu.databinding.ActivityMainBinding
@@ -26,12 +27,14 @@ import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.ListAdapter
+import fr.amazer.pokechu.ui.ListAdapterData
 import fr.amazer.pokechu.ui.RecyclerTouchListener
 import fr.amazer.pokechu.utils.UIUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class ActivityMain : BaseActivity() {
@@ -245,21 +248,31 @@ class ActivityMain : BaseActivity() {
 
         recyclerView.layoutManager = layoutManager
 
-        // Get pokemons for selected region
+        // Get pokemons for selected region and build map of id -> adapter data
         val selectedRegion = SettingsManager.getSelectedRegion()
 
-        suspend fun getPokemonIds(region: Int): List<Int> = withContext(Dispatchers.IO) {
-            if (region == PokedexType.NATIONAL.ordinal)
-                return@withContext DatabaseManager.findPokemonIds()
-            else
-                return@withContext DatabaseManager.findPokemonIdsByRegion(selectedRegion)
+        suspend fun getPokemonData(region: Int): Map<Int, ListAdapterData> = withContext(Dispatchers.IO) {
+            if (region == PokedexType.NATIONAL.ordinal) {
+                val pokemonIds: List<Int> = DatabaseManager.findPokemonIds()
+                val pokemonData = ArrayList<ListAdapterData>()
+                pokemonIds.forEach{ id -> pokemonData.add(ListAdapterData(id))}
+
+                val dataMap = pokemonIds.zip(pokemonData).toMap()
+                return@withContext dataMap
+            }
+            else {
+                val pokemonLocalIds: List<NationalIdLocalId> = DatabaseManager.findLocalIdsByRegion(selectedRegion)
+                val dataMap = HashMap<Int, ListAdapterData>()
+                pokemonLocalIds.forEach{ id -> dataMap[id.pokemon_id] = ListAdapterData(id.local_id)}
+                return@withContext dataMap
+            }
         }
         lifecycleScope.launch { // coroutine on main
-            val pokemonIds = getPokemonIds(selectedRegion) // coroutine on IO
+            val pokemonData = getPokemonData(selectedRegion) // coroutine on IO
             // back on main
             val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
 
-            adapter = ListAdapter(applicationContext, lifecycleScope, pokemonIds, uiItemId)
+            adapter = ListAdapter(applicationContext, pokemonData, uiItemId)
             recyclerView.adapter = adapter
 
             // Add click/long click listeners on items

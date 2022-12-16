@@ -9,29 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.data.Pokemons
-import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.ui.ListAdapter.ListViewHolder
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ListAdapter internal constructor(
     private var context: Context?,
-    private var lifecycleScope: LifecycleCoroutineScope,
-    private var pokemonIds: List<Int>,
+    private var pokemonsMap: Map<Int, ListAdapterData>,
     private var uiItemId: Int
     ) : RecyclerView.Adapter<ListViewHolder>() {
     private val pokemonIdsFull: List<Int>
-    private lateinit var pokemonsMap: Map<Int,Pokemons>
+    private var pokemonIds: List<Int>
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView
@@ -46,18 +39,18 @@ class ListAdapter internal constructor(
     }
 
     init {
+        // Build sorted national ids by local ids
+        val nationalIds = pokemonsMap.keys.toList()
+        val localIds = ArrayList<Int>()
+        nationalIds.forEach{ id -> pokemonsMap[id]?.let { localIds.add(it.localId) } }
+
+        val sortedLocalIds = localIds.sorted()
+
+        val sortedNationalIds = ArrayList<Int>()
+        sortedLocalIds.forEach{ local_id -> sortedNationalIds.add(nationalIds[localIds.indexOf(local_id)]) }
+
+        pokemonIds = sortedNationalIds
         pokemonIdsFull = ArrayList<Int>(pokemonIds)
-
-        suspend fun getPokemons(ids: List<Int>): List<Pokemons> = withContext(Dispatchers.IO) {
-//            return@withContext DatabaseManager.getPokemonsByIds(ids.toIntArray()) // TOO MANY VARIABLES IN SQL
-            return@withContext DatabaseManager.findPokemons()
-        }
-        lifecycleScope.launch { // coroutine on main
-            val pokemons = getPokemons(pokemonIds) // coroutine on IO
-
-            // back on main
-            pokemonsMap = pokemonIds.zip(pokemons).toMap()
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -69,6 +62,7 @@ class ListAdapter internal constructor(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
 
         val currentId = pokemonIds[position]
+        val currentLocalId = pokemonsMap[currentId]!!.localId
 
         // Setup image
         val assetManager: AssetManager? = context!!.assets
@@ -90,8 +84,12 @@ class ListAdapter internal constructor(
         // Setup text
         val localizedName = LocalizationManager.getLocalizedPokemonName(context!!, currentId)
 
-//        holder.textViewId.text = "#${currentData.ids.paldea}"
-        holder.textView1.text = "#${currentId} - ${localizedName}"
+        holder.textView1.text = "#${currentLocalId} - ${localizedName}"
+//        if (currentId == currentLocalId)
+//            holder.textView1.text = "#${currentId} - ${localizedName}"
+//        else
+//            holder.textView1.text = "#${currentLocalId} (#${currentId}) - ${localizedName}"
+
 //        if (holder.textView2 != null)
 //            holder.textView2!!.text = "English name: ${currentData.names.en}"
         holder.itemView.setOnClickListener { v ->

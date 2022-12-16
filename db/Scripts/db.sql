@@ -1,18 +1,25 @@
 -- SQLite
 
 -- Pokemon ids by region
--- SELECT id
--- FROM pokemons p
--- JOIN pokemon_regions pr ON pr.pokemon_id = p.id 
--- WHERE pr.region_id = 1;
+SELECT id
+FROM pokemons p
+JOIN pokemon_regions pr ON pr.pokemon_id = p.id 
+WHERE pr.region_id = 1;
 
 -- Pokemon ids by region (properly)
 SELECT pokemon_id, local_id
 FROM regions
 INNER JOIN pokemon_regions pr ON regions.id=pr.region_id
 WHERE pr.region_id = 18
+-- GROUP BY pokemon_id
 ORDER BY local_id ASC
 ;
+
+-- Pokemon local ids
+-- SELECT pr.region_id, pr.local_id
+-- FROM pokemons p
+--       JOIN pokemon_regions pr ON pr.pokemon_id = p.id
+-- WHERE p.id = 1;
 
 -- Local ids by region
 -- SELECT p.id as pokemon_id, pr.local_id

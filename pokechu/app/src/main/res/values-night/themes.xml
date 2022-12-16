@@ -2,6 +2,14 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Pokechu_Material3" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="actionBarTheme">@color/colorPrimary</item>
+        <item name="appBarLayoutStyle">@color/colorPrimary</item>
+        <item name="actionBarStyle">@color/colorPrimary</item>
+        <item name="actionBarItemBackground">@color/colorPrimary</item>
+
     </style>
 </resources>

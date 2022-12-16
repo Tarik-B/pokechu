@@ -91,21 +91,26 @@ interface RegionsDao {
 )
 class PokemonRegionsJoin(val pokemon_id: Int, val region_id: Int, val local_id: Int)
 
+data class NationalIdLocalId(
+    @ColumnInfo(name = "pokemon_id") val pokemon_id: Int,
+    @ColumnInfo(name = "local_id") val local_id: Int,
+)
+
 @Dao
 public interface PokemonRegionsDao {
     @Query(
-        "SELECT pokemon_id FROM regions " +
+        "SELECT pokemon_id, local_id FROM regions " +
         "INNER JOIN pokemon_regions ON regions.id=pokemon_regions.region_id " +
         "WHERE pokemon_regions.region_id=:region_id "+
         "ORDER BY local_id ASC"
     )
-    fun findPokemonIdsByRegion(region_id: Int): List<Int>
+    fun findLocalIdsByRegion(region_id: Int): List<NationalIdLocalId>
 
 //    @Query(
-//        "SELECT * FROM regions " +
-//        "INNER JOIN pokemon_regions ON regions.id=pokemon_regions.region_id " +
-//        "WHERE pokemon_regions.pokemon_id=:pokemon_id")
-//    fun findRegionsByPokemon(pokemon_id: Int):List<Regions>
+//        "SELECT pokemon_regions.region_id, pokemon_regions.local_id FROM pokemons " +
+//        "JOIN pokemon_regions ON pokemon_regions.pokemon_id = pokemons.id " +
+//        "WHERE pokemons.id=:pokemon_id")
+//    fun findLocalIdsByPokemon(pokemon_id: Int):List<RegionIdLocalId>
 }
 
 //--------------------------------------------------------------------------------------------------

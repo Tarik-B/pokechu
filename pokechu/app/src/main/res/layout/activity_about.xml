@@ -35,7 +35,6 @@
             tools:layout_editor_absoluteY="-16dp">
 
             <ImageView
-                android:id="@+id/imageView1"
                 android:layout_width="23dip"
                 android:layout_height="23dip"
                 android:layout_margin="@dimen/text_margin_very_small"
@@ -47,13 +46,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin_very_small"
                 android:text="@string/placeholder_string" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin_very_small"
-                android:text="@string/about_created_by" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,14 +61,12 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/text_margin_very_small"
                         android:text="@string/about_version_name" />
 
                     <TextView
-                        android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/text_margin_very_small"
@@ -84,7 +74,6 @@
                         android:text="@string/about_version_code" />
 
                     <TextView
-                        android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/text_margin_very_small"
@@ -92,7 +81,6 @@
                         android:text="@string/about_build_date" />
 
                     <TextView
-                        android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/text_margin_very_small"
@@ -139,11 +127,26 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/imageView3"
                 android:layout_width="23dip"
                 android:layout_height="23dip"
                 android:layout_margin="@dimen/text_margin_very_small"
                 app:srcCompat="@drawable/ic_pokeball" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin_very_small"
+                android:text="@string/about_created_by" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\@" />
+
+            <ImageView
+                android:layout_width="100dip"
+                android:layout_height="50dip"
+                app:srcCompat="@drawable/ic_logo_amazer" />
 
         </LinearLayout>
 
