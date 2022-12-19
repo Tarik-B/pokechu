@@ -5,10 +5,18 @@
             {
                 "id": "002",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "003",
-                        "condition_raw": "Niveau 32"
+                        "condition_raw": "Niveau 32",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "32"
+                        }
                     }
                 ]
             }
@@ -20,10 +28,18 @@
             {
                 "id": "005",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "006",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -35,10 +51,18 @@
             {
                 "id": "008",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "009",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -50,10 +74,18 @@
             {
                 "id": "011",
                 "condition_raw": "Niveau 7",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "7"
+                },
                 "evolutions": [
                     {
                         "id": "012",
-                        "condition_raw": "Niveau 10"
+                        "condition_raw": "Niveau 10",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "10"
+                        }
                     }
                 ]
             }
@@ -65,10 +97,18 @@
             {
                 "id": "014",
                 "condition_raw": "Niveau 7",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "7"
+                },
                 "evolutions": [
                     {
                         "id": "015",
-                        "condition_raw": "Niveau 10"
+                        "condition_raw": "Niveau 10",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "10"
+                        }
                     }
                 ]
             }
@@ -80,10 +120,18 @@
             {
                 "id": "017",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "018",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -94,7 +142,11 @@
         "evolutions": [
             {
                 "id": "020",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -103,7 +155,11 @@
         "evolutions": [
             {
                 "id": "022",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -112,7 +168,11 @@
         "evolutions": [
             {
                 "id": "024",
-                "condition_raw": "Niveau 22"
+                "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                }
             }
         ]
     },
@@ -122,10 +182,17 @@
             {
                 "id": "025",
                 "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                },
                 "evolutions": [
                     {
                         "id": "026",
-                        "condition_raw": "Pierre Foudre"
+                        "condition_raw": "Pierre Foudre",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre foudre"
+                        }
                     }
                 ]
             }
@@ -136,7 +203,11 @@
         "evolutions": [
             {
                 "id": "028",
-                "condition_raw": "Niveau 22"
+                "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                }
             }
         ]
     },
@@ -146,10 +217,18 @@
             {
                 "id": "030",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "031",
-                        "condition_raw": "Pierre Lune"
+                        "condition_raw": "Pierre Lune",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre lune"
+                        }
                     }
                 ]
             }
@@ -161,10 +240,18 @@
             {
                 "id": "033",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "034",
-                        "condition_raw": "Pierre Lune"
+                        "condition_raw": "Pierre Lune",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre lune"
+                        }
                     }
                 ]
             }
@@ -176,10 +263,17 @@
             {
                 "id": "035",
                 "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                },
                 "evolutions": [
                     {
                         "id": "036",
-                        "condition_raw": "Pierre Lune"
+                        "condition_raw": "Pierre Lune",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre lune"
+                        }
                     }
                 ]
             }
@@ -190,7 +284,11 @@
         "evolutions": [
             {
                 "id": "038",
-                "condition_raw": "Pierre Feu"
+                "condition_raw": "Pierre Feu",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre feu"
+                }
             }
         ]
     },
@@ -200,10 +298,17 @@
             {
                 "id": "039",
                 "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                },
                 "evolutions": [
                     {
                         "id": "040",
-                        "condition_raw": "Pierre Lune"
+                        "condition_raw": "Pierre Lune",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre lune"
+                        }
                     }
                 ]
             }
@@ -215,10 +320,17 @@
             {
                 "id": "042",
                 "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                },
                 "evolutions": [
                     {
                         "id": "169",
-                        "condition_raw": "Bonheur"
+                        "condition_raw": "Bonheur",
+                        "conditions": {
+                            "type": "FRIENDSHIP"
+                        }
                     }
                 ]
             }
@@ -230,14 +342,26 @@
             {
                 "id": "044",
                 "condition_raw": "Niveau 21",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "21"
+                },
                 "evolutions": [
                     {
                         "id": "045",
-                        "condition_raw": "Pierre Plante"
+                        "condition_raw": "Pierre Plante",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre plante"
+                        }
                     },
                     {
                         "id": "182",
-                        "condition_raw": "Pierre Soleil"
+                        "condition_raw": "Pierre Soleil",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre soleil"
+                        }
                     }
                 ]
             }
@@ -248,7 +372,11 @@
         "evolutions": [
             {
                 "id": "047",
-                "condition_raw": "Niveau 24"
+                "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                }
             }
         ]
     },
@@ -257,7 +385,11 @@
         "evolutions": [
             {
                 "id": "049",
-                "condition_raw": "Niveau 31"
+                "condition_raw": "Niveau 31",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "31"
+                }
             }
         ]
     },
@@ -266,7 +398,11 @@
         "evolutions": [
             {
                 "id": "051",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -275,7 +411,11 @@
         "evolutions": [
             {
                 "id": "053",
-                "condition_raw": "Niveau 28"
+                "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                }
             }
         ]
     },
@@ -284,7 +424,11 @@
         "evolutions": [
             {
                 "id": "055",
-                "condition_raw": "Niveau 33"
+                "condition_raw": "Niveau 33",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "33"
+                }
             }
         ]
     },
@@ -294,10 +438,25 @@
             {
                 "id": "057",
                 "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                },
                 "evolutions": [
                     {
                         "id": "1010",
-                        "condition_raw": "Utiliser 20 fois la capacité Poing de Colère + gain de niveau"
+                        "condition_raw": "Utiliser 20 fois la capacité Poing de Colère + gain de niveau",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "UNKNOWN"
+                                },
+                                {
+                                    "type": "LEVEL_GAIN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -308,7 +467,11 @@
         "evolutions": [
             {
                 "id": "059",
-                "condition_raw": "Pierre Feu"
+                "condition_raw": "Pierre Feu",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre feu"
+                }
             }
         ]
     },
@@ -318,14 +481,34 @@
             {
                 "id": "061",
                 "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                },
                 "evolutions": [
                     {
                         "id": "062",
-                        "condition_raw": "Pierre Eau"
+                        "condition_raw": "Pierre Eau",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre eau"
+                        }
                     },
                     {
                         "id": "186",
-                        "condition_raw": "Échange en tenant Roche Royale"
+                        "condition_raw": "Échange en tenant Roche Royale",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "roche royale"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -337,10 +520,25 @@
             {
                 "id": "064",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "065",
-                        "condition_raw": "Échange  Au contact d'un Fil de Liaison"
+                        "condition_raw": "Échange  Au contact d'un Fil de Liaison",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -352,10 +550,25 @@
             {
                 "id": "067",
                 "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                },
                 "evolutions": [
                     {
                         "id": "068",
-                        "condition_raw": "Échange  Au contact d'un Fil de Liaison"
+                        "condition_raw": "Échange  Au contact d'un Fil de Liaison",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -367,10 +580,18 @@
             {
                 "id": "070",
                 "condition_raw": "Niveau 21",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "21"
+                },
                 "evolutions": [
                     {
                         "id": "071",
-                        "condition_raw": "Pierre Plante"
+                        "condition_raw": "Pierre Plante",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre plante"
+                        }
                     }
                 ]
             }
@@ -381,7 +602,11 @@
         "evolutions": [
             {
                 "id": "073",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -391,10 +616,25 @@
             {
                 "id": "075",
                 "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                },
                 "evolutions": [
                     {
                         "id": "076",
-                        "condition_raw": "Échange  Au contact d'un Fil de Liaison"
+                        "condition_raw": "Échange  Au contact d'un Fil de Liaison",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -405,7 +645,11 @@
         "evolutions": [
             {
                 "id": "078",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -414,11 +658,27 @@
         "evolutions": [
             {
                 "id": "080",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             },
             {
                 "id": "199",
-                "condition_raw": "Échange en tenant Roche Royale"
+                "condition_raw": "Échange en tenant Roche Royale",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "roche royale"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -428,10 +688,34 @@
             {
                 "id": "082",
                 "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                },
                 "evolutions": [
                     {
                         "id": "462",
-                        "condition_raw": "Gain de niveau dans un champ magnétique spécial  ou  Pierre Foudre"
+                        "condition_raw": "Gain de niveau dans un champ magnétique spécial  ou  Pierre Foudre",
+                        "conditions": {
+                            "type": "OR",
+                            "children": [
+                                {
+                                    "type": "AND",
+                                    "children": [
+                                        {
+                                            "type": "LEVEL_GAIN"
+                                        },
+                                        {
+                                            "type": "UNKNOWN"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "ITEM_USE",
+                                    "data": "pierre foudre"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -442,7 +726,11 @@
         "evolutions": [
             {
                 "id": "085",
-                "condition_raw": "Niveau 31"
+                "condition_raw": "Niveau 31",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "31"
+                }
             }
         ]
     },
@@ -451,7 +739,11 @@
         "evolutions": [
             {
                 "id": "087",
-                "condition_raw": "Niveau 34"
+                "condition_raw": "Niveau 34",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "34"
+                }
             }
         ]
     },
@@ -460,7 +752,11 @@
         "evolutions": [
             {
                 "id": "089",
-                "condition_raw": "Niveau 38"
+                "condition_raw": "Niveau 38",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "38"
+                }
             }
         ]
     },
@@ -469,7 +765,11 @@
         "evolutions": [
             {
                 "id": "091",
-                "condition_raw": "Pierre Eau"
+                "condition_raw": "Pierre Eau",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre eau"
+                }
             }
         ]
     },
@@ -479,10 +779,25 @@
             {
                 "id": "093",
                 "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                },
                 "evolutions": [
                     {
                         "id": "094",
-                        "condition_raw": "Échange  Au contact d'un Fil de Liaison"
+                        "condition_raw": "Échange  Au contact d'un Fil de Liaison",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -493,7 +808,19 @@
         "evolutions": [
             {
                 "id": "208",
-                "condition_raw": "Échange en tenant Peau Métal"
+                "condition_raw": "Échange en tenant Peau Métal",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "peau métal"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -502,7 +829,11 @@
         "evolutions": [
             {
                 "id": "097",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -511,7 +842,11 @@
         "evolutions": [
             {
                 "id": "099",
-                "condition_raw": "Niveau 28"
+                "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                }
             }
         ]
     },
@@ -520,7 +855,11 @@
         "evolutions": [
             {
                 "id": "101",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -529,7 +868,11 @@
         "evolutions": [
             {
                 "id": "103",
-                "condition_raw": "Pierre Plante"
+                "condition_raw": "Pierre Plante",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre plante"
+                }
             }
         ]
     },
@@ -538,7 +881,11 @@
         "evolutions": [
             {
                 "id": "105",
-                "condition_raw": "Niveau 28"
+                "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                }
             }
         ]
     },
@@ -547,15 +894,51 @@
         "evolutions": [
             {
                 "id": "106",
-                "condition_raw": "Niveau 20 avec Attaque supérieure à Défense"
+                "condition_raw": "Niveau 20 avec Attaque supérieure à Défense",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "20"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             },
             {
                 "id": "107",
-                "condition_raw": "Niveau 20 avec Attaque inférieure à Défense"
+                "condition_raw": "Niveau 20 avec Attaque inférieure à Défense",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "20"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             },
             {
                 "id": "237",
-                "condition_raw": "Niveau 20 avec Attaque et Défense identiques"
+                "condition_raw": "Niveau 20 avec Attaque et Défense identiques",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "20"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -564,7 +947,18 @@
         "evolutions": [
             {
                 "id": "463",
-                "condition_raw": "Monter d'un niveau en connaissant Roulade"
+                "condition_raw": "Monter d'un niveau en connaissant Roulade",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -573,7 +967,11 @@
         "evolutions": [
             {
                 "id": "110",
-                "condition_raw": "Niveau 35"
+                "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                }
             }
         ]
     },
@@ -583,10 +981,26 @@
             {
                 "id": "112",
                 "condition_raw": "Niveau 42",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "42"
+                },
                 "evolutions": [
                     {
                         "id": "464",
-                        "condition_raw": "Échange en tenant Protecteur"
+                        "condition_raw": "Échange en tenant Protecteur",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "protecteur"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -598,10 +1012,28 @@
             {
                 "id": "113",
                 "condition_raw": "Gain de niveau en journée en tenant une Pierre Ovale",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "DAY"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "pierre ovale"
+                        }
+                    ]
+                },
                 "evolutions": [
                     {
                         "id": "242",
-                        "condition_raw": "Bonheur"
+                        "condition_raw": "Bonheur",
+                        "conditions": {
+                            "type": "FRIENDSHIP"
+                        }
                     }
                 ]
             }
@@ -612,7 +1044,18 @@
         "evolutions": [
             {
                 "id": "465",
-                "condition_raw": "Monter d'un niveau en connaissant Pouvoir Antique"
+                "condition_raw": "Monter d'un niveau en connaissant Pouvoir Antique",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -622,10 +1065,26 @@
             {
                 "id": "117",
                 "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                },
                 "evolutions": [
                     {
                         "id": "230",
-                        "condition_raw": "Échange en tenant Écaille Draco"
+                        "condition_raw": "Échange en tenant Écaille Draco",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "écaille draco"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -636,7 +1095,11 @@
         "evolutions": [
             {
                 "id": "119",
-                "condition_raw": "Niveau 33"
+                "condition_raw": "Niveau 33",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "33"
+                }
             }
         ]
     },
@@ -645,7 +1108,11 @@
         "evolutions": [
             {
                 "id": "121",
-                "condition_raw": "Pierre Eau"
+                "condition_raw": "Pierre Eau",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre eau"
+                }
             }
         ]
     },
@@ -654,7 +1121,18 @@
         "evolutions": [
             {
                 "id": "122",
-                "condition_raw": "Monter d'un niveau en connaissant Copie"
+                "condition_raw": "Monter d'un niveau en connaissant Copie",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -663,11 +1141,26 @@
         "evolutions": [
             {
                 "id": "212",
-                "condition_raw": "Échange en tenant Peau Métal"
+                "condition_raw": "Échange en tenant Peau Métal",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "peau métal"
+                        }
+                    ]
+                }
             },
             {
                 "id": "900",
-                "condition_raw": "Au contact d'une Obsidienne"
+                "condition_raw": "Au contact d'une Obsidienne",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -676,7 +1169,11 @@
         "evolutions": [
             {
                 "id": "124",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -686,10 +1183,26 @@
             {
                 "id": "125",
                 "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                },
                 "evolutions": [
                     {
                         "id": "466",
-                        "condition_raw": "Échange en tenant Électriseur"
+                        "condition_raw": "Échange en tenant Électriseur",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "électriseur"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -701,10 +1214,26 @@
             {
                 "id": "126",
                 "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                },
                 "evolutions": [
                     {
                         "id": "467",
-                        "condition_raw": "Échange en tenant Magmariseur"
+                        "condition_raw": "Échange en tenant Magmariseur",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "magmariseur"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -715,7 +1244,11 @@
         "evolutions": [
             {
                 "id": "130",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -724,35 +1257,195 @@
         "evolutions": [
             {
                 "id": "134",
-                "condition_raw": "Pierre Eau"
+                "condition_raw": "Pierre Eau",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre eau"
+                }
             },
             {
                 "id": "135",
-                "condition_raw": "Pierre Foudre"
+                "condition_raw": "Pierre Foudre",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre foudre"
+                }
             },
             {
                 "id": "136",
-                "condition_raw": "Pierre Feu"
+                "condition_raw": "Pierre Feu",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre feu"
+                }
             },
             {
                 "id": "196",
-                "condition_raw": "Bonheur de jour +Gain de niveau ou Gain de niveau en tenant un Éclat Soleil"
+                "condition_raw": "Bonheur de jour +Gain de niveau ou Gain de niveau en tenant un Éclat Soleil",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "AND",
+                                    "children": [
+                                        {
+                                            "type": "FRIENDSHIP"
+                                        },
+                                        {
+                                            "type": "DAY"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "LEVEL_GAIN"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL_GAIN"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "éclat soleil"
+                                }
+                            ]
+                        }
+                    ]
+                }
             },
             {
                 "id": "197",
-                "condition_raw": "Bonheur de nuit +Gain de niveau ou Gain de niveau en tenant un Éclat Lune"
+                "condition_raw": "Bonheur de nuit +Gain de niveau ou Gain de niveau en tenant un Éclat Lune",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "AND",
+                                    "children": [
+                                        {
+                                            "type": "FRIENDSHIP"
+                                        },
+                                        {
+                                            "type": "NIGHT"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "LEVEL_GAIN"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL_GAIN"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "éclat lune"
+                                }
+                            ]
+                        }
+                    ]
+                }
             },
             {
                 "id": "470",
-                "condition_raw": "Gain de niveau près d'une Pierre Mousse  ou  Pierre Plante"
+                "condition_raw": "Gain de niveau près d'une Pierre Mousse  ou  Pierre Plante",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL_GAIN"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "ITEM_USE",
+                            "data": "pierre plante"
+                        }
+                    ]
+                }
             },
             {
                 "id": "471",
-                "condition_raw": "Gain de niveau près d'une Pierre Glacée  ou  Pierre Glace"
+                "condition_raw": "Gain de niveau près d'une Pierre Glacée  ou  Pierre Glace",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL_GAIN"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "ITEM_USE",
+                            "data": "pierre glace"
+                        }
+                    ]
+                }
             },
             {
                 "id": "700",
-                "condition_raw": "2 cœurs d'affection  à la Poké Récré / Poké Détente + gagner un niveau en ayant une capacité fée  ou  Bonheur + apprendre une capacité de type fée"
+                "condition_raw": "2 cœurs d'affection  à la Poké Récré / Poké Détente + gagner un niveau en ayant une capacité fée  ou  Bonheur + apprendre une capacité de type fée",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "UNKNOWN"
+                                },
+                                {
+                                    "type": "AND",
+                                    "children": [
+                                        {
+                                            "type": "LEVEL_GAIN"
+                                        },
+                                        {
+                                            "type": "UNKNOWN"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "FRIENDSHIP"
+                                },
+                                {
+                                    "type": "KNOW_SKILL",
+                                    "data": "de type fée"
+                                }
+                            ]
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -762,10 +1455,34 @@
             {
                 "id": "233",
                 "condition_raw": "Échange en tenant Améliorator",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "améliorator"
+                        }
+                    ]
+                },
                 "evolutions": [
                     {
                         "id": "474",
-                        "condition_raw": "Échange en tenant CD Douteux"
+                        "condition_raw": "Échange en tenant CD Douteux",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "cd douteux"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -776,7 +1493,11 @@
         "evolutions": [
             {
                 "id": "139",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -785,7 +1506,11 @@
         "evolutions": [
             {
                 "id": "141",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -794,7 +1519,10 @@
         "evolutions": [
             {
                 "id": "143",
-                "condition_raw": "Bonheur"
+                "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                }
             }
         ]
     },
@@ -804,10 +1532,18 @@
             {
                 "id": "148",
                 "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                },
                 "evolutions": [
                     {
                         "id": "149",
-                        "condition_raw": "Niveau 55"
+                        "condition_raw": "Niveau 55",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "55"
+                        }
                     }
                 ]
             }
@@ -819,10 +1555,18 @@
             {
                 "id": "153",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "154",
-                        "condition_raw": "Niveau 32"
+                        "condition_raw": "Niveau 32",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "32"
+                        }
                     }
                 ]
             }
@@ -834,10 +1578,18 @@
             {
                 "id": "156",
                 "condition_raw": "Niveau 14",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "14"
+                },
                 "evolutions": [
                     {
                         "id": "157",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -849,10 +1601,18 @@
             {
                 "id": "159",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "160",
-                        "condition_raw": "Niveau 30"
+                        "condition_raw": "Niveau 30",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "30"
+                        }
                     }
                 ]
             }
@@ -863,7 +1623,11 @@
         "evolutions": [
             {
                 "id": "162",
-                "condition_raw": "Niveau 15"
+                "condition_raw": "Niveau 15",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "15"
+                }
             }
         ]
     },
@@ -872,7 +1636,11 @@
         "evolutions": [
             {
                 "id": "164",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -881,7 +1649,11 @@
         "evolutions": [
             {
                 "id": "166",
-                "condition_raw": "Niveau 18"
+                "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                }
             }
         ]
     },
@@ -890,7 +1662,11 @@
         "evolutions": [
             {
                 "id": "168",
-                "condition_raw": "Niveau 22"
+                "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                }
             }
         ]
     },
@@ -899,7 +1675,11 @@
         "evolutions": [
             {
                 "id": "171",
-                "condition_raw": "Niveau 27"
+                "condition_raw": "Niveau 27",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "27"
+                }
             }
         ]
     },
@@ -909,10 +1689,17 @@
             {
                 "id": "176",
                 "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                },
                 "evolutions": [
                     {
                         "id": "468",
-                        "condition_raw": "Pierre Éclat"
+                        "condition_raw": "Pierre Éclat",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre éclat"
+                        }
                     }
                 ]
             }
@@ -923,7 +1710,11 @@
         "evolutions": [
             {
                 "id": "178",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -933,10 +1724,18 @@
             {
                 "id": "180",
                 "condition_raw": "Niveau 15",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "15"
+                },
                 "evolutions": [
                     {
                         "id": "181",
-                        "condition_raw": "Niveau 30"
+                        "condition_raw": "Niveau 30",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "30"
+                        }
                     }
                 ]
             }
@@ -948,10 +1747,17 @@
             {
                 "id": "183",
                 "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                },
                 "evolutions": [
                     {
                         "id": "184",
-                        "condition_raw": "Niveau 18"
+                        "condition_raw": "Niveau 18",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "18"
+                        }
                     }
                 ]
             }
@@ -962,7 +1768,11 @@
         "evolutions": [
             {
                 "id": "185",
-                "condition_raw": "Apprendre la capacité Copie"
+                "condition_raw": "Apprendre la capacité Copie",
+                "conditions": {
+                    "type": "KNOW_SKILL",
+                    "data": "copie"
+                }
             }
         ]
     },
@@ -972,10 +1782,18 @@
             {
                 "id": "188",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "189",
-                        "condition_raw": "Niveau 27"
+                        "condition_raw": "Niveau 27",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "27"
+                        }
                     }
                 ]
             }
@@ -986,7 +1804,11 @@
         "evolutions": [
             {
                 "id": "424",
-                "condition_raw": "Apprendre la capacité Coup Double"
+                "condition_raw": "Apprendre la capacité Coup Double",
+                "conditions": {
+                    "type": "KNOW_SKILL",
+                    "data": "coup double"
+                }
             }
         ]
     },
@@ -995,7 +1817,11 @@
         "evolutions": [
             {
                 "id": "192",
-                "condition_raw": "Pierre Soleil"
+                "condition_raw": "Pierre Soleil",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre soleil"
+                }
             }
         ]
     },
@@ -1004,7 +1830,18 @@
         "evolutions": [
             {
                 "id": "469",
-                "condition_raw": "Monter d'un niveau en connaissant Pouvoir Antique"
+                "condition_raw": "Monter d'un niveau en connaissant Pouvoir Antique",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1013,7 +1850,11 @@
         "evolutions": [
             {
                 "id": "195",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -1022,7 +1863,10 @@
         "evolutions": [
             {
                 "id": "430",
-                "condition_raw": "Pierre Nuit"
+                "condition_raw": "Pierre Nuit",
+                "conditions": {
+                    "type": "NIGHT"
+                }
             }
         ]
     },
@@ -1031,7 +1875,10 @@
         "evolutions": [
             {
                 "id": "429",
-                "condition_raw": "Pierre Nuit"
+                "condition_raw": "Pierre Nuit",
+                "conditions": {
+                    "type": "NIGHT"
+                }
             }
         ]
     },
@@ -1040,7 +1887,11 @@
         "evolutions": [
             {
                 "id": "202",
-                "condition_raw": "Niveau 15"
+                "condition_raw": "Niveau 15",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "15"
+                }
             }
         ]
     },
@@ -1049,7 +1900,19 @@
         "evolutions": [
             {
                 "id": "928",
-                "condition_raw": "Connaître la capacité Double Laser + gagner un niveau"
+                "condition_raw": "Connaître la capacité Double Laser + gagner un niveau",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEARN_SKILL",
+                            "data": "double laser"
+                        },
+                        {
+                            "type": "LEVEL_GAIN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1058,7 +1921,11 @@
         "evolutions": [
             {
                 "id": "205",
-                "condition_raw": "Niveau 31"
+                "condition_raw": "Niveau 31",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "31"
+                }
             }
         ]
     },
@@ -1067,7 +1934,19 @@
         "evolutions": [
             {
                 "id": "917",
-                "condition_raw": "Connaître la capacité Hyperceuse + gagner un niveau"
+                "condition_raw": "Connaître la capacité Hyperceuse + gagner un niveau",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEARN_SKILL",
+                            "data": "hyperceuse"
+                        },
+                        {
+                            "type": "LEVEL_GAIN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1076,7 +1955,22 @@
         "evolutions": [
             {
                 "id": "472",
-                "condition_raw": "Gagner un niveau de nuit en tenant un Croc Rasoir"
+                "condition_raw": "Gagner un niveau de nuit en tenant un Croc Rasoir",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "NIGHT"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "croc rasoir"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1085,7 +1979,11 @@
         "evolutions": [
             {
                 "id": "210",
-                "condition_raw": "Niveau 23"
+                "condition_raw": "Niveau 23",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "23"
+                }
             }
         ]
     },
@@ -1094,7 +1992,22 @@
         "evolutions": [
             {
                 "id": "461",
-                "condition_raw": "Gagner un niveau de nuit en tenant une Griffe Rasoir"
+                "condition_raw": "Gagner un niveau de nuit en tenant une Griffe Rasoir",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "NIGHT"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "griffe rasoir"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1104,10 +2017,17 @@
             {
                 "id": "217",
                 "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                },
                 "evolutions": [
                     {
                         "id": "901",
-                        "condition_raw": "Bloc de Tourbe lors d'une nuit de pleine lune"
+                        "condition_raw": "Bloc de Tourbe lors d'une nuit de pleine lune",
+                        "conditions": {
+                            "type": "UNKNOWN"
+                        }
                     }
                 ]
             }
@@ -1118,7 +2038,11 @@
         "evolutions": [
             {
                 "id": "219",
-                "condition_raw": "Niveau 38"
+                "condition_raw": "Niveau 38",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "38"
+                }
             }
         ]
     },
@@ -1128,10 +2052,25 @@
             {
                 "id": "221",
                 "condition_raw": "Niveau 33",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "33"
+                },
                 "evolutions": [
                     {
                         "id": "473",
-                        "condition_raw": "Monter d'un niveau en connaissant Pouvoir Antique"
+                        "condition_raw": "Monter d'un niveau en connaissant Pouvoir Antique",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL_GAIN"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -1142,7 +2081,11 @@
         "evolutions": [
             {
                 "id": "224",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -1151,7 +2094,18 @@
         "evolutions": [
             {
                 "id": "226",
-                "condition_raw": "Monter d'un niveau avec Rémoraid dans l'équipe"
+                "condition_raw": "Monter d'un niveau avec Rémoraid dans l'équipe",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1160,7 +2114,11 @@
         "evolutions": [
             {
                 "id": "229",
-                "condition_raw": "Niveau 24"
+                "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                }
             }
         ]
     },
@@ -1169,7 +2127,11 @@
         "evolutions": [
             {
                 "id": "232",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -1178,7 +2140,18 @@
         "evolutions": [
             {
                 "id": "899",
-                "condition_raw": "Utiliser 20 fois ou plus la capacité Sprint Bouclier sous Style Rapide"
+                "condition_raw": "Utiliser 20 fois ou plus la capacité Sprint Bouclier sous Style Rapide",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "UNKNOWN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1188,10 +2161,18 @@
             {
                 "id": "247",
                 "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                },
                 "evolutions": [
                     {
                         "id": "248",
-                        "condition_raw": "Niveau 55"
+                        "condition_raw": "Niveau 55",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "55"
+                        }
                     }
                 ]
             }
@@ -1203,10 +2184,18 @@
             {
                 "id": "253",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "254",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -1218,10 +2207,18 @@
             {
                 "id": "256",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "257",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -1233,10 +2230,18 @@
             {
                 "id": "259",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "260",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -1247,7 +2252,11 @@
         "evolutions": [
             {
                 "id": "262",
-                "condition_raw": "Niveau 18"
+                "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                }
             }
         ]
     },
@@ -1256,7 +2265,11 @@
         "evolutions": [
             {
                 "id": "264",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -1266,20 +2279,52 @@
             {
                 "id": "266",
                 "condition_raw": "Niveau 7, au hasard",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "7"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                },
                 "evolutions": [
                     {
                         "id": "267",
-                        "condition_raw": "Niveau 10"
+                        "condition_raw": "Niveau 10",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "10"
+                        }
                     }
                 ]
             },
             {
                 "id": "268",
                 "condition_raw": "Niveau 7, au hasard",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "7"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                },
                 "evolutions": [
                     {
                         "id": "269",
-                        "condition_raw": "Niveau 10"
+                        "condition_raw": "Niveau 10",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "10"
+                        }
                     }
                 ]
             }
@@ -1291,10 +2336,18 @@
             {
                 "id": "271",
                 "condition_raw": "Niveau 14",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "14"
+                },
                 "evolutions": [
                     {
                         "id": "272",
-                        "condition_raw": "Pierre Eau"
+                        "condition_raw": "Pierre Eau",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre eau"
+                        }
                     }
                 ]
             }
@@ -1306,10 +2359,18 @@
             {
                 "id": "274",
                 "condition_raw": "Niveau 14",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "14"
+                },
                 "evolutions": [
                     {
                         "id": "275",
-                        "condition_raw": "Pierre Plante"
+                        "condition_raw": "Pierre Plante",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre plante"
+                        }
                     }
                 ]
             }
@@ -1320,7 +2381,11 @@
         "evolutions": [
             {
                 "id": "277",
-                "condition_raw": "Niveau 22"
+                "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                }
             }
         ]
     },
@@ -1329,7 +2394,11 @@
         "evolutions": [
             {
                 "id": "279",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -1339,14 +2408,35 @@
             {
                 "id": "281",
                 "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                },
                 "evolutions": [
                     {
                         "id": "282",
-                        "condition_raw": "Niveau 30"
+                        "condition_raw": "Niveau 30",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "30"
+                        }
                     },
                     {
                         "id": "475",
-                        "condition_raw": "Mâle  + Pierre Aube"
+                        "condition_raw": "Mâle  + Pierre Aube",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "GENDER",
+                                    "data": "mâle"
+                                },
+                                {
+                                    "type": "ITEM_USE",
+                                    "data": "pierre aube"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -1357,7 +2447,11 @@
         "evolutions": [
             {
                 "id": "284",
-                "condition_raw": "Niveau 22"
+                "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                }
             }
         ]
     },
@@ -1366,7 +2460,11 @@
         "evolutions": [
             {
                 "id": "286",
-                "condition_raw": "Niveau 23"
+                "condition_raw": "Niveau 23",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "23"
+                }
             }
         ]
     },
@@ -1376,10 +2474,18 @@
             {
                 "id": "288",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "289",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -1390,11 +2496,27 @@
         "evolutions": [
             {
                 "id": "291",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             },
             {
                 "id": "292",
-                "condition_raw": "Niveau 20, emplacement libre et Poké Ball dans l'inventaire *"
+                "condition_raw": "Niveau 20, emplacement libre et Poké Ball dans l'inventaire *",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "20"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1404,10 +2526,18 @@
             {
                 "id": "294",
                 "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                },
                 "evolutions": [
                     {
                         "id": "295",
-                        "condition_raw": "Niveau 40"
+                        "condition_raw": "Niveau 40",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "40"
+                        }
                     }
                 ]
             }
@@ -1418,7 +2548,11 @@
         "evolutions": [
             {
                 "id": "297",
-                "condition_raw": "Niveau 24"
+                "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                }
             }
         ]
     },
@@ -1427,7 +2561,18 @@
         "evolutions": [
             {
                 "id": "476",
-                "condition_raw": "Gain de niveau dans un champ magnétique spécial"
+                "condition_raw": "Gain de niveau dans un champ magnétique spécial",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1436,7 +2581,11 @@
         "evolutions": [
             {
                 "id": "301",
-                "condition_raw": "Pierre Lune"
+                "condition_raw": "Pierre Lune",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre lune"
+                }
             }
         ]
     },
@@ -1446,10 +2595,18 @@
             {
                 "id": "305",
                 "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                },
                 "evolutions": [
                     {
                         "id": "306",
-                        "condition_raw": "Niveau 42"
+                        "condition_raw": "Niveau 42",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "42"
+                        }
                     }
                 ]
             }
@@ -1460,7 +2617,11 @@
         "evolutions": [
             {
                 "id": "308",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -1469,7 +2630,11 @@
         "evolutions": [
             {
                 "id": "310",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -1479,10 +2644,25 @@
             {
                 "id": "315",
                 "condition_raw": "Bonheur de jour",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "FRIENDSHIP"
+                        },
+                        {
+                            "type": "DAY"
+                        }
+                    ]
+                },
                 "evolutions": [
                     {
                         "id": "407",
-                        "condition_raw": "Pierre Éclat"
+                        "condition_raw": "Pierre Éclat",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre éclat"
+                        }
                     }
                 ]
             }
@@ -1493,7 +2673,11 @@
         "evolutions": [
             {
                 "id": "317",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -1502,7 +2686,11 @@
         "evolutions": [
             {
                 "id": "319",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -1511,7 +2699,11 @@
         "evolutions": [
             {
                 "id": "321",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -1520,7 +2712,11 @@
         "evolutions": [
             {
                 "id": "323",
-                "condition_raw": "Niveau 33"
+                "condition_raw": "Niveau 33",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "33"
+                }
             }
         ]
     },
@@ -1529,7 +2725,11 @@
         "evolutions": [
             {
                 "id": "326",
-                "condition_raw": "Niveau 32"
+                "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                }
             }
         ]
     },
@@ -1539,10 +2739,18 @@
             {
                 "id": "329",
                 "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                },
                 "evolutions": [
                     {
                         "id": "330",
-                        "condition_raw": "Niveau 45"
+                        "condition_raw": "Niveau 45",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "45"
+                        }
                     }
                 ]
             }
@@ -1553,7 +2761,11 @@
         "evolutions": [
             {
                 "id": "332",
-                "condition_raw": "Niveau 32"
+                "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                }
             }
         ]
     },
@@ -1562,7 +2774,11 @@
         "evolutions": [
             {
                 "id": "334",
-                "condition_raw": "Niveau 35"
+                "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                }
             }
         ]
     },
@@ -1571,7 +2787,11 @@
         "evolutions": [
             {
                 "id": "340",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -1580,7 +2800,11 @@
         "evolutions": [
             {
                 "id": "342",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -1589,7 +2813,11 @@
         "evolutions": [
             {
                 "id": "344",
-                "condition_raw": "Niveau 36"
+                "condition_raw": "Niveau 36",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "36"
+                }
             }
         ]
     },
@@ -1598,7 +2826,11 @@
         "evolutions": [
             {
                 "id": "346",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -1607,7 +2839,11 @@
         "evolutions": [
             {
                 "id": "348",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -1616,7 +2852,40 @@
         "evolutions": [
             {
                 "id": "350",
-                "condition_raw": "Niveau de Beauté supérieur ou égal à   +Gain de niveau ou Échange en tenant l'objet Bel'Écaille  Bel' ou Tenir le Voile Vénus"
+                "condition_raw": "Niveau de Beauté supérieur ou égal à   +Gain de niveau ou Échange en tenant l'objet Bel'Écaille  Bel' ou Tenir le Voile Vénus",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "UNKNOWN"
+                        },
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "UNKNOWN"
+                                },
+                                {
+                                    "type": "LEVEL_GAIN"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1625,7 +2894,11 @@
         "evolutions": [
             {
                 "id": "354",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -1635,10 +2908,26 @@
             {
                 "id": "356",
                 "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                },
                 "evolutions": [
                     {
                         "id": "477",
-                        "condition_raw": "Échange en tenant Tissu Fauche"
+                        "condition_raw": "Échange en tenant Tissu Fauche",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "TRADE"
+                                },
+                                {
+                                    "type": "ITEM_HOLD",
+                                    "data": "tissu fauche"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -1649,7 +2938,18 @@
         "evolutions": [
             {
                 "id": "358",
-                "condition_raw": "Bonheur de nuit"
+                "condition_raw": "Bonheur de nuit",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "FRIENDSHIP"
+                        },
+                        {
+                            "type": "NIGHT"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1658,11 +2958,28 @@
         "evolutions": [
             {
                 "id": "362",
-                "condition_raw": "Niveau 42"
+                "condition_raw": "Niveau 42",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "42"
+                }
             },
             {
                 "id": "478",
-                "condition_raw": "Femelle  + Pierre Aube"
+                "condition_raw": "Femelle  + Pierre Aube",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "GENDER",
+                            "data": "femelle"
+                        },
+                        {
+                            "type": "ITEM_USE",
+                            "data": "pierre aube"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1672,10 +2989,18 @@
             {
                 "id": "364",
                 "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                },
                 "evolutions": [
                     {
                         "id": "365",
-                        "condition_raw": "Niveau 44"
+                        "condition_raw": "Niveau 44",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "44"
+                        }
                     }
                 ]
             }
@@ -1686,11 +3011,35 @@
         "evolutions": [
             {
                 "id": "367",
-                "condition_raw": "Échange en tenant une Dent Océan"
+                "condition_raw": "Échange en tenant une Dent Océan",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "dent océan"
+                        }
+                    ]
+                }
             },
             {
                 "id": "368",
-                "condition_raw": "Échange en tenant une Écaille Océan"
+                "condition_raw": "Échange en tenant une Écaille Océan",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "écaille océan"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1700,10 +3049,18 @@
             {
                 "id": "372",
                 "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                },
                 "evolutions": [
                     {
                         "id": "373",
-                        "condition_raw": "Niveau 50"
+                        "condition_raw": "Niveau 50",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "50"
+                        }
                     }
                 ]
             }
@@ -1715,10 +3072,18 @@
             {
                 "id": "375",
                 "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                },
                 "evolutions": [
                     {
                         "id": "376",
-                        "condition_raw": "Niveau 45"
+                        "condition_raw": "Niveau 45",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "45"
+                        }
                     }
                 ]
             }
@@ -1730,10 +3095,18 @@
             {
                 "id": "388",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "389",
-                        "condition_raw": "Niveau 32"
+                        "condition_raw": "Niveau 32",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "32"
+                        }
                     }
                 ]
             }
@@ -1745,10 +3118,18 @@
             {
                 "id": "391",
                 "condition_raw": "Niveau 14",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "14"
+                },
                 "evolutions": [
                     {
                         "id": "392",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -1760,10 +3141,18 @@
             {
                 "id": "394",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "395",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -1775,10 +3164,18 @@
             {
                 "id": "397",
                 "condition_raw": "Niveau 14",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "14"
+                },
                 "evolutions": [
                     {
                         "id": "398",
-                        "condition_raw": "Niveau 34"
+                        "condition_raw": "Niveau 34",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "34"
+                        }
                     }
                 ]
             }
@@ -1789,7 +3186,11 @@
         "evolutions": [
             {
                 "id": "400",
-                "condition_raw": "Niveau 15"
+                "condition_raw": "Niveau 15",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "15"
+                }
             }
         ]
     },
@@ -1798,7 +3199,11 @@
         "evolutions": [
             {
                 "id": "402",
-                "condition_raw": "Niveau 10"
+                "condition_raw": "Niveau 10",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "10"
+                }
             }
         ]
     },
@@ -1808,10 +3213,18 @@
             {
                 "id": "404",
                 "condition_raw": "Niveau 15",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "15"
+                },
                 "evolutions": [
                     {
                         "id": "405",
-                        "condition_raw": "Niveau 30"
+                        "condition_raw": "Niveau 30",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "30"
+                        }
                     }
                 ]
             }
@@ -1822,7 +3235,11 @@
         "evolutions": [
             {
                 "id": "409",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -1831,7 +3248,11 @@
         "evolutions": [
             {
                 "id": "411",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -1840,11 +3261,37 @@
         "evolutions": [
             {
                 "id": "413",
-                "condition_raw": "Niveau 20, Femelle"
+                "condition_raw": "Niveau 20, Femelle",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "20"
+                        },
+                        {
+                            "type": "GENDER",
+                            "data": "femelle"
+                        }
+                    ]
+                }
             },
             {
                 "id": "414",
-                "condition_raw": "Niveau 20, Mâle"
+                "condition_raw": "Niveau 20, Mâle",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "20"
+                        },
+                        {
+                            "type": "GENDER",
+                            "data": "mâle"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1853,7 +3300,20 @@
         "evolutions": [
             {
                 "id": "416",
-                "condition_raw": "Niveau 21, Femelle"
+                "condition_raw": "Niveau 21, Femelle",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "21"
+                        },
+                        {
+                            "type": "GENDER",
+                            "data": "femelle"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1862,7 +3322,11 @@
         "evolutions": [
             {
                 "id": "419",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -1871,7 +3335,11 @@
         "evolutions": [
             {
                 "id": "421",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -1880,7 +3348,11 @@
         "evolutions": [
             {
                 "id": "423",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -1889,7 +3361,11 @@
         "evolutions": [
             {
                 "id": "426",
-                "condition_raw": "Niveau 28"
+                "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                }
             }
         ]
     },
@@ -1898,7 +3374,10 @@
         "evolutions": [
             {
                 "id": "428",
-                "condition_raw": "Bonheur"
+                "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                }
             }
         ]
     },
@@ -1907,7 +3386,11 @@
         "evolutions": [
             {
                 "id": "432",
-                "condition_raw": "Niveau 38"
+                "condition_raw": "Niveau 38",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "38"
+                }
             }
         ]
     },
@@ -1916,7 +3399,11 @@
         "evolutions": [
             {
                 "id": "435",
-                "condition_raw": "Niveau 34"
+                "condition_raw": "Niveau 34",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "34"
+                }
             }
         ]
     },
@@ -1925,7 +3412,11 @@
         "evolutions": [
             {
                 "id": "437",
-                "condition_raw": "Niveau 33"
+                "condition_raw": "Niveau 33",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "33"
+                }
             }
         ]
     },
@@ -1935,10 +3426,18 @@
             {
                 "id": "444",
                 "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                },
                 "evolutions": [
                     {
                         "id": "445",
-                        "condition_raw": "Niveau 48"
+                        "condition_raw": "Niveau 48",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "48"
+                        }
                     }
                 ]
             }
@@ -1949,7 +3448,26 @@
         "evolutions": [
             {
                 "id": "448",
-                "condition_raw": "Bonheur + gagner un niveau de jour"
+                "condition_raw": "Bonheur + gagner un niveau de jour",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "FRIENDSHIP"
+                        },
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL_GAIN"
+                                },
+                                {
+                                    "type": "DAY"
+                                }
+                            ]
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -1958,7 +3476,11 @@
         "evolutions": [
             {
                 "id": "450",
-                "condition_raw": "Niveau 34"
+                "condition_raw": "Niveau 34",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "34"
+                }
             }
         ]
     },
@@ -1967,7 +3489,11 @@
         "evolutions": [
             {
                 "id": "452",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -1976,7 +3502,11 @@
         "evolutions": [
             {
                 "id": "454",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -1985,7 +3515,11 @@
         "evolutions": [
             {
                 "id": "457",
-                "condition_raw": "Niveau 31"
+                "condition_raw": "Niveau 31",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "31"
+                }
             }
         ]
     },
@@ -1994,7 +3528,11 @@
         "evolutions": [
             {
                 "id": "460",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -2003,7 +3541,10 @@
         "evolutions": [
             {
                 "id": "490",
-                "condition_raw": "◄ Reproduction"
+                "condition_raw": "◄ Reproduction",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -2013,10 +3554,18 @@
             {
                 "id": "496",
                 "condition_raw": "Niveau 17",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "17"
+                },
                 "evolutions": [
                     {
                         "id": "497",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -2028,10 +3577,18 @@
             {
                 "id": "499",
                 "condition_raw": "Niveau 17",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "17"
+                },
                 "evolutions": [
                     {
                         "id": "500",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -2043,10 +3600,18 @@
             {
                 "id": "502",
                 "condition_raw": "Niveau 17",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "17"
+                },
                 "evolutions": [
                     {
                         "id": "503",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -2057,7 +3622,11 @@
         "evolutions": [
             {
                 "id": "505",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -2067,10 +3636,18 @@
             {
                 "id": "507",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "508",
-                        "condition_raw": "Niveau 32"
+                        "condition_raw": "Niveau 32",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "32"
+                        }
                     }
                 ]
             }
@@ -2081,7 +3658,11 @@
         "evolutions": [
             {
                 "id": "510",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -2090,7 +3671,11 @@
         "evolutions": [
             {
                 "id": "512",
-                "condition_raw": "Pierre Plante"
+                "condition_raw": "Pierre Plante",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre plante"
+                }
             }
         ]
     },
@@ -2099,7 +3684,11 @@
         "evolutions": [
             {
                 "id": "514",
-                "condition_raw": "Pierre Feu"
+                "condition_raw": "Pierre Feu",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre feu"
+                }
             }
         ]
     },
@@ -2108,7 +3697,11 @@
         "evolutions": [
             {
                 "id": "516",
-                "condition_raw": "Pierre Eau"
+                "condition_raw": "Pierre Eau",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre eau"
+                }
             }
         ]
     },
@@ -2117,7 +3710,11 @@
         "evolutions": [
             {
                 "id": "518",
-                "condition_raw": "Pierre Lune"
+                "condition_raw": "Pierre Lune",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre lune"
+                }
             }
         ]
     },
@@ -2127,10 +3724,18 @@
             {
                 "id": "520",
                 "condition_raw": "Niveau 21",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "21"
+                },
                 "evolutions": [
                     {
                         "id": "521",
-                        "condition_raw": "Niveau 32"
+                        "condition_raw": "Niveau 32",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "32"
+                        }
                     }
                 ]
             }
@@ -2141,7 +3746,11 @@
         "evolutions": [
             {
                 "id": "523",
-                "condition_raw": "Niveau 27"
+                "condition_raw": "Niveau 27",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "27"
+                }
             }
         ]
     },
@@ -2151,10 +3760,17 @@
             {
                 "id": "525",
                 "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                },
                 "evolutions": [
                     {
                         "id": "526",
-                        "condition_raw": "Échange"
+                        "condition_raw": "Échange",
+                        "conditions": {
+                            "type": "TRADE"
+                        }
                     }
                 ]
             }
@@ -2165,7 +3781,10 @@
         "evolutions": [
             {
                 "id": "528",
-                "condition_raw": "Bonheur"
+                "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                }
             }
         ]
     },
@@ -2174,7 +3793,11 @@
         "evolutions": [
             {
                 "id": "530",
-                "condition_raw": "Niveau 31"
+                "condition_raw": "Niveau 31",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "31"
+                }
             }
         ]
     },
@@ -2184,10 +3807,17 @@
             {
                 "id": "533",
                 "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                },
                 "evolutions": [
                     {
                         "id": "534",
-                        "condition_raw": "Échange"
+                        "condition_raw": "Échange",
+                        "conditions": {
+                            "type": "TRADE"
+                        }
                     }
                 ]
             }
@@ -2199,10 +3829,18 @@
             {
                 "id": "536",
                 "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                },
                 "evolutions": [
                     {
                         "id": "537",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -2214,10 +3852,17 @@
             {
                 "id": "541",
                 "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                },
                 "evolutions": [
                     {
                         "id": "542",
-                        "condition_raw": "Bonheur"
+                        "condition_raw": "Bonheur",
+                        "conditions": {
+                            "type": "FRIENDSHIP"
+                        }
                     }
                 ]
             }
@@ -2229,10 +3874,18 @@
             {
                 "id": "544",
                 "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                },
                 "evolutions": [
                     {
                         "id": "545",
-                        "condition_raw": "Niveau 30"
+                        "condition_raw": "Niveau 30",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "30"
+                        }
                     }
                 ]
             }
@@ -2243,7 +3896,11 @@
         "evolutions": [
             {
                 "id": "547",
-                "condition_raw": "Pierre Soleil"
+                "condition_raw": "Pierre Soleil",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre soleil"
+                }
             }
         ]
     },
@@ -2252,7 +3909,11 @@
         "evolutions": [
             {
                 "id": "549",
-                "condition_raw": "Pierre Soleil"
+                "condition_raw": "Pierre Soleil",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre soleil"
+                }
             }
         ]
     },
@@ -2261,7 +3922,18 @@
         "evolutions": [
             {
                 "id": "902",
-                "condition_raw": "Si Motif Blanc, perdre  PV ou plus par contrecoup"
+                "condition_raw": "Si Motif Blanc, perdre  PV ou plus par contrecoup",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "UNKNOWN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2271,10 +3943,18 @@
             {
                 "id": "552",
                 "condition_raw": "Niveau 29",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "29"
+                },
                 "evolutions": [
                     {
                         "id": "553",
-                        "condition_raw": "Niveau 40"
+                        "condition_raw": "Niveau 40",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "40"
+                        }
                     }
                 ]
             }
@@ -2285,7 +3965,11 @@
         "evolutions": [
             {
                 "id": "555",
-                "condition_raw": "Niveau 35"
+                "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                }
             }
         ]
     },
@@ -2294,7 +3978,11 @@
         "evolutions": [
             {
                 "id": "558",
-                "condition_raw": "Niveau 34"
+                "condition_raw": "Niveau 34",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "34"
+                }
             }
         ]
     },
@@ -2303,7 +3991,11 @@
         "evolutions": [
             {
                 "id": "560",
-                "condition_raw": "Niveau 39"
+                "condition_raw": "Niveau 39",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "39"
+                }
             }
         ]
     },
@@ -2312,7 +4004,11 @@
         "evolutions": [
             {
                 "id": "563",
-                "condition_raw": "Niveau 34"
+                "condition_raw": "Niveau 34",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "34"
+                }
             }
         ]
     },
@@ -2321,7 +4017,11 @@
         "evolutions": [
             {
                 "id": "565",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -2330,7 +4030,11 @@
         "evolutions": [
             {
                 "id": "567",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -2339,7 +4043,11 @@
         "evolutions": [
             {
                 "id": "569",
-                "condition_raw": "Niveau 36"
+                "condition_raw": "Niveau 36",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "36"
+                }
             }
         ]
     },
@@ -2348,7 +4056,11 @@
         "evolutions": [
             {
                 "id": "571",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -2357,7 +4069,11 @@
         "evolutions": [
             {
                 "id": "573",
-                "condition_raw": "Pierre Éclat"
+                "condition_raw": "Pierre Éclat",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre éclat"
+                }
             }
         ]
     },
@@ -2367,10 +4083,18 @@
             {
                 "id": "575",
                 "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                },
                 "evolutions": [
                     {
                         "id": "576",
-                        "condition_raw": "Niveau 41"
+                        "condition_raw": "Niveau 41",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "41"
+                        }
                     }
                 ]
             }
@@ -2382,10 +4106,18 @@
             {
                 "id": "578",
                 "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                },
                 "evolutions": [
                     {
                         "id": "579",
-                        "condition_raw": "Niveau 41"
+                        "condition_raw": "Niveau 41",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "41"
+                        }
                     }
                 ]
             }
@@ -2396,7 +4128,11 @@
         "evolutions": [
             {
                 "id": "581",
-                "condition_raw": "Niveau 35"
+                "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                }
             }
         ]
     },
@@ -2406,10 +4142,18 @@
             {
                 "id": "583",
                 "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                },
                 "evolutions": [
                     {
                         "id": "584",
-                        "condition_raw": "Niveau 47"
+                        "condition_raw": "Niveau 47",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "47"
+                        }
                     }
                 ]
             }
@@ -2420,7 +4164,11 @@
         "evolutions": [
             {
                 "id": "586",
-                "condition_raw": "Niveau 34"
+                "condition_raw": "Niveau 34",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "34"
+                }
             }
         ]
     },
@@ -2429,7 +4177,18 @@
         "evolutions": [
             {
                 "id": "589",
-                "condition_raw": "Échange avec Escargaume"
+                "condition_raw": "Échange avec Escargaume",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2438,7 +4197,11 @@
         "evolutions": [
             {
                 "id": "591",
-                "condition_raw": "Niveau 39"
+                "condition_raw": "Niveau 39",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "39"
+                }
             }
         ]
     },
@@ -2447,7 +4210,11 @@
         "evolutions": [
             {
                 "id": "593",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -2456,7 +4223,11 @@
         "evolutions": [
             {
                 "id": "596",
-                "condition_raw": "Niveau 36"
+                "condition_raw": "Niveau 36",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "36"
+                }
             }
         ]
     },
@@ -2465,7 +4236,11 @@
         "evolutions": [
             {
                 "id": "598",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -2475,10 +4250,18 @@
             {
                 "id": "600",
                 "condition_raw": "Niveau 38",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "38"
+                },
                 "evolutions": [
                     {
                         "id": "601",
-                        "condition_raw": "Niveau 49"
+                        "condition_raw": "Niveau 49",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "49"
+                        }
                     }
                 ]
             }
@@ -2490,10 +4273,18 @@
             {
                 "id": "603",
                 "condition_raw": "Niveau 39",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "39"
+                },
                 "evolutions": [
                     {
                         "id": "604",
-                        "condition_raw": "Pierre Foudre"
+                        "condition_raw": "Pierre Foudre",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre foudre"
+                        }
                     }
                 ]
             }
@@ -2504,7 +4295,11 @@
         "evolutions": [
             {
                 "id": "606",
-                "condition_raw": "Niveau 42"
+                "condition_raw": "Niveau 42",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "42"
+                }
             }
         ]
     },
@@ -2514,10 +4309,17 @@
             {
                 "id": "608",
                 "condition_raw": "Niveau 41",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "41"
+                },
                 "evolutions": [
                     {
                         "id": "609",
-                        "condition_raw": "Pierre Nuit"
+                        "condition_raw": "Pierre Nuit",
+                        "conditions": {
+                            "type": "NIGHT"
+                        }
                     }
                 ]
             }
@@ -2529,10 +4331,18 @@
             {
                 "id": "611",
                 "condition_raw": "Niveau 38",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "38"
+                },
                 "evolutions": [
                     {
                         "id": "612",
-                        "condition_raw": "Niveau 48"
+                        "condition_raw": "Niveau 48",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "48"
+                        }
                     }
                 ]
             }
@@ -2543,7 +4353,11 @@
         "evolutions": [
             {
                 "id": "614",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -2552,7 +4366,18 @@
         "evolutions": [
             {
                 "id": "617",
-                "condition_raw": "Échange avec Carabing"
+                "condition_raw": "Échange avec Carabing",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2561,7 +4386,11 @@
         "evolutions": [
             {
                 "id": "620",
-                "condition_raw": "Niveau 50"
+                "condition_raw": "Niveau 50",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "50"
+                }
             }
         ]
     },
@@ -2570,7 +4399,11 @@
         "evolutions": [
             {
                 "id": "623",
-                "condition_raw": "Niveau 43"
+                "condition_raw": "Niveau 43",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "43"
+                }
             }
         ]
     },
@@ -2580,10 +4413,17 @@
             {
                 "id": "625",
                 "condition_raw": "Niveau 52",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "52"
+                },
                 "evolutions": [
                     {
                         "id": "1008",
-                        "condition_raw": "Vaincre 3 Scalproie tenant un Emblème du Général"
+                        "condition_raw": "Vaincre 3 Scalproie tenant un Emblème du Général",
+                        "conditions": {
+                            "type": "UNKNOWN"
+                        }
                     }
                 ]
             }
@@ -2594,7 +4434,11 @@
         "evolutions": [
             {
                 "id": "628",
-                "condition_raw": "Niveau 54"
+                "condition_raw": "Niveau 54",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "54"
+                }
             }
         ]
     },
@@ -2603,7 +4447,11 @@
         "evolutions": [
             {
                 "id": "630",
-                "condition_raw": "Niveau 54"
+                "condition_raw": "Niveau 54",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "54"
+                }
             }
         ]
     },
@@ -2613,10 +4461,18 @@
             {
                 "id": "634",
                 "condition_raw": "Niveau 50",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "50"
+                },
                 "evolutions": [
                     {
                         "id": "635",
-                        "condition_raw": "Niveau 64"
+                        "condition_raw": "Niveau 64",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "64"
+                        }
                     }
                 ]
             }
@@ -2627,7 +4483,11 @@
         "evolutions": [
             {
                 "id": "637",
-                "condition_raw": "Niveau 59"
+                "condition_raw": "Niveau 59",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "59"
+                }
             }
         ]
     },
@@ -2637,10 +4497,18 @@
             {
                 "id": "651",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "652",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -2652,10 +4520,18 @@
             {
                 "id": "654",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "655",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -2667,10 +4543,18 @@
             {
                 "id": "657",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "658",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -2681,7 +4565,11 @@
         "evolutions": [
             {
                 "id": "660",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -2691,10 +4579,18 @@
             {
                 "id": "662",
                 "condition_raw": "Niveau 17",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "17"
+                },
                 "evolutions": [
                     {
                         "id": "663",
-                        "condition_raw": "Niveau 35"
+                        "condition_raw": "Niveau 35",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "35"
+                        }
                     }
                 ]
             }
@@ -2706,10 +4602,18 @@
             {
                 "id": "665",
                 "condition_raw": "Niveau 9",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "9"
+                },
                 "evolutions": [
                     {
                         "id": "666",
-                        "condition_raw": "Niveau 12"
+                        "condition_raw": "Niveau 12",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "12"
+                        }
                     }
                 ]
             }
@@ -2720,7 +4624,11 @@
         "evolutions": [
             {
                 "id": "668",
-                "condition_raw": "Niveau 35"
+                "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                }
             }
         ]
     },
@@ -2730,10 +4638,18 @@
             {
                 "id": "670",
                 "condition_raw": "Niveau 19",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "19"
+                },
                 "evolutions": [
                     {
                         "id": "671",
-                        "condition_raw": "Pierre Éclat"
+                        "condition_raw": "Pierre Éclat",
+                        "conditions": {
+                            "type": "ITEM_USE",
+                            "data": "pierre éclat"
+                        }
                     }
                 ]
             }
@@ -2744,7 +4660,11 @@
         "evolutions": [
             {
                 "id": "673",
-                "condition_raw": "Niveau 32"
+                "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                }
             }
         ]
     },
@@ -2753,7 +4673,19 @@
         "evolutions": [
             {
                 "id": "675",
-                "condition_raw": "Niveau 32 en ayant un Pokémon Ténèbres dans l'équipe  ténèbres"
+                "condition_raw": "Niveau 32 en ayant un Pokémon Ténèbres dans l'équipe  ténèbres",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "32"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2762,7 +4694,11 @@
         "evolutions": [
             {
                 "id": "678",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -2772,10 +4708,17 @@
             {
                 "id": "680",
                 "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                },
                 "evolutions": [
                     {
                         "id": "681",
-                        "condition_raw": "Pierre Nuit"
+                        "condition_raw": "Pierre Nuit",
+                        "conditions": {
+                            "type": "NIGHT"
+                        }
                     }
                 ]
             }
@@ -2786,7 +4729,19 @@
         "evolutions": [
             {
                 "id": "683",
-                "condition_raw": "Échange en tenant Sachet Senteur"
+                "condition_raw": "Échange en tenant Sachet Senteur",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "sachet senteur"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2795,7 +4750,19 @@
         "evolutions": [
             {
                 "id": "685",
-                "condition_raw": "Échange en tenant Chantibonbon"
+                "condition_raw": "Échange en tenant Chantibonbon",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "TRADE"
+                        },
+                        {
+                            "type": "ITEM_HOLD",
+                            "data": "chantibonbon"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2804,7 +4771,27 @@
         "evolutions": [
             {
                 "id": "687",
-                "condition_raw": "Niveau 30, en mettant à l'envers la 3DS , la 2DS ou la Switch"
+                "condition_raw": "Niveau 30, en mettant à l'envers la 3DS , la 2DS ou la Switch",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL",
+                                    "data": "30"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2813,7 +4800,11 @@
         "evolutions": [
             {
                 "id": "689",
-                "condition_raw": "Niveau 39"
+                "condition_raw": "Niveau 39",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "39"
+                }
             }
         ]
     },
@@ -2822,7 +4813,11 @@
         "evolutions": [
             {
                 "id": "691",
-                "condition_raw": "Niveau 48"
+                "condition_raw": "Niveau 48",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "48"
+                }
             }
         ]
     },
@@ -2831,7 +4826,11 @@
         "evolutions": [
             {
                 "id": "693",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -2840,7 +4839,11 @@
         "evolutions": [
             {
                 "id": "695",
-                "condition_raw": "Pierre Soleil"
+                "condition_raw": "Pierre Soleil",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre soleil"
+                }
             }
         ]
     },
@@ -2849,7 +4852,19 @@
         "evolutions": [
             {
                 "id": "697",
-                "condition_raw": "Niveau 39 pendant la journée"
+                "condition_raw": "Niveau 39 pendant la journée",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "39"
+                        },
+                        {
+                            "type": "DAY"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2858,7 +4873,19 @@
         "evolutions": [
             {
                 "id": "699",
-                "condition_raw": "Niveau 39 pendant la nuit"
+                "condition_raw": "Niveau 39 pendant la nuit",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "39"
+                        },
+                        {
+                            "type": "NIGHT"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2868,10 +4895,26 @@
             {
                 "id": "705",
                 "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                },
                 "evolutions": [
                     {
                         "id": "706",
-                        "condition_raw": "Niveau 50 sous la pluie"
+                        "condition_raw": "Niveau 50 sous la pluie",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL",
+                                    "data": "50"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -2882,7 +4925,10 @@
         "evolutions": [
             {
                 "id": "709",
-                "condition_raw": "Échange"
+                "condition_raw": "Échange",
+                "conditions": {
+                    "type": "TRADE"
+                }
             }
         ]
     },
@@ -2891,7 +4937,10 @@
         "evolutions": [
             {
                 "id": "711",
-                "condition_raw": "Échange"
+                "condition_raw": "Échange",
+                "conditions": {
+                    "type": "TRADE"
+                }
             }
         ]
     },
@@ -2900,7 +4949,11 @@
         "evolutions": [
             {
                 "id": "713",
-                "condition_raw": "Niveau 37"
+                "condition_raw": "Niveau 37",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "37"
+                }
             }
         ]
     },
@@ -2909,7 +4962,11 @@
         "evolutions": [
             {
                 "id": "715",
-                "condition_raw": "Niveau 48"
+                "condition_raw": "Niveau 48",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "48"
+                }
             }
         ]
     },
@@ -2919,10 +4976,18 @@
             {
                 "id": "723",
                 "condition_raw": "Niveau 17",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "17"
+                },
                 "evolutions": [
                     {
                         "id": "724",
-                        "condition_raw": "Niveau 34"
+                        "condition_raw": "Niveau 34",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "34"
+                        }
                     }
                 ]
             }
@@ -2934,10 +4999,18 @@
             {
                 "id": "726",
                 "condition_raw": "Niveau 17",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "17"
+                },
                 "evolutions": [
                     {
                         "id": "727",
-                        "condition_raw": "Niveau 34"
+                        "condition_raw": "Niveau 34",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "34"
+                        }
                     }
                 ]
             }
@@ -2949,10 +5022,18 @@
             {
                 "id": "729",
                 "condition_raw": "Niveau 17",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "17"
+                },
                 "evolutions": [
                     {
                         "id": "730",
-                        "condition_raw": "Niveau 34"
+                        "condition_raw": "Niveau 34",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "34"
+                        }
                     }
                 ]
             }
@@ -2964,10 +5045,18 @@
             {
                 "id": "732",
                 "condition_raw": "Niveau 14",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "14"
+                },
                 "evolutions": [
                     {
                         "id": "733",
-                        "condition_raw": "Niveau 28"
+                        "condition_raw": "Niveau 28",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "28"
+                        }
                     }
                 ]
             }
@@ -2978,7 +5067,19 @@
         "evolutions": [
             {
                 "id": "735",
-                "condition_raw": "Niveau 20, Jour"
+                "condition_raw": "Niveau 20, Jour",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "20"
+                        },
+                        {
+                            "type": "DAY"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -2988,10 +5089,34 @@
             {
                 "id": "737",
                 "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                },
                 "evolutions": [
                     {
                         "id": "738",
-                        "condition_raw": "Gain de niveau dans un champ magnétique spécial ou  Pierre Foudre"
+                        "condition_raw": "Gain de niveau dans un champ magnétique spécial ou  Pierre Foudre",
+                        "conditions": {
+                            "type": "OR",
+                            "children": [
+                                {
+                                    "type": "AND",
+                                    "children": [
+                                        {
+                                            "type": "LEVEL_GAIN"
+                                        },
+                                        {
+                                            "type": "UNKNOWN"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "ITEM_USE",
+                                    "data": "pierre foudre"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -3002,7 +5127,18 @@
         "evolutions": [
             {
                 "id": "740",
-                "condition_raw": "Gain de niveau au Mont Lanakila"
+                "condition_raw": "Gain de niveau au Mont Lanakila",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3011,7 +5147,11 @@
         "evolutions": [
             {
                 "id": "743",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -3020,7 +5160,11 @@
         "evolutions": [
             {
                 "id": "748",
-                "condition_raw": "Niveau 38"
+                "condition_raw": "Niveau 38",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "38"
+                }
             }
         ]
     },
@@ -3029,7 +5173,11 @@
         "evolutions": [
             {
                 "id": "750",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -3038,7 +5186,11 @@
         "evolutions": [
             {
                 "id": "752",
-                "condition_raw": "Niveau 22"
+                "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                }
             }
         ]
     },
@@ -3047,7 +5199,19 @@
         "evolutions": [
             {
                 "id": "754",
-                "condition_raw": "Niveau 34, Jour"
+                "condition_raw": "Niveau 34, Jour",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "34"
+                        },
+                        {
+                            "type": "DAY"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3056,7 +5220,11 @@
         "evolutions": [
             {
                 "id": "756",
-                "condition_raw": "Niveau 24"
+                "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                }
             }
         ]
     },
@@ -3065,7 +5233,20 @@
         "evolutions": [
             {
                 "id": "758",
-                "condition_raw": "Niveau 33, Femelle"
+                "condition_raw": "Niveau 33, Femelle",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "33"
+                        },
+                        {
+                            "type": "GENDER",
+                            "data": "femelle"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3074,7 +5255,11 @@
         "evolutions": [
             {
                 "id": "760",
-                "condition_raw": "Niveau 27"
+                "condition_raw": "Niveau 27",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "27"
+                }
             }
         ]
     },
@@ -3084,10 +5269,25 @@
             {
                 "id": "762",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "763",
-                        "condition_raw": "Monter d'un niveau en connaissant Écrasement"
+                        "condition_raw": "Monter d'un niveau en connaissant Écrasement",
+                        "conditions": {
+                            "type": "AND",
+                            "children": [
+                                {
+                                    "type": "LEVEL_GAIN"
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -3098,7 +5298,11 @@
         "evolutions": [
             {
                 "id": "768",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -3107,7 +5311,11 @@
         "evolutions": [
             {
                 "id": "770",
-                "condition_raw": "Niveau 42"
+                "condition_raw": "Niveau 42",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "42"
+                }
             }
         ]
     },
@@ -3116,7 +5324,10 @@
         "evolutions": [
             {
                 "id": "773",
-                "condition_raw": "Bonheur"
+                "condition_raw": "Bonheur",
+                "conditions": {
+                    "type": "FRIENDSHIP"
+                }
             }
         ]
     },
@@ -3126,10 +5337,18 @@
             {
                 "id": "783",
                 "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                },
                 "evolutions": [
                     {
                         "id": "784",
-                        "condition_raw": "Niveau 45"
+                        "condition_raw": "Niveau 45",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "45"
+                        }
                     }
                 ]
             }
@@ -3141,14 +5360,58 @@
             {
                 "id": "790",
                 "condition_raw": "Niveau 43",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "43"
+                },
                 "evolutions": [
                     {
                         "id": "791",
-                        "condition_raw": "Niveau 53, Pokémon Soleil, Ultra-Soleil ou Épée"
+                        "condition_raw": "Niveau 53, Pokémon Soleil, Ultra-Soleil ou Épée",
+                        "conditions": {
+                            "type": "OR",
+                            "children": [
+                                {
+                                    "type": "AND",
+                                    "children": [
+                                        {
+                                            "type": "LEVEL",
+                                            "data": "53"
+                                        },
+                                        {
+                                            "type": "UNKNOWN"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     },
                     {
                         "id": "792",
-                        "condition_raw": "Niveau 53, Pokémon Lune, Ultra-Lune ou Bouclier"
+                        "condition_raw": "Niveau 53, Pokémon Lune, Ultra-Lune ou Bouclier",
+                        "conditions": {
+                            "type": "OR",
+                            "children": [
+                                {
+                                    "type": "AND",
+                                    "children": [
+                                        {
+                                            "type": "LEVEL",
+                                            "data": "53"
+                                        },
+                                        {
+                                            "type": "UNKNOWN"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "UNKNOWN"
+                                }
+                            ]
+                        }
                     }
                 ]
             }
@@ -3159,7 +5422,10 @@
         "evolutions": [
             {
                 "id": "804",
-                "condition_raw": "Apprendre Dracochoc"
+                "condition_raw": "Apprendre Dracochoc",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -3168,7 +5434,10 @@
         "evolutions": [
             {
                 "id": "809",
-                "condition_raw": "bonbons Meltan, Pokémon GO"
+                "condition_raw": "bonbons Meltan, Pokémon GO",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -3178,10 +5447,18 @@
             {
                 "id": "811",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "812",
-                        "condition_raw": "Niveau 35"
+                        "condition_raw": "Niveau 35",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "35"
+                        }
                     }
                 ]
             }
@@ -3193,10 +5470,18 @@
             {
                 "id": "814",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "815",
-                        "condition_raw": "Niveau 35"
+                        "condition_raw": "Niveau 35",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "35"
+                        }
                     }
                 ]
             }
@@ -3208,10 +5493,18 @@
             {
                 "id": "817",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "818",
-                        "condition_raw": "Niveau 35"
+                        "condition_raw": "Niveau 35",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "35"
+                        }
                     }
                 ]
             }
@@ -3222,7 +5515,11 @@
         "evolutions": [
             {
                 "id": "820",
-                "condition_raw": "Niveau 24"
+                "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                }
             }
         ]
     },
@@ -3232,10 +5529,18 @@
             {
                 "id": "822",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "823",
-                        "condition_raw": "Niveau 38"
+                        "condition_raw": "Niveau 38",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "38"
+                        }
                     }
                 ]
             }
@@ -3247,10 +5552,18 @@
             {
                 "id": "825",
                 "condition_raw": "Niveau 10",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "10"
+                },
                 "evolutions": [
                     {
                         "id": "826",
-                        "condition_raw": "Niveau 30"
+                        "condition_raw": "Niveau 30",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "30"
+                        }
                     }
                 ]
             }
@@ -3261,7 +5574,11 @@
         "evolutions": [
             {
                 "id": "828",
-                "condition_raw": "Niveau 18"
+                "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                }
             }
         ]
     },
@@ -3270,7 +5587,11 @@
         "evolutions": [
             {
                 "id": "830",
-                "condition_raw": "Niveau 20"
+                "condition_raw": "Niveau 20",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "20"
+                }
             }
         ]
     },
@@ -3279,7 +5600,11 @@
         "evolutions": [
             {
                 "id": "832",
-                "condition_raw": "Niveau 24"
+                "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                }
             }
         ]
     },
@@ -3288,7 +5613,11 @@
         "evolutions": [
             {
                 "id": "834",
-                "condition_raw": "Niveau 22"
+                "condition_raw": "Niveau 22",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "22"
+                }
             }
         ]
     },
@@ -3297,7 +5626,11 @@
         "evolutions": [
             {
                 "id": "836",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -3307,10 +5640,18 @@
             {
                 "id": "838",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "839",
-                        "condition_raw": "Niveau 34"
+                        "condition_raw": "Niveau 34",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "34"
+                        }
                     }
                 ]
             }
@@ -3321,11 +5662,19 @@
         "evolutions": [
             {
                 "id": "841",
-                "condition_raw": "Pomme Acidulée"
+                "condition_raw": "Pomme Acidulée",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pomme acidulée"
+                }
             },
             {
                 "id": "842",
-                "condition_raw": "Pomme Sucrée"
+                "condition_raw": "Pomme Sucrée",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pomme sucrée"
+                }
             }
         ]
     },
@@ -3334,7 +5683,11 @@
         "evolutions": [
             {
                 "id": "844",
-                "condition_raw": "Niveau 36"
+                "condition_raw": "Niveau 36",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "36"
+                }
             }
         ]
     },
@@ -3343,7 +5696,11 @@
         "evolutions": [
             {
                 "id": "847",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -3352,7 +5709,11 @@
         "evolutions": [
             {
                 "id": "849",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -3361,7 +5722,11 @@
         "evolutions": [
             {
                 "id": "851",
-                "condition_raw": "Niveau 28"
+                "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                }
             }
         ]
     },
@@ -3370,7 +5735,18 @@
         "evolutions": [
             {
                 "id": "853",
-                "condition_raw": "Monter d'un niveau en connaissant Provoc"
+                "condition_raw": "Monter d'un niveau en connaissant Provoc",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL_GAIN"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3379,7 +5755,20 @@
         "evolutions": [
             {
                 "id": "855",
-                "condition_raw": "Théière Fêlée ou Théière Ébréchée"
+                "condition_raw": "Théière Fêlée ou Théière Ébréchée",
+                "conditions": {
+                    "type": "OR",
+                    "children": [
+                        {
+                            "type": "ITEM_USE",
+                            "data": "théière fêlée"
+                        },
+                        {
+                            "type": "ITEM_USE",
+                            "data": "théière ébréchée"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3389,10 +5778,18 @@
             {
                 "id": "857",
                 "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                },
                 "evolutions": [
                     {
                         "id": "858",
-                        "condition_raw": "Niveau 42"
+                        "condition_raw": "Niveau 42",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "42"
+                        }
                     }
                 ]
             }
@@ -3404,10 +5801,18 @@
             {
                 "id": "860",
                 "condition_raw": "Niveau 32",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "32"
+                },
                 "evolutions": [
                     {
                         "id": "861",
-                        "condition_raw": "Niveau 42"
+                        "condition_raw": "Niveau 42",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "42"
+                        }
                     }
                 ]
             }
@@ -3418,7 +5823,10 @@
         "evolutions": [
             {
                 "id": "869",
-                "condition_raw": "Objet en Sucre et tourner sur soi-même"
+                "condition_raw": "Objet en Sucre et tourner sur soi-même",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -3427,7 +5835,18 @@
         "evolutions": [
             {
                 "id": "873",
-                "condition_raw": "Bonheur de Nuit"
+                "condition_raw": "Bonheur de Nuit",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "FRIENDSHIP"
+                        },
+                        {
+                            "type": "NIGHT"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3436,7 +5855,11 @@
         "evolutions": [
             {
                 "id": "879",
-                "condition_raw": "Niveau 34"
+                "condition_raw": "Niveau 34",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "34"
+                }
             }
         ]
     },
@@ -3446,10 +5869,18 @@
             {
                 "id": "886",
                 "condition_raw": "Niveau 50",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "50"
+                },
                 "evolutions": [
                     {
                         "id": "887",
-                        "condition_raw": "Niveau 60"
+                        "condition_raw": "Niveau 60",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "60"
+                        }
                     }
                 ]
             }
@@ -3461,10 +5892,18 @@
             {
                 "id": "907",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "908",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -3476,10 +5915,18 @@
             {
                 "id": "910",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "911",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -3491,10 +5938,18 @@
             {
                 "id": "913",
                 "condition_raw": "Niveau 16",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "16"
+                },
                 "evolutions": [
                     {
                         "id": "914",
-                        "condition_raw": "Niveau 36"
+                        "condition_raw": "Niveau 36",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "36"
+                        }
                     }
                 ]
             }
@@ -3505,7 +5960,11 @@
         "evolutions": [
             {
                 "id": "916",
-                "condition_raw": "Niveau 18"
+                "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                }
             }
         ]
     },
@@ -3514,7 +5973,11 @@
         "evolutions": [
             {
                 "id": "919",
-                "condition_raw": "Niveau 15"
+                "condition_raw": "Niveau 15",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "15"
+                }
             }
         ]
     },
@@ -3523,7 +5986,11 @@
         "evolutions": [
             {
                 "id": "921",
-                "condition_raw": "Niveau 24"
+                "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                }
             }
         ]
     },
@@ -3532,7 +5999,10 @@
         "evolutions": [
             {
                 "id": "923",
-                "condition_raw": "Marcher  pas avec la fonction En avant !"
+                "condition_raw": "Marcher  pas avec la fonction En avant !",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -3541,7 +6011,19 @@
         "evolutions": [
             {
                 "id": "925",
-                "condition_raw": "Niveau 24 de nuit"
+                "condition_raw": "Niveau 24 de nuit",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "24"
+                        },
+                        {
+                            "type": "NIGHT"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3550,7 +6032,11 @@
         "evolutions": [
             {
                 "id": "927",
-                "condition_raw": "Niveau 35"
+                "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                }
             }
         ]
     },
@@ -3559,7 +6045,11 @@
         "evolutions": [
             {
                 "id": "930",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -3568,7 +6058,19 @@
         "evolutions": [
             {
                 "id": "934",
-                "condition_raw": "Niveau 38 avec un autre joueur et son Pokémon à proximité en mode coop"
+                "condition_raw": "Niveau 38 avec un autre joueur et son Pokémon à proximité en mode coop",
+                "conditions": {
+                    "type": "AND",
+                    "children": [
+                        {
+                            "type": "LEVEL",
+                            "data": "38"
+                        },
+                        {
+                            "type": "UNKNOWN"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -3578,10 +6080,18 @@
             {
                 "id": "936",
                 "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                },
                 "evolutions": [
                     {
                         "id": "937",
-                        "condition_raw": "Niveau 35"
+                        "condition_raw": "Niveau 35",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "35"
+                        }
                     }
                 ]
             }
@@ -3592,7 +6102,11 @@
         "evolutions": [
             {
                 "id": "939",
-                "condition_raw": "Pierre Feu"
+                "condition_raw": "Pierre Feu",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre feu"
+                }
             }
         ]
     },
@@ -3601,7 +6115,11 @@
         "evolutions": [
             {
                 "id": "941",
-                "condition_raw": "Pierre Foudre"
+                "condition_raw": "Pierre Foudre",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre foudre"
+                }
             }
         ]
     },
@@ -3610,7 +6128,11 @@
         "evolutions": [
             {
                 "id": "943",
-                "condition_raw": "Niveau 40"
+                "condition_raw": "Niveau 40",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "40"
+                }
             }
         ]
     },
@@ -3619,7 +6141,11 @@
         "evolutions": [
             {
                 "id": "946",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -3628,7 +6154,11 @@
         "evolutions": [
             {
                 "id": "948",
-                "condition_raw": "Pierre Glace"
+                "condition_raw": "Pierre Glace",
+                "conditions": {
+                    "type": "ITEM_USE",
+                    "data": "pierre glace"
+                }
             }
         ]
     },
@@ -3638,10 +6168,18 @@
             {
                 "id": "950",
                 "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                },
                 "evolutions": [
                     {
                         "id": "951",
-                        "condition_raw": "Niveau 54"
+                        "condition_raw": "Niveau 54",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "54"
+                        }
                     }
                 ]
             }
@@ -3653,10 +6191,17 @@
             {
                 "id": "955",
                 "condition_raw": "Niveau 18",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "18"
+                },
                 "evolutions": [
                     {
                         "id": "956",
-                        "condition_raw": "Marcher  pas avec la fonction En avant !"
+                        "condition_raw": "Marcher  pas avec la fonction En avant !",
+                        "conditions": {
+                            "type": "UNKNOWN"
+                        }
                     }
                 ]
             }
@@ -3667,7 +6212,11 @@
         "evolutions": [
             {
                 "id": "958",
-                "condition_raw": "Niveau 25"
+                "condition_raw": "Niveau 25",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "25"
+                }
             }
         ]
     },
@@ -3677,10 +6226,18 @@
             {
                 "id": "964",
                 "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                },
                 "evolutions": [
                     {
                         "id": "965",
-                        "condition_raw": "Niveau 38"
+                        "condition_raw": "Niveau 38",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "38"
+                        }
                     }
                 ]
             }
@@ -3691,7 +6248,11 @@
         "evolutions": [
             {
                 "id": "967",
-                "condition_raw": "Niveau 35"
+                "condition_raw": "Niveau 35",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "35"
+                }
             }
         ]
     },
@@ -3700,7 +6261,11 @@
         "evolutions": [
             {
                 "id": "969",
-                "condition_raw": "Niveau 28"
+                "condition_raw": "Niveau 28",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "28"
+                }
             }
         ]
     },
@@ -3709,7 +6274,11 @@
         "evolutions": [
             {
                 "id": "971",
-                "condition_raw": "Niveau 26"
+                "condition_raw": "Niveau 26",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "26"
+                }
             }
         ]
     },
@@ -3718,7 +6287,11 @@
         "evolutions": [
             {
                 "id": "973",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     },
@@ -3727,7 +6300,10 @@
         "evolutions": [
             {
                 "id": "975",
-                "condition_raw": "Marcher  pas avec la fonction En avant !"
+                "condition_raw": "Marcher  pas avec la fonction En avant !",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -3736,7 +6312,10 @@
         "evolutions": [
             {
                 "id": "977",
-                "condition_raw": "Collecter  Pièces de Mordudor"
+                "condition_raw": "Collecter  Pièces de Mordudor",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -3746,10 +6325,18 @@
             {
                 "id": "1001",
                 "condition_raw": "Niveau 24",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "24"
+                },
                 "evolutions": [
                     {
                         "id": "1002",
-                        "condition_raw": "Niveau 38"
+                        "condition_raw": "Niveau 38",
+                        "conditions": {
+                            "type": "LEVEL",
+                            "data": "38"
+                        }
                     }
                 ]
             }
@@ -3760,11 +6347,17 @@
         "evolutions": [
             {
                 "id": "1004",
-                "condition_raw": "Armure de la Fortune"
+                "condition_raw": "Armure de la Fortune",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             },
             {
                 "id": "1005",
-                "condition_raw": "Armure de la Rancune"
+                "condition_raw": "Armure de la Rancune",
+                "conditions": {
+                    "type": "UNKNOWN"
+                }
             }
         ]
     },
@@ -3773,7 +6366,11 @@
         "evolutions": [
             {
                 "id": "1007",
-                "condition_raw": "Niveau 30"
+                "condition_raw": "Niveau 30",
+                "conditions": {
+                    "type": "LEVEL",
+                    "data": "30"
+                }
             }
         ]
     }

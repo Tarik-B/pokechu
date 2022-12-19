@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="type_name_0">acier</string>
+    <string name="type_name_1">combat</string>
+    <string name="type_name_2">dragon</string>
+    <string name="type_name_3">eau</string>
+    <string name="type_name_4">électrik</string>
+    <string name="type_name_5">fée</string>
+    <string name="type_name_6">feu</string>
+    <string name="type_name_7">glace</string>
+    <string name="type_name_8">insecte</string>
+    <string name="type_name_9">normal</string>
+    <string name="type_name_10">plante</string>
+    <string name="type_name_11">poison</string>
+    <string name="type_name_12">psy</string>
+    <string name="type_name_13">roche</string>
+    <string name="type_name_14">sol</string>
+    <string name="type_name_15">spectre</string>
+    <string name="type_name_16">ténèbres</string>
+    <string name="type_name_17">vol</string>
+</resources>

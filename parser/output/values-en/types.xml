@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="type_name_0">steel</string>
+    <string name="type_name_1">fighting</string>
+    <string name="type_name_2">dragon</string>
+    <string name="type_name_3">water</string>
+    <string name="type_name_4">electric</string>
+    <string name="type_name_5">fairy</string>
+    <string name="type_name_6">fire</string>
+    <string name="type_name_7">ice</string>
+    <string name="type_name_8">bug</string>
+    <string name="type_name_9">normal</string>
+    <string name="type_name_10">grass</string>
+    <string name="type_name_11">poison</string>
+    <string name="type_name_12">psychic</string>
+    <string name="type_name_13">rock</string>
+    <string name="type_name_14">ground</string>
+    <string name="type_name_15">ghost</string>
+    <string name="type_name_16">dark</string>
+    <string name="type_name_17">flying</string>
+</resources>

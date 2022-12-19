@@ -22,6 +22,9 @@ import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.data.BaseIdEvolvedIdCondition
+import fr.amazer.pokechu.data.PokedexType
+import fr.amazer.pokechu.data.Pokemon
+import fr.amazer.pokechu.data.PokemonType
 import fr.amazer.pokechu.databinding.ActivityDetailsBinding
 import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.managers.LocalizationManager
@@ -42,7 +45,9 @@ class ActivityDetails : BaseActivity() {
     protected lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
 
     private var pokemonId: Int = 0
+    private lateinit var pokemon: Pokemon
     private lateinit var evolutionChain: List<BaseIdEvolvedIdCondition>
+    private lateinit var types: List<Int>
     private var currentNode: Node? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,20 +64,30 @@ class ActivityDetails : BaseActivity() {
 
 //        binding.toolbarLayout.title = title
 
-        // Header
-        setupHeader()
-
-        // Create graph
+        suspend fun getPokemonById(): Pokemon? = withContext(Dispatchers.IO) {
+            return@withContext DatabaseManager.findPokemonById(pokemonId)
+        }
         suspend fun getEvolutionChain(): List<BaseIdEvolvedIdCondition> = withContext(Dispatchers.IO) {
             var evolutionRoot: Int = DatabaseManager.findPokemonEvolutionRoot(pokemonId)
             if (evolutionRoot == 0)
                 evolutionRoot = pokemonId
             return@withContext DatabaseManager.findPokemonEvolutions(evolutionRoot)
         }
+        suspend fun getPokemonTypes(): List<Int> = withContext(Dispatchers.IO) {
+            return@withContext DatabaseManager.findPokemonTypes(pokemonId)
+        }
         lifecycleScope.launch { // coroutine on main
-            // Find evolution tree
+            var pokemonData = getPokemonById() // coroutine on IO
             evolutionChain = getEvolutionChain() // coroutine on IO
+            types = getPokemonTypes() // coroutine on IO
             // back on main
+
+            if (pokemonData == null)
+                finish()
+            pokemon = pokemonData!!
+
+            // Header
+            setupHeader()
 
             // Setup graph
             val graph = createGraph()
@@ -98,15 +113,30 @@ class ActivityDetails : BaseActivity() {
         supportActionBar?.setTitle("#${pokemonId} - ${localizedName}");
 
         // Header text
-        val textView = binding.textView
-        textView.text = "" //"English name: ${pokemonData.names.en}\n" +
+        binding.textHeightValue.text = pokemon.height.toString()
+        binding.textWeightValue.text = pokemon.weight.toString()
+
+        types.forEach{ type ->
+            val inflater = LayoutInflater.from(applicationContext)
+            val imageRoot = inflater.inflate(R.layout.details_type_item, null, false)
+            val imageView = imageRoot.findViewById(R.id.image_type) as ImageView
+
+            val assetManager: AssetManager? = applicationContext.assets
+            val imgPath = AssetUtils.getTypeThuymbnailPath(PokemonType.values()[type])
+            val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
+            imageView.setImageBitmap(bitmap)
+
+            binding.typesImageContainer.addView(imageRoot)
+        }
+//        val textView = binding.textView
+//        textView.text = "" //"English name: ${pokemonData.names.en}\n" +
 //                        "National ID: ${pokemonData.ids.unique}\n" +
 //                        "Paldea ID: ${pokemonData.ids.paldea}"
 
         // Image
         val imageView = binding.imageHeader
         val assetManager: AssetManager? = applicationContext.assets
-        val imgPath = AssetUtils.getThumbnailPath(pokemonId)
+        val imgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
         val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
         imageView.setImageBitmap(bitmap)
 
@@ -204,7 +234,7 @@ class ActivityDetails : BaseActivity() {
 //                    holder.textViewSub.text = evolutionTreeNode.condition
 
                 // Set thumbnail image
-                val imgPath = AssetUtils.getThumbnailPath(currentId)
+                val imgPath = AssetUtils.getPokemonThumbnailPath(currentId)
                 var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
                 holder.imageThumbnail.setImageBitmap(bitmap)
                 if (isDiscovered == true) {

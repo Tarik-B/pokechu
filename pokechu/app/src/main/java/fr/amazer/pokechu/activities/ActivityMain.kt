@@ -3,24 +3,30 @@ package fr.amazer.pokechu.activities
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.AssetManager
+import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.ImageView
 import android.widget.SearchView
+import android.widget.TextView
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.cardview.widget.CardView
 import androidx.core.view.WindowCompat
 import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.card.MaterialCardView
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.data.NationalIdLocalId
-import fr.amazer.pokechu.data.PokedexType
-import fr.amazer.pokechu.data.Regions
+import fr.amazer.pokechu.data.*
 import fr.amazer.pokechu.databinding.ActivityMainBinding
 import fr.amazer.pokechu.fragments.StartSearchDialogFragment
 import fr.amazer.pokechu.managers.DatabaseManager
@@ -29,12 +35,12 @@ import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.ListAdapter
 import fr.amazer.pokechu.ui.ListAdapterData
 import fr.amazer.pokechu.ui.RecyclerTouchListener
+import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.UIUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class ActivityMain : BaseActivity() {
@@ -47,7 +53,12 @@ class ActivityMain : BaseActivity() {
     private lateinit var settingsActivityLauncher: ActivityResultLauncher<Intent>
     private lateinit var detailsActivityLauncher: ActivityResultLauncher<Intent>
 
-    private lateinit var regions: List<Regions>
+    private var regions = ArrayList<Region>()
+    private var typesMap = HashMap<Int,List<PokemonType>>()
+
+    private lateinit var progressOverlay: View
+
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -65,28 +76,87 @@ class ActivityMain : BaseActivity() {
             newFragment.show(supportFragmentManager, "search")
         }
 
-        // Discovered count
+        // Bottom sheet
+        bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet.bottomSheet);
+//        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        progressOverlay = binding.loadOverlay.loadingFrame
+
+        // Show progress overlay (with animation):
+        progressOverlay.visibility = View.VISIBLE
+//        UIUtils.animateView(progressOverlay, View.VISIBLE, 1.0f, 50);
+
         suspend fun getPokemonsCount(): Int = withContext(Dispatchers.IO) {
             return@withContext DatabaseManager.findPokemonsCount()
         }
-        lifecycleScope.launch { // coroutine on main
-            val totalPokemonCount = getPokemonsCount() // coroutine on IO
-            // back on main
-            val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
-            binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
-        }
-
-        // Get regions
-        suspend fun getRegions(): List<Regions> = withContext(Dispatchers.IO) {
+        suspend fun getRegions(): List<Region> = withContext(Dispatchers.IO) {
             return@withContext DatabaseManager.findRegions()
         }
-        lifecycleScope.launch { // coroutine on main
-            // Find regions
-            regions = getRegions() // coroutine on IO
-            // back on main
+        suspend fun getPokemonsTypes(): List<PokemonIdTypesId> = withContext(Dispatchers.IO) {
+            return@withContext DatabaseManager.findPokemonsTypes()
         }
+        lifecycleScope.launch { // coroutine on main
+            val totalPokemonCount = getPokemonsCount() // coroutine on IO
+            // Get regions
+            regions = getRegions() as ArrayList<Region> // coroutine on IO
+            val pokemonTypes = getPokemonsTypes()
+            // back on main
 
-        setUpRecyclerView()
+            // Refresh options menu for region filters
+            invalidateOptionsMenu()
+
+            // Build pokemon id -> types map
+            typesMap = HashMap<Int, List<PokemonType>>()
+            pokemonTypes.forEach{ value ->
+                typesMap[value.pokemon_id] = value.type_id_list as List<PokemonType>
+            }
+
+            // Discovered count
+            val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
+            binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
+
+            onBackPressedDispatcher.addCallback(this@ActivityMain, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    }
+                    else {
+                        finish()
+                    }
+                }
+            })
+
+            setUpRecyclerView()
+
+            binding.bottomSheet.regionGridContainer.removeAllViews()
+            regions.forEach { region ->
+                val inflater = LayoutInflater.from(applicationContext)
+                val regionItem =
+                    inflater.inflate(R.layout.bottom_sheet_region_item, null, false) as MaterialCardView
+                val imageView = regionItem.findViewById(R.id.region_image_view) as ImageView
+
+                val assetManager: AssetManager? = applicationContext.assets
+                val imgPath = AssetUtils.getRegionThuymbnailPat(PokedexType.values()[region.id])
+                val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
+                imageView.setImageBitmap(bitmap)
+
+                val textView = regionItem.findViewById(R.id.region_text_view) as TextView
+                textView.text = LocalizationManager.getLocalizedRegionName(applicationContext, PokedexType.values()[region.id])
+                Log.i(this::class.simpleName, "textView.text = ${textView.text}")
+                val selectedRegion = SettingsManager.getSelectedRegion()
+                regionItem.strokeWidth = if (region.id == selectedRegion) 10 else 0
+
+                regionItem.setOnClickListener { l ->
+                    Log.i(this::class.simpleName, "regionItem.setOnClickListener")
+                    val regionId = PokedexType.values()[region.id]
+                    SettingsManager.setSelectedRegion(regionId)
+//                adapter?.notifyDataSetChanged()
+                    UIUtils.reloadActivity(this@ActivityMain, true)
+                }
+
+                binding.bottomSheet.regionGridContainer.addView(regionItem)
+            }
+        }
 
         // Create launcher for activities details/settings + notify data changed when they close
         settingsActivityLauncher = registerForActivityResult(
@@ -107,7 +177,9 @@ class ActivityMain : BaseActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
 
-        //MenuCompat.setGroupDividerEnabled(menu, true)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            menu.setGroupDividerEnabled(true)
+        }
 
         // Associate searchable configuration with the SearchView
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -128,17 +200,16 @@ class ActivityMain : BaseActivity() {
         })
 
         menu.findItem(R.id.search).setOnActionExpandListener( object : MenuItem.OnActionExpandListener {
-                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                    Log.i(this::class.simpleName, "onMenuItemActionExpand")
-                    return true
-                }
+            override fun onMenuItemActionExpand(p0: MenuItem): Boolean {
+                Log.i(this::class.simpleName, "onMenuItemActionExpand")
+                return true
+            }
 
-                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                    // Clear text and apply
-                    searchView.setQuery("", true)
-                    return true
-                }
-            })
+            override fun onMenuItemActionCollapse(p0: MenuItem): Boolean {
+                searchView.setQuery("", true)
+                return true
+            }
+        })
 
         // Setup customize menu
         val customizeButton = menu.findItem(R.id.button_customize)
@@ -194,11 +265,13 @@ class ActivityMain : BaseActivity() {
         val filterSubMenuItem = menu.findItem(R.id.button_filter)
         menuInflater.inflate(R.menu.menu_main_filter, filterSubMenuItem.subMenu)
         regions.forEach{ region ->
-            val resId: Int = applicationContext.resources.getIdentifier("region_${region.id}", "string", "fr.amazer.pokechu")
-            filterSubMenuItem.subMenu.add(0, region.id, region.id, resId)
-            val menuItem = filterSubMenuItem.subMenu[region.id]
-            menuItem.isCheckable = true
-            menuItem.isChecked = (region.id == selectedRegion)
+            val resId: Int = applicationContext.resources.getIdentifier("region_name_${region.id}", "string", "fr.amazer.pokechu")
+            filterSubMenuItem.subMenu?.add(0, region.id, region.id, resId)
+            val menuItem = filterSubMenuItem.subMenu?.get(region.id)
+            if (menuItem != null) {
+                menuItem.isCheckable = true
+                menuItem.isChecked = (region.id == selectedRegion)
+            }
         }
 
         return true
@@ -261,7 +334,7 @@ class ActivityMain : BaseActivity() {
                 return@withContext dataMap
             }
             else {
-                val pokemonLocalIds: List<NationalIdLocalId> = DatabaseManager.findLocalIdsByRegion(selectedRegion)
+                val pokemonLocalIds: List<NationalIdLocalId> = DatabaseManager.findPokemonRegions(selectedRegion)
                 val dataMap = HashMap<Int, ListAdapterData>()
                 pokemonLocalIds.forEach{ id -> dataMap[id.pokemon_id] = ListAdapterData(id.local_id)}
                 return@withContext dataMap
@@ -272,7 +345,7 @@ class ActivityMain : BaseActivity() {
             // back on main
             val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
 
-            adapter = ListAdapter(applicationContext, pokemonData, uiItemId)
+            adapter = ListAdapter(applicationContext, pokemonData, typesMap, uiItemId)
             recyclerView.adapter = adapter
 
             // Add click/long click listeners on items
@@ -295,12 +368,27 @@ class ActivityMain : BaseActivity() {
                         override fun onLongClick(view: View?, position: Int) {
                             val pokemonId = adapter?.getCurrentIds()?.get(position)
                             if (pokemonId != null) {
-                                SettingsManager.togglePokemonDiscovered(pokemonId)
+                                val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
+                                val isCaptured = SettingsManager.isPokemonCaptured(pokemonId)
+                                if (!isDiscovered) {
+                                    SettingsManager.togglePokemonDiscovered(pokemonId)
+                                }
+                                else if (!isCaptured) {
+                                    SettingsManager.togglePokemonCaptured(pokemonId)
+                                }
+                                else {
+                                    SettingsManager.togglePokemonDiscovered(pokemonId)
+                                    SettingsManager.togglePokemonCaptured(pokemonId)
+                                }
+
                                 adapter?.notifyItemChanged(position)
                             }
                         }
                     })
             )
+
+            // Hide it (with animation):
+            UIUtils.animateView(progressOverlay, View.GONE, 0.0f, 50);
         }
     }
 
@@ -325,5 +413,21 @@ class ActivityMain : BaseActivity() {
             }
         }
         adapter!!.setFilter(filteredIds)
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                val outRect = Rect()
+                binding.bottomSheet.bottomSheet.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(
+                        event.rawX.toInt(),
+                        event.rawY.toInt()
+                    )
+                ) bottomSheetBehavior.state =
+                    BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
+        return super.dispatchTouchEvent(event)
     }
 }

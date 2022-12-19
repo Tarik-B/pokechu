@@ -1,57 +1,76 @@
 #!/usr/bin/env python3
-import os
-import urllib.error
 
-import requests
-from bs4 import BeautifulSoup
-from itertools import product
-from urllib.request import urlopen, Request
+
+import bs4
 import bs4.element
+import itertools
+import os
 import re
+import urllib
 
-from os.path import basename
-from urllib.parse import unquote
+PAGES_CACHE_FOLDER = "./output/cache/"
+
+
+def read_file(file_path: str, encoding="utf-8") -> str:
+    with open(file_path, "r", encoding=encoding) as file:
+        try:
+            return file.read()
+        except OSError as e:
+            raise Exception(f"error '{e}' while reading {file_path}")
+    return None
+
+
 def download_page(url: str) -> str:
+    parsed_url = urllib.parse.urlparse(urllib.parse.unquote(url))
+    fullurl = f"{parsed_url.scheme}://{parsed_url.netloc}{parsed_url.path}"
 
-    file_name = os.path.basename(unquote(url))
-    full_path = "./output/pages/" + file_name + ".html"
+    if parsed_url.query:
+        fullurl += f"?{parsed_url.query}"
+    if parsed_url.fragment:
+        fullurl += f"#{parsed_url.fragment}"
+
+    full_path = f"{PAGES_CACHE_FOLDER}{parsed_url.netloc}{parsed_url.path}"
 
     # Check if file exists before dl it
     if os.path.exists(full_path):
-        with open(file=full_path, mode="r", encoding="utf-8") as file:
-            try:
-                return file.read()
-            except OSError as e:
-                raise Exception(f"error '{e}' while reading page file {full_path}")
+        file = read_file(full_path, "utf-8")
+        if file:
+            return file
+        # else just keep going and download the file then
 
     # Use custom user agent to bypass blocking of known spider/bot user agents
-    request = Request(
+    request = urllib.request.Request(
         url=url,
         headers={"User-Agent": "Mozilla/5.0"}
     )
 
     try:
-        page = urlopen(request)
+        page = urllib.request.urlopen(request)
     except urllib.error.URLError as e:
-        raise Exception(f"error '{e}' while downloading page {url}")
+        print(f"error '{e}' while downloading page {url}")
+        return None
 
     page_source = page.read()
     html = page_source.decode("utf-8")
 
     # Save file
-    with open(file=full_path, mode="w", encoding="utf-8") as file:
-        try:
+    try:
+        dir_path = os.path.dirname(full_path)
+        os.makedirs(dir_path, exist_ok=True)
+
+        with open(file=full_path, mode="w", encoding="utf-8") as file:
             file.write(html)
-        except OSError as e:
-            raise Exception(f"error '{e}' while reading page file {full_path}")
+    except OSError as e:
+        print(f"error '{e}' while writing page file {full_path}")
+        # return None # just keep going and return the file
 
     return html
 
 
 # Code by Martijn Pieters (https://stackoverflow.com/a/48451104)
 def table_to_2d(html_table: str):
-    # soup = BeautifulSoup(result, 'lxml')
-    soup = BeautifulSoup(html_table, 'html.parser')
+    # soup = bs4.BeautifulSoup(result, 'lxml')
+    soup = bs4.BeautifulSoup(html_table, 'html.parser')
 
     rowspans = []  # track pending rowspans
     rows = soup.table.find_all('tr')
@@ -101,16 +120,8 @@ def table_to_2d(html_table: str):
             types = (bs4.element.NavigableString, bs4.element.CData)
             value = cell.get_text(separator=" ", strip=True, types=types)
 
-            for drow, dcol in product(range(rowspan), range(colspan)):
+            for drow, dcol in itertools.product(range(rowspan), range(colspan)):
                 try:
-
-                    # types = (bs4.element.PageElement, bs4.element.NavigableString, bs4.element.PreformattedString,
-                    #  bs4.element.CData, bs4.element.ProcessingInstruction, bs4.element.XMLProcessingInstruction,
-                    #  bs4.element.Comment, bs4.element.Declaration, bs4.element.Doctype, bs4.element.Stylesheet,
-                    #  bs4.element.Script, bs4.element.TemplateString, bs4.element.RubyTextString,
-                    #  bs4.element.RubyParenthesisString, bs4.element.SoupStrainer, bs4.element.ResultSet)
-                    # value1 = cell.get_text(separator=" ", strip=True, types=types)
-
                     table[row + drow][col + dcol] = value
                     rowspans[col + dcol] = rowspan
                 except IndexError:
@@ -122,22 +133,15 @@ def table_to_2d(html_table: str):
 
     return table
 
+
 def replace_imgs_by_alt_texts(html: str):
-    # soup = BeautifulSoup(html, 'html.parser')
-    #
-    # for img in soup.find_all('img'):
-    #     img.replaceWith(img["alt"])
-
-    # <img .*alt=\"([0-9]+)\".*?\/>
-    #
-
     newstring = ""
     start = 0
     for match in re.finditer(r"<img\s+alt=\"(.*?)\".*?>", html):
         end, newstart = match.span()
-        newstring += html[start:end] # Add what precedes
+        newstring += html[start:end]  # Add what precedes
 
-        rep = match.group(1).replace(" ", "_") # Add img alt text with spaces replaced by _
+        rep = match.group(1).replace(" ", "_")  # Add img alt text with spaces replaced by _
         newstring += rep
 
         start = newstart
@@ -145,9 +149,19 @@ def replace_imgs_by_alt_texts(html: str):
 
     return newstring
 
-    html = re.sub("<img\s+alt=\"(.*?)\".*?>", "\\1", html, flags=re.DOTALL) # DOTALL/s to match multiline img tags
-
-    ## html = re.sub("<img\s+alt=\"([0-9]+)\".*?\/>", "$1", html, flags=re.DOTALL)
-    ## re.findall("<img\s+alt=\"[0-9]+\".*?>", html)
+    html = re.sub("<img\s+alt=\"(.*?)\".*?>", "\\1", html, flags=re.DOTALL)  # DOTALL/s to match multiline img tags
 
     return html
+
+
+def get_generated_warning_xml():
+    warning = "<!-- *********************************************************************** -->\n" \
+              "<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->\n" \
+              "<!-- *********************************************************************** -->"
+    return warning
+
+def get_generated_warning_kotlin():
+    warning = "/* ************************************************************************** */\n" \
+              "/*    WARNING! Auto-generated file, all manual changes made will be lost!     */\n" \
+              "/* ************************************************************************** */"
+    return warning

@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Pokechu_Material3"
+rootProject.name = "pokechu_app"
 include ':app'

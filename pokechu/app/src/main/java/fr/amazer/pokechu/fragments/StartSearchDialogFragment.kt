@@ -15,7 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.activities.ActivityDetails
-import fr.amazer.pokechu.data.Pokemons
+import fr.amazer.pokechu.data.Pokemon
 import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.utils.UIUtils
 import kotlinx.coroutines.Dispatchers
@@ -54,7 +54,7 @@ class StartSearchDialogFragment : DialogFragment() {
                         if ( pokemonId != null ) {
 
                             // Search id and open details
-                            suspend fun getPokemonById(id: Int): Pokemons? = withContext(Dispatchers.IO) {
+                            suspend fun getPokemonById(id: Int): Pokemon? = withContext(Dispatchers.IO) {
                                 return@withContext DatabaseManager.findPokemonById(id)
                             }
                             lifecycleScope.launch { // coroutine on Main

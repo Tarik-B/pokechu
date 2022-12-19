@@ -2,13 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Pokechu_Material3" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-<!--        <item name="colorPrimary">@color/my_light_primary</item> -->
-<!--        <item name="android:textColor">@color/text</item>-->
-<!--        <item name="android:buttonStyle">@color/button_style</item>-->
-<!--        <item name="colorButtonNormal">@color/button_normal</item>-->
-<!--        <item name="colorAccent">@color/text</item>-->
-<!--        <item name="android:tint">@color/text</item>-->
-<!--        <item name="android:buttonStyle">@color/colorPrimary</item>-->
+        <!--        <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!--        <item name="android:textColor">@color/text</item>-->
+        <!--        <item name="android:buttonStyle">@color/button_style</item>-->
+        <!--        <item name="colorButtonNormal">@color/button_normal</item>-->
+        <!--        <item name="colorAccent">@color/text</item>-->
+        <!--        <item name="android:tint">@color/text</item>-->
+        <!--        <item name="android:buttonStyle">@color/colorPrimary</item>-->
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

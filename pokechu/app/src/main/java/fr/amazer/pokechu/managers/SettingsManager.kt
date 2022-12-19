@@ -21,8 +21,9 @@ object SettingsManager {
 //    )
 //    private var data = HashMap<String, PokemonPreferenceData>()
 
-    private const val KEY_POKEMON_DISCOVERED_PREFIX = "pokemon_"
+    private const val KEY_POKEMON_PREFIX = "pokemon_"
     private const val KEY_POKEMON_DISCOVERED_SUFFIX = "_discovered"
+    private const val KEY_POKEMON_CAPTURED_SUFFIX = "_captured"
     private const val KEY_SETTING_SEARCH_ALL_FIELDS = "setting_search_all_fields"
     private const val KEY_SETTING_LIST_VIEW = "setting_list_view"
 //    private const val KEY_SETTING_APP_LANGUAGE = "setting_app_language"
@@ -30,9 +31,14 @@ object SettingsManager {
     private const val KEY_SETTING_SELECTED_REGION = "setting_selected_region"
 
     private const val DEFAULT_POKEMON_DISCOVERED = false
-    public fun isPokemonDiscovered(pokemonId: Int): Boolean { return getSetting(KEY_POKEMON_DISCOVERED_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, DEFAULT_POKEMON_DISCOVERED)!! }
-    public fun setPokemonDiscovered(pokemonId: Int, discovered: Boolean) { setSetting(KEY_POKEMON_DISCOVERED_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, discovered) }
+    public fun isPokemonDiscovered(pokemonId: Int): Boolean { return getSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, DEFAULT_POKEMON_DISCOVERED)!! }
+    public fun setPokemonDiscovered(pokemonId: Int, discovered: Boolean) { setSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, discovered) }
     public fun togglePokemonDiscovered(pokemonId: Int) { setPokemonDiscovered(pokemonId, !isPokemonDiscovered(pokemonId) ) }
+
+    private const val DEFAULT_POKEMON_CAPTURED = false
+    public fun isPokemonCaptured(pokemonId: Int): Boolean { return getSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_CAPTURED_SUFFIX, DEFAULT_POKEMON_CAPTURED)!! }
+    public fun setPokemonCaptured(pokemonId: Int, captured: Boolean) { setSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_CAPTURED_SUFFIX, captured) }
+    public fun togglePokemonCaptured(pokemonId: Int) { setPokemonCaptured(pokemonId, !isPokemonCaptured(pokemonId) ) }
 
     private const val DEFAULT_SEARCH_ALL_FIELDS = true
     public fun isSearchAllFieldsEnabled(context: Context): Boolean { return getSetting(KEY_SETTING_SEARCH_ALL_FIELDS, DEFAULT_SEARCH_ALL_FIELDS)!! }
@@ -81,10 +87,12 @@ object SettingsManager {
         return count
     }
 
-    public fun clearPokemonDiscovered() {
+    public fun clearPokemonDiscoveredAndCaptured() {
         val editor = preferences.edit()
         preferences.all.forEach { (key, value) ->
             if ( key.endsWith(KEY_POKEMON_DISCOVERED_SUFFIX) && value is Boolean )
+                editor.putBoolean(key, false)
+            if ( key.endsWith(KEY_POKEMON_CAPTURED_SUFFIX) && value is Boolean )
                 editor.putBoolean(key, false)
         }
         editor.apply()

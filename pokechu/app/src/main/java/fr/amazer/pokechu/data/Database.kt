@@ -8,17 +8,18 @@ import androidx.room.*
 //--------------------------------------------------------------------------------------------------
 @Database(
     entities = [
-        Pokemons::class,
-        Regions::class,
-        PokemonRegionsJoin::class,
-        PokemonEvolutionsJoin::class ],
+        Pokemon::class, Region::class, Type::class,
+        PokemonRegionsJoin::class, PokemonEvolutionsJoin::class, PokemonTypesJoin::class
+    ],
     version = 2
 )
 abstract class PokechuDatabase: RoomDatabase() {
     abstract fun getPokemonsDao(): PokemonsDao
     abstract fun getRegionsDao(): RegionsDao
+
     abstract fun getPokemonRegionsDao(): PokemonRegionsDao
     abstract fun getPokemonEvolutionsDao(): PokemonEvolutionsDao
+    abstract fun getPokemonTypesDao(): PokemonTypesDao
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -27,18 +28,20 @@ abstract class PokechuDatabase: RoomDatabase() {
 //@Entity(tableName = "pokemons")
 //class Pokemons(@PrimaryKey val id: Int, val name: String)
 @Entity(tableName = "pokemons")
-data class Pokemons(
+data class Pokemon(
     @PrimaryKey
     val id: Int,
     val name: String,
+    val height: Float,
+    val weight: Float
 )
 @Dao
 interface PokemonsDao {
     @Query("SELECT * FROM pokemons")
-    fun findAll(): List<Pokemons>
+    fun findAll(): List<Pokemon>
 
     @Query("SELECT * FROM pokemons WHERE id = :id")
-    fun findById(id: Int): Pokemons?
+    fun findById(id: Int): Pokemon?
 
     @Query("SELECT id FROM pokemons")
     fun findAllIds(): List<Int>
@@ -55,7 +58,7 @@ interface PokemonsDao {
 //@Entity(tableName = "regions")
 //class Regions(@field:PrimaryKey val id: Int, val name: String)
 @Entity(tableName = "regions")
-data class Regions(
+data class Region(
     @PrimaryKey
     val id: Int,
     val name: String,
@@ -64,7 +67,7 @@ data class Regions(
 @Dao
 interface RegionsDao {
     @Query("SELECT * FROM regions")
-    fun findAll(): List<Regions>
+    fun findAll(): List<Region>
 
 //    @Query("SELECT id FROM regions")
 //    fun findAllIds(): List<Int>
@@ -79,14 +82,25 @@ interface RegionsDao {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Types
+//--------------------------------------------------------------------------------------------------
+@Entity(tableName = "types")
+data class Type(
+    @PrimaryKey
+    val id: Int,
+    val name: String,
+)
+// No dao needed, table not queried, only used in foreign keys
+
+//--------------------------------------------------------------------------------------------------
 // Pokemon Regions
 //--------------------------------------------------------------------------------------------------
 @Entity(
     tableName = "pokemon_regions",
     primaryKeys = ["pokemon_id", "region_id"],
     foreignKeys = [
-        ForeignKey(entity = Pokemons::class, parentColumns = arrayOf("id"), childColumns = arrayOf("pokemon_id"), onDelete = ForeignKey.CASCADE),
-        ForeignKey(entity = Regions::class, parentColumns = arrayOf("id"), childColumns = arrayOf("region_id"), onDelete = ForeignKey.CASCADE)
+        ForeignKey(entity = Pokemon::class, parentColumns = arrayOf("id"), childColumns = arrayOf("pokemon_id"), onDelete = ForeignKey.CASCADE),
+        ForeignKey(entity = Region::class, parentColumns = arrayOf("id"), childColumns = arrayOf("region_id"), onDelete = ForeignKey.CASCADE)
     ]
 )
 class PokemonRegionsJoin(val pokemon_id: Int, val region_id: Int, val local_id: Int)
@@ -104,7 +118,7 @@ public interface PokemonRegionsDao {
         "WHERE pokemon_regions.region_id=:region_id "+
         "ORDER BY local_id ASC"
     )
-    fun findLocalIdsByRegion(region_id: Int): List<NationalIdLocalId>
+    fun findPokemonRegions(region_id: Int): List<NationalIdLocalId>
 
 //    @Query(
 //        "SELECT pokemon_regions.region_id, pokemon_regions.local_id FROM pokemons " +
@@ -120,8 +134,8 @@ public interface PokemonRegionsDao {
     tableName = "pokemon_evolutions",
     primaryKeys = ["base_id", "evolved_id"],
     foreignKeys = [
-        ForeignKey(entity = Pokemons::class, parentColumns = arrayOf("id"), childColumns = arrayOf("base_id"), onDelete = ForeignKey.CASCADE),
-        ForeignKey(entity = Pokemons::class, parentColumns = arrayOf("id"), childColumns = arrayOf("evolved_id"), onDelete = ForeignKey.CASCADE)
+        ForeignKey(entity = Pokemon::class, parentColumns = arrayOf("id"), childColumns = arrayOf("base_id"), onDelete = ForeignKey.CASCADE),
+        ForeignKey(entity = Pokemon::class, parentColumns = arrayOf("id"), childColumns = arrayOf("evolved_id"), onDelete = ForeignKey.CASCADE)
     ]
 )
 class PokemonEvolutionsJoin(val base_id: Int, val evolved_id: Int, val condition_raw: String)
@@ -164,6 +178,43 @@ public interface PokemonEvolutionsDao {
         "JOIN pokemons p ON p.id = evolution_chain.evolved_id;"
     )
     fun findPokemonEvolutions(pokemon_id: Int): List<BaseIdEvolvedIdCondition>
+}
+
+//--------------------------------------------------------------------------------------------------
+// Pokemon Types
+//--------------------------------------------------------------------------------------------------
+@Entity(
+    tableName = "pokemon_types",
+    primaryKeys = ["pokemon_id", "type_id"],
+    foreignKeys = [
+        ForeignKey(entity = Pokemon::class, parentColumns = arrayOf("id"), childColumns = arrayOf("pokemon_id"), onDelete = ForeignKey.CASCADE),
+        ForeignKey(entity = Type::class, parentColumns = arrayOf("id"), childColumns = arrayOf("type_id"), onDelete = ForeignKey.CASCADE)
+    ]
+)
+class PokemonTypesJoin(val pokemon_id: Int, val type_id: Int)
+
+data class PokemonIdTypesId(
+    @ColumnInfo(name = "pokemon_id") val pokemon_id: Int,
+    @ColumnInfo(name = "type_ids") val type_ids: String,
+) {
+    @Ignore
+    val type_id_list: List<PokemonType> = type_ids.split(",").map { PokemonType.values()[it.toInt()] }
+}
+@Dao
+public interface PokemonTypesDao {
+    @Query(
+        "SELECT pokemon_id, GROUP_CONCAT(type_id) as type_ids FROM pokemon_types " +
+        "GROUP BY pokemon_id " +
+        "ORDER BY pokemon_id ASC"
+    )
+    fun findPokemonsTypes(): List<PokemonIdTypesId>
+
+    @Query(
+        "SELECT type_id FROM pokemon_types " +
+        "WHERE pokemon_id = :pokemon_id " +
+        "ORDER BY type_id ASC"
+    )
+    fun findPokemonTypes(pokemon_id: Int): List<Int>
 }
 
 //data class PokemonWithRegions(

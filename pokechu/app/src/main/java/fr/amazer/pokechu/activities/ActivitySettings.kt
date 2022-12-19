@@ -51,7 +51,7 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
                         // Open confirmation dialog before clearing
                         val builder = AlertDialog.Builder(activity)
                         builder.setMessage(R.string.dialog_are_you_sure)
-                            .setPositiveButton(R.string.dialog_yes) { dialog, id -> SettingsManager.clearPokemonDiscovered() }
+                            .setPositiveButton(R.string.dialog_yes) { dialog, id -> SettingsManager.clearPokemonDiscoveredAndCaptured() }
                             .setNegativeButton(R.string.dialog_no) { dialog, id -> }
                         val alert = builder.create()
                         alert.show()

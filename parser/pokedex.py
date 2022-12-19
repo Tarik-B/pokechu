@@ -1,55 +1,74 @@
 #!/usr/bin/env python3
 
-import json
-import os
-from collections import OrderedDict
+import collections
 
-from data import Data
-from enums import Item, PokedexType
-import csv
-class PokedexTypeData:
-    def __init__(self, name_fr: str, gen_fr: str):
-        self.name_fr = name_fr
-        self.gen_fr = gen_fr
+from data import PokedexType
+
+
+class Pokemon:
+    def __init__(self, unique_id: int, names: dict, thumbnail_filename: str):
+        self._unique_id = unique_id
+        self._names = names # dict {'fr': string, 'en': string}
+        self._thumbnail_filename = thumbnail_filename
+        self._ids = list() # of dict {'type': PokedexType, 'id': int}
+        self._types = list() # of PokemonType
+        self._height = -1.0 # in cm
+        self._weight = -1.0 # in kg
+
+    def get_name(self, lang: str): return self._names[lang] if lang in self._names else None
+    def get_ids(self): return self._ids
+    def set_ids(self, ids: list): self._ids = ids
+    def get_types(self): return self._types
+    def set_types(self, types: list): self._types = types
+    def get_height(self): return self._height
+    def set_height(self, height: float): self._height = height
+    def get_weight(self): return self._weight
+    def set_weight(self, weight: float): self._weight = weight
+    # def set_data(self, key: str, value):
+    #     if key in self._data:
+    #         print(f"warning pokemon {self._unique_id}, data key '{key}' replacing data = '{self._data[key]}', by = '{value}'")
+    #     self._data[key] = value
+
 
 class Pokedex:
     def __init__(self, type: PokedexType):
-        self.type = type
-        self.pokemons = dict()
-        self.evolution_trees = list()
-        self.pokemon_names = dict()
-        # Used only to speedup ids lookup
-        self.names_to_unique_ids = dict()
+        self._type = type
+        self._pokemons = dict()
+        self._evolution_trees = list()
+        self._pokemon_names = dict()
+        # Used only to speedup id lookups
+        self._names_to_unique_ids = dict()
 
-        self.names_to_unique_ids["fr"] = dict()
-        self.names_to_unique_ids["en"] = dict()
+        self._names_to_unique_ids["fr"] = dict()
+        self._names_to_unique_ids["en"] = dict()
 
-        # self.pokemon_names["fr"] = dict()
-        # self.pokemon_names["en"] = dict()
+    # Public functions
+    def get_type(self) -> PokedexType: return self._type
+    def get_pokemons_count(self) -> int: return len(self._pokemons)
+    def get_pokemons_ids(self) -> list: return self._pokemons.keys()
+    def get_pokemon(self, id: str) -> Pokemon: return self._pokemons[id]
+    def get_pokemons(self) -> dict: return self._pokemons
+    def get_evolution_trees_count(self) -> int: return len(self._evolution_trees)
+    def get_evolution_tree(self, index: int): return self._evolution_trees[index] if index < len( self._evolution_trees) else None
+    def get_pokemon_names_keys(self) -> list: return self._pokemon_names.keys()
+    def get_pokemon_names(self, key: str) -> dict: return self._pokemon_names[key] if key in self._pokemon_names else None
 
-    def add_pokemon_entry(self, unique_id: str, names: list, thumbnail_filename: str):
-        pokemon = {}
+    def add_pokemon_entry(self, unique_id: str, names: dict, thumbnail_filename: str):
+        self._pokemons[unique_id] = Pokemon(int(unique_id), names, thumbnail_filename)
 
-        # ids = {"unique": unique_id}
-        # pokemon["ids"] = ids
+        self._pokemon_names[unique_id] = names
 
-        # images = {"thumbnail": thumbnail_filename}
-        pokemon["thumbnail"] = thumbnail_filename
-
-        self.pokemons[unique_id] = pokemon
-
-        self.pokemon_names[unique_id] = names
-
+        # Build name -> id map for fast lookups
         for lang in names:
             name = names[lang]
-            if lang in self.names_to_unique_ids:
-                self.names_to_unique_ids[lang][name] = unique_id
+            if lang in self._names_to_unique_ids:
+                self._names_to_unique_ids[lang][name] = unique_id
 
     def has_pokemon_entry(self, name: str, lang: str) -> bool:
-        return self.convert_name_to_unique_id(name, lang) is not None
+        return self._convert_name_to_unique_id(name, lang) is not None
 
     def add_pokemon_ids(self, unique_id: str, ids: list):
-        if unique_id not in self.pokemons:
+        if unique_id not in self._pokemons:
             return
 
         # ids is a list of tuple(PokedexType,str)
@@ -58,27 +77,12 @@ class Pokedex:
             type = id_tuple[0]
             id = id_tuple[1]
 
-            id_list.append( { "type": PokedexType(type).name, "id": id })
+            id_list.append({"type": PokedexType(type), "id": int(id)})
 
-        self.pokemons[unique_id]["ids"] = id_list
-    def convert_name_to_unique_id(self, name: str, lang: str) -> str:
-        # for id in self.pokemon_names:
-        #     names = self.pokemon_names[id]
-        #     if names[lang] == name:
-        #         return id
-        #
-        # return None
-        if lang not in self.names_to_unique_ids:
-            return None
-
-        if name not in self.names_to_unique_ids[lang]:
-            return None
-
-        return self.names_to_unique_ids[lang][name]
-
+        self._pokemons[unique_id].set_ids(id_list)
 
     def add_evolution_node(self, parent: dict, name: str, condition: str, lang: str) -> dict:
-        unique_id = self.convert_name_to_unique_id(name, lang)
+        unique_id = self._convert_name_to_unique_id(name, lang)
         if unique_id is None:
             return None
 
@@ -92,20 +96,20 @@ class Pokedex:
                 parent["evolutions"] = []
             parent["evolutions"].append(new_node)
         else:
-            self.evolution_trees.append(new_node)
+            self._evolution_trees.append(new_node)
 
         # Return a reference to newly created node
         return new_node
 
     def is_pokemon_evolution_node(self, node: dict, name: str, lang: str) -> bool:
-        unique_id = self.convert_name_to_unique_id(name, lang)
+        unique_id = self._convert_name_to_unique_id(name, lang)
         if unique_id is None:
             return False
 
         return node["id"] == unique_id
 
     def find_in_evolution_trees(self, name: str, lang: str):
-        for tree in self.evolution_trees:
+        for tree in self._evolution_trees:
             node = self.find_in_evolution_tree(tree, name, lang)
             if node:
                 return tree, node
@@ -128,70 +132,21 @@ class Pokedex:
         return None
 
     def remove_single_node_evolution_trees(self):
-        self.evolution_trees = [tree for tree in self.evolution_trees
-                                if ("evolutions" in tree and len(tree["evolutions"]) != 0)]
+        self._evolution_trees = [tree for tree in self._evolution_trees
+                                 if ("evolutions" in tree and len(tree["evolutions"]) != 0)]
 
-    def print_trees(self):
-        for tree in self.evolution_trees:
-            self.print_tree(tree)
+    def _convert_name_to_unique_id(self, name: str, lang: str) -> str:
+        if lang not in self._names_to_unique_ids:
+            return None
 
-    def print_tree(self, node, level=0):
+        if name not in self._names_to_unique_ids[lang]:
+            return None
 
-        how = (" (" + node["condition"] + ")") if node["condition"] else ""
-        print("    " * (level - 1) + "+---" * (level > 0) + node["id"] + how)
+        return self._names_to_unique_ids[lang][name]
 
-        for child in node["evolutions"]:
-            self.print_tree(child, level + 1)
+    def _sort_evolution_trees_keys_in_order(self, dictionary: dict, key_order: list) -> collections.OrderedDict:
 
-    def clear_evolution_trees(self):
-        self.evolution_trees = list()
-
-    def save_pokemon_list_json(self, file_path: str):
-        pretty_json = json.dumps(self.pokemons, indent=4, ensure_ascii=False)
-        with open(file_path, "w") as outfile:
-            # json.dump(parser.pokedex.pokemons, outfile)
-            outfile.write(pretty_json)
-    def save_pokemon_list_csv(self, file_path: str):
-        #
-        # with open(file_path, "w") as csvfile:
-        #     fieldnames = ['first_name', 'last_name']
-        #     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        #
-        #     writer.writeheader()
-        #     writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
-        #     writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
-        #     writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
-
-        with open(file_path, "w") as csvfile:
-            # writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            writer = csv.writer(csvfile, delimiter=',')
-
-            writer.writerow(["id", "thumbnail"])
-
-            for id in self.pokemons:
-                pokemon = self.pokemons[id]
-                thumbnail = pokemon["thumbnail"]
-
-                writer.writerow([id, thumbnail])
-
-    def save_evolution_trees(self, file_path: str):
-
-        # Sort trees dict keys
-        sorted_trees = []
-        for i in range(len(self.evolution_trees)):
-            sorted_tree = self.sort_evolution_trees_keys_in_order(self.evolution_trees[i], ['id',
-                                                                                            'condition_raw',
-                                                                                            'conditions',
-                                                                                            'evolutions'])
-            sorted_trees.append(sorted_tree)
-
-        pretty_json = json.dumps(sorted_trees, indent=4, ensure_ascii=False)
-        with open(file_path, "w") as outfile:
-            outfile.write(pretty_json)
-
-    def sort_evolution_trees_keys_in_order(self, dictionary: dict, key_order: list) -> OrderedDict:
-
-        ordered_dictionary = OrderedDict(dictionary)
+        ordered_dictionary = collections.OrderedDict(dictionary)
         for key in key_order:
             if key in ordered_dictionary:
                 ordered_dictionary.move_to_end(key)
@@ -200,79 +155,6 @@ class Pokedex:
             evolutions = ordered_dictionary["evolutions"]
             for i in range(len(evolutions)):
                 evolution = evolutions[i]
-                evolutions[i] = self.sort_evolution_trees_keys_in_order(evolution, key_order)
+                evolutions[i] = self._sort_evolution_trees_keys_in_order(evolution, key_order)
 
         return ordered_dictionary
-
-    def save_pokemon_names(self, file_path: str):
-        if len(self.pokemon_names) == 0:
-            return
-
-        # Save strings.xml ids declaration
-        self.save_pokemon_names_lang(file_path, "")
-
-        # Save strings-XXX.xml with localized names
-        self.save_pokemon_names_lang(file_path, "fr")
-        self.save_pokemon_names_lang(file_path, "en")
-
-    def save_pokemon_names_lang(self, file_path: str, lang: str):
-
-        if lang != "":
-            file_name = os.path.splitext(file_path)[0]
-            extension = os.path.splitext(file_path)[1]
-            file_path = f"{file_name}-{lang}{extension}"
-
-        with open(file_path, "w") as output_file:
-
-            output_file.write("<?xml version='1.0' encoding='utf-8'?>\n")
-
-            output_file.write("<resources>\n")
-            for id in self.pokemon_names:
-                int_id = int(id)
-                if lang == "":
-                    output_file.write(f"    <string name=\"pokemon_name_{int_id}\"/>\n")
-                else:
-                    names = self.pokemon_names[id]
-                    if lang in names:
-                        name = json.dumps(names[lang]) # escapes quotes
-                        output_file.write(f"    <string name=\"pokemon_name_{int_id}\">{name}</string>\n")
-
-            output_file.write("</resources>")
-
-    def save_region_names(self, file_path: str):
-        if len(self.pokemon_names) == 0:
-            return
-
-        # Save strings.xml ids declaration
-        self.save_region_names_lang(file_path, "")
-
-        # Save strings-XXX.xml with localized names
-        self.save_region_names_lang(file_path, "fr")
-        self.save_region_names_lang(file_path, "en")
-
-    def save_region_names_lang(self, file_path: str, lang: str):
-
-        if lang != "":
-            file_name = os.path.splitext(file_path)[0]
-            extension = os.path.splitext(file_path)[1]
-            file_path = f"{file_name}-{lang}{extension}"
-
-        with open(file_path, "w") as output_file:
-
-            output_file.write("<?xml version='1.0' encoding='utf-8'?>\n")
-
-            output_file.write("<resources>\n")
-            for type in PokedexType:
-                if lang == "":
-                    output_file.write(f"    <string name=\"region_{type.value}\"/>\n")
-                else:
-                    pokedex_data = Data.POKEDEXES[type]
-                    if lang == "fr":
-                        name = pokedex_data.name_fr
-                    else:
-                        name = pokedex_data.name_en
-                    # name = json.dumps(name) # escapes quotes
-
-                    output_file.write(f"    <string name=\"region_{type.value}\">{name}</string>\n")
-
-            output_file.write("</resources>")

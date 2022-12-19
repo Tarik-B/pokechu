@@ -35,17 +35,94 @@
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="bottom|right"
                     android:orientation="vertical"
                     android:padding="10dip">
 
-                    <TextView
-                        android:id="@+id/text_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="bottom|right"
-                        android:text="TextView"
-                        android:textSize="16sp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin_very_small"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/details_height"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=": " />
+                        <TextView
+                            android:id="@+id/text_height_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/text_margin_very_small"
+                            android:text="@string/placeholder_string_short" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/details_meters_abbrev" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin_very_small"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/details_weight"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=": " />
+                        <TextView
+                            android:id="@+id/text_weight_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/text_margin_very_small"
+                            android:text="@string/placeholder_string_short" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/details_kilograms_abbrev" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/types_image_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin_very_small"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/details_types"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=": " />
+
+                        <!--                        <ImageView-->
+                        <!--                            android:layout_width="25dip"-->
+                        <!--                            android:layout_height="25dip"-->
+                        <!--                            android:layout_weight="1"-->
+                        <!--                            android:layout_margin="@dimen/text_margin_very_small"-->
+                        <!--                            app:srcCompat="@drawable/ic_pokeball" />-->
+                    </LinearLayout>
 
                 </LinearLayout>
 
