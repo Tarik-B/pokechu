@@ -21,6 +21,12 @@
 --       JOIN pokemon_regions pr ON pr.pokemon_id = p.id
 -- WHERE p.id = 1;
 
+-- Pokemon local id -> national id
+-- SELECT pokemon_id
+-- FROM pokemon_regions
+-- WHERE local_id = 23 AND region_id = 18
+-- ;
+
 -- Local ids by region
 -- SELECT p.id as pokemon_id, pr.local_id
 -- FROM pokemons p
@@ -60,10 +66,10 @@
 -- ;
 
 -- All pokemons types by pokemon
-SELECT pokemon_id, GROUP_CONCAT(type_id) FROM pokemon_types
-GROUP BY pokemon_id
-ORDER BY pokemon_id ASC
-;
+-- SELECT pokemon_id, GROUP_CONCAT(type_id) FROM pokemon_types
+-- GROUP BY pokemon_id
+-- ORDER BY pokemon_id ASC
+-- ;
 
 -- Evolution links count
 -- SELECT *, (

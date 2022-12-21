@@ -100,4 +100,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha03'
     // viewModelScope:
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha03'
+
+    // Leonids particles
+    implementation files('libs/LeonidsLib.jar')
 }

@@ -54,6 +54,46 @@ class PokedexType(Enum):
     # 9th gen
     PALDEA = ("DEX_PALDEA_EV", ["Paldea"], "Paldea", "Paldea")  # Paldea
 
+
+@unique
+class PokemonType(Enum):
+    name_fr: str
+    name_en: str
+
+    def __new__(cls, name_fr: str = "", name_en: str = ""):
+        obj = object.__new__(cls)
+        obj._value_ = len(cls.__members__) # starts at 0, no + 1
+
+        obj.name_fr = name_fr
+        obj.name_en = name_en
+
+        return obj
+
+    STEEL = ("acier", "steel")
+    FIGHTING = ("combat", "fighting")
+    DRAGON = ("dragon", "dragon")
+    WATER = ("eau", "water")
+    ELECTRIC = ("électrik", "electric")
+    FAIRY = ("fée", "fairy")
+    FIRE = ("feu", "fire")
+    ICE = ("glace", "ice")
+    BUG = ("insecte", "bug")
+    NORMAL = ("normal", "normal")
+    GRASS = ("plante", "grass")
+    POISON = ("poison", "poison")
+    PSYCHIC = ("psy", "psychic")
+    ROCK = ("roche", "rock")
+    GROUND = ("sol", "ground")
+    GHOST = ("spectre", "ghost")
+    DARK = ("ténèbres", "dark")
+    FLYING = ("vol", "flying")
+
+    # Unused
+    # UNKNOWN = ("inconnu", "unknown")
+    # SHADOW = ("obscur", "shadow")
+    # GLITCH = ("bird", "glitch")
+
+
 @unique
 class ItemType(Enum):
     name_fr: str
@@ -106,44 +146,6 @@ class ItemType(Enum):
     DEEP_SEA_SCALE = ("écaille océan", "deep sea scale")
     SACHET = ("sachet senteur", "sachet")
     WHIPPED_DREAM = ("chantibonbon", "whipped dream")
-
-@unique
-class PokemonType(Enum):
-    name_fr: str
-    name_en: str
-
-    def __new__(cls, name_fr: str = "", name_en: str = ""):
-        obj = object.__new__(cls)
-        obj._value_ = len(cls.__members__) # starts at 0, no + 1
-
-        obj.name_fr = name_fr
-        obj.name_en = name_en
-
-        return obj
-
-    STEEL = ("acier", "steel")
-    FIGHTING = ("combat", "fighting")
-    DRAGON = ("dragon", "dragon")
-    WATER = ("eau", "water")
-    ELECTRIC = ("électrik", "electric")
-    FAIRY = ("fée", "fairy")
-    FIRE = ("feu", "fire")
-    ICE = ("glace", "ice")
-    BUG = ("insecte", "bug")
-    NORMAL = ("normal", "normal")
-    GRASS = ("plante", "grass")
-    POISON = ("poison", "poison")
-    PSYCHIC = ("psy", "psychic")
-    ROCK = ("roche", "rock")
-    GROUND = ("sol", "ground")
-    GHOST = ("spectre", "ghost")
-    DARK = ("ténèbres", "dark")
-    FLYING = ("vol", "flying")
-
-    # Unused
-    # UNKNOWN = ("inconnu", "unknown")
-    # SHADOW = ("obscur", "shadow")
-    # GLITCH = ("bird", "glitch")
 
 @unique
 class EvolutionConditionType(Enum):

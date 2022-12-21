@@ -3,34 +3,31 @@ package fr.amazer.pokechu.fragments
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.activities.ActivityDetails
-import fr.amazer.pokechu.data.Pokemon
-import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.utils.UIUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
-class StartSearchDialogFragment : DialogFragment() {
+class FragmentStartSearchDialog : DialogFragment() {
 
     private lateinit var binding: View
 
-    val OPEN_DETAILS = 123456
+    // (Int,Boolean) => (Id,IsNational)
+    private val searchQueryListeners = mutableListOf<(Int,Boolean) -> Unit>()
+    fun addsearchQueryListeners(listener: (Int,Boolean) -> Unit) {
+        searchQueryListeners.add(listener)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
+
             val builder = AlertDialog.Builder(it)
             // Get the layout inflater
             val inflater = requireActivity().layoutInflater
@@ -51,31 +48,11 @@ class StartSearchDialogFragment : DialogFragment() {
                     DialogInterface.OnClickListener { dialog, id ->
                         val editText = binding.findViewById(R.id.text_id) as EditText
                         val pokemonId = editText.text.toString().toIntOrNull()
+
                         if ( pokemonId != null ) {
 
-                            // Search id and open details
-                            suspend fun getPokemonById(id: Int): Pokemon? = withContext(Dispatchers.IO) {
-                                return@withContext DatabaseManager.findPokemonById(id)
-                            }
-                            lifecycleScope.launch { // coroutine on Main
-                                val pokemon = getPokemonById(pokemonId) // coroutine on IO
-                                // back on main
-//                                if ( uniqueCheckbox.isChecked )
-//                                    dataPokemon = DataManager.findPokemonData(pokemonId)
-//                                else
-//                                    dataPokemon = DataManager.findPokemonDataPaldea(pokemonId)
-
-                                // Id found, open details
-                                if (pokemon != null) {
-                                    val intent = Intent(context, ActivityDetails::class.java)
-                                    intent.putExtra("PokemonId", pokemonId.toInt())
-                                    startActivityForResult(intent, OPEN_DETAILS)
-                                }
-                                else {
-                                    Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                                        "ID ${pokemonId} not found ", Snackbar.LENGTH_LONG).show();
-                                }
-                            }
+                            val uniqueCheckbox = binding.findViewById(R.id.checkbox_unique) as CheckBox
+                            searchQueryListeners.forEach { it(pokemonId, uniqueCheckbox.isChecked ) }
                         }
                     })
 //                .setNegativeButton(R.string.dialog_cancel,
@@ -97,5 +74,4 @@ class StartSearchDialogFragment : DialogFragment() {
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }
-
 }

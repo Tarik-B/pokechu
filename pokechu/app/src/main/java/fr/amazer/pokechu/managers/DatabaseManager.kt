@@ -41,6 +41,8 @@ object DatabaseManager {
 //    fun getRegionByName(region_name: String): Regions { return regionsDao.findByName(region_name) }
 
     fun findPokemonRegions(region_id: Int): List<NationalIdLocalId> { return pokemonRegionDao.findPokemonRegions(region_id) }
+    fun localToNationalId(region_id: Int, local_id: Int): Int { return pokemonRegionDao.localToNationalId(region_id, local_id) }
+
 //    fun getRegionsByPokemon(pokemon_id: Int):List<Regions> { return pokemonRegionDao.getRegionsByPokemon(pokemon_id) }
 
     fun findPokemonEvolutionRoot(pokemon_id: Int): Int { return pokemonEvolutionsDao.findPokemonEvolutionRoot(pokemon_id) }

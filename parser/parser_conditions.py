@@ -25,8 +25,15 @@ class ConditionsParser:
         if "condition_raw" in node:
             condition_fr = node["condition_raw"]
 
+            condition_fr = "Bonheur de jour +Gain de niveau ou Gain de niveau en tenant un Éclat Soleil"
+            # OR(AND(AND(FRIENDSHIP)(DAY))(LEVEL_GAIN))(AND(LEVEL_GAIN)(ITEM_HOLD('14')))
+            # 2(1(1(7)(10))(4))(1(4)(6(14)))
+            # (OR(AND(AND(FRIENDSHIP)(DAY))(LEVEL_GAIN))(AND(LEVEL_GAIN)(ITEM_HOLD)))
+            # (2(1(1(7)(10))(4))(1(4)(6('éclat soleil'))))
+
             if condition_fr:
-                node["conditions"], condition_encoded_string = self.clean_and_process_condition_string(condition_fr)
+                node["conditions"], node["condition_encoded"] = self.clean_and_process_condition_string(condition_fr)
+                # print(f"encoded condition '{condition_fr}' into {node['condition_encoded']}")
                 self._processed_condition_count += 1
 
                 # Remove condition string from dict if it was perfectly parsed (no UNKNOWN condition)
@@ -72,14 +79,21 @@ class ConditionsParser:
         results = [result.strip() for result in results ]
 
         if len(results) > 1:
+            condition_encoded_string = str(EvolutionConditionType.OR.value)
+
             condition = {"type": EvolutionConditionType.OR.name, "children": []}
             # conditions = self.create_operator_condition(results, EvolutionConditionType.OR)
 
             for result in results:
-                subcondition, condition_encoded_string = self.split_into_and_condition(result)
+                subcondition, encoded_string = self.split_into_and_condition(result)
                 condition["children"].append(subcondition)
+
+                condition_encoded_string += "(" + encoded_string + ")"
+
         else:
-            condition, condition_encoded_string = self.split_into_and_condition(condition_string)
+            condition, encoded_string = self.split_into_and_condition(condition_string)
+
+            condition_encoded_string += encoded_string
 
         return condition, condition_encoded_string
 
@@ -94,14 +108,20 @@ class ConditionsParser:
         results = [result.strip() for result in results]
 
         if len(results) > 1:
+            condition_encoded_string = str(EvolutionConditionType.AND.value)
+
             condition = {"type": EvolutionConditionType.AND.name, "children": []}
 
             for result in results:
-                subcondition, condition_encoded_string = self.process_condition(result)
-
+                subcondition, encoded_string = self.process_condition(result)
                 condition["children"].append(subcondition)
+
+                condition_encoded_string += "(" + encoded_string + ")"
+
         else:
-            condition, condition_encoded_string = self.process_condition(condition_string)
+            condition, encoded_string = self.process_condition(condition_string)
+
+            condition_encoded_string += encoded_string
 
         return condition, condition_encoded_string
 
@@ -122,7 +142,7 @@ class ConditionsParser:
         AT_LOCATION_STRING_ALT = "au"
 
         conditions = []
-        condition_encoded_string = ""
+        condition_encoded_strings = []
 
         full_string = condition_string
         # print(f"full condition string = '{full_string}'")
@@ -131,6 +151,7 @@ class ConditionsParser:
         while keep_looking:
 
             condition = None
+            condition_encoded_string = ""
 
             for condition_type in EvolutionConditionType:
             # for condition_type in patterns:
@@ -146,14 +167,31 @@ class ConditionsParser:
                         # print("extracted = " + extracted)
 
                         condition = {"type": condition_type.name}
+                        condition_encoded_string = str(condition_type.value)
                         if type(extracted) is str:
                             condition["data"] = extracted
+
+                            # Evolution type with extra data
+                            match condition_type:
+                                case EvolutionConditionType.LEVEL:
+                                    pass
+                                # Convert item name to id
+                                case EvolutionConditionType.ITEM_USE | EvolutionConditionType.ITEM_HOLD:
+                                    for item in ItemType:
+                                        if item.name_fr == extracted:
+                                            extracted = str(item.value)
+                                            break
+                                case EvolutionConditionType.KNOW_SKILL | EvolutionConditionType.LEARN_SKILL:
+                                    pass
+
+                            condition_encoded_string += "(" + extracted + ")"
 
                     if condition: break
                 if condition: break
 
             if condition:
                 conditions.append(condition)
+                condition_encoded_strings.append(condition_encoded_string)
                 condition_string = condition_string.strip()
             else:
                 keep_looking = False
@@ -164,11 +202,14 @@ class ConditionsParser:
 
             condition = {"type": EvolutionConditionType.UNKNOWN.name}
             conditions.append(condition)
+            condition_encoded_strings.append(str(EvolutionConditionType.UNKNOWN.value))
 
         if len(conditions) == 1:
-            return conditions[0], condition_encoded_string
+            return conditions[0], condition_encoded_strings[0]
         else:
             condition = {"type": EvolutionConditionType.AND.name, "children": conditions}
+            condition_encoded_string += str(EvolutionConditionType.AND.value)
+            condition_encoded_string += "".join(["({})".format(string) for string in condition_encoded_strings])
             return condition, condition_encoded_string
 
     def find_and_pop_pattern(self, pattern: str, string: str) -> str:

@@ -2,6 +2,7 @@ package fr.amazer.pokechu.managers
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import androidx.preference.PreferenceManager
 import fr.amazer.pokechu.data.PokedexType
 import java.util.*
@@ -10,16 +11,19 @@ import java.util.*
 object SettingsManager {
 
     private lateinit var preferences: SharedPreferences
+    private lateinit var listener: OnSharedPreferenceChangeListener
     private const val PREFERENCES_FILE_NAME = "settings"
 
     fun with(context: Context) {
         preferences = PreferenceManager.getDefaultSharedPreferences(context)
-    }
 
-//    data class PokemonPreferenceData(
-//        val discovered: Boolean
-//    )
-//    private var data = HashMap<String, PokemonPreferenceData>()
+        listener = OnSharedPreferenceChangeListener { prefs, key ->
+            if (key == KEY_SETTING_SELECTED_REGION)
+                selectedRegionListeners.forEach{ it() }
+        }
+
+        preferences.registerOnSharedPreferenceChangeListener(listener)
+    }
 
     private const val KEY_POKEMON_PREFIX = "pokemon_"
     private const val KEY_POKEMON_DISCOVERED_SUFFIX = "_discovered"
@@ -59,6 +63,11 @@ object SettingsManager {
     private val DEFAULT_SELECTED_REGION = PokedexType.NATIONAL.ordinal
     public fun getSelectedRegion(): Int { return getSetting(KEY_SETTING_SELECTED_REGION, DEFAULT_SELECTED_REGION)!! }
     public fun setSelectedRegion(region: PokedexType) { setSetting(KEY_SETTING_SELECTED_REGION, region.ordinal) }
+    private val selectedRegionListeners = mutableListOf<() -> Unit>()
+    fun addSelectedRegionListener(listener: () -> Unit) {
+        selectedRegionListeners.add(listener)
+    }
+
 
     private inline fun <reified T: Any> getSetting(key: String, defaultValue: T): T? {
         return when(T::class) {

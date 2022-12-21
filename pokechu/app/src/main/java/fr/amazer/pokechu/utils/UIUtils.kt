@@ -6,6 +6,8 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.plattysoft.leonids.ParticleSystem
+import fr.amazer.pokechu.R
 
 
 class UIUtils {
@@ -60,6 +62,12 @@ class UIUtils {
                         view.visibility = toVisibility
                     }
                 })
+        }
+
+        fun createDefaultParticles(activity: Activity, view: View) {
+            ParticleSystem(activity, 25, R.drawable.star, 500)
+                .setSpeedRange(0.1f, 0.25f)
+                .oneShot(view, 25)
         }
     }
 }

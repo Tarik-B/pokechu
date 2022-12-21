@@ -1,6 +1,7 @@
 package fr.amazer.pokechu.data
 
 import androidx.room.*
+import fr.amazer.pokechu.managers.DatabaseManager
 
 
 //--------------------------------------------------------------------------------------------------
@@ -120,6 +121,18 @@ public interface PokemonRegionsDao {
     )
     fun findPokemonRegions(region_id: Int): List<NationalIdLocalId>
 
+    @Query(
+        "SELECT pokemon_id FROM pokemon_regions " +
+        "WHERE region_id = :region_id AND local_id = :local_id"
+    )
+    fun localToNationalId(region_id: Int, local_id: Int): Int
+
+//
+//
+//
+//;
+
+
 //    @Query(
 //        "SELECT pokemon_regions.region_id, pokemon_regions.local_id FROM pokemons " +
 //        "JOIN pokemon_regions ON pokemon_regions.pokemon_id = pokemons.id " +
@@ -138,13 +151,16 @@ public interface PokemonRegionsDao {
         ForeignKey(entity = Pokemon::class, parentColumns = arrayOf("id"), childColumns = arrayOf("evolved_id"), onDelete = ForeignKey.CASCADE)
     ]
 )
-class PokemonEvolutionsJoin(val base_id: Int, val evolved_id: Int, val condition_raw: String)
+class PokemonEvolutionsJoin(val base_id: Int, val evolved_id: Int, val condition_raw: String, val condition_encoded: String)
 
 data class BaseIdEvolvedIdCondition(
     @ColumnInfo(name = "base_id") val base_id: Int,
     @ColumnInfo(name = "evolved_id") val evolved_id: Int,
-    @ColumnInfo(name = "condition_raw") val condition_raw: String
-)
+    @ColumnInfo(name = "condition_encoded") val condition_encoded: String
+) {
+//    @Ignore
+//    val conditions: List<PokemonType> = type_ids.split(",").map { PokemonType.values()[it.toInt()] }
+}
 
 @Dao
 public interface PokemonEvolutionsDao {
@@ -166,15 +182,15 @@ public interface PokemonEvolutionsDao {
 
     @Query(
         "WITH RECURSIVE evolution_chain AS ( "+
-            "SELECT pe.evolved_id, pe.base_id, pe.condition_raw "+
+            "SELECT pe.evolved_id, pe.base_id, pe.condition_encoded "+
             "FROM pokemon_evolutions pe "+
             "WHERE pe.base_id = :pokemon_id "+
             "UNION ALL "+
-            "SELECT pe.evolved_id, pe.base_id, pe.condition_raw "+
+            "SELECT pe.evolved_id, pe.base_id, pe.condition_encoded "+
             "FROM evolution_chain "+
             "JOIN pokemon_evolutions pe ON pe.base_id = evolution_chain.evolved_id "+
         ")"+
-        "SELECT base_id, evolved_id, condition_raw FROM evolution_chain "+
+        "SELECT base_id, evolved_id, condition_encoded FROM evolution_chain "+
         "JOIN pokemons p ON p.id = evolution_chain.evolved_id;"
     )
     fun findPokemonEvolutions(pokemon_id: Int): List<BaseIdEvolvedIdCondition>

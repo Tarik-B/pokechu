@@ -93,9 +93,9 @@ class SQLiteExporter:
 
             evolutions = self.get_evolution_hierarchy(tree)
 
-            query = "INSERT INTO pokemon_evolutions VALUES "
-            query += ", ".join(f"({base_id}, {evolved_id}, '{self.fix_simple_quotes(condition_raw)}')"
-                               for base_id, evolved_id, condition_raw in evolutions)
+            query = "INSERT INTO pokemon_evolutions (base_id, evolved_id, condition_raw, condition_encoded) VALUES "
+            query += ", ".join(f"({base_id}, {evolved_id}, '{self.fix_simple_quotes(condition_raw)}', '{self.fix_simple_quotes(condition_encoded)}')"
+                               for base_id, evolved_id, condition_raw, condition_encoded in evolutions)
             query += ";"
 
             try:
@@ -124,7 +124,7 @@ class SQLiteExporter:
         evolutions = []
         if "evolutions" in node:
             for child in node["evolutions"]:
-                evolutions.append( (node["id"], child["id"], child["condition_raw"]) )
+                evolutions.append( (node["id"], child["id"], child["condition_raw"], child["condition_encoded"]) )
                 evolutions += self.get_evolution_hierarchy(child)
 
         return evolutions

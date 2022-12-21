@@ -3,7 +3,7 @@ import json
 import os
 
 import utils
-from data import PokedexType, ItemType, PokemonType
+from data import PokedexType, ItemType, PokemonType, EvolutionConditionType
 
 from pokedex import Pokedex
 
@@ -22,7 +22,7 @@ class Exporter:
         self.save_enum_names_xml(path, "types.xml", PokemonType, "type_name")
         # self.save_enum_names_xml(path + "items.xml", ItemType, "item")
 
-        self.save_enums_kotlin(path, [PokedexType, PokemonType])
+        self.save_enums_kotlin(path, [PokedexType, PokemonType, ItemType, EvolutionConditionType])
 
     def save_enums_kotlin(self, file_path: str, enum_class_list: list):
 

@@ -27,6 +27,7 @@ CREATE TABLE pokemon_evolutions (
     base_id INTEGER NOT NULL,
     evolved_id INTEGER NOT NULL,
     condition_raw TEXT NOT NULL,
+    condition_encoded TEXT NOT NULL,
 
     PRIMARY KEY (base_id, evolved_id),
     UNIQUE (base_id, evolved_id),

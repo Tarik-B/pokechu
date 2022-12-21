@@ -17,19 +17,16 @@ from exporter_sqlite import SQLiteExporter
 
 if __name__ == "__main__":
     # TODO use this syntax EVERYWHERE
-    test = 0
-    print(f"{test=}")
-
+    # test = 0
+    # print(f"{test=}")
     # for c in Color:
     #     print(f"{c.name}={c.value}, hex_code={c.hex_code}, description={c.description}")
+    #from pyparsing import nestedExpr
+    # import shlex
+    #test = "(2(1(1(7)(10))(4))(1(4)(6'item_7')))"
+    #result1 = nestedExpr('(', ')').parseString(test).asList()
+    # print(f"result pyparsing = {result1}")
 
-    from pyparsing import nestedExpr
-    import shlex
-
-
-    test = "(2(1(1(7)(10))(4))(1(4)(6'item_7')))"
-    result1 = nestedExpr('(', ')').parseString(test).asList()
-    print(f"result pyparsing = {result1}")
     print(f"PokedexType.NATIONAL = {PokedexType.NATIONAL.value}")
     print(f"PokedexType.PALDEA = {PokedexType.PALDEA.value}")
 

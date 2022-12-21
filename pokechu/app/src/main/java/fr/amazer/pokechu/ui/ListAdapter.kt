@@ -1,37 +1,27 @@
 package fr.amazer.pokechu.ui
 
 import android.content.Context
-import android.content.Intent
 import android.content.res.AssetManager
 import android.graphics.Color
 import android.graphics.PorterDuff
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.activities.ActivityDetails
-import fr.amazer.pokechu.data.BaseIdEvolvedIdCondition
-import fr.amazer.pokechu.data.PokedexType
-import fr.amazer.pokechu.data.Pokemon
 import fr.amazer.pokechu.data.PokemonType
-import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
-import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.ui.ListAdapter.ListViewHolder
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlin.collections.ArrayList
+import fr.amazer.pokechu.utils.AssetUtils
 
+data class ListAdapterData(
+//    val pokemonId: Int,
+    val localId: Int,
+)
 
 class ListAdapter internal constructor(
     private var context: Context?,
@@ -51,7 +41,7 @@ class ListAdapter internal constructor(
 
         init {
             cardView = itemView.findViewById<View>(R.id.root_card_view) as MaterialCardView
-            imageView = itemView.findViewById<View>(R.id.image_app) as ImageView
+            imageView = itemView.findViewById<View>(R.id.image_thumbnail) as ImageView
             textView1 = itemView.findViewById<View>(R.id.text_view) as TextView
             capturedImageView = itemView.findViewById<View>(R.id.image_pokeball_captured) as ImageView
             typeImagesContainer = itemView.findViewById<View>(R.id.little_types_container) as ViewGroup
@@ -91,7 +81,7 @@ class ListAdapter internal constructor(
         holder.imageView.setImageBitmap(bitmap)
 
         // Setup text
-        var nameText: String
+        var nameText = "#${currentLocalId} - "
 
         val isDiscovered = SettingsManager.isPokemonDiscovered(currentId)
         if (isDiscovered) {
@@ -99,13 +89,13 @@ class ListAdapter internal constructor(
             holder.imageView.clearColorFilter()
 
             val localizedName = LocalizationManager.getLocalizedPokemonName(context!!, currentId)
-            nameText = "#${currentLocalId} - ${localizedName}"
+            nameText += "${localizedName}"
         }
         else {
             // Add black filter to image
             holder.imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
 
-            nameText = "???"
+            nameText += "???"
         }
 
         holder.textView1.text = nameText

@@ -51,11 +51,13 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scrollbars="vertical" />
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_list"
+                android:name="fr.amazer.pokechu.fragments.FragmentList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="fill_parent"-->
 
         </LinearLayout>
 
@@ -63,6 +65,13 @@
         <include
             android:id="@+id/load_overlay"
             layout="@layout/loading_overlay"/>
+
+        <!--    TODO FIX THIS IS DRAW OVER THE LIST (scroll to bottom of list to see the bug)-->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_bottom_sheet"
+            android:name="fr.amazer.pokechu.fragments.FragmentBottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -75,9 +84,5 @@
         android:layout_marginBottom="16dp"
         app:srcCompat="@drawable/ic_search"
         app:backgroundTint="@color/colorPrimary"/>
-
-    <include
-        android:id="@id/bottom_sheet"
-        layout="@layout/bottom_sheet"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
