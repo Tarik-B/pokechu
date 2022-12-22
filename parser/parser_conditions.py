@@ -25,7 +25,7 @@ class ConditionsParser:
         if "condition_raw" in node:
             condition_fr = node["condition_raw"]
 
-            condition_fr = "Bonheur de jour +Gain de niveau ou Gain de niveau en tenant un Éclat Soleil"
+            #condition_fr = "Bonheur de jour +Gain de niveau ou Gain de niveau en tenant un Éclat Soleil"
             # OR(AND(AND(FRIENDSHIP)(DAY))(LEVEL_GAIN))(AND(LEVEL_GAIN)(ITEM_HOLD('14')))
             # 2(1(1(7)(10))(4))(1(4)(6(14)))
             # (OR(AND(AND(FRIENDSHIP)(DAY))(LEVEL_GAIN))(AND(LEVEL_GAIN)(ITEM_HOLD)))
