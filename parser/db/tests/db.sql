@@ -71,6 +71,12 @@
 -- ORDER BY pokemon_id ASC
 -- ;
 
+-- SELECT *
+-- FROM pokemon_evolutions
+-- -- WHERE condition_raw LIKE "% ou %"
+-- WHERE evolved_id = 854 OR base_id = 854
+-- ;
+
 -- Evolution links count
 -- SELECT *, (
 --     SELECT COUNT(*) FROM pokemon_evolutions pe WHERE pe.base_id = p.id OR pe.evolved_id = p.id

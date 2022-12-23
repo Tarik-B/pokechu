@@ -25,41 +25,51 @@ object SettingsManager {
         preferences.registerOnSharedPreferenceChangeListener(listener)
     }
 
+    // Pokemon discovered/captured status
     private const val KEY_POKEMON_PREFIX = "pokemon_"
     private const val KEY_POKEMON_DISCOVERED_SUFFIX = "_discovered"
-    private const val KEY_POKEMON_CAPTURED_SUFFIX = "_captured"
-    private const val KEY_SETTING_SEARCH_ALL_FIELDS = "setting_search_all_fields"
-    private const val KEY_SETTING_LIST_VIEW = "setting_list_view"
-//    private const val KEY_SETTING_APP_LANGUAGE = "setting_app_language"
-    private const val KEY_SETTING_DATA_LANGUAGE = "setting_data_language"
-    private const val KEY_SETTING_SELECTED_REGION = "setting_selected_region"
-
     private const val DEFAULT_POKEMON_DISCOVERED = false
     public fun isPokemonDiscovered(pokemonId: Int): Boolean { return getSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, DEFAULT_POKEMON_DISCOVERED)!! }
     public fun setPokemonDiscovered(pokemonId: Int, discovered: Boolean) { setSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_DISCOVERED_SUFFIX, discovered) }
     public fun togglePokemonDiscovered(pokemonId: Int) { setPokemonDiscovered(pokemonId, !isPokemonDiscovered(pokemonId) ) }
-
+    private const val KEY_POKEMON_CAPTURED_SUFFIX = "_captured"
     private const val DEFAULT_POKEMON_CAPTURED = false
     public fun isPokemonCaptured(pokemonId: Int): Boolean { return getSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_CAPTURED_SUFFIX, DEFAULT_POKEMON_CAPTURED)!! }
     public fun setPokemonCaptured(pokemonId: Int, captured: Boolean) { setSetting(KEY_POKEMON_PREFIX + pokemonId + KEY_POKEMON_CAPTURED_SUFFIX, captured) }
     public fun togglePokemonCaptured(pokemonId: Int) { setPokemonCaptured(pokemonId, !isPokemonCaptured(pokemonId) ) }
 
-    private const val DEFAULT_SEARCH_ALL_FIELDS = true
-    public fun isSearchAllFieldsEnabled(context: Context): Boolean { return getSetting(KEY_SETTING_SEARCH_ALL_FIELDS, DEFAULT_SEARCH_ALL_FIELDS)!! }
-    public fun setSearchAllFieldsEnabled(context: Context, enabled: Boolean) { setSetting(KEY_SETTING_SEARCH_ALL_FIELDS, enabled) }
+    // Main menus (filter, customize, etc.) settings
+    private const val KEY_SETTING_SHOW_UNDISCOVERED_INFO = "setting_show_undiscovered_info"
+    private const val DEFAULT_SHOW_UNDISCOVERED_INFO = false
+    public fun isShowUndiscoveredInfoEnabled(): Boolean { return getSetting(KEY_SETTING_SHOW_UNDISCOVERED_INFO, DEFAULT_SHOW_UNDISCOVERED_INFO)!! }
+    public fun setShowUndiscoveredInfoEnabled(enabled: Boolean) { setSetting(KEY_SETTING_SHOW_UNDISCOVERED_INFO, enabled) }
+    private const val KEY_SETTING_SHOW_DISCOVERED_ONLY = "setting_show_discovered_only"
+    private const val DEFAULT_SHOW_DISCOVERED_ONLY = false
+    public fun isShowDiscoveredOnlyEnabled(): Boolean { return getSetting(KEY_SETTING_SHOW_DISCOVERED_ONLY, DEFAULT_SHOW_DISCOVERED_ONLY)!! }
+    public fun setShowDiscoveredOnlyEnabled(enabled: Boolean) { setSetting(KEY_SETTING_SHOW_DISCOVERED_ONLY, enabled) }
+    private const val KEY_SETTING_SHOW_CAPTURED_ONLY = "setting_show_captured_only"
+    private const val DEFAULT_SHOW_CAPTURED_ONLY = false
+    public fun isShowCapturedOnlyEnabled(): Boolean { return getSetting(KEY_SETTING_SHOW_CAPTURED_ONLY, DEFAULT_SHOW_CAPTURED_ONLY)!! }
+    public fun setShowCapturedOnlyEnabled(enabled: Boolean) { setSetting(KEY_SETTING_SHOW_CAPTURED_ONLY, enabled) }
 
-    private const val DEFAULT_LIST_VIEW = true
+    private const val KEY_SETTING_LIST_VIEW = "setting_list_view"
+    private const val DEFAULT_LIST_VIEW = false
     public fun isListViewEnabled(): Boolean { return getSetting(KEY_SETTING_LIST_VIEW, DEFAULT_LIST_VIEW)!! }
     public fun setListViewEnabled(enabled: Boolean) { setSetting(KEY_SETTING_LIST_VIEW, enabled) }
 
+    // ActivitySettings settings
+//    private const val KEY_SETTING_APP_LANGUAGE = "setting_app_language"
 //    private val DEFAULT_APP_LANGUAGE = Locale.getDefault().language // "sys_def" // LocaleUtils.OPTION_PHONE_LANGUAGE
 //    public fun getAppLanguage(): String { return getSetting(KEY_SETTING_APP_LANGUAGE, DEFAULT_APP_LANGUAGE)!! }
 //    public fun setAppLanguage(language: String) { setSetting(KEY_SETTING_APP_LANGUAGE, language) }
 
+    private const val KEY_SETTING_DATA_LANGUAGE = "setting_data_language"
     private val DEFAULT_DATA_LANGUAGE = Locale.getDefault().language
     public fun getDataLanguage(): String { return getSetting(KEY_SETTING_DATA_LANGUAGE, DEFAULT_DATA_LANGUAGE)!! }
 //    public fun setDataLanguage(language: String) { setSetting(KEY_SETTING_DATA_LANGUAGE, language) }
 
+    // Selected region
+    private const val KEY_SETTING_SELECTED_REGION = "setting_selected_region"
     private val DEFAULT_SELECTED_REGION = PokedexType.NATIONAL.ordinal
     public fun getSelectedRegion(): Int { return getSetting(KEY_SETTING_SELECTED_REGION, DEFAULT_SELECTED_REGION)!! }
     public fun setSelectedRegion(region: PokedexType) { setSetting(KEY_SETTING_SELECTED_REGION, region.ordinal) }
@@ -67,7 +77,6 @@ object SettingsManager {
     fun addSelectedRegionListener(listener: () -> Unit) {
         selectedRegionListeners.add(listener)
     }
-
 
     private inline fun <reified T: Any> getSetting(key: String, defaultValue: T): T? {
         return when(T::class) {

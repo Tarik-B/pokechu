@@ -1,5 +1,6 @@
 package fr.amazer.pokechu.utils
 
+import android.annotation.SuppressLint
 import fr.amazer.pokechu.data.EvolutionConditionType
 import java.util.*
 
@@ -27,37 +28,45 @@ class ConditionUtils {
             var i = 0
             while (i < chars.size) {
                 length++
-                if (chars[i] == ')') {
-                    return Pair(result, length)
-                }
-                if (chars[i] == '(') {
-                    result.type = EvolutionConditionType.values()[typeString.toInt()]
-
-                    when (result.type) {
-                        EvolutionConditionType.LEVEL,
-                        EvolutionConditionType.ITEM_USE,
-                        EvolutionConditionType.ITEM_HOLD,
-                        EvolutionConditionType.KNOW_SKILL,
-                        EvolutionConditionType.LEARN_SKILL -> {
-                            do {
-                                ++i
-                                result.data += chars[i]
-                            }
-                            while(chars[i+1] != ')')
-                        }
-                        else -> {
+                when(chars[i]) {
+                    '(' ->  {
+                        do
+                        {
                             val (data,dataLength) = parseEncodedCondition(Arrays.copyOfRange(chars, i+1, chars.size))
                             i += dataLength
                             length += dataLength
                             result.nested.add(data)
                         }
+                        while( chars[i] == ',')
+                    }
+                    ')' -> {
+//                        if (result.type != EvolutionConditionType.AND && result.type != EvolutionConditionType.OR )
+                        break
+                    }
+                    ',' -> {
+                        break
+                    }
+                    '[' -> {
+                        do {
+                            ++i
+                            length++
+                            result.data += chars[i]
+                        }
+                        while(chars[i+1] != ']')
+                    }
+                    ']' -> {
+
+                    }
+                    else -> {
+                        typeString += chars[i]
                     }
                 }
-                else {
-                    typeString += chars[i]
-                }
+
                 i++
             }
+
+            result.type = EvolutionConditionType.values()[typeString.toInt()]
+
             return Pair(result, length)
         }
     }

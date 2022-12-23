@@ -12,12 +12,13 @@ enum class EvolutionConditionType {
 	LEVEL_GAIN,  // 4
 	ITEM_USE,    // 5
 	ITEM_HOLD,   // 6
-	FRIENDSHIP,  // 7
-	GENDER,      // 8
-	LOCATION,    // 9
-	DAY,         // 10
-	NIGHT,       // 11
-	KNOW_SKILL,  // 12
-	LEARN_SKILL, // 13
-	TRADE,       // 14
+	HAPPINESS,   // 7
+	MALE,        // 8
+	FEMALE,      // 9
+	LOCATION,    // 10
+	DAY,         // 11
+	NIGHT,       // 12
+	KNOW_SKILL,  // 13
+	LEARN_SKILL, // 14
+	TRADE,       // 15
 }

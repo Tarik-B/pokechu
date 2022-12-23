@@ -15,12 +15,13 @@
     <string name="menu_main_filter">Filter</string>
     <string name="menu_main_settings">Settings</string>
     <string name="menu_main_about">About</string>
-
-    <!-- Customize search menu -->
-    <string name="menu_main_search_all_fields">Search all fields</string>
+    <!-- Customize menu -->
+    <string name="menu_main_show_undiscovered_info">Show undiscovered info</string>
+    <string name="menu_main_show_discovered_only">Show discovered only</string>
+    <string name="menu_main_show_captured_only">Show captured only</string>
 
     <!-- Details activity -->
-    <string name="unique_id">Unique ID</string>
+    <string name="national_id">National ID</string>
     <string name="pokemon_id">Pokémon ID</string>
     <string name="details_height">Height</string>
     <string name="details_meters_abbrev">m</string>

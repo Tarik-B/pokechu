@@ -84,7 +84,7 @@ class FragmentDetailsHeader : Fragment() {
             val imageView = imageRoot.findViewById(R.id.image_type) as ImageView
 
             val assetManager: AssetManager? = context?.assets
-            val imgPath = AssetUtils.getTypeThuymbnailPath(PokemonType.values()[type])
+            val imgPath = AssetUtils.getTypeThumbnailPath(PokemonType.values()[type])
             val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
             imageView.setImageBitmap(bitmap)
 

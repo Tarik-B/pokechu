@@ -2,9 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/search_all_fields"
-        android:title="@string/menu_main_search_all_fields"
+        android:id="@+id/show_undiscovered_info"
+        android:title="@string/menu_main_show_undiscovered_info"
         android:checkable="true"
-        android:checked="true"
+        android:checked="false"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/show_discovered_only"
+        android:title="@string/menu_main_show_discovered_only"
+        android:checkable="true"
+        android:checked="false"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/show_captured_only"
+        android:title="@string/menu_main_show_captured_only"
+        android:checkable="true"
+        android:checked="false"
         app:showAsAction="never"/>
 </menu>

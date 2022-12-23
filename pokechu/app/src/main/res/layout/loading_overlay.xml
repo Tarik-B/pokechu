@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:clickable="true"
-    android:background="@color/cardview_light_background">
-    >
+    android:background="@color/background_loading">
 <!--    android:alpha="0.0"-->
 <!--    android:visibility="gone">-->
 

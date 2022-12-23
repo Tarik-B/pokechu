@@ -12,7 +12,8 @@
             app:defaultValue="en"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"
+            app:persistent="false"/> <!-- not persistent because handled by akexorcist:localization -->
 
         <ListPreference
             app:key="setting_data_language"

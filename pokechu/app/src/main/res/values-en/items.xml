@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="item_name_0">fire stone</string>
+    <string name="item_name_1">water stone</string>
+    <string name="item_name_2">leaf stone</string>
+    <string name="item_name_3">thunder stone</string>
+    <string name="item_name_4">moon stone</string>
+    <string name="item_name_5">sun stone</string>
+    <string name="item_name_6">dawn stone</string>
+    <string name="item_name_7">dusk stone</string>
+    <string name="item_name_8">shiny stone</string>
+    <string name="item_name_9">ice stone</string>
+    <string name="item_name_10">king\'s rock</string>
+    <string name="item_name_11">linking cord</string>
+    <string name="item_name_12">oval stone</string>
+    <string name="item_name_13">metal coat</string>
+    <string name="item_name_14">sun shard</string>
+    <string name="item_name_15">moon shard</string>
+    <string name="item_name_16">razor claw</string>
+    <string name="item_name_17">tart apple</string>
+    <string name="item_name_18">sweet apple</string>
+    <string name="item_name_19">cracked pot</string>
+    <string name="item_name_20">chipped pot</string>
+    <string name="item_name_21">Gimmighoul coin</string>
+    <string name="item_name_22">black augurite</string>
+    <string name="item_name_23">protector</string>
+    <string name="item_name_24">dragon scale</string>
+    <string name="item_name_25">electirizer</string>
+    <string name="item_name_26">magmarizer</string>
+    <string name="item_name_27">upgrade</string>
+    <string name="item_name_28">dubious disc</string>
+    <string name="item_name_29">razor fang</string>
+    <string name="item_name_30">prism scale</string>
+    <string name="item_name_31">reaper cloth</string>
+    <string name="item_name_32">deep sea tooth</string>
+    <string name="item_name_33">deep sea scale</string>
+    <string name="item_name_34">sachet</string>
+    <string name="item_name_35">whipped dream</string>
+    <string name="item_name_36">auspicious armor</string>
+    <string name="item_name_37">malicious armor</string>
+</resources>

@@ -20,7 +20,7 @@
         android:id="@+id/checkbox_unique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/unique_id"
+        android:text="@string/national_id"
         android:checked="false"/>
 
 </LinearLayout>

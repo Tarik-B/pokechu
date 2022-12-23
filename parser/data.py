@@ -14,7 +14,7 @@ class PokedexType(Enum):
     name_fr: str
     name_en: str
 
-    def __new__(cls, pokepedia_shortcut: str = "", abbrev_names: list = [], name_fr: str = "", name_en: str = ""):
+    def __new__(cls, pokepedia_shortcut: str, abbrev_names: list, name_fr: str, name_en: str):
         obj = object.__new__(cls)
         obj._value_ = len(cls.__members__) # starts at 0, no + 1
 
@@ -60,7 +60,7 @@ class PokemonType(Enum):
     name_fr: str
     name_en: str
 
-    def __new__(cls, name_fr: str = "", name_en: str = ""):
+    def __new__(cls, name_fr: str, name_en: str):
         obj = object.__new__(cls)
         obj._value_ = len(cls.__members__) # starts at 0, no + 1
 
@@ -99,7 +99,7 @@ class ItemType(Enum):
     name_fr: str
     name_en: str
 
-    def __new__(cls, name_fr: str = "", name_en: str = ""):
+    def __new__(cls, name_fr: str, name_en: str):
         obj = object.__new__(cls)
         obj._value_ = len(cls.__members__) # starts at 0, no + 1
 
@@ -147,42 +147,47 @@ class ItemType(Enum):
     SACHET = ("sachet senteur", "sachet")
     WHIPPED_DREAM = ("chantibonbon", "whipped dream")
 
+    AUSPICIOUS_ARMOR = ("armure de la fortune", "auspicious armor")
+    MALICIOUS_ARMOR = ("armure de la rancune", "malicious armor")
+
 @unique
 class EvolutionConditionType(Enum):
+    name_fr: str
+    name_en: str
     patterns: list
 
-    def __new__(cls, patterns: list = []):
+    def __new__(cls, name_fr: str, name_en: str, patterns: list):
         obj = object.__new__(cls)
         obj._value_ = len(cls.__members__) # starts at 0, no + 1
 
+        obj.name_fr = name_fr
+        obj.name_en = name_en
         obj.patterns = patterns
 
         return obj
 
-    UNKNOWN = ()
+    UNKNOWN = ("", "", [])
 
-    AND = ()
-    OR = ()
+    AND = ("et", "and", [])
+    OR = ("ou", "or", [])
 
-    LEVEL = ([r"niveau ([0-9]+)"])
+    LEVEL = ("niveau", "level", [r"niveau ([0-9]+)"])
     # ?: = non-capturing groups, is required to do an OR without capturing a group
-    LEVEL_GAIN = ([r"(?:gagner|gain|monter) (?:un|de|d'un) niveau"]) # Merge both with or
+    LEVEL_GAIN = ("gain de niveau", "level gain", [r"(?:gagner|gain|monter) (?:un|de|d'un) niveau"]) # Merge both with or
 
-    # EvolutionConditionType.ITEM_USE: [r"(?:au contact)+\s+\w+[\s|\']+" + item_name for item_name in
-    #                                   item_names ],
-    ITEM_USE = ([r"(?:au contact)?(?:\s\w[\s|\']\s)?(" + ItemType(item_type).name_fr + r")" for item_type in
-                                      ItemType])
-    ITEM_HOLD = ([r"en tenant\s(?:\w*[\s|\'])?(" + ItemType(item_type).name_fr + r")" for item_type in
-                                       ItemType])
+    ITEM_USE = ("utiliser", "use", [r"(?:au contact .*)?(" + ItemType(item_type).name_fr + r")" for
+                                    item_type in ItemType])
+    ITEM_HOLD = ("tenir", "hold", [r"en tenant\s(?:\w*[\s|\'])?(" + ItemType(item_type).name_fr + r")" for item_type in ItemType])
 
-    FRIENDSHIP = ([r"bonheur"])
-    GENDER = ([r"(mâle|femelle)"])
-    LOCATION = ()
+    HAPPINESS = ("bonheur", "happiness", [r"bonheur"])
+    MALE = ("male", "mâle", [r"mâle"])
+    FEMALE = ("female", "femelle", [r"femelle"])
+    LOCATION = ("lieu", "location", [])
 
-    DAY = ([r"(?:de|en|pendant)?\s?(?:\w*\s)?(?:journée|jour)"])
-    NIGHT = ([r"(?:de|pendant)?\s?(?:\w*\s)?nuit"])
+    DAY = ("jour", "day", [r"(?:de|en|pendant)?\s?(?:\w*\s)?(?:journée|jour)"])
+    NIGHT = ("nuit", "night", [r"(?:de|pendant)?\s?(?:\w*\s)?nuit"])
 
-    KNOW_SKILL = (["apprendre (?:la|une) capacité (.*)"])
-    LEARN_SKILL = (["(?:connaître|en connaissant) (?:la|une) capacité (.*)"])
+    KNOW_SKILL = ("connaître", "know", ["(?:connaître|en connaissant) (?:la|une) capacité (.*)"])
+    LEARN_SKILL = ("apprendre", "learn", ["apprendre (?:la|une) capacité (.*)"])
 
-    TRADE = (["échange"])
+    TRADE = ("échange", "trade", ["échange"])

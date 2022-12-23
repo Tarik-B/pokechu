@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -28,7 +29,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="@id/fragment_bottom_sheet">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -66,7 +68,7 @@
             android:id="@+id/load_overlay"
             layout="@layout/loading_overlay"/>
 
-        <!--    TODO FIX THIS IS DRAW OVER THE LIST (scroll to bottom of list to see the bug)-->
+        <!--    TODO FIX THIS IS DRAWN OVER THE LIST (scroll to bottom of list to see the bug)-->
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_bottom_sheet"
             android:name="fr.amazer.pokechu.fragments.FragmentBottomSheet"

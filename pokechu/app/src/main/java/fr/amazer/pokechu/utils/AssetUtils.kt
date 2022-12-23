@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import fr.amazer.pokechu.data.EvolutionConditionType
+import fr.amazer.pokechu.data.ItemType
 import fr.amazer.pokechu.data.PokedexType
 import fr.amazer.pokechu.data.PokemonType
 import java.io.IOException
@@ -36,14 +38,20 @@ class AssetUtils {
         fun getPokemonThumbnailPath(pokemon_id: Int): String {
             return "images/pokemons/${pokemon_id}.png"
         }
-        fun getTypeThuymbnailPath(type: PokemonType): String {
+        fun getTypeThumbnailPath(type: PokemonType): String {
             return "images/types_EV/${type.ordinal}.png"
         }
-        fun getTypeThuymbnailPathRound(type: PokemonType): String {
+        fun getTypeThumbnailPathRound(type: PokemonType): String {
             return "images/types_EB/${type.ordinal}.png"
         }
-        fun getRegionThuymbnailPat(type: PokedexType): String {
+        fun getRegionThumbnailPath(type: PokedexType): String {
             return "images/regions/${type.ordinal}.png"
+        }
+        fun getItemThumbnailPath(type: ItemType): String {
+            return "images/items/${type.ordinal}.png"
+        }
+        fun getConditionThumbnailPath(type: EvolutionConditionType): String {
+            return "images/conditions/${type.ordinal}.png"
         }
     }
 }

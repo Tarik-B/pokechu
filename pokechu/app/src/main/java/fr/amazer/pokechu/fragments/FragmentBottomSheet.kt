@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.card.MaterialCardView
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.data.PokedexType
@@ -89,13 +90,13 @@ class FragmentBottomSheet : Fragment() {
             val imageView = regionItem.findViewById(R.id.region_image_view) as ImageView
 
             val assetManager: AssetManager? = context?.assets
-            val imgPath = AssetUtils.getRegionThuymbnailPat(PokedexType.values()[region.id])
+            val imgPath = AssetUtils.getRegionThumbnailPath(PokedexType.values()[region.id])
             val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
             imageView.setImageBitmap(bitmap)
 
             val textView = regionItem.findViewById(R.id.region_text_view) as TextView
             textView.text =
-                context?.let { LocalizationManager.getLocalizedRegionName(it, PokedexType.values()[region.id]) }
+                context?.let { LocalizationManager.getRegionName(it, PokedexType.values()[region.id]) }
             Log.i(this::class.simpleName, "textView.text = ${textView.text}")
             val selectedRegion = SettingsManager.getSelectedRegion()
             regionItem.strokeWidth = if (region.id == selectedRegion) 10 else 0
@@ -156,7 +157,7 @@ class FragmentBottomSheet : Fragment() {
      * @return A new instance of fragment FragmentBottomSheet.
      */
     @JvmStatic
-    fun newInstance(param1: String) =
+    fun newInstance() =
         FragmentBottomSheet().apply {
             arguments = Bundle().apply {
             }

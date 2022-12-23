@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.plattysoft.leonids.ParticleSystem
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.activities.ActivityDetails
 import fr.amazer.pokechu.data.NationalIdLocalId
@@ -28,10 +27,8 @@ import fr.amazer.pokechu.ui.ListAdapterData
 import fr.amazer.pokechu.ui.RecyclerTouchListener
 import fr.amazer.pokechu.utils.UIUtils
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 import kotlin.properties.Delegates
 
 class FragmentList : Fragment() {
@@ -88,8 +85,7 @@ class FragmentList : Fragment() {
 
             // Add listener on selected region
             SettingsManager.addSelectedRegionListener {
-                buildPokemonList()
-                notifyDataSetChanged()
+                rebuildDataSet()
             }
         }
 
@@ -134,29 +130,47 @@ class FragmentList : Fragment() {
                         if (pokemonId != null) {
                             val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
                             val isCaptured = SettingsManager.isPokemonCaptured(pokemonId)
+                            val showUndiscoveredInfo = context?.let { SettingsManager.isShowUndiscoveredInfoEnabled() }
 
-                            if (!isDiscovered) {
-                                SettingsManager.togglePokemonDiscovered(pokemonId)
-                                if (view != null) {
-                                    activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_thumbnail)) }
+                            if (showUndiscoveredInfo == false) {
+                                if (!isDiscovered) {
+                                    SettingsManager.togglePokemonDiscovered(pokemonId)
+                                    if (view != null)
+                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_thumbnail)) }
                                 }
-                            }
-                            else if (!isCaptured) {
-                                SettingsManager.togglePokemonCaptured(pokemonId)
-                                if (view != null) {
-                                    activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_pokeball_captured)) }
+                                else if (!isCaptured) {
+                                    SettingsManager.togglePokemonCaptured(pokemonId)
+                                    if (view != null)
+                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_pokeball_captured)) }
+                                }
+                                else {
+                                    SettingsManager.togglePokemonDiscovered(pokemonId)
+                                    SettingsManager.togglePokemonCaptured(pokemonId)
                                 }
                             }
                             else {
-                                SettingsManager.togglePokemonDiscovered(pokemonId)
                                 SettingsManager.togglePokemonCaptured(pokemonId)
+                                if (SettingsManager.isPokemonCaptured(pokemonId)) {
+                                    SettingsManager.setPokemonDiscovered(pokemonId, true)
+                                    if (view != null)
+                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_pokeball_captured)) }
+                                }
                             }
+
 
                             adapter?.notifyItemChanged(position)
                         }
                     }
                 })
         )
+    }
+
+    private fun isPokemonDisplayed(id: Int): Boolean {
+        val capturedOnly = SettingsManager.isShowCapturedOnlyEnabled()
+        val discoveredOnly = SettingsManager.isShowDiscoveredOnlyEnabled()
+
+        return ( (!capturedOnly!! || SettingsManager.isPokemonCaptured(id))
+                && (!discoveredOnly!! || SettingsManager.isPokemonDiscovered(id)) )
     }
 
     private fun buildPokemonList() {
@@ -167,22 +181,37 @@ class FragmentList : Fragment() {
         suspend fun getPokemonData(region: Int): Map<Int, ListAdapterData> = withContext(Dispatchers.IO) {
             if (region == PokedexType.NATIONAL.ordinal) {
                 val pokemonIds: List<Int> = DatabaseManager.findPokemonIds()
-                val pokemonData = ArrayList<ListAdapterData>()
-                pokemonIds.forEach{ id -> pokemonData.add(ListAdapterData(id))}
+                val dataMap = HashMap<Int, ListAdapterData>()
+//                val pokemonData = ArrayList<ListAdapterData>()
+                pokemonIds.forEach{ id ->
+                    if (isPokemonDisplayed(id))
+//                        pokemonData.add(ListAdapterData(id))
+                        dataMap[id] = ListAdapterData(id)
+                }
 
-                val dataMap = pokemonIds.zip(pokemonData).toMap()
+//                val dataMap = pokemonIds.zip(pokemonData).toMap()
                 return@withContext dataMap
             }
             else {
                 val pokemonLocalIds: List<NationalIdLocalId> = DatabaseManager.findPokemonRegions(selectedRegion)
                 val dataMap = HashMap<Int, ListAdapterData>()
-                pokemonLocalIds.forEach{ id -> dataMap[id.pokemon_id] = ListAdapterData(id.local_id) }
+                pokemonLocalIds.forEach{ id ->
+                    if (isPokemonDisplayed(id.pokemon_id))
+                        dataMap[id.pokemon_id] = ListAdapterData(id.local_id)
+                }
                 return@withContext dataMap
             }
         }
         lifecycleScope.launch { // coroutine on main
             val pokemonData = getPokemonData(selectedRegion) // coroutine on IO
             // back on main
+
+            // Fill localized names in data
+            pokemonData.forEach{ (key, data) ->
+                LocalizationManager.getLanguages().forEach{ lang ->
+                    data.names[lang] = LocalizationManager.getPokemonName(requireContext(), key, lang) ?: ""
+                }
+            }
             val gridEnabled = !SettingsManager.isListViewEnabled()
             val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
 
@@ -199,43 +228,27 @@ class FragmentList : Fragment() {
         adapter?.notifyDataSetChanged()
     }
 
+    public fun rebuildDataSet() {
+        buildPokemonList()
+        notifyDataSetChanged()
+    }
+
     public fun filterQuery(text: String?) {
-        val pokemonIds = adapter?.getAllIds()
-
-        val filteredIds = ArrayList<Int>()
-        if (pokemonIds != null) {
-            for (id in pokemonIds) {
-                val localizedNameFr =
-                    context?.let { LocalizationManager.getLocalizedPokemonName(it, id, "fr") }
-                val localizedNameEn =
-                    context?.let { LocalizationManager.getLocalizedPokemonName(it, id, "en") }
-
-                val found0 = id.toString().lowercase(Locale.getDefault()).contains(text!!)
-//                val found1 = pokemonData.ids.paldea.lowercase(Locale.getDefault()).contains(text!!)
-//                val found2 = pokemonData.ids.unique.lowercase(Locale.getDefault()).contains(text!!)
-                val found3 = localizedNameFr?.lowercase(Locale.getDefault())?.contains(text!!)
-                val found4 = localizedNameEn?.lowercase(Locale.getDefault())?.contains(text!!)
-
-                if ( found0 || found3 == true || found4 == true) {
-                    filteredIds.add(id)
-                }
-            }
-        }
-        adapter!!.setFilter(filteredIds)
+        adapter?.filter?.filter(text)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment FragmentList.
-         */
-        @JvmStatic
-        fun newInstance() =
-            FragmentList().apply {
-                arguments = Bundle().apply {
-                }
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @return A new instance of fragment FragmentList.
+     */
+    @JvmStatic
+    fun newInstance() =
+        FragmentList().apply {
+            arguments = Bundle().apply {
             }
+        }
     }
 }

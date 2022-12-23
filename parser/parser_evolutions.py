@@ -78,13 +78,18 @@ class EvolutionsParser:
                         if cell.lower().endswith(EVOLUTION_FAMILY_STRING_ENGLISH):
                             break
 
-                    # TODO Fix this, it removes "1000" from "Marcher 1000 pas (...)"
-                    # Remove pokemon ids XXX/XXXX (useless here)
-                    cell = re.sub(r"\b(\d{3,4})\b", "", cell)
-
                     if lang == "fr":
                         # Remove "Gen. X"
-                        cell = re.sub(r"Gen. [0-9]", "", cell)
+                        cell = re.sub(r"Gen. [0-9] ", "", cell)
+
+                    # TODO Fix this, it removes "1000" from "Marcher 1000 pas (...)"
+                    # Remove pokemon ids XXX/XXXX (useless here)
+                    while(True):
+                        cell_new = re.sub(r"^\d{3,4} ", "", cell)
+                        if cell_new != cell:
+                            cell = cell_new
+                        else:
+                            break
 
                     cell = re.sub(r"Fichier:.*\.png", "", cell)
 

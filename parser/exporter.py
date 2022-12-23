@@ -20,7 +20,8 @@ class Exporter:
 
         self.save_enum_names_xml(path, "regions.xml", PokedexType, "region_name")
         self.save_enum_names_xml(path, "types.xml", PokemonType, "type_name")
-        # self.save_enum_names_xml(path + "items.xml", ItemType, "item")
+        self.save_enum_names_xml(path, "items.xml", ItemType, "item_name")
+        self.save_enum_names_xml(path, "conditions.xml", EvolutionConditionType, "condition_name")
 
         self.save_enums_kotlin(path, [PokedexType, PokemonType, ItemType, EvolutionConditionType])
 
@@ -104,7 +105,7 @@ class Exporter:
                         name = enum_class(enum).name_fr
                     else:
                         name = enum_class(enum).name_en
-                    # name = json.dumps(name) # escapes quotes
+                    name = name.replace("'", "\\'")# json.dumps(names[lang]) # escapes quotes
 
                     output_file.write(f"    <string name=\"{prefix}_{enum.value}\">{name}</string>\n")
 

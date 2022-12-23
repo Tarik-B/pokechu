@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.otaliastudios.zoom.ZoomLayout
 import dev.bandb.graphview.AbstractGraphAdapter
 import dev.bandb.graphview.graph.Graph
 import dev.bandb.graphview.graph.Node
@@ -27,8 +28,10 @@ import fr.amazer.pokechu.databinding.FragmentEvolutionTreeBinding
 import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
+import fr.amazer.pokechu.ui.EvolutionNodeData
 import fr.amazer.pokechu.ui.EvolutionTreeEdgeDecoration
 import fr.amazer.pokechu.utils.AssetUtils
+import fr.amazer.pokechu.utils.ConditionUtils
 import fr.amazer.pokechu.utils.UIUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -83,6 +86,12 @@ class FragmentEvolutionTree : Fragment() {
             setLayoutManager()
             setEdgeDecoration()
             setupGraphView(graph)
+
+            val zoomLayout = view.findViewById(R.id.zoom_layout) as ZoomLayout
+//            zoomLayout.setMinZoom(0.8f)
+//            zoomLayout.setMaxZoom(2.5f)
+            zoomLayout.setMinZoom(0.8f)
+            zoomLayout.setMaxZoom(10.0f)
         }
     }
 
@@ -93,25 +102,28 @@ class FragmentEvolutionTree : Fragment() {
 
             // Iterate on evolution links but create each node only once
             val nodes = HashMap<Int, Node>()
-            nodes[pokemonId] = Node(pokemonId)
+            nodes[pokemonId] = Node(EvolutionNodeData(pokemonId, null))
             evolutionChain.forEach { evolution ->
-                var baseNode =
-                    if (evolution.base_id in nodes) nodes[evolution.base_id] else Node(evolution.base_id)
-                var evolvedNode =
-                    if (evolution.evolved_id in nodes) nodes[evolution.evolved_id] else Node(
-                        evolution.evolved_id
-                    )
 
-                if (baseNode != null && evolvedNode != null) {
-                    graph.addEdge(baseNode, evolvedNode)
-                }
+                // Find or create both nodes
+                if (evolution.base_id !in nodes)
+                    nodes[evolution.base_id] = Node(EvolutionNodeData(evolution.base_id, null ) )
+
+                if (evolution.evolved_id !in nodes)
+                    nodes[evolution.evolved_id] = Node(EvolutionNodeData(evolution.evolved_id, null ) )
+
+                // Add decoded conditions to data
+                (nodes[evolution.evolved_id]?.data as EvolutionNodeData).conditions = ConditionUtils.parseEncodedCondition(evolution.condition_encoded)
+
+                // Create edge
+                graph.addEdge(nodes[evolution.base_id]!!, nodes[evolution.evolved_id]!!)
             }
 
             // Add root
             graph.addNode(nodes[pokemonId]!!)
         }
         else {
-            graph.addNode(Node(pokemonId))
+            graph.addNode(Node(EvolutionNodeData(pokemonId, null)))
         }
 
         return graph
@@ -151,8 +163,8 @@ class FragmentEvolutionTree : Fragment() {
             }
 
             override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
-                val pokemonId = Objects.requireNonNull(getNodeData(position)) as Int // as DataEvolutionTree
-                holder.onBinded(pokemonId)
+                val nodeData = Objects.requireNonNull(getNodeData(position)) as EvolutionNodeData
+                holder.onBinded(nodeData.pokemonId)
             }
         }.apply {
             this.submitGraph(graph)
@@ -169,10 +181,11 @@ class FragmentEvolutionTree : Fragment() {
             itemView.setOnClickListener {
                 // On click open new details activity that replaces the current one
                 currentNode = adapter.getNode(bindingAdapterPosition)
-                var currentId = adapter.getNodeData(bindingAdapterPosition) as Int//as DataEvolutionTree
+                var currentNodeData = /*adapter.getNodeData(bindingAdapterPosition)*/
+                    currentNode?.data as EvolutionNodeData
 
                 val intent = Intent(context, ActivityDetails::class.java)
-                intent.putExtra("PokemonId", currentId)
+                intent.putExtra("PokemonId", currentNodeData.pokemonId)
 
 //                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
 //                startActivity(intent)
@@ -184,9 +197,9 @@ class FragmentEvolutionTree : Fragment() {
                 // On long click toggle discovered status
                 currentNode = adapter.getNode(bindingAdapterPosition)
 
-                var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as Int //as DataEvolutionTree
-                SettingsManager.togglePokemonDiscovered(currentNodeData.toInt())
-                if ( currentNodeData == pokemonId) {
+                var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as EvolutionNodeData
+                SettingsManager.togglePokemonDiscovered(currentNodeData.pokemonId)
+                if ( currentNodeData.pokemonId == pokemonId) {
                     var host: Activity = itemView.getContext() as Activity
                     UIUtils.reloadActivity(host, true)
                 }
@@ -204,7 +217,7 @@ class FragmentEvolutionTree : Fragment() {
             val assetManager: AssetManager? = context?.assets
 
             val localizedName =
-                context?.let { LocalizationManager.getLocalizedPokemonName(it, pokemonId) }
+                context?.let { LocalizationManager.getPokemonName(it, pokemonId) }
 
             // Setup texts
             if ( isDiscovered || pokemonId == pokemonId )

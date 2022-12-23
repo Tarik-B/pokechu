@@ -15,12 +15,13 @@
     <string name="menu_main_filter">Filtrer</string>
     <string name="menu_main_settings">Préférences</string>
     <string name="menu_main_about">À propos</string>
-
-    <!-- Customize search menu -->
-    <string name="menu_main_search_all_fields">Rechercher dans tous les champs</string>
+    <!-- Customize menu -->
+    <string name="menu_main_show_undiscovered_info">Afficher infos non-découverts</string>
+    <string name="menu_main_show_discovered_only">Afficher découverts uniquement</string>
+    <string name="menu_main_show_captured_only">Afficher capturés uniquement</string>
 
     <!-- Details activity -->
-    <string name="unique_id">ID unique</string>
+    <string name="national_id">ID national</string>
     <string name="pokemon_id">ID Pokémon</string>
     <string name="details_height">Taille</string>
     <string name="details_meters_abbrev">m</string>

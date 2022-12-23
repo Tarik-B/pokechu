@@ -20,7 +20,7 @@ class AutoNumber(Enum):
 #     LEVEL_GAIN = auto()
 #     ITEM_USE = auto()
 #     ITEM_HOLD = auto()
-#     FRIENDSHIP = auto()
+#     HAPPINESS = auto()
 #     GENDER = auto()
 #     LOCATION = auto()
 #     DAY = auto()

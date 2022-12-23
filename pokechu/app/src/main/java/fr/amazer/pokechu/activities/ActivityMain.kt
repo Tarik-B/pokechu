@@ -3,25 +3,16 @@ package fr.amazer.pokechu.activities
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.content.res.AssetManager
-import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
 import android.widget.SearchView
-import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.WindowCompat
-import androidx.core.view.allViews
-import androidx.core.view.children
-import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.data.*
@@ -30,14 +21,11 @@ import fr.amazer.pokechu.fragments.FragmentBottomSheet
 import fr.amazer.pokechu.fragments.FragmentList
 import fr.amazer.pokechu.fragments.FragmentStartSearchDialog
 import fr.amazer.pokechu.managers.DatabaseManager
-import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
-import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.UIUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 
 
 class ActivityMain : BaseActivity() {
@@ -72,6 +60,17 @@ class ActivityMain : BaseActivity() {
                 showLoadingOverlay()
         }
         fragmentBottomSheet = binding.fragmentBottomSheet.getFragment<FragmentBottomSheet>()
+//        val fm = supportFragmentManager
+//        val tr = fm.beginTransaction()
+//        fragmentBottomSheet = FragmentBottomSheet.newInstance()
+//        tr.add(R.id.main_root, fragmentBottomSheet)
+//        tr.commitAllowingStateLoss()
+//        val fm = applicationContext.supportFragmentManager
+//        val fragmentTransaction: FragmentTransaction
+//        fragmentBottomSheet = FragmentBottomSheet.newInstance()
+//        fragmentTransaction = fm.beginTransaction()
+//        fragmentTransaction.add(R.id.main_root, fragmentBottomSheet)
+//        fragmentTransaction.commit()
 
         // Create launcher for activities details/settings
         detailsActivityLauncher = registerForActivityResult(
@@ -239,9 +238,14 @@ class ActivityMain : BaseActivity() {
         val customizeSubMenuItem = menu.findItem(R.id.button_customize)
         menuInflater.inflate(R.menu.menu_main_customize, customizeSubMenuItem.subMenu)
 
-        val searchAllFields = SettingsManager.isSearchAllFieldsEnabled(applicationContext)
-        val searchAllMenuItem = menu.findItem(R.id.search_all_fields)
-        searchAllMenuItem.isChecked = searchAllFields
+        val showUndiscoveredInfoItem = menu.findItem(R.id.show_undiscovered_info)
+        showUndiscoveredInfoItem.isChecked = SettingsManager.isShowUndiscoveredInfoEnabled()
+
+        val showDiscoveredOnlyItem = menu.findItem(R.id.show_discovered_only)
+        showDiscoveredOnlyItem.isChecked = SettingsManager.isShowDiscoveredOnlyEnabled()
+
+        val showCapturedOnlyItem = menu.findItem(R.id.show_captured_only)
+        showCapturedOnlyItem.isChecked = SettingsManager.isShowCapturedOnlyEnabled()
 
         return true
     }
@@ -260,9 +264,26 @@ class ActivityMain : BaseActivity() {
                 settingsActivityLauncher.launch(intent)
                 return true
             }
-            R.id.search_all_fields -> {
+            // TODO refactor this into a generic case
+            R.id.show_undiscovered_info -> {
                 item.isChecked = !item.isChecked
-                SettingsManager.setSearchAllFieldsEnabled(applicationContext,item.isChecked)
+                SettingsManager.setShowUndiscoveredInfoEnabled(item.isChecked)
+                fragmentList.notifyDataSetChanged()
+
+                return true
+            }
+            R.id.show_discovered_only -> {
+                item.isChecked = !item.isChecked
+                SettingsManager.setShowDiscoveredOnlyEnabled(item.isChecked)
+                fragmentList.rebuildDataSet()
+
+                return true
+            }
+            R.id.show_captured_only -> {
+                item.isChecked = !item.isChecked
+                SettingsManager.setShowCapturedOnlyEnabled(item.isChecked)
+                fragmentList.rebuildDataSet()
+
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
