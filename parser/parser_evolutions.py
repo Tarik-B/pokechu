@@ -78,6 +78,19 @@ class EvolutionsParser:
                         if cell.lower().endswith(EVOLUTION_FAMILY_STRING_ENGLISH):
                             break
 
+                    # Removes some patterns between parenthesis
+                    patterns_parenthesis = [ "♀",'' "♂", "Pokémon Épée et Bouclier" ]
+                    for pattern in patterns_parenthesis:
+                        cell = re.sub(r"\(\s*" + pattern + r"\s*\)", "", cell)
+
+                    # Ignore some games, remove everything between "or" and the name of the game between parenthesis
+                    games_to_ignore = ["Pokémon XD", "Pokémon Donjon Mystère"]
+                    for game in games_to_ignore:
+                        cell = re.sub(r"ou(?!.*ou).*\(\s*" + game + r"\s*\)", "", cell)
+
+                    # if "(" in cell or ")" in cell:
+                        # print("parenthesis = " + cell)
+
                     if lang == "fr":
                         # Remove "Gen. X"
                         cell = re.sub(r"Gen. [0-9] ", "", cell)
@@ -184,7 +197,7 @@ class EvolutionsParser:
                         # self.process_evolution_condition(evolution_condition)
 
                         # Remove everything between parenthesis
-                        evolution_condition = re.sub(r"\(.*?\)", "", evolution_condition)
+                        # evolution_condition = re.sub(r"\(.*?\)", "", evolution_condition)
                         evolution_condition = evolution_condition.strip()
 
                         current_node = self._pokedex.add_evolution_node(current_node, pokemon_name,

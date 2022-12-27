@@ -168,13 +168,14 @@ class EvolutionConditionType(Enum):
 
     UNKNOWN = ("", "", [])
 
-    AND = ("et", "and", [])
-    OR = ("ou", "or", [])
+    AND = ("et", "and", [r"+"])
+    OR = ("ou", "or", [r" ou "])
 
     LEVEL = ("niveau", "level", [r"niveau ([0-9]+)"])
     # ?: = non-capturing groups, is required to do an OR without capturing a group
     LEVEL_GAIN = ("gain de niveau", "level gain", [r"(?:gagner|gain|monter) (?:un|de|d'un) niveau"]) # Merge both with or
 
+    # TODO Merge all items in one pattern with or |
     ITEM_USE = ("utiliser", "use", [r"(?:au contact .*)?(" + ItemType(item_type).name_fr + r")" for
                                     item_type in ItemType])
     ITEM_HOLD = ("tenir", "hold", [r"en tenant\s(?:\w*[\s|\'])?(" + ItemType(item_type).name_fr + r")" for item_type in ItemType])
@@ -187,7 +188,7 @@ class EvolutionConditionType(Enum):
     DAY = ("jour", "day", [r"(?:de|en|pendant)?\s?(?:\w*\s)?(?:journée|jour)"])
     NIGHT = ("nuit", "night", [r"(?:de|pendant)?\s?(?:\w*\s)?nuit"])
 
-    KNOW_SKILL = ("connaître", "know", ["(?:connaître|en connaissant) (?:la|une) capacité (.*)"])
-    LEARN_SKILL = ("apprendre", "learn", ["apprendre (?:la|une) capacité (.*)"])
+    KNOW_SKILL = ("connaître", "know", [r"(?:connaître|en connaissant)\s*(?:la|une)?\s*(?:capacité)? (.*)"])
+    LEARN_SKILL = ("apprendre", "learn", [r"apprendre (?:la|une) capacité (.*)"])
 
-    TRADE = ("échange", "trade", ["échange"])
+    TRADE = ("échange", "trade", [r"échange"])

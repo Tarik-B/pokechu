@@ -45,7 +45,7 @@ class Pokedex:
     # Public functions
     def get_type(self) -> PokedexType: return self._type
     def get_pokemons_count(self) -> int: return len(self._pokemons)
-    def get_pokemons_ids(self) -> list: return self._pokemons.keys()
+    def get_pokemons_ids(self) -> list: return list(self._pokemons.keys())
     def get_pokemon(self, id: str) -> Pokemon: return self._pokemons[id]
     def get_pokemons(self) -> dict: return self._pokemons
     def get_evolution_trees_count(self) -> int: return len(self._evolution_trees)

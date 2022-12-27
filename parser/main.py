@@ -5,11 +5,11 @@ import pokebase.cache
 
 import utils
 
+from data import PokedexType
 from parser_conditions import ConditionsParser
 from parser_data import DataParser
 from exporter import Exporter
-from parser_misc import MiscParser
-from pokedex import PokedexType, Pokedex
+from pokedex import Pokedex
 from parser_list import ListParser
 from parser_evolutions import EvolutionsParser
 from exporter_sqlite import SQLiteExporter
@@ -27,22 +27,14 @@ if __name__ == "__main__":
     #result1 = nestedExpr('(', ')').parseString(test).asList()
     # print(f"result pyparsing = {result1}")
 
-    print(f"PokedexType.NATIONAL = {PokedexType.NATIONAL.value}")
-    print(f"PokedexType.PALDEA = {PokedexType.PALDEA.value}")
+    # print(f"PokedexType.NATIONAL = {PokedexType.NATIONAL.value}")
+    # print(f"PokedexType.PALDEA = {PokedexType.PALDEA.value}")
 
     pokebase.cache.set_cache(utils.PAGES_CACHE_FOLDER + "/pokebase")
 
     total_start_time = time.time()
 
     pokedex = Pokedex(PokedexType.NATIONAL)
-
-    ##################################################
-    # block_start_time = time.time()
-    # print(f"+ Processing misc data")
-    # misc_parser = MiscParser(pokedex=pokedex, verbose=True)
-    # misc_parser.process_type_pages()
-    # print(f"Time = {time.time() - block_start_time}s")
-    ##################################################
 
     ##################################################
     block_start_time = time.time()

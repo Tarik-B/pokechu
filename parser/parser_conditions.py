@@ -28,11 +28,9 @@ class ConditionsParser:
             # condition_fr = "Bonheur de jour +Gain de niveau ou Gain de niveau en tenant un Éclat Soleil"
             # OR(AND(AND(HAPPINESS)(DAY))(LEVEL_GAIN))(AND(LEVEL_GAIN)(ITEM_HOLD('14')))
             # 2(1(1(7)(10))(4))(1(4)(6(14)))
-            # (OR(AND(AND(HAPPINESS)(DAY))(LEVEL_GAIN))(AND(LEVEL_GAIN)(ITEM_HOLD)))
-            # (2(1(1(7)(10))(4))(1(4)(6('éclat soleil'))))
 
             if condition_fr:
-                node["conditions"], node["condition_encoded"] = self.clean_and_process_condition_string(condition_fr)
+                node["condition_encoded"] = self.clean_and_process_condition_string(condition_fr)
                 # print(f"encoded condition '{condition_fr}' into {node['condition_encoded']}")
                 self._processed_condition_count += 1
 
@@ -50,45 +48,33 @@ class ConditionsParser:
         # Example: "Gain de niveau dans un champ magnétique spécial ou Pierre Foudre"
         # is: "(Gain de niveau [AND] un champ magnétique spécial) [OR] Pierre Foudre"
 
-        # Build conditions expression tree
-        # current_conditions = {}
-
         # Cleanup string
         condition_string = condition_string.lower()
 
         # Remove everything between parenthesis
-        condition_string = re.sub(r"\(.*?\)", "", condition_string)
+        # condition_string = re.sub(r"\(.*?\)", "", condition_string)
         condition_string = condition_string.strip()
 
         # Clean punctuation
         condition_string = re.sub(r"\,|\;|\.", "", condition_string)
 
-        condition, condition_encoded_string = self.split_into_or_condition(condition_string)
+        condition_encoded_string = self.split_into_or_condition(condition_string)
 
-        # print(f"condition = {condition}")
-
-        return condition, condition_encoded_string
+        return condition_encoded_string
     def split_into_or_condition(self, condition_string: str):
-        OR_OPERATOR_STRING = " ou "
-
-        condition = None
         condition_encoded_string = ""
 
         # Split in OR parts
-        results = re.split(OR_OPERATOR_STRING, condition_string)
+        results = re.split(EvolutionConditionType.OR.patterns[0], condition_string)
         results = [result.strip() for result in results ]
 
         if len(results) > 1:
             condition_encoded_string = str(EvolutionConditionType.OR.value) + "("
 
-            condition = {"type": EvolutionConditionType.OR.name, "children": []}
-            # conditions = self.create_operator_condition(results, EvolutionConditionType.OR)
-
             for i in range(len(results)):
                 result = results[i]
 
-                subcondition, encoded_string = self.split_into_and_condition(result)
-                condition["children"].append(subcondition)
+                encoded_string = self.split_into_and_condition(result)
 
                 condition_encoded_string += encoded_string
                 if i != len(results)-1:
@@ -97,33 +83,26 @@ class ConditionsParser:
             condition_encoded_string += ")"
 
         else:
-            condition, encoded_string = self.split_into_and_condition(condition_string)
+            encoded_string = self.split_into_and_condition(condition_string)
 
             condition_encoded_string += encoded_string
 
-        return condition, condition_encoded_string
+        return condition_encoded_string
 
     def split_into_and_condition(self, condition_string: str):
-        AND_OPERATOR_STRING = "+"
-
-        condition = None
         condition_encoded_string = ""
 
         # Split in AND parts
-        results = [s.strip() for s in condition_string.split(AND_OPERATOR_STRING)]
+        results = [s.strip() for s in condition_string.split(EvolutionConditionType.AND.patterns[0])]
         results = [result.strip() for result in results]
 
         if len(results) > 1:
             condition_encoded_string = str(EvolutionConditionType.AND.value) + "("
 
-            condition = {"type": EvolutionConditionType.AND.name, "children": []}
-
             for i in range(len(results)):
                 result = results[i]
 
-                subcondition, encoded_string = self.process_condition(result)
-                condition["children"].append(subcondition)
-
+                encoded_string = self.process_condition(result)
                 condition_encoded_string += encoded_string
                 if i != len(results) - 1:
                     condition_encoded_string += ","
@@ -131,19 +110,10 @@ class ConditionsParser:
             condition_encoded_string += ")"
 
         else:
-            condition, encoded_string = self.process_condition(condition_string)
-
+            encoded_string = self.process_condition(condition_string)
             condition_encoded_string += encoded_string
 
-        return condition, condition_encoded_string
-
-    def split_into_conditions(self, condition_string: str):
-
-        condition, condition_encoded_string = self.process_condition(condition_string)
-        if self._verbose and condition["type"] == EvolutionConditionType.UNKNOWN.name:
-            print(f"unknown condition '{condition_string}'")
-
-        return condition, condition_encoded_string
+        return condition_encoded_string
 
     def process_condition(self, condition_string: str):
         USING_ITEM_STRING = "au contact"
@@ -153,7 +123,6 @@ class ConditionsParser:
         AT_LOCATION_STRING = "à la"
         AT_LOCATION_STRING_ALT = "au"
 
-        conditions = []
         condition_encoded_strings = []
 
         full_string = condition_string
@@ -162,14 +131,15 @@ class ConditionsParser:
         keep_looking = True
         while keep_looking:
 
-            condition = None
             condition_encoded_string = ""
 
             for condition_type in EvolutionConditionType:
-            # for condition_type in patterns:
+
+                # Already treated
+                if condition_type in (EvolutionConditionType.AND, EvolutionConditionType.OR):
+                    continue
 
                 pattern_list = condition_type.patterns
-                # pattern_list = patterns[condition_type]
 
                 for pattern in pattern_list:
 
@@ -178,11 +148,8 @@ class ConditionsParser:
                         # print("condition_string = " + condition_string)
                         # print("extracted = " + extracted)
 
-                        condition = {"type": condition_type.name}
                         condition_encoded_string = str(condition_type.value)
                         if type(extracted) is str:
-                            condition["data"] = extracted
-
                             # Evolution type with extra data
                             match condition_type:
                                 case EvolutionConditionType.LEVEL:
@@ -198,11 +165,10 @@ class ConditionsParser:
 
                             condition_encoded_string += "[" + extracted + "]"
 
-                    if condition: break
-                if condition: break
+                    if condition_encoded_string: break
+                if condition_encoded_string: break
 
-            if condition:
-                conditions.append(condition)
+            if condition_encoded_string:
                 condition_encoded_strings.append(condition_encoded_string)
                 condition_string = condition_string.strip()
             else:
@@ -212,21 +178,17 @@ class ConditionsParser:
             if self._verbose:
                 print(f"no known condition pattern in '{condition_string}', full string = '{full_string}'")
 
-            condition = {"type": EvolutionConditionType.UNKNOWN.name}
-            conditions.append(condition)
             condition_encoded_strings.append(str(EvolutionConditionType.UNKNOWN.value))
 
-        if len(conditions) == 1:
-            return conditions[0], condition_encoded_strings[0]
+        if len(condition_encoded_strings) == 1:
+            return condition_encoded_strings[0]
         else:
-            condition = {"type": EvolutionConditionType.AND.name, "children": conditions}
             condition_encoded_string += str(EvolutionConditionType.AND.value) + "("
             condition_encoded_string += ",".join(condition_encoded_strings)
             condition_encoded_string += ")"
-            return condition, condition_encoded_string
+            return condition_encoded_string
 
     def find_and_pop_pattern(self, pattern: str, string: str) -> str:
-        # matches = re.finditer(pattern, string)
         match = re.search(pattern, string)
         if match:
 

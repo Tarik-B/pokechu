@@ -10,27 +10,6 @@ class AutoNumber(Enum):
         return obj
 
 
-# class EvolutionConditionType(Enum):
-#     UNKNOWN = auto()
-#
-#     AND = auto()
-#     OR = auto()
-#
-#     LEVEL = auto()
-#     LEVEL_GAIN = auto()
-#     ITEM_USE = auto()
-#     ITEM_HOLD = auto()
-#     HAPPINESS = auto()
-#     GENDER = auto()
-#     LOCATION = auto()
-#     DAY = auto()
-#     NIGHT = auto()
-#
-#     KNOW_SKILL = auto()
-#     LEARN_SKILL = auto()
-#
-#     TRADE = auto()
-
 # class VariantType(Enum):
 #     GIGAMAX = auto()
 #     HISUI = auto()
