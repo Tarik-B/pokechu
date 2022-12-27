@@ -24,8 +24,8 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
                 .commit()
         }
         setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -41,23 +41,25 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
                         (activity as PreferenceChangeListener).onLanguagePreferenceChanged(language)
                         true
                     }
-            };
+            }
 
             // Data clearing
             val clearData: Preference? = findPreference("setting_clear_data")
             if (clearData != null) {
                 clearData.onPreferenceClickListener =
-                    Preference.OnPreferenceClickListener { preference ->
+                    Preference.OnPreferenceClickListener { _ ->
                         // Open confirmation dialog before clearing
                         val builder = AlertDialog.Builder(activity)
                         builder.setMessage(R.string.dialog_are_you_sure)
-                            .setPositiveButton(R.string.dialog_yes) { dialog, id -> SettingsManager.clearPokemonDiscoveredAndCaptured() }
-                            .setNegativeButton(R.string.dialog_no) { dialog, id -> }
+                            .setPositiveButton(R.string.dialog_yes) { _, _ ->
+                                SettingsManager.clearPokemonDiscoveredAndCaptured()
+                            }
+                            .setNegativeButton(R.string.dialog_no) { _, _ -> }
                         val alert = builder.create()
                         alert.show()
                         true
                     }
-            };
+            }
         }
     }
 

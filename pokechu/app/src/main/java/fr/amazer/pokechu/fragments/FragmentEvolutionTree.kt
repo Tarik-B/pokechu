@@ -49,16 +49,11 @@ class FragmentEvolutionTree : Fragment() {
     protected lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
     private var currentNode: Node? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.fragment_evolution_tree, container, false)
         binding = FragmentEvolutionTreeBinding.inflate(layoutInflater)
 
         arguments?.let {
@@ -87,9 +82,7 @@ class FragmentEvolutionTree : Fragment() {
             setEdgeDecoration()
             setupGraphView(graph)
 
-            val zoomLayout = view.findViewById(R.id.zoom_layout) as ZoomLayout
-//            zoomLayout.setMinZoom(0.8f)
-//            zoomLayout.setMaxZoom(2.5f)
+            val zoomLayout = view.findViewById(R.id.zoomLayout) as ZoomLayout
             zoomLayout.setMinZoom(0.8f)
             zoomLayout.setMaxZoom(10.0f)
         }
@@ -173,9 +166,9 @@ class FragmentEvolutionTree : Fragment() {
     }
 
     protected inner class NodeViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textViewName: TextView = itemView.findViewById(R.id.text_name)
+        var textViewName: TextView = itemView.findViewById(R.id.textName)
         //        var textViewSub: TextView = itemView.findViewById(R.id.text_sub)
-        var imageThumbnail: ImageView = itemView.findViewById(R.id.image_thumbnail)
+        var imageThumbnail: ImageView = itemView.findViewById(R.id.imageThumbnail)
 
         init {
             itemView.setOnClickListener {
@@ -187,9 +180,9 @@ class FragmentEvolutionTree : Fragment() {
                 val intent = Intent(context, ActivityDetails::class.java)
                 intent.putExtra("PokemonId", currentNodeData.pokemonId)
 
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-//                startActivity(intent)
-//                finish()
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
+                activity?.startActivity(intent)
+                activity?.finish()
 
                 true
             }
@@ -200,7 +193,7 @@ class FragmentEvolutionTree : Fragment() {
                 var currentNodeData = adapter.getNodeData(bindingAdapterPosition) as EvolutionNodeData
                 SettingsManager.togglePokemonDiscovered(currentNodeData.pokemonId)
                 if ( currentNodeData.pokemonId == pokemonId) {
-                    var host: Activity = itemView.getContext() as Activity
+                    var host: Activity = itemView.context as Activity
                     UIUtils.reloadActivity(host, true)
                 }
                 else {
@@ -225,10 +218,6 @@ class FragmentEvolutionTree : Fragment() {
             else
                 textViewName.text = ""
 
-//                val evolutionTreeNode = DataManager.findEvolutionTreeNode(evolutionTree!!, nodeData.id)
-//                if ( evolutionTreeNode != null && isDiscovered )
-//                    holder.textViewSub.text = evolutionTreeNode.condition
-
             // Set thumbnail image
             val imgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
             var bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
@@ -237,27 +226,10 @@ class FragmentEvolutionTree : Fragment() {
                 imageThumbnail.clearColorFilter()
             }
             else {
-                val unknownImage = R.drawable.ic_question_mark
+//                val unknownImage = R.drawable.ic_question_mark
 //                    holder.imageThumbnail.setImageResource(unknownImage)
                 imageThumbnail.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
             }
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @return A new instance of fragment FragmentEvolutionTree.
-         */
-        @JvmStatic
-        fun newInstance(param1: Int) =
-            FragmentEvolutionTree().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_PARAM1, param1)
-                }
-            }
     }
 }

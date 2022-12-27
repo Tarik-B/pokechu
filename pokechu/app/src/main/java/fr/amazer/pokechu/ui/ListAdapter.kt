@@ -47,11 +47,11 @@ class ListAdapter internal constructor(
         var typeImagesContainer: ViewGroup
 
         init {
-            cardView = itemView.findViewById<View>(R.id.root_card_view) as MaterialCardView
-            imageView = itemView.findViewById<View>(R.id.image_thumbnail) as ImageView
-            textView1 = itemView.findViewById<View>(R.id.text_view) as TextView
-            capturedImageView = itemView.findViewById<View>(R.id.image_pokeball_captured) as ImageView
-            typeImagesContainer = itemView.findViewById<View>(R.id.little_types_container) as ViewGroup
+            cardView = itemView.findViewById<View>(R.id.rootCardView) as MaterialCardView
+            imageView = itemView.findViewById<View>(R.id.imageThumbnail) as ImageView
+            textView1 = itemView.findViewById<View>(R.id.textView) as TextView
+            capturedImageView = itemView.findViewById<View>(R.id.imagePokeballCaptured) as ImageView
+            typeImagesContainer = itemView.findViewById<View>(R.id.littleTypesContainer) as ViewGroup
         }
     }
 
@@ -125,11 +125,6 @@ class ListAdapter internal constructor(
                 else {
                     spannableString.append(localizedName)
                 }
-    //            val names = matches.map { it.groupValues[1] }.joinToString()
-    //            println(names) // Alice, Bob, Eve
-
-    //                .color(color) { append("${currentLocalId} - ") }
-    //                .append("${localizedName}")
 
                 holder.textView1.text = spannableString
             }
@@ -152,14 +147,13 @@ class ListAdapter internal constructor(
         typesMap[currentId]?.forEach { type ->
             val inflater = LayoutInflater.from(context)
             val imageRoot = inflater.inflate(R.layout.main_type_item, null, false)
-            val imageView = imageRoot.findViewById(R.id.image_type) as ImageView
+            val imageView = imageRoot.findViewById(R.id.imageType) as ImageView
 
             if (isDiscovered || showUndiscoveredInfo) {
-                val assetManager: AssetManager? = context!!.assets
-                val imgPath =
+                val typeImgPath =
                     AssetUtils.getTypeThumbnailPathRound(PokemonType.values()[type.ordinal])
-                val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
-                imageView.setImageBitmap(bitmap)
+                val typeBitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, typeImgPath) }
+                imageView.setImageBitmap(typeBitmap)
             }
             else {
                 val unknownImage = R.drawable.ic_question_mark
@@ -169,12 +163,11 @@ class ListAdapter internal constructor(
             holder.typeImagesContainer.addView(imageRoot)
         }
 
-        holder.itemView.setOnClickListener { v ->
-        }
+//        holder.itemView.setOnClickListener { v ->
+//        }
 
         // Needs to be a MaterialCardView
         holder.cardView.strokeWidth = if (isCaptured) 10 else 0
-//        holder.itemView.setOnLongClickListener
     }
 
     override fun getFilter(): Filter {
@@ -186,11 +179,8 @@ class ListAdapter internal constructor(
                 }
                 else {
                     val filteredList = ArrayList<Int>()
-                    val lang = SettingsManager.getDataLanguage()
                     pokemonIdsFull
-                        .filter {
-                            filterPokemon(it, currentFilter)
-                        }
+                        .filter { filterPokemon(it, currentFilter) }
                         .forEach { filteredList.add(it) }
                     pokemonIdsFiltered = filteredList
 
@@ -221,7 +211,7 @@ class ListAdapter internal constructor(
         return pokemonIdsFiltered.size
     }
 
-    public fun getCurrentIds():List<Int> {
+    fun getCurrentIds():List<Int> {
         return pokemonIdsFiltered
     }
 }

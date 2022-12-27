@@ -27,23 +27,14 @@ object DatabaseManager {
         pokemonTypesDao = database.getPokemonTypesDao()
     }
 
-
-//    fun findPokemons(): List<Pokemon> { return pokemonsDao.findAll() }
     fun findPokemonIds(): List<Int> { return pokemonsDao.findAllIds() }
     fun findPokemonsCount(): Int { return pokemonsDao.findAll().count() } // TODO Replace by COUNT query
     fun findPokemonById(id: Int): Pokemon? { return pokemonsDao.findById(id) }
-//    fun getPokemonsByIds(ids: IntArray): List<Pokemons> { return pokemonsDao.findAllByIds(ids) }
-//    fun getPokemonByName(pokemon_name: String): Pokemons { return pokemonsDao.findByName(pokemon_name) }
 
     fun findRegions(): List<Region> { return regionsDao.findAll() }
-//    fun findRegionIds(): List<Int> { return regionsDao.findAllIds() }
-//    fun getRegionsByIds(ids: IntArray): List<Regions> { return regionsDao.getAllByIds(ids) }
-//    fun getRegionByName(region_name: String): Regions { return regionsDao.findByName(region_name) }
 
     fun findPokemonRegions(region_id: Int): List<NationalIdLocalId> { return pokemonRegionDao.findPokemonRegions(region_id) }
     fun localToNationalId(region_id: Int, local_id: Int): Int { return pokemonRegionDao.localToNationalId(region_id, local_id) }
-
-//    fun getRegionsByPokemon(pokemon_id: Int):List<Regions> { return pokemonRegionDao.getRegionsByPokemon(pokemon_id) }
 
     fun findPokemonEvolutionRoot(pokemon_id: Int): Int { return pokemonEvolutionsDao.findPokemonEvolutionRoot(pokemon_id) }
     fun findPokemonEvolutions(pokemon_id: Int): List<BaseIdEvolvedIdCondition> { return pokemonEvolutionsDao.findPokemonEvolutions(pokemon_id) }

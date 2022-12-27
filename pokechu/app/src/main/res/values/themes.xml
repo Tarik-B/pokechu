@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Pokechu_Material3" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Pokechu" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!--        <item name="colorPrimary">@color/my_light_primary</item> -->
         <!--        <item name="android:textColor">@color/text</item>-->
@@ -20,18 +20,18 @@
         <item name="actionBarItemBackground">@color/colorPrimary</item>
     </style>
 
-    <style name="Theme.Pokechu_Material3" parent="Base.Theme.Pokechu_Material3">
+    <style name="Theme.Pokechu" parent="Base.Theme.Pokechu">
 
     </style>
 
-    <style name="Theme.Pokechu_Material3.NoActionBar">
+    <style name="Theme.Pokechu.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Pokechu_Material3.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="Theme.Pokechu.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 
     </style>
 
-    <style name="Theme.Pokechu_Material3.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.Pokechu.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -33,13 +33,13 @@ class ActivityDetails : BaseActivity() {
         fragmentDetailsHeader.arguments = args
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         val localizedName = LocalizationManager.getPokemonName(this, pokemonId)
 
         // Action bar title
-        supportActionBar?.setTitle("#${pokemonId} - ${localizedName}");
+        supportActionBar?.title = "#${pokemonId} - ${localizedName}"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

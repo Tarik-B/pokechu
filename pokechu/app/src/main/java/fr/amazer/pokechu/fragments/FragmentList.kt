@@ -29,7 +29,6 @@ import fr.amazer.pokechu.utils.UIUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.properties.Delegates
 
 class FragmentList : Fragment() {
     private lateinit var binding: FragmentListBinding
@@ -39,24 +38,14 @@ class FragmentList : Fragment() {
     private lateinit var detailsActivityLauncher: ActivityResultLauncher<Intent>
 
     // Only used to trigger observers
-    private var loaded: Boolean by Delegates.observable(false) { _, _, newValue ->
-        loadedObservers.forEach { it(newValue) }
-    }
     private val loadedObservers = mutableListOf<(Boolean) -> Unit>()
-    fun addLoadedObserver(observer: (Boolean) -> Unit) {
-        loadedObservers.add(observer)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val dataChangedObservers = mutableListOf<() -> Unit>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.fragment_list, container, false)
         binding = FragmentListBinding.inflate(layoutInflater)
 
         return binding.root
@@ -75,7 +64,7 @@ class FragmentList : Fragment() {
             // Build pokemon id -> types map
             typesMap = HashMap<Int, List<PokemonType>>()
             pokemonTypes.forEach{ value ->
-                typesMap[value.pokemon_id] = value.type_id_list as List<PokemonType>
+                typesMap[value.pokemon_id] = value.type_id_list
             }
 
             setUpRecyclerView()
@@ -89,8 +78,10 @@ class FragmentList : Fragment() {
             }
         }
 
+        // Notify data changed when coming back from details activity
+        // as discovered status might have changed
         detailsActivityLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { result ->
+            ActivityResultContracts.StartActivityForResult()) { _ ->
             notifyDataSetChanged()
         }
     }
@@ -100,7 +91,7 @@ class FragmentList : Fragment() {
 
         // Grid or list
         val gridEnabled = !SettingsManager.isListViewEnabled()
-        var layoutManager: RecyclerView.LayoutManager? = null
+        var layoutManager: RecyclerView.LayoutManager?
         if ( gridEnabled )
             layoutManager = GridLayoutManager(context, 2)
         else
@@ -128,6 +119,7 @@ class FragmentList : Fragment() {
                     override fun onLongClick(view: View?, position: Int) {
                         val pokemonId = adapter?.getCurrentIds()?.get(position)
                         if (pokemonId != null) {
+
                             val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
                             val isCaptured = SettingsManager.isPokemonCaptured(pokemonId)
                             val showUndiscoveredInfo = context?.let { SettingsManager.isShowUndiscoveredInfoEnabled() }
@@ -136,12 +128,12 @@ class FragmentList : Fragment() {
                                 if (!isDiscovered) {
                                     SettingsManager.togglePokemonDiscovered(pokemonId)
                                     if (view != null)
-                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_thumbnail)) }
+                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.imageThumbnail)) }
                                 }
                                 else if (!isCaptured) {
                                     SettingsManager.togglePokemonCaptured(pokemonId)
                                     if (view != null)
-                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_pokeball_captured)) }
+                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.imagePokeballCaptured)) }
                                 }
                                 else {
                                     SettingsManager.togglePokemonDiscovered(pokemonId)
@@ -153,12 +145,21 @@ class FragmentList : Fragment() {
                                 if (SettingsManager.isPokemonCaptured(pokemonId)) {
                                     SettingsManager.setPokemonDiscovered(pokemonId, true)
                                     if (view != null)
-                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.image_pokeball_captured)) }
+                                        activity?.let { UIUtils.createDefaultParticles(it, view.findViewById(R.id.imagePokeballCaptured)) }
                                 }
                             }
 
-
-                            adapter?.notifyItemChanged(position)
+                            // Refresh data if required
+                            val capturedOnly = SettingsManager.isShowCapturedOnlyEnabled()
+                            val discoveredOnly = SettingsManager.isShowDiscoveredOnlyEnabled()
+                            // Refresh whole data set if captured/discovered only is checked
+                            // and captured/discovered status has changed
+                            if ( capturedOnly && isCaptured != SettingsManager.isPokemonCaptured(pokemonId))
+                                rebuildDataSet() // TODO this is overkill, just need to remove items if not visible anymore
+                            else if ( discoveredOnly && isDiscovered != SettingsManager.isPokemonDiscovered(pokemonId))
+                                rebuildDataSet() // TODO ditto
+                            else
+                                notifyItemChanged(position)
                         }
                     }
                 })
@@ -169,12 +170,12 @@ class FragmentList : Fragment() {
         val capturedOnly = SettingsManager.isShowCapturedOnlyEnabled()
         val discoveredOnly = SettingsManager.isShowDiscoveredOnlyEnabled()
 
-        return ( (!capturedOnly!! || SettingsManager.isPokemonCaptured(id))
-                && (!discoveredOnly!! || SettingsManager.isPokemonDiscovered(id)) )
+        return ( (!capturedOnly || SettingsManager.isPokemonCaptured(id))
+                && (!discoveredOnly || SettingsManager.isPokemonDiscovered(id)) )
     }
 
     private fun buildPokemonList() {
-        loaded = false
+        triggerLoadedObservers(false)
 
         val selectedRegion = SettingsManager.getSelectedRegion()
 
@@ -182,14 +183,11 @@ class FragmentList : Fragment() {
             if (region == PokedexType.NATIONAL.ordinal) {
                 val pokemonIds: List<Int> = DatabaseManager.findPokemonIds()
                 val dataMap = HashMap<Int, ListAdapterData>()
-//                val pokemonData = ArrayList<ListAdapterData>()
                 pokemonIds.forEach{ id ->
                     if (isPokemonDisplayed(id))
-//                        pokemonData.add(ListAdapterData(id))
                         dataMap[id] = ListAdapterData(id)
                 }
 
-//                val dataMap = pokemonIds.zip(pokemonData).toMap()
                 return@withContext dataMap
             }
             else {
@@ -209,7 +207,8 @@ class FragmentList : Fragment() {
             // Fill localized names in data
             pokemonData.forEach{ (key, data) ->
                 LocalizationManager.getLanguages().forEach{ lang ->
-                    data.names[lang] = LocalizationManager.getPokemonName(requireContext(), key, lang) ?: ""
+                    data.names[lang] = activity?.let { LocalizationManager.getPokemonName(it.applicationContext, key, lang) }
+                        ?: ""
                 }
             }
             val gridEnabled = !SettingsManager.isListViewEnabled()
@@ -220,35 +219,39 @@ class FragmentList : Fragment() {
 
 //            delay(2000L)
 
-            loaded = true
+            triggerLoadedObservers(true)
         }
     }
 
-    public fun notifyDataSetChanged() {
-        adapter?.notifyDataSetChanged()
+    fun addLoadedObserver(observer: (Boolean) -> Unit) {
+        loadedObservers.add(observer)
+    }
+    fun addDataChangedObserver(observer: () -> Unit) {
+        dataChangedObservers.add(observer)
+    }
+    private fun triggerLoadedObservers(loaded: Boolean) {
+        loadedObservers.forEach { it(loaded) }
+    }
+    private fun triggerDataChangedObservers() {
+        dataChangedObservers.forEach { it() }
     }
 
-    public fun rebuildDataSet() {
+    fun notifyDataSetChanged() {
+        adapter?.notifyDataSetChanged()
+        triggerDataChangedObservers()
+    }
+
+    fun notifyItemChanged(position: Int) {
+        adapter?.notifyItemChanged(position)
+        triggerDataChangedObservers()
+    }
+
+    fun rebuildDataSet() {
         buildPokemonList()
         notifyDataSetChanged()
     }
 
-    public fun filterQuery(text: String?) {
+    fun filterQuery(text: String?) {
         adapter?.filter?.filter(text)
-    }
-
-    companion object {
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment FragmentList.
-     */
-    @JvmStatic
-    fun newInstance() =
-        FragmentList().apply {
-            arguments = Bundle().apply {
-            }
-        }
     }
 }

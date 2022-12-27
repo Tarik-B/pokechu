@@ -11,7 +11,7 @@
     android:foreground="?selectableItemBackground"
     app:cardCornerRadius="@dimen/card_recycler_corner_radius"
     app:cardElevation="@dimen/card_recycler_elevation"
-    android:id="@+id/root_card_view"
+    android:id="@+id/rootCardView"
     app:strokeColor="@color/colorAccent"
     app:strokeWidth="2dp">
 
@@ -29,7 +29,7 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/image_thumbnail"
+                android:id="@+id/imageThumbnail"
                 android:layout_width="56.0dip"
                 android:layout_height="56.0dip"
                 app:srcCompat="@drawable/ic_question_mark"
@@ -44,7 +44,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/text_view"
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
@@ -67,7 +67,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text=":" />
                 <LinearLayout
-                    android:id="@id/little_types_container"
+                    android:id="@id/littleTypesContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"/>
@@ -81,7 +81,7 @@
             android:gravity="center">
 
             <ImageView
-                android:id="@+id/image_pokeball_captured"
+                android:id="@+id/imagePokeballCaptured"
                 android:layout_width="23dip"
                 android:layout_height="23dip"
                 android:scaleType="fitCenter"

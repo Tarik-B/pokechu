@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/text_id"
+        android:id="@+id/textId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
@@ -17,7 +17,7 @@
         android:inputType="number" />
 
     <CheckBox
-        android:id="@+id/checkbox_unique"
+        android:id="@+id/checkboxUnique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/national_id"

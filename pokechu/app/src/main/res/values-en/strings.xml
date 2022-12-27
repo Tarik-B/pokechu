@@ -5,6 +5,7 @@
 
     <!-- Main activity -->
     <string name="pokemon_discovered">Pokémon discovered:</string>
+    <string name="pokemon_captured">Pokémon captured:</string>
 
     <!-- Main activity menu -->
     <string name="menu_main_search">Search</string>
@@ -34,7 +35,6 @@
     <string name="language_french">French</string>
 
     <!-- Settings activity -->
-    <string name="settings_general">General</string>
     <string name="settings_language">Languages</string>
     <string name="settings_app_language">Application language</string>
     <string name="settings_data_language">Data language</string>
@@ -57,6 +57,7 @@
     <string name="about_version_code">Version code:</string>
     <string name="about_build_date">Build date:</string>
     <string name="about_build_time">Build time:</string>
+    <string name="about_thanks">Special thanks to Poképédia, Bulbapedia and PokéAPI contributors and maintainers!</string>
 
     <!-- Bottom sheet -->
     <string name="bottom_sheet_regions">Regions</string>

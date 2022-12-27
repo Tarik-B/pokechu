@@ -7,6 +7,7 @@
 
     <!-- Main activity -->
     <string name="pokemon_discovered" />
+    <string name="pokemon_captured" />
 
     <!-- Main activity menu -->
     <string name="menu_main_search" />
@@ -37,7 +38,6 @@
 
     <!-- Settings activity -->
     <string name="title_activity_settings" translatable="false">@string/menu_main_settings</string>
-    <string name="settings_general" />
     <string name="settings_language" />
     <string name="settings_app_language" />
     <string name="settings_data_language" />
@@ -61,7 +61,8 @@
     <string name="about_version_code" />
     <string name="about_build_date" />
     <string name="about_build_time" />
+    <string name="about_thanks" />
 
     <!-- Bottom sheet -->
-    <string name="bottom_sheet_regions"/>
+    <string name="bottom_sheet_regions" />
 </resources>

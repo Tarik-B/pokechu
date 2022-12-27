@@ -30,16 +30,11 @@ class FragmentDetailsHeader : Fragment() {
     private lateinit var pokemon: Pokemon
     private lateinit var types: List<Int>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.fragment_details_header, container, false)
         binding = FragmentDetailsHeaderBinding.inflate(layoutInflater)
 
         arguments?.let {
@@ -81,7 +76,7 @@ class FragmentDetailsHeader : Fragment() {
         types.forEach{ type ->
             val inflater = LayoutInflater.from(context)
             val imageRoot = inflater.inflate(R.layout.details_type_item, null, false)
-            val imageView = imageRoot.findViewById(R.id.image_type) as ImageView
+            val imageView = imageRoot.findViewById(R.id.imageType) as ImageView
 
             val assetManager: AssetManager? = context?.assets
             val imgPath = AssetUtils.getTypeThumbnailPath(PokemonType.values()[type])
@@ -90,10 +85,6 @@ class FragmentDetailsHeader : Fragment() {
 
             binding.typesImageContainer.addView(imageRoot)
         }
-//        val textView = binding.textView
-//        textView.text = "" //"English name: ${pokemonData.names.en}\n" +
-//                        "National ID: ${pokemonData.ids.unique}\n" +
-//                        "Paldea ID: ${pokemonData.ids.paldea}"
 
         // Image
         val imageView = binding.imageHeader
@@ -109,23 +100,6 @@ class FragmentDetailsHeader : Fragment() {
         }
         else {
             imageView.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY)
-        }
-    }
-
-    companion object {
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @return A new instance of fragment FragmentDetailsHeader.
-     */
-    @JvmStatic
-    fun newInstance(param1: Int) =
-        FragmentDetailsHeader().apply {
-            arguments = Bundle().apply {
-                putInt(ARG_PARAM1, param1)
-            }
         }
     }
 }

@@ -14,11 +14,10 @@
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            android:theme="@style/Theme.Pokechu_Material3.AppBarOverlay"
+            android:theme="@style/Theme.Pokechu.AppBarOverlay"
             style="@style/Widget.MaterialComponents.Toolbar.Primary">
 
             <com.google.android.material.appbar.MaterialToolbar

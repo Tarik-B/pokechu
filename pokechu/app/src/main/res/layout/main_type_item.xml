@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/image_type"
+        android:id="@+id/imageType"
         android:layout_width="23dip"
         android:layout_height="23dip"
         app:srcCompat="@drawable/ic_pokeball"/>

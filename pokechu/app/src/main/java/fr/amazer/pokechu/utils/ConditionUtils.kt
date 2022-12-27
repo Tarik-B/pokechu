@@ -1,6 +1,5 @@
 package fr.amazer.pokechu.utils
 
-import android.annotation.SuppressLint
 import fr.amazer.pokechu.data.EvolutionConditionType
 import java.util.*
 
@@ -20,7 +19,7 @@ class ConditionUtils {
             return data
         }
 
-        fun parseEncodedCondition(chars: CharArray): Pair<EvolutionConditionData, Int> {
+        private fun parseEncodedCondition(chars: CharArray): Pair<EvolutionConditionData, Int> {
             val result = EvolutionConditionData()
             var typeString = ""
             var length = 0
@@ -30,8 +29,7 @@ class ConditionUtils {
                 length++
                 when(chars[i]) {
                     '(' ->  {
-                        do
-                        {
+                        do {
                             val (data,dataLength) = parseEncodedCondition(Arrays.copyOfRange(chars, i+1, chars.size))
                             i += dataLength
                             length += dataLength
@@ -39,27 +37,18 @@ class ConditionUtils {
                         }
                         while( chars[i] == ',')
                     }
-                    ')' -> {
-//                        if (result.type != EvolutionConditionType.AND && result.type != EvolutionConditionType.OR )
-                        break
-                    }
-                    ',' -> {
-                        break
-                    }
                     '[' -> {
                         do {
                             ++i
-                            length++
+                            ++length
                             result.data += chars[i]
                         }
                         while(chars[i+1] != ']')
                     }
-                    ']' -> {
-
-                    }
-                    else -> {
-                        typeString += chars[i]
-                    }
+                    ')' -> { break }
+                    ',' -> { break }
+                    ']' -> { }
+                    else -> { typeString += chars[i] }
                 }
 
                 i++

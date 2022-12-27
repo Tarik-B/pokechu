@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text=": " />
             <TextView
-                android:id="@+id/text_height_value"
+                android:id="@+id/textHeightValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/text_margin_very_small"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:text=": " />
             <TextView
-                android:id="@+id/text_weight_value"
+                android:id="@+id/textWeightValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/text_margin_very_small"
@@ -75,7 +75,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/types_image_container"
+            android:id="@+id/typesImageContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin_very_small"
@@ -92,19 +92,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=": " />
-
-<!--            <ImageView-->
-<!--                android:layout_width="25dip"-->
-<!--                android:layout_height="25dip"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_margin="@dimen/text_margin_very_small"-->
-<!--                app:srcCompat="@drawable/ic_pokeball" />-->
         </LinearLayout>
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/image_header"
+        android:id="@+id/imageHeader"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

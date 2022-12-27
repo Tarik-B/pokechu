@@ -14,17 +14,6 @@ import java.io.InputStream
 class AssetUtils {
     companion object {
 
-        fun getJsonDataFromAsset(context: Context, fileName: String): String? {
-            val jsonString: String
-            try {
-                jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
-            } catch (ioException: IOException) {
-                ioException.printStackTrace()
-                return null
-            }
-            return jsonString
-        }
-
         fun getBitmapFromAsset(assets: AssetManager, strName: String): Bitmap? {
             var istr: InputStream? = null
             try {

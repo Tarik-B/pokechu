@@ -1,7 +1,14 @@
 package fr.amazer.pokechu.data
 
-import androidx.room.*
-import fr.amazer.pokechu.managers.DatabaseManager
+import androidx.room.Database
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.RoomDatabase
+import androidx.room.Query
+import androidx.room.Dao
+import androidx.room.ForeignKey
+import androidx.room.ColumnInfo
+import androidx.room.Ignore
 
 
 //--------------------------------------------------------------------------------------------------
@@ -47,8 +54,6 @@ interface PokemonsDao {
     @Query("SELECT id FROM pokemons")
     fun findAllIds(): List<Int>
 
-//    @Query("SELECT * FROM pokemons WHERE id IN (:ids)")
-//    fun findAllByIds(ids: IntArray): List<Pokemons>
 //    @Query("SELECT * FROM pokemons WHERE name LIKE :searched_name")
 //    fun findByName(searched_name: String): Pokemons
 }
@@ -69,17 +74,6 @@ data class Region(
 interface RegionsDao {
     @Query("SELECT * FROM regions")
     fun findAll(): List<Region>
-
-//    @Query("SELECT id FROM regions")
-//    fun findAllIds(): List<Int>
-
-//    @Query("SELECT * FROM regions WHERE id IN (:ids)")
-//    fun findAllByIds(ids: IntArray): List<Regions>
-//    @Query("SELECT * FROM regions WHERE name LIKE :searched_name")
-//    fun findByName(searched_name: String): Regions
-
-//    @Query("SELECT * FROM regions WHERE pokemon_id=:pokemon_id")
-//    fun findRegionsForPokemon(pokemon_id: Int): List<Regions?>?
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -112,7 +106,7 @@ data class NationalIdLocalId(
 )
 
 @Dao
-public interface PokemonRegionsDao {
+interface PokemonRegionsDao {
     @Query(
         "SELECT pokemon_id, local_id FROM regions " +
         "INNER JOIN pokemon_regions ON regions.id=pokemon_regions.region_id " +
@@ -126,12 +120,6 @@ public interface PokemonRegionsDao {
         "WHERE region_id = :region_id AND local_id = :local_id"
     )
     fun localToNationalId(region_id: Int, local_id: Int): Int
-
-//
-//
-//
-//;
-
 
 //    @Query(
 //        "SELECT pokemon_regions.region_id, pokemon_regions.local_id FROM pokemons " +
@@ -163,7 +151,7 @@ data class BaseIdEvolvedIdCondition(
 }
 
 @Dao
-public interface PokemonEvolutionsDao {
+interface PokemonEvolutionsDao {
     @Query(
         "WITH RECURSIVE evolution_root AS ("+
             "SELECT pe.base_id, pe.evolved_id, 0 as depth "+
@@ -217,7 +205,7 @@ data class PokemonIdTypesId(
     val type_id_list: List<PokemonType> = type_ids.split(",").map { PokemonType.values()[it.toInt()] }
 }
 @Dao
-public interface PokemonTypesDao {
+interface PokemonTypesDao {
     @Query(
         "SELECT pokemon_id, GROUP_CONCAT(type_id) as type_ids FROM pokemon_types " +
         "GROUP BY pokemon_id " +

@@ -2,7 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -35,37 +34,47 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="right|center_vertical"
                 android:orientation="horizontal"
                 tools:ignore="MissingConstraints">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/text_margin_very_small"
-                    android:text="@string/pokemon_discovered" />
+                    app:srcCompat="@drawable/ic_pokeball" />
 
                 <TextView
-                    android:id="@+id/discovered_count"
+                    android:id="@+id/capturedCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_margin_very_small"
+                    android:layout_marginRight="@dimen/text_margin" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_discovered" />
+
+                <TextView
+                    android:id="@+id/discoveredCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_margin_very_small"
                     android:layout_marginRight="@dimen/text_margin" />
 
             </LinearLayout>
 
             <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_list"
+                android:id="@+id/fragmentList"
                 android:name="fr.amazer.pokechu.fragments.FragmentList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-<!--            android:layout_width="fill_parent"-->
-<!--            android:layout_height="fill_parent"-->
 
         </LinearLayout>
 
         <!-- Progress bar overlay; shown while loading is in progress -->
         <include
-            android:id="@+id/load_overlay"
+            android:id="@+id/loadOverlay"
             layout="@layout/loading_overlay"/>
 
         <!--    TODO FIX THIS IS DRAWN OVER THE LIST (scroll to bottom of list to see the bug)-->
@@ -78,7 +87,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_search"
+        android:id="@+id/buttonSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

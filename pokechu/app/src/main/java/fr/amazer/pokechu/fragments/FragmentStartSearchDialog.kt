@@ -34,10 +34,9 @@ class FragmentStartSearchDialog : DialogFragment() {
 
             binding = inflater.inflate(R.layout.dialog_search, null)
 
-            val editText = binding.findViewById(R.id.text_id) as EditText
+            val editText = binding.findViewById(R.id.textId) as EditText
             editText.requestFocus()
             context?.let { it1 -> UIUtils.showKeyboard(editText, it1) }
-            UIUtils.showSoftKeyboard(editText, requireActivity().applicationContext)
 
             // Inflate and set the layout for the dialog
             // Pass null as the parent view because its going in the dialog layout
@@ -45,22 +44,16 @@ class FragmentStartSearchDialog : DialogFragment() {
                 .setMessage(R.string.search_dialog_title)
                 // Add action buttons
                 .setPositiveButton(R.string.dialog_ok,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        val editText = binding.findViewById(R.id.text_id) as EditText
+                    DialogInterface.OnClickListener { _, _ ->
                         val pokemonId = editText.text.toString().toIntOrNull()
 
                         if ( pokemonId != null ) {
 
-                            val uniqueCheckbox = binding.findViewById(R.id.checkbox_unique) as CheckBox
+                            val uniqueCheckbox = binding.findViewById(R.id.checkboxUnique) as CheckBox
                             searchQueryListeners.forEach { it(pokemonId, uniqueCheckbox.isChecked ) }
                         }
                     })
-//                .setNegativeButton(R.string.dialog_cancel,
-//                    DialogInterface.OnClickListener { dialog, id ->
-//                        getDialog()?.cancel()
-//                    })
-
-            editText.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+            editText.setOnEditorActionListener(OnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     Log.i(this::class.simpleName, "setOnEditorActionListener = ${actionId} ")
 
@@ -71,7 +64,9 @@ class FragmentStartSearchDialog : DialogFragment() {
                 false
             })
 
-            builder.create()
+            val dialog = builder.create()
+
+            dialog
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 }

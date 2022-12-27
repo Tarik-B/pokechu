@@ -6,7 +6,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -15,7 +17,9 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.data.*
+import fr.amazer.pokechu.activities.compose.ActivityAboutCompose
+import fr.amazer.pokechu.data.PokedexType
+import fr.amazer.pokechu.data.Pokemon
 import fr.amazer.pokechu.databinding.ActivityMainBinding
 import fr.amazer.pokechu.fragments.FragmentBottomSheet
 import fr.amazer.pokechu.fragments.FragmentList
@@ -59,54 +63,21 @@ class ActivityMain : BaseActivity() {
             else
                 showLoadingOverlay()
         }
+        // Refresh captured/discovered counts
+        refreshCounts()
+        fragmentList.addDataChangedObserver{ ->
+            refreshCounts()
+        }
+
         fragmentBottomSheet = binding.fragmentBottomSheet.getFragment<FragmentBottomSheet>()
-//        val fm = supportFragmentManager
-//        val tr = fm.beginTransaction()
-//        fragmentBottomSheet = FragmentBottomSheet.newInstance()
-//        tr.add(R.id.main_root, fragmentBottomSheet)
-//        tr.commitAllowingStateLoss()
-//        val fm = applicationContext.supportFragmentManager
-//        val fragmentTransaction: FragmentTransaction
-//        fragmentBottomSheet = FragmentBottomSheet.newInstance()
-//        fragmentTransaction = fm.beginTransaction()
-//        fragmentTransaction.add(R.id.main_root, fragmentBottomSheet)
-//        fragmentTransaction.commit()
 
         // Create launcher for activities details/settings
         detailsActivityLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { result ->
+            ActivityResultContracts.StartActivityForResult()) { _ ->
         }
         settingsActivityLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { result ->
+            ActivityResultContracts.StartActivityForResult()) { _ ->
             fragmentList.notifyDataSetChanged()
-        }
-
-        // Get data
-        suspend fun getPokemonsCount(): Int = withContext(Dispatchers.IO) {
-            return@withContext DatabaseManager.findPokemonsCount()
-        }
-        lifecycleScope.launch { // coroutine on main
-            val totalPokemonCount = getPokemonsCount() // coroutine on IO
-            // back on main
-
-            // Refresh options menu for region filters
-            invalidateOptionsMenu()
-
-            // Discovered count
-            val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
-            binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
-
-            // Override back press on bottom sheet
-            onBackPressedDispatcher.addCallback(this@ActivityMain, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (fragmentBottomSheet.isExpanded()) {
-                        fragmentBottomSheet.toggleExpanded()
-                    }
-                    else {
-                        finish()
-                    }
-                }
-            })
         }
 
         // Bottom search button
@@ -132,10 +103,6 @@ class ActivityMain : BaseActivity() {
 
                     val pokemon = getPokemonById(searchedId) // coroutine on IO
                     // back on main
-//                                if ( uniqueCheckbox.isChecked )
-//                                    dataPokemon = DataManager.findPokemonData(pokemonId)
-//                                else
-//                                    dataPokemon = DataManager.findPokemonDataPaldea(pokemonId)
 
                     // Id found, open details
                     if (pokemon != null) {
@@ -144,12 +111,24 @@ class ActivityMain : BaseActivity() {
                         detailsActivityLauncher.launch(intent)
                     }
                     else {
-                        Snackbar.make(view, "ID ${pokemonId} not found ", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(view, "ID ${pokemonId} not found ", Snackbar.LENGTH_LONG).show()
                     }
                 }
             }
             newFragment.show(supportFragmentManager, "search")
         }
+
+        // Override back press on bottom sheet
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (fragmentBottomSheet.isExpanded()) {
+                    fragmentBottomSheet.toggleExpanded()
+                }
+                else {
+                    finish()
+                }
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -297,26 +276,29 @@ class ActivityMain : BaseActivity() {
     }
 
     private fun hideLoadingOverlay() {
-        UIUtils.animateView(loadingOverlay, View.GONE, 0.0f, 100);
+        UIUtils.animateView(loadingOverlay, View.GONE, 0.0f, 100)
     }
 
     private fun filterQuery(text: String?) {
         fragmentList.filterQuery(text)
     }
 
-//    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-//        if (event.action == MotionEvent.ACTION_DOWN) {
-//            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
-//                val outRect = Rect()
-//                binding.bottomSheet.bottomSheet.getGlobalVisibleRect(outRect)
-//                if (!outRect.contains(
-//                        event.rawX.toInt(),
-//                        event.rawY.toInt()
-//                    )
-//                ) bottomSheetBehavior.state =
-//                    BottomSheetBehavior.STATE_COLLAPSED
-//            }
-//        }
-//        return super.dispatchTouchEvent(event)
-//    }
+    private fun refreshCounts() {
+        // Get data
+        suspend fun getPokemonsCount(): Int = withContext(Dispatchers.IO) {
+            return@withContext DatabaseManager.findPokemonsCount()
+        }
+        lifecycleScope.launch { // coroutine on main
+            val totalPokemonCount = getPokemonsCount() // coroutine on IO
+            // back on main
+
+            // Discovered
+            val discoveredCount = SettingsManager.getPokemonDiscoveredCount()
+            binding.discoveredCount.text = "${discoveredCount}/${totalPokemonCount}"
+
+            // Captured
+            val capturedCount = SettingsManager.getPokemonCapturedCount()
+            binding.capturedCount.text = "${capturedCount}/${totalPokemonCount}"
+        }
+    }
 }

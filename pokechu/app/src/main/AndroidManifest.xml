@@ -5,14 +5,21 @@
     <application
         android:name=".PokechuApplication"
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_pokeball"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_pokeball"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pokechu_Material3"
+        android:theme="@style/Theme.Pokechu"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.compose.ActivityAboutCompose"
+            android:exported="false"
+            android:label="@string/title_activity_about"
+            android:theme="@style/Theme.Pokechu">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value=""/>
+        </activity>
         <activity
             android:name=".activities.ActivityAbout"
             android:exported="false"
@@ -34,7 +41,7 @@
             android:name=".activities.ActivityDetails"
             android:exported="false"
             android:label="@string/placeholder_string"
-            android:theme="@style/Theme.Pokechu_Material3.NoActionBar">
+            android:theme="@style/Theme.Pokechu.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -43,7 +50,7 @@
             android:name=".activities.ActivityMain"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Pokechu_Material3">
+            android:theme="@style/Theme.Pokechu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

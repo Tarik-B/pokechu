@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/card_recycler_corner_radius"
     app:cardElevation="@dimen/card_recycler_elevation"
-    android:id="@+id/root_card_view"
+    android:id="@+id/rootCardView"
     app:strokeColor="@color/colorAccent"
     app:strokeWidth="0dp"
     android:theme="@style/Theme.MaterialComponents.Light">
@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/region_image_view"
+                android:id="@+id/regionImageView"
                 android:layout_width="match_parent"
                 android:layout_weight="3"
                 android:layout_height="0dip"
@@ -32,7 +32,7 @@
                 android:scaleType="fitCenter"/>
 
             <TextView
-                android:id="@+id/region_text_view"
+                android:id="@+id/regionTextView"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0dip"

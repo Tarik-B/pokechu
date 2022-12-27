@@ -14,11 +14,10 @@
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
-            android:theme="@style/Theme.Pokechu_Material3.AppBarOverlay"
+            android:theme="@style/Theme.Pokechu.AppBarOverlay"
             style="@style/Widget.MaterialComponents.Toolbar.Primary">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -27,7 +26,7 @@
                 android:layout_height="?attr/actionBarSize"/>
 
             <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_header"
+                android:id="@+id/fragmentHeader"
                 android:name="fr.amazer.pokechu.fragments.FragmentDetailsHeader"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -35,12 +34,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_evolution_tree"
+            android:id="@+id/fragmentEvolutionTree"
             android:name="fr.amazer.pokechu.fragments.FragmentEvolutionTree"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dip" />
-<!--        app:hasClickableChildren="true"-->
 
     </LinearLayout>
 

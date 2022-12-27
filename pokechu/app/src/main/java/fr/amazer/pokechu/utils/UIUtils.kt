@@ -16,17 +16,14 @@ class UIUtils {
         fun showKeyboard(view: View, context: Context) {
             val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
-        }
-
-        fun showSoftKeyboard(view: View, context: Context) {
-            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//            imm.showSoftInput(view, InputMethodManager.SHOW_FORCED)
+//            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 //            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
 
-        fun closeKeyboard(view: View, context: Context) {
+        fun closeKeyboard(context: Context) {
             val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//            imm.toggleSoftInput()
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY)
 //            showSoftInput(view, InputMethodManager.SHOW_FORCED)
         }
 
@@ -42,12 +39,6 @@ class UIUtils {
                 activity.overridePendingTransition(0, 0)
         }
 
-        /**
-         * @param view         View to animate
-         * @param toVisibility Visibility at the end of animation
-         * @param toAlpha      Alpha at the end of animation
-         * @param duration     Animation duration in ms
-         */
         fun animateView(view: View, toVisibility: Int, toAlpha: Float, duration: Int) {
             val show = toVisibility == View.VISIBLE
             if (show) {
