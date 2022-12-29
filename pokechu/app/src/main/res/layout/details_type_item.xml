@@ -10,7 +10,7 @@
         android:id="@+id/imageType"
         android:layout_width="23dip"
         android:layout_height="23dip"
-        app:srcCompat="@drawable/ic_pokeball"
+        android:src="@drawable/ic_pokeball"
         android:layout_marginLeft="@dimen/text_margin"/>
 
 </FrameLayout>

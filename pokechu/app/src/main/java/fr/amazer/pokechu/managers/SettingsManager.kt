@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import androidx.preference.PreferenceManager
-import fr.amazer.pokechu.data.PokedexType
+import fr.amazer.pokechu.enums.PokedexType
 import java.util.*
 
 

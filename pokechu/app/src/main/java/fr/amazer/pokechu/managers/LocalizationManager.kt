@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.data.EvolutionConditionType
-import fr.amazer.pokechu.data.ItemType
-import fr.amazer.pokechu.data.PokedexType
+import fr.amazer.pokechu.enums.EvolutionConditionType
+import fr.amazer.pokechu.enums.ItemType
+import fr.amazer.pokechu.enums.PokedexType
 import java.util.*
 
 

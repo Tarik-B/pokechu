@@ -6,6 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
-    tools:context=".fragments.FragmentList">
+    tools:context=".ui.fragments.list.FragmentList">
 
 </androidx.recyclerview.widget.RecyclerView>

@@ -1,6 +1,6 @@
 package fr.amazer.pokechu.utils
 
-import fr.amazer.pokechu.data.EvolutionConditionType
+import fr.amazer.pokechu.enums.EvolutionConditionType
 import java.util.*
 
 

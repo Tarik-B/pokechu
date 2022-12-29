@@ -2,13 +2,13 @@ package fr.amazer.pokechu.managers
 
 import android.content.Context
 import androidx.room.Room
-import fr.amazer.pokechu.data.*
+import fr.amazer.pokechu.enums.*
 
 
 object DatabaseManager {
     private lateinit var database: PokechuDatabase
-    private lateinit var pokemonsDao: PokemonsDao
-    private lateinit var regionsDao: RegionsDao
+    private lateinit var pokemonsDao: DaoPokemons
+    private lateinit var regionsDao: DaoRegions
     private lateinit var pokemonRegionDao: PokemonRegionsDao
     private lateinit var pokemonEvolutionsDao: PokemonEvolutionsDao
     private lateinit var pokemonTypesDao: PokemonTypesDao
@@ -29,9 +29,9 @@ object DatabaseManager {
 
     fun findPokemonIds(): List<Int> { return pokemonsDao.findAllIds() }
     fun findPokemonsCount(): Int { return pokemonsDao.findAll().count() } // TODO Replace by COUNT query
-    fun findPokemonById(id: Int): Pokemon? { return pokemonsDao.findById(id) }
+    fun findPokemonById(id: Int): EntityPokemon? { return pokemonsDao.findById(id) }
 
-    fun findRegions(): List<Region> { return regionsDao.findAll() }
+    fun findRegions(): List<EntityRegion> { return regionsDao.findAll() }
 
     fun findPokemonRegions(region_id: Int): List<NationalIdLocalId> { return pokemonRegionDao.findPokemonRegions(region_id) }
     fun localToNationalId(region_id: Int, local_id: Int): Int { return pokemonRegionDao.localToNationalId(region_id, local_id) }

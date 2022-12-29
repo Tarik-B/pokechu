@@ -1,13 +1,12 @@
 package fr.amazer.pokechu.utils
 
-import android.content.Context
 import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import fr.amazer.pokechu.data.EvolutionConditionType
-import fr.amazer.pokechu.data.ItemType
-import fr.amazer.pokechu.data.PokedexType
-import fr.amazer.pokechu.data.PokemonType
+import fr.amazer.pokechu.enums.EvolutionConditionType
+import fr.amazer.pokechu.enums.ItemType
+import fr.amazer.pokechu.enums.PokedexType
+import fr.amazer.pokechu.enums.PokemonType
 import java.io.IOException
 import java.io.InputStream
 

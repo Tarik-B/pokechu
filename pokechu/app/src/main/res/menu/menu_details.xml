@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="fr.amazer.pokechu.activities.ActivityDetails">
+    tools:context=".ui.activities.ActivityDetails">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
