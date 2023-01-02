@@ -1,11 +1,11 @@
 package fr.amazer.pokechu.utils
 
-import fr.amazer.pokechu.enums.EvolutionConditionType
+import fr.amazer.pokechu.enums.EvolutionCondition
 import java.util.*
 
 
 class EvolutionConditionData {
-    var type = EvolutionConditionType.UNKNOWN
+    var type = EvolutionCondition.UNKNOWN
     var data = ""
     var nested = ArrayList<EvolutionConditionData>()
 }
@@ -54,7 +54,7 @@ class ConditionUtils {
                 i++
             }
 
-            result.type = EvolutionConditionType.values()[typeString.toInt()]
+            result.type = EvolutionCondition.values()[typeString.toInt()]
 
             return Pair(result, length)
         }

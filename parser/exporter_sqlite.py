@@ -3,7 +3,7 @@ import sqlite3
 import contextlib
 
 import utils
-from data import PokedexType, PokemonType
+from data import Region, PokemonType
 from pokedex import Pokedex
 
 class SQLiteExporter:
@@ -54,7 +54,7 @@ class SQLiteExporter:
 
     def save_regions(self, connection, cursor):
         query = "INSERT INTO regions (id, name) VALUES "
-        regions_and_names = [(region.value, region.name) for region in PokedexType]
+        regions_and_names = [(region.value, region.name) for region in Region]
         query += ", ".join(f"({region}, '{name}')" for region, name in regions_and_names)
         query += ";"
 

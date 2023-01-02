@@ -8,7 +8,7 @@
         <import type="java.util.List"/>
         <import type="android.graphics.Bitmap"/>
 
-        <variable name="imageBitmap"    type="Bitmap" />
+        <variable name="imagePath"      type="String" />
         <variable name="text"           type="String" />
         <variable name="filter"         type="String" />
         <variable name="isDiscovered"   type="Boolean" />
@@ -77,7 +77,7 @@
                             android:layout_weight="4"
                             android:layout_height="0dip"
                             android:adjustViewBounds="true"
-                            bind:imageBitmap="@{imageBitmap}"
+                            bind:assetPath="@{imagePath}"
                             bind:tint="@{isDiscovered? @color/transparent : @color/black}"
                             android:tintMode="multiply"
                             android:scaleType="fitCenter"/>

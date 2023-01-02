@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="evolution_condition_name_0"></string>
+    <string name="evolution_condition_name_1">and</string>
+    <string name="evolution_condition_name_2">or</string>
+    <string name="evolution_condition_name_3">level</string>
+    <string name="evolution_condition_name_4">level gain</string>
+    <string name="evolution_condition_name_5">use</string>
+    <string name="evolution_condition_name_6">hold</string>
+    <string name="evolution_condition_name_7">happiness</string>
+    <string name="evolution_condition_name_8">mâle</string>
+    <string name="evolution_condition_name_9">femelle</string>
+    <string name="evolution_condition_name_10">location</string>
+    <string name="evolution_condition_name_11">day</string>
+    <string name="evolution_condition_name_12">night</string>
+    <string name="evolution_condition_name_13">know</string>
+    <string name="evolution_condition_name_14">learn</string>
+    <string name="evolution_condition_name_15">trade</string>
+</resources>

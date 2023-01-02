@@ -3,8 +3,8 @@
 import re
 
 from pokedex import Pokedex
-from data import ItemType
-from data import EvolutionConditionType
+from data import EvolutionItem
+from data import EvolutionCondition
 
 class ConditionsParser:
     def __init__(self, pokedex: Pokedex, verbose: bool):
@@ -65,11 +65,11 @@ class ConditionsParser:
         condition_encoded_string = ""
 
         # Split in OR parts
-        results = re.split(EvolutionConditionType.OR.patterns[0], condition_string)
+        results = re.split(EvolutionCondition.OR.patterns[0], condition_string)
         results = [result.strip() for result in results ]
 
         if len(results) > 1:
-            condition_encoded_string = str(EvolutionConditionType.OR.value) + "("
+            condition_encoded_string = str(EvolutionCondition.OR.value) + "("
 
             for i in range(len(results)):
                 result = results[i]
@@ -93,11 +93,11 @@ class ConditionsParser:
         condition_encoded_string = ""
 
         # Split in AND parts
-        results = [s.strip() for s in condition_string.split(EvolutionConditionType.AND.patterns[0])]
+        results = [s.strip() for s in condition_string.split(EvolutionCondition.AND.patterns[0])]
         results = [result.strip() for result in results]
 
         if len(results) > 1:
-            condition_encoded_string = str(EvolutionConditionType.AND.value) + "("
+            condition_encoded_string = str(EvolutionCondition.AND.value) + "("
 
             for i in range(len(results)):
                 result = results[i]
@@ -133,10 +133,10 @@ class ConditionsParser:
 
             condition_encoded_string = ""
 
-            for condition_type in EvolutionConditionType:
+            for condition_type in EvolutionCondition:
 
                 # Already treated
-                if condition_type in (EvolutionConditionType.AND, EvolutionConditionType.OR):
+                if condition_type in (EvolutionCondition.AND, EvolutionCondition.OR):
                     continue
 
                 pattern_list = condition_type.patterns
@@ -152,15 +152,15 @@ class ConditionsParser:
                         if type(extracted) is str:
                             # Evolution type with extra data
                             match condition_type:
-                                case EvolutionConditionType.LEVEL:
+                                case EvolutionCondition.LEVEL:
                                     pass
                                 # Convert item name to id
-                                case EvolutionConditionType.ITEM_USE | EvolutionConditionType.ITEM_HOLD:
-                                    for item in ItemType:
+                                case EvolutionCondition.ITEM_USE | EvolutionCondition.ITEM_HOLD:
+                                    for item in EvolutionItem:
                                         if item.name_fr == extracted:
                                             extracted = str(item.value)
                                             break
-                                case EvolutionConditionType.KNOW_SKILL | EvolutionConditionType.LEARN_SKILL:
+                                case EvolutionCondition.KNOW_SKILL | EvolutionCondition.LEARN_SKILL:
                                     pass
 
                             condition_encoded_string += "[" + extracted + "]"
@@ -178,12 +178,12 @@ class ConditionsParser:
             if self._verbose:
                 print(f"no known condition pattern in '{condition_string}', full string = '{full_string}'")
 
-            condition_encoded_strings.append(str(EvolutionConditionType.UNKNOWN.value))
+            condition_encoded_strings.append(str(EvolutionCondition.UNKNOWN.value))
 
         if len(condition_encoded_strings) == 1:
             return condition_encoded_strings[0]
         else:
-            condition_encoded_string += str(EvolutionConditionType.AND.value) + "("
+            condition_encoded_string += str(EvolutionCondition.AND.value) + "("
             condition_encoded_string += ",".join(condition_encoded_strings)
             condition_encoded_string += ")"
             return condition_encoded_string
@@ -209,7 +209,7 @@ class ConditionsParser:
         return string, False
 
     def is_condition_ok(self, condition: dict):
-        if condition["type"] == EvolutionConditionType.UNKNOWN.name:
+        if condition["type"] == EvolutionCondition.UNKNOWN.name:
             return False
 
         if "children" in condition:

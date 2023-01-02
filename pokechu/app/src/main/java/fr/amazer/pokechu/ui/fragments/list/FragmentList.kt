@@ -8,38 +8,32 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.ui.activities.ActivityDetails
-import fr.amazer.pokechu.enums.NationalIdLocalId
-import fr.amazer.pokechu.enums.PokedexType
-import fr.amazer.pokechu.enums.PokemonIdTypesId
-import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.databinding.FragmentListBinding
-import fr.amazer.pokechu.managers.DatabaseManager
-import fr.amazer.pokechu.managers.LocalizationManager
+import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.ListAdapter
-import fr.amazer.pokechu.ui.ListAdapterData
-import fr.amazer.pokechu.ui.fragments.tree.ListTouchListener
+import fr.amazer.pokechu.ui.RecyclerViewTouchListener
+import fr.amazer.pokechu.ui.activities.ActivityDetails
 import fr.amazer.pokechu.utils.UIUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import fr.amazer.pokechu.viewmodel.ViewModelPokemonData
+import fr.amazer.pokechu.viewmodel.ViewModelPokemons
 
 class FragmentList : Fragment() {
     private lateinit var binding: FragmentListBinding
     private var adapter: ListAdapter? = null
-    private var typesMap = HashMap<Int,List<PokemonType>>()
 
     private lateinit var detailsActivityLauncher: ActivityResultLauncher<Intent>
 
     // Only used to trigger observers
     private val loadedObservers = mutableListOf<(Boolean) -> Unit>()
-    private val dataChangedObservers = mutableListOf<() -> Unit>()
+
+    private val viewModel: ViewModelPokemons by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,28 +48,18 @@ class FragmentList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        suspend fun getPokemonsTypes(): List<PokemonIdTypesId> = withContext(Dispatchers.IO) {
-            return@withContext DatabaseManager.findPokemonsTypes()
+        setUpRecyclerView()
+
+        viewModel.getPokemonFilters().observe(viewLifecycleOwner) {
+            triggerLoadedObservers(false)
         }
-        lifecycleScope.launch { // coroutine on main
-            val pokemonTypes = getPokemonsTypes()
-            // back on main
 
-            // Build pokemon id -> types map
-            typesMap = HashMap<Int, List<PokemonType>>()
-            pokemonTypes.forEach{ value ->
-                typesMap[value.pokemon_id] = value.type_id_list
-            }
+        loadData()
 
-            setUpRecyclerView()
-
-            // Get pokemons for selected region and build map of id -> adapter data
-            buildPokemonList()
-
-            // Add listener on selected region
-            SettingsManager.addSelectedRegionListener {
-                rebuildDataSet()
-            }
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
+            triggerLoadedObservers(false)
+            loadData()
         }
 
         // Notify data changed when coming back from details activity
@@ -86,11 +70,19 @@ class FragmentList : Fragment() {
         }
     }
 
+    private fun loadData() {
+        viewModel.getPokemonData().removeObservers(viewLifecycleOwner)
+        viewModel.getPokemonData().observe(viewLifecycleOwner) { dataMap ->
+            buildPokemonList(dataMap)
+            triggerLoadedObservers(true)
+        }
+    }
+
     private fun setUpRecyclerView() {
         binding.recyclerView.setHasFixedSize(true)
 
         // Grid or list
-        val gridEnabled = !SettingsManager.isListViewEnabled()
+        val gridEnabled = !SettingsManager.getSetting<Boolean>(SettingType.LIST_VIEW)
         var layoutManager: RecyclerView.LayoutManager?
         if ( gridEnabled )
             layoutManager = GridLayoutManager(context, 2)
@@ -101,10 +93,10 @@ class FragmentList : Fragment() {
 
         // Add click/long click listeners on items
         binding.recyclerView.addOnItemTouchListener(
-            ListTouchListener(
+            RecyclerViewTouchListener(
                 context,
                 binding.recyclerView,
-                object : ListTouchListener.ClickListener {
+                object : RecyclerViewTouchListener.ClickListener {
 
                     // Open details activity on click
                     override fun onClick(view: View?, position: Int) {
@@ -122,9 +114,9 @@ class FragmentList : Fragment() {
 
                             val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
                             val isCaptured = SettingsManager.isPokemonCaptured(pokemonId)
-                            val showUndiscoveredInfo = context?.let { SettingsManager.isShowUndiscoveredInfoEnabled() }
+                            val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(SettingType.SHOW_UNDISCOVERED_INFO)
 
-                            if (showUndiscoveredInfo == false) {
+                            if (!showUndiscoveredInfo) {
                                 if (!isDiscovered) {
                                     SettingsManager.togglePokemonDiscovered(pokemonId)
                                     if (view != null)
@@ -150,106 +142,49 @@ class FragmentList : Fragment() {
                             }
 
                             // Refresh data if required
-                            val capturedOnly = SettingsManager.isShowCapturedOnlyEnabled()
-                            val discoveredOnly = SettingsManager.isShowDiscoveredOnlyEnabled()
+                            val capturedOnly = SettingsManager.getSetting<Boolean>(SettingType.SHOW_CAPTURED_ONLY)
+                            val discoveredOnly = SettingsManager.getSetting<Boolean>(SettingType.SHOW_DISCOVERED_ONLY)
                             // Refresh whole data set if captured/discovered only is checked
                             // and captured/discovered status has changed
-                            if ( capturedOnly && isCaptured != SettingsManager.isPokemonCaptured(pokemonId))
-                                rebuildDataSet() // TODO this is overkill, just need to remove items if not visible anymore
-                            else if ( discoveredOnly && isDiscovered != SettingsManager.isPokemonDiscovered(pokemonId))
-                                rebuildDataSet() // TODO ditto
-                            else
-                                notifyItemChanged(position)
+
+//                            if ( capturedOnly && isCaptured != SettingsManager.isPokemonCaptured(pokemonId))
+//                                rebuildDataSet() // TODO this is overkill, just need to remove items if not visible anymore
+//                            else if ( discoveredOnly && isDiscovered != SettingsManager.isPokemonDiscovered(pokemonId))
+//                                rebuildDataSet() // TODO ditto
+//                            else
+                            notifyItemChanged(position)
                         }
                     }
                 })
         )
     }
 
-    private fun isPokemonDisplayed(id: Int): Boolean {
-        val capturedOnly = SettingsManager.isShowCapturedOnlyEnabled()
-        val discoveredOnly = SettingsManager.isShowDiscoveredOnlyEnabled()
-
-        return ( (!capturedOnly || SettingsManager.isPokemonCaptured(id))
-                && (!discoveredOnly || SettingsManager.isPokemonDiscovered(id)) )
-    }
-
-    private fun buildPokemonList() {
-        triggerLoadedObservers(false)
-
-        val selectedRegion = SettingsManager.getSelectedRegion()
-
-        suspend fun getPokemonData(region: Int): Map<Int, ListAdapterData> = withContext(Dispatchers.IO) {
-            if (region == PokedexType.NATIONAL.ordinal) {
-                val pokemonIds: List<Int> = DatabaseManager.findPokemonIds()
-                val dataMap = HashMap<Int, ListAdapterData>()
-                pokemonIds.forEach{ id ->
-                    if (isPokemonDisplayed(id))
-                        dataMap[id] = ListAdapterData(id)
-                }
-
-                return@withContext dataMap
-            }
-            else {
-                val pokemonLocalIds: List<NationalIdLocalId> = DatabaseManager.findPokemonRegions(selectedRegion)
-                val dataMap = HashMap<Int, ListAdapterData>()
-                pokemonLocalIds.forEach{ id ->
-                    if (isPokemonDisplayed(id.pokemon_id))
-                        dataMap[id.pokemon_id] = ListAdapterData(id.local_id)
-                }
-                return@withContext dataMap
-            }
-        }
-        lifecycleScope.launch { // coroutine on main
-            val pokemonData = getPokemonData(selectedRegion) // coroutine on IO
-            // back on main
-
-            // Fill localized names in data
-            pokemonData.forEach{ (key, data) ->
-                LocalizationManager.getLanguages().forEach{ lang ->
-                    data.names[lang] = activity?.let { LocalizationManager.getPokemonName(it.applicationContext, key, lang) }
-                        ?: ""
-                }
-            }
-            val gridEnabled = !SettingsManager.isListViewEnabled()
-//            val uiItemId = if (gridEnabled) R.layout.list_grid_item else R.layout.list_item
-
-            adapter = ListAdapter(context, pokemonData, typesMap, gridEnabled/*uiItemId*/)
-            binding.recyclerView.adapter = adapter
-
-//            delay(2000L)
-
-            triggerLoadedObservers(true)
-        }
+    private fun buildPokemonList(dataMap: Map<Int, ViewModelPokemonData>) {
+        val gridEnabled = !SettingsManager.getSetting<Boolean>(SettingType.LIST_VIEW)
+        // TODO dont reconstruct an adapter everytime, use diffutil stuff instead
+        adapter = ListAdapter(context, dataMap, gridEnabled)
+        binding.recyclerView.adapter = adapter
     }
 
     fun addLoadedObserver(observer: (Boolean) -> Unit) {
         loadedObservers.add(observer)
     }
-    fun addDataChangedObserver(observer: () -> Unit) {
-        dataChangedObservers.add(observer)
-    }
     private fun triggerLoadedObservers(loaded: Boolean) {
         loadedObservers.forEach { it(loaded) }
-    }
-    private fun triggerDataChangedObservers() {
-        dataChangedObservers.forEach { it() }
     }
 
     fun notifyDataSetChanged() {
         adapter?.notifyDataSetChanged()
-        triggerDataChangedObservers()
     }
 
     fun notifyItemChanged(position: Int) {
         adapter?.notifyItemChanged(position)
-        triggerDataChangedObservers()
     }
 
-    fun rebuildDataSet() {
-        buildPokemonList()
-        notifyDataSetChanged()
-    }
+//    fun rebuildDataSet() {
+//        buildPokemonList()
+//        notifyDataSetChanged()
+//    }
 
     fun filterQuery(text: String?) {
         adapter?.filter?.filter(text)

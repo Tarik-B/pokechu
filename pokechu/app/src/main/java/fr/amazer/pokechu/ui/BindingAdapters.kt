@@ -1,5 +1,6 @@
 package fr.amazer.pokechu.ui
 
+import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.annotation.LayoutRes
 import androidx.core.text.color
 import androidx.databinding.BindingAdapter
 import fr.amazer.pokechu.R
+import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.UIUtils
 
 @BindingAdapter("bind:visibleAnimated")
@@ -23,6 +25,16 @@ fun View.showHide(show: Boolean) {
     }
     else {
         UIUtils.animateView(this, View.GONE, 0.0f, 100)
+    }
+}
+
+@BindingAdapter("bind:assetPath")
+fun ImageView.setAssetPath(imgPath: String?) {
+    if (imgPath != null) {
+        val assetManager: AssetManager? = context?.assets
+        val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
+
+        setImageBitmap(bitmap)
     }
 }
 

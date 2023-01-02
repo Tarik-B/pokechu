@@ -10,7 +10,7 @@ import urllib.parse
 import utils
 
 from pokedex import Pokedex
-from data import PokedexType
+from data import Region
 
 
 class ListParser:
@@ -21,7 +21,7 @@ class ListParser:
     def process_pokedex_list_page(self, download_thumbnails: bool):
         # Fetch pokemon list
         base_url = "https://www.pokepedia.fr"
-        full_url = base_url + "/" + PokedexType(self._pokedex.get_type()).pokepedia_shortcut
+        full_url = base_url + "/" + Region(self._pokedex.get_region()).pokepedia_shortcut
 
         html = utils.download_page(full_url)
         if not html:
@@ -99,12 +99,12 @@ class ListParser:
 
             # Add local pokedex ids
             local_ids = []
-            match self._pokedex.get_type():
-                case PokedexType.NATIONAL:
+            match self._pokedex.get_region():
+                case Region.NATIONAL:
                     pass
-                case PokedexType.PALDEA:
+                case Region.PALDEA:
                     paldea_id = ids[pokemon_index]
-                    local_ids.append({PokedexType.PALDEA: paldea_id})
+                    local_ids.append({Region.PALDEA: paldea_id})
 
             thumbnail_url = thumbnail_urls[pokemon_index]
             url = urllib.parse.unquote(thumbnail_url)

@@ -2,7 +2,7 @@
 
 import collections
 
-from data import PokedexType
+from data import Region
 
 
 class Pokemon:
@@ -10,7 +10,7 @@ class Pokemon:
         self._unique_id = unique_id
         self._names = names # dict {'fr': string, 'en': string}
         self._thumbnail_filename = thumbnail_filename
-        self._ids = list() # of dict {'type': PokedexType, 'id': int}
+        self._ids = list() # of dict {'type': Region, 'id': int}
         self._types = list() # of PokemonType
         self._height = -1.0 # in cm
         self._weight = -1.0 # in kg
@@ -31,8 +31,8 @@ class Pokemon:
 
 
 class Pokedex:
-    def __init__(self, type: PokedexType):
-        self._type = type
+    def __init__(self, region: Region):
+        self._region = region
         self._pokemons = dict()
         self._evolution_trees = list()
         self._pokemon_names = dict()
@@ -43,7 +43,7 @@ class Pokedex:
         self._names_to_unique_ids["en"] = dict()
 
     # Public functions
-    def get_type(self) -> PokedexType: return self._type
+    def get_region(self) -> Region: return self._region
     def get_pokemons_count(self) -> int: return len(self._pokemons)
     def get_pokemons_ids(self) -> list: return list(self._pokemons.keys())
     def get_pokemon(self, id: str) -> Pokemon: return self._pokemons[id]
@@ -71,13 +71,13 @@ class Pokedex:
         if unique_id not in self._pokemons:
             return
 
-        # ids is a list of tuple(PokedexType,str)
+        # ids is a list of tuple(Region,str)
         id_list = []
         for id_tuple in ids:
             type = id_tuple[0]
             id = id_tuple[1]
 
-            id_list.append({"type": PokedexType(type), "id": int(id)})
+            id_list.append({"type": Region(type), "id": int(id)})
 
         self._pokemons[unique_id].set_ids(id_list)
 

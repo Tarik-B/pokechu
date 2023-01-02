@@ -5,24 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
-import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.databinding.ListGridItemBinding
 import fr.amazer.pokechu.databinding.ListItemBinding
 import fr.amazer.pokechu.ui.fragments.list.ListViewHolder
+import fr.amazer.pokechu.viewmodel.ViewModelPokemonData
 
-
-data class ListAdapterData(
-//    val pokemonId: Int,
-    val localId: Int,
-    val names: MutableMap<String, String> = mutableMapOf<String, String>()
-)
 
 class ListAdapter internal constructor(
     private var context: Context?,
-    private var pokemonsMap: Map<Int, ListAdapterData>,
-    private var typesMap: Map<Int,List<PokemonType>>,
+    private var pokemonsMap: Map<Int, ViewModelPokemonData>,
     private var gridEnabled: Boolean
 //    private var uiItemId: Int
     ) : RecyclerView.Adapter<ListViewHolder>(), Filterable {
@@ -43,10 +36,12 @@ class ListAdapter internal constructor(
 
         pokemonIdsFiltered = sortedNationalIds
         pokemonIdsFull = ArrayList<Int>(pokemonIdsFiltered)
+
+//        setHasStableIds(true)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding: ViewBinding
+        val binding: ViewDataBinding
         if (gridEnabled)
             binding = ListGridItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         else
@@ -61,7 +56,7 @@ class ListAdapter internal constructor(
         val currentData = pokemonsMap[currentId]
 
         if (currentData != null)
-            holder.bind(context!!, currentId, currentLocalId, currentData, typesMap[currentId]!!, currentFilter)
+            holder.bind(context!!, currentId, currentLocalId, currentData, currentData.types, currentFilter)
     }
 
     override fun getFilter(): Filter {

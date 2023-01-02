@@ -1,14 +1,22 @@
 package fr.amazer.pokechu.enums
 
+import android.content.Context
+import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import fr.amazer.pokechu.ApplicationExecutors
 
 @Database(
     entities = [
         EntityPokemon::class, EntityRegion::class, EntityType::class,
         PokemonRegionsJoin::class, PokemonEvolutionsJoin::class, PokemonTypesJoin::class
     ],
-    version = 2
+    version = 2,
+    exportSchema = false
 )
 abstract class PokechuDatabase: RoomDatabase() {
     abstract fun getPokemonsDao(): DaoPokemons
@@ -17,6 +25,76 @@ abstract class PokechuDatabase: RoomDatabase() {
     abstract fun getPokemonRegionsDao(): PokemonRegionsDao
     abstract fun getPokemonEvolutionsDao(): PokemonEvolutionsDao
     abstract fun getPokemonTypesDao(): PokemonTypesDao
+
+    private val mIsDatabaseCreated = MutableLiveData<Boolean>()
+
+    /**
+     * Check whether the database already exists and expose it via [.getDatabaseCreated]
+     */
+    private fun updateDatabaseCreated(context: Context) {
+        if (context.getDatabasePath(DATABASE_NAME).exists())
+            setDatabaseCreated()
+    }
+    private fun setDatabaseCreated() {
+        mIsDatabaseCreated.postValue(true)
+    }
+    fun getDatabaseCreated(): LiveData<Boolean?>? {
+        return mIsDatabaseCreated
+    }
+
+    companion object {
+        private var sInstance: PokechuDatabase? = null
+
+        @VisibleForTesting
+        val DATABASE_NAME = "pokechu.db"
+        fun getInstance(context: Context, executors: ApplicationExecutors): PokechuDatabase? {
+            if (sInstance == null) {
+                synchronized(PokechuDatabase::class.java) {
+                    if (sInstance == null) {
+                        sInstance = buildDatabase(context.getApplicationContext(), executors)
+                        sInstance!!.updateDatabaseCreated(context.getApplicationContext())
+                    }
+                }
+            }
+            return sInstance
+        }
+
+        /**
+         * Build the database. [Builder.build] only sets up the database configuration and
+         * creates a new instance of the database.
+         * The SQLite database is only created when it's accessed for the first time.
+         */
+        private fun buildDatabase(appContext: Context, executors: ApplicationExecutors): PokechuDatabase {
+            return Room.databaseBuilder(
+                appContext,
+                PokechuDatabase::class.java,
+                DATABASE_NAME
+            )
+            .createFromAsset("db.sqlite")
+            .fallbackToDestructiveMigration()
+                .addCallback(object : Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        executors.diskIO().execute {
+
+                            // Add a delay to simulate a long-running operation
+//                            PokechuDatabase.Companion.addDelay()
+                            // Generate the data for pre-population
+                            val database: PokechuDatabase? =
+                                getInstance(
+                                    appContext,
+                                    executors
+                                )
+                            // notify that the database was created and it's ready to be used
+                            if (database != null) {
+                                database.setDatabaseCreated()
+                            }
+                        }
+                    }
+                })
+                .build()
+        }
+    }
 }
 
 

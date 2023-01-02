@@ -3,7 +3,6 @@ package fr.amazer.pokechu.ui.activities
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -13,26 +12,22 @@ import android.widget.SearchView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.enums.PokedexType
-import fr.amazer.pokechu.enums.EntityPokemon
 import fr.amazer.pokechu.databinding.ActivityMainBinding
-import fr.amazer.pokechu.ui.fragments.FragmentBottomSheet
-import fr.amazer.pokechu.ui.fragments.list.FragmentList
-import fr.amazer.pokechu.ui.fragments.FragmentStartSearchDialog
-import fr.amazer.pokechu.managers.DatabaseManager
+import fr.amazer.pokechu.enums.Region
+import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
+import fr.amazer.pokechu.ui.fragments.FragmentBottomSheet
+import fr.amazer.pokechu.ui.fragments.FragmentStartSearchDialog
+import fr.amazer.pokechu.ui.fragments.list.FragmentList
 import fr.amazer.pokechu.utils.UIUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import fr.amazer.pokechu.viewmodel.ViewModelPokemons
 
 
 class ActivityMain : BaseActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragmentList: FragmentList
     private lateinit var fragmentBottomSheet: FragmentBottomSheet
@@ -40,6 +35,9 @@ class ActivityMain : BaseActivity() {
     private lateinit var loadingOverlay: View
     private lateinit var detailsActivityLauncher: ActivityResultLauncher<Intent>
     private lateinit var settingsActivityLauncher: ActivityResultLauncher<Intent>
+
+    // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
+    private val viewModel: ViewModelPokemons by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -59,10 +57,16 @@ class ActivityMain : BaseActivity() {
             // Hide it (with animation) when list is loaded
             binding.isLoading = !loaded
         }
-        // Refresh captured/discovered counts
-        refreshCounts()
-        fragmentList.addDataChangedObserver{ ->
-            refreshCounts()
+
+        // Observe captured/discovered/total counts and pass them to binding
+        viewModel.getPokemonCount().observe(this) { count ->
+            binding.totalCount = count
+        }
+        viewModel.getPokemonDiscoveredCount().observe(this) { count ->
+            binding.discoveredCount = count
+        }
+        viewModel.getPokemonCapturedCount().observe(this) { count ->
+            binding.capturedCount = count
         }
 
         fragmentBottomSheet = binding.fragmentBottomSheet.getFragment<FragmentBottomSheet>()
@@ -80,28 +84,10 @@ class ActivityMain : BaseActivity() {
         binding.buttonSearch.setOnClickListener { view ->
             val newFragment = FragmentStartSearchDialog()
             newFragment.addsearchQueryListeners { pokemonId, isNational ->
-                // Search id and open details
-                suspend fun getPokemonById(id: Int): EntityPokemon? = withContext(Dispatchers.IO) {
-                    return@withContext DatabaseManager.findPokemonById(id)
-                }
-                suspend fun localToNational(regionId: Int, localId: Int): Int = withContext(Dispatchers.IO) {
-                    return@withContext DatabaseManager.localToNationalId(regionId, localId)
-                }
-                lifecycleScope.launch { // coroutine on Main
 
-                    var searchedId = pokemonId
-
-                    // Check if id must be converted to national (unique id not checked)
-                    val selectedRegion = SettingsManager.getSelectedRegion()
-                    if (!isNational && selectedRegion != PokedexType.NATIONAL.ordinal) {
-                        searchedId = localToNational(selectedRegion, searchedId)
-                    }
-
-                    val pokemon = getPokemonById(searchedId) // coroutine on IO
-                    // back on main
-
+                fun openDetails(searchedId: Int) {
                     // Id found, open details
-                    if (pokemon != null) {
+                    if (searchedId > 0) {
                         val intent = Intent(applicationContext, ActivityDetails::class.java)
                         intent.putExtra("PokemonId", searchedId)
                         detailsActivityLauncher.launch(intent)
@@ -110,7 +96,21 @@ class ActivityMain : BaseActivity() {
                         Snackbar.make(view, "ID ${pokemonId} not found ", Snackbar.LENGTH_LONG).show()
                     }
                 }
+
+                var searchedId = pokemonId
+
+                // Check if id must be converted to national (unique id not checked)
+                val selectedRegion = SettingsManager.getSetting<Int>(SettingType.SELECTED_REGION)
+                if (!isNational && selectedRegion != Region.NATIONAL.ordinal) {
+                    viewModel.localToNationalId(selectedRegion, searchedId).observe(this) { nationalId ->
+                        openDetails(nationalId)
+                    }
+                }
+                else {
+                    openDetails(searchedId)
+                }
             }
+
             newFragment.show(supportFragmentManager, "search")
         }
 
@@ -134,10 +134,6 @@ class ActivityMain : BaseActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            menu.setGroupDividerEnabled(true)
-        }
-
         // Associate searchable configuration with the SearchView
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = (menu.findItem(R.id.search).actionView as SearchView)
@@ -148,7 +144,7 @@ class ActivityMain : BaseActivity() {
         // Setup search bar
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
-                filterQuery(newText)
+                fragmentList.filterQuery(newText)
                 return false
             }
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -178,7 +174,7 @@ class ActivityMain : BaseActivity() {
         })
 
         // Setup list/grid switch view button
-        val gridEnabled = !SettingsManager.isListViewEnabled()
+        val gridEnabled = !SettingsManager.getSetting<Boolean>(SettingType.LIST_VIEW)
         val listButton = menu.findItem(R.id.button_list_view)
         val gridButton = menu.findItem(R.id.button_grid_view)
         val currentActivity = this
@@ -187,7 +183,7 @@ class ActivityMain : BaseActivity() {
         if ( gridEnabled ) {
             listButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
                 override fun onMenuItemClick(item: MenuItem): Boolean {
-                    SettingsManager.setListViewEnabled(true)
+                    SettingsManager.setSetting(SettingType.LIST_VIEW, true)
                     UIUtils.reloadActivity(currentActivity, true)
 
                     return true
@@ -197,7 +193,7 @@ class ActivityMain : BaseActivity() {
         else {
             gridButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
                 override fun onMenuItemClick(item: MenuItem): Boolean {
-                    SettingsManager.setListViewEnabled(false)
+                    SettingsManager.setSetting(SettingType.LIST_VIEW, false)
                     UIUtils.reloadActivity(currentActivity, true)
 
                     return true
@@ -214,13 +210,13 @@ class ActivityMain : BaseActivity() {
         menuInflater.inflate(R.menu.menu_main_customize, customizeSubMenuItem.subMenu)
 
         val showUndiscoveredInfoItem = menu.findItem(R.id.show_undiscovered_info)
-        showUndiscoveredInfoItem.isChecked = SettingsManager.isShowUndiscoveredInfoEnabled()
+        showUndiscoveredInfoItem.isChecked = SettingsManager.getSetting<Boolean>(SettingType.SHOW_UNDISCOVERED_INFO)
 
         val showDiscoveredOnlyItem = menu.findItem(R.id.show_discovered_only)
-        showDiscoveredOnlyItem.isChecked = SettingsManager.isShowDiscoveredOnlyEnabled()
+        showDiscoveredOnlyItem.isChecked = SettingsManager.getSetting<Boolean>(SettingType.SHOW_DISCOVERED_ONLY)
 
         val showCapturedOnlyItem = menu.findItem(R.id.show_captured_only)
-        showCapturedOnlyItem.isChecked = SettingsManager.isShowCapturedOnlyEnabled()
+        showCapturedOnlyItem.isChecked = SettingsManager.getSetting<Boolean>(SettingType.SHOW_CAPTURED_ONLY)
 
         return true
     }
@@ -242,49 +238,26 @@ class ActivityMain : BaseActivity() {
             // TODO refactor this into a generic case
             R.id.show_undiscovered_info -> {
                 item.isChecked = !item.isChecked
-                SettingsManager.setShowUndiscoveredInfoEnabled(item.isChecked)
+                SettingsManager.setSetting(SettingType.SHOW_UNDISCOVERED_INFO, item.isChecked)
                 fragmentList.notifyDataSetChanged()
 
                 return true
             }
             R.id.show_discovered_only -> {
                 item.isChecked = !item.isChecked
-                SettingsManager.setShowDiscoveredOnlyEnabled(item.isChecked)
-                fragmentList.rebuildDataSet()
+                SettingsManager.setSetting(SettingType.SHOW_DISCOVERED_ONLY, item.isChecked)
+//                fragmentList.rebuildDataSet()
 
                 return true
             }
             R.id.show_captured_only -> {
                 item.isChecked = !item.isChecked
-                SettingsManager.setShowCapturedOnlyEnabled(item.isChecked)
-                fragmentList.rebuildDataSet()
+                SettingsManager.setSetting(SettingType.SHOW_CAPTURED_ONLY, item.isChecked)
+//                fragmentList.rebuildDataSet()
 
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun filterQuery(text: String?) {
-        fragmentList.filterQuery(text)
-    }
-
-    private fun refreshCounts() {
-        // Get data
-        suspend fun getPokemonsCount(): Int = withContext(Dispatchers.IO) {
-            return@withContext DatabaseManager.findPokemonsCount()
-        }
-        lifecycleScope.launch { // coroutine on main
-            val totalPokemonCount = getPokemonsCount() // coroutine on IO
-            // back on main
-
-            binding.totalCount = totalPokemonCount
-
-            // Discovered
-            binding.discoveredCount = SettingsManager.getPokemonDiscoveredCount()
-
-            // Captured
-            binding.capturedCount = SettingsManager.getPokemonCapturedCount()
         }
     }
 }

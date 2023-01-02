@@ -3,7 +3,7 @@ import json
 import os
 
 import utils
-from data import PokedexType, ItemType, PokemonType, EvolutionConditionType
+from data import Region, EvolutionItem, PokemonType, EvolutionCondition
 
 from pokedex import Pokedex
 
@@ -18,12 +18,12 @@ class Exporter:
 
         self.save_pokemon_names_xml(path, "pokemons.xml")
 
-        self.save_enum_names_xml(path, "regions.xml", PokedexType, "region_name")
-        self.save_enum_names_xml(path, "types.xml", PokemonType, "type_name")
-        self.save_enum_names_xml(path, "items.xml", ItemType, "item_name")
-        self.save_enum_names_xml(path, "conditions.xml", EvolutionConditionType, "condition_name")
+        self.save_enum_names_xml(path, "regions.xml", Region, "region_name")
+        self.save_enum_names_xml(path, "pokemon_types.xml", PokemonType, "pokemon_type_name")
+        self.save_enum_names_xml(path, "evolution_items.xml", EvolutionItem, "evolution_item_name")
+        self.save_enum_names_xml(path, "evolution_conditions.xml", EvolutionCondition, "evolution_condition_name")
 
-        self.save_enums_kotlin(path, [PokedexType, PokemonType, ItemType, EvolutionConditionType])
+        self.save_enums_kotlin(path, [Region, PokemonType, EvolutionItem, EvolutionCondition])
 
     def save_enums_kotlin(self, file_path: str, enum_class_list: list):
 
@@ -33,7 +33,7 @@ class Exporter:
             full_path = f"{file_path}{class_name}.kt"
 
             with open(full_path, "w") as output_file:
-                output_file.write("package fr.amazer.pokechu.data\n")
+                output_file.write("package fr.amazer.pokechu.enums\n")
                 output_file.write("\n")
                 output_file.write(f"{utils.get_generated_warning_kotlin()}\n")
                 output_file.write("\n")

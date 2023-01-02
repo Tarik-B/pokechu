@@ -97,6 +97,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha03"
     // viewModelScope:
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha03"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha03"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.6.0-alpha03"
+
 
     // Leonids particles
     implementation files("libs/LeonidsLib.jar")
@@ -111,4 +114,17 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
     def nav_version = "2.5.3"
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // rxjava2
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    // (see https://github.com/ReactiveX/RxJava/releases for latest 3.x.x version)
+    implementation "io.reactivex.rxjava3:rxjava:3.1.5"
+
+    // livedata-kit (for MergerLiveData)
+    implementation "com.github.DanielKnauf:livedata-kit:0.2.0"
+
+    // SwipeRefreshLayout widget
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

@@ -5,7 +5,7 @@ import pokebase.cache
 
 import utils
 
-from data import PokedexType
+from data import Region
 from parser_conditions import ConditionsParser
 from parser_data import DataParser
 from exporter import Exporter
@@ -27,14 +27,14 @@ if __name__ == "__main__":
     #result1 = nestedExpr('(', ')').parseString(test).asList()
     # print(f"result pyparsing = {result1}")
 
-    # print(f"PokedexType.NATIONAL = {PokedexType.NATIONAL.value}")
-    # print(f"PokedexType.PALDEA = {PokedexType.PALDEA.value}")
+    # print(f"Region.NATIONAL = {Region.NATIONAL.value}")
+    # print(f"Region.PALDEA = {Region.PALDEA.value}")
 
     pokebase.cache.set_cache(utils.PAGES_CACHE_FOLDER + "/pokebase")
 
     total_start_time = time.time()
 
-    pokedex = Pokedex(PokedexType.NATIONAL)
+    pokedex = Pokedex(Region.NATIONAL)
 
     ##################################################
     block_start_time = time.time()

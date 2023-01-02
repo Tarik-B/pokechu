@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="evolution_item_name_0">pierre feu</string>
+    <string name="evolution_item_name_1">pierre eau</string>
+    <string name="evolution_item_name_2">pierre plante</string>
+    <string name="evolution_item_name_3">pierre foudre</string>
+    <string name="evolution_item_name_4">pierre lune</string>
+    <string name="evolution_item_name_5">pierre soleil</string>
+    <string name="evolution_item_name_6">pierre aube</string>
+    <string name="evolution_item_name_7">pierre nuit</string>
+    <string name="evolution_item_name_8">pierre éclat</string>
+    <string name="evolution_item_name_9">pierre glace</string>
+    <string name="evolution_item_name_10">roche royale</string>
+    <string name="evolution_item_name_11">fil de liaison</string>
+    <string name="evolution_item_name_12">pierre ovale</string>
+    <string name="evolution_item_name_13">peau métal</string>
+    <string name="evolution_item_name_14">éclat soleil</string>
+    <string name="evolution_item_name_15">éclat lune</string>
+    <string name="evolution_item_name_16">griffe rasoir</string>
+    <string name="evolution_item_name_17">pomme acidulée</string>
+    <string name="evolution_item_name_18">pomme sucrée</string>
+    <string name="evolution_item_name_19">théière fêlée</string>
+    <string name="evolution_item_name_20">théière ébréchée</string>
+    <string name="evolution_item_name_21">pièce de Mordudor</string>
+    <string name="evolution_item_name_22">obsidienne</string>
+    <string name="evolution_item_name_23">protecteur</string>
+    <string name="evolution_item_name_24">écaille draco</string>
+    <string name="evolution_item_name_25">électriseur</string>
+    <string name="evolution_item_name_26">magmariseur</string>
+    <string name="evolution_item_name_27">améliorator</string>
+    <string name="evolution_item_name_28">cd douteux</string>
+    <string name="evolution_item_name_29">croc rasoir</string>
+    <string name="evolution_item_name_30">bel\'écaille</string>
+    <string name="evolution_item_name_31">tissu fauche</string>
+    <string name="evolution_item_name_32">dent océan</string>
+    <string name="evolution_item_name_33">écaille océan</string>
+    <string name="evolution_item_name_34">sachet senteur</string>
+    <string name="evolution_item_name_35">chantibonbon</string>
+    <string name="evolution_item_name_36">armure de la fortune</string>
+    <string name="evolution_item_name_37">armure de la rancune</string>
+</resources>

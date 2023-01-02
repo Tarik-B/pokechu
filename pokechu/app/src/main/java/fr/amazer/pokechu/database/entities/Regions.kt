@@ -1,5 +1,6 @@
 package fr.amazer.pokechu.enums
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -15,5 +16,5 @@ data class EntityRegion(
 @Dao
 interface DaoRegions {
     @Query("SELECT * FROM regions")
-    fun findAll(): List<EntityRegion>
+    fun findAll(): LiveData<List<EntityRegion>>
 }

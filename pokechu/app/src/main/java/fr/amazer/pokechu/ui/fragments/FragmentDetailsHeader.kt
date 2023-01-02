@@ -7,25 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
+import fr.amazer.pokechu.databinding.FragmentDetailsHeaderBinding
 import fr.amazer.pokechu.enums.EntityPokemon
 import fr.amazer.pokechu.enums.PokemonType
-import fr.amazer.pokechu.databinding.FragmentDetailsHeaderBinding
-import fr.amazer.pokechu.managers.DatabaseManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import fr.amazer.pokechu.viewmodel.ViewModelPokemon
 
-private const val ARG_PARAM1 = "pokemonId"
+private const val ARG_POKEMON_ID = "pokemonId"
 
 class FragmentDetailsHeader : Fragment() {
     private var pokemonId: Int = 0
 
     private lateinit var binding: FragmentDetailsHeaderBinding
-    private lateinit var pokemon: EntityPokemon
-    private lateinit var types: List<Int>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +29,7 @@ class FragmentDetailsHeader : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDetailsHeaderBinding.inflate(layoutInflater)
 
-        arguments?.let {
-            pokemonId = it.getInt(ARG_PARAM1)
-        }
+        pokemonId = requireArguments().getInt(ARG_POKEMON_ID)
 
         return binding.root
     }
@@ -44,42 +37,30 @@ class FragmentDetailsHeader : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        suspend fun getPokemonById(): EntityPokemon? = withContext(Dispatchers.IO) {
-            return@withContext DatabaseManager.findPokemonById(pokemonId)
-        }
-        suspend fun getPokemonTypes(): List<Int> = withContext(Dispatchers.IO) {
-            return@withContext DatabaseManager.findPokemonTypes(pokemonId)
-        }
-        lifecycleScope.launch { // coroutine on main
-            var pokemonData = getPokemonById() // coroutine on IO
-            types = getPokemonTypes() // coroutine on IO
-            // back on main
+        val viewModel: ViewModelPokemon = ViewModelProvider(this)[ViewModelPokemon::class.java]
 
-            if (pokemonData != null) {
-//                finish()
-                pokemon = pokemonData
-
-                // Header
-                setupHeader()
+        // Request evolution root then evolution chain from root
+        viewModel.getPokemon(pokemonId).observe(viewLifecycleOwner) { pokemon ->
+            viewModel.getPokemonTypes(pokemonId).observe(viewLifecycleOwner) { types ->
+                setHeaderData(pokemon, types)
             }
         }
     }
 
-    private fun setupHeader() {
+    private fun setHeaderData(pokemon: EntityPokemon, types: List<Int>) {
         // Header text
         binding.height = pokemon.height.toString()
         binding.weight = pokemon.weight.toString()
 
-        val assetManager: AssetManager? = context?.assets
-
         // Image
         val imgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
-        val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
-        binding.imageBitmap = bitmap
+        binding.imagePath = imgPath
 
         // For black filter
         val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
         binding.isDiscovered = isDiscovered
+
+        val assetManager: AssetManager? = context?.assets
 
         val typeBitmaps = mutableListOf<Bitmap>()
         types.forEach { type ->

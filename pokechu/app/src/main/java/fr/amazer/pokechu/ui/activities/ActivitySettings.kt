@@ -6,6 +6,7 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import fr.amazer.pokechu.R
+import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 
 interface PreferenceChangeListener {
@@ -35,6 +36,12 @@ class ActivitySettings : BaseActivity(), PreferenceChangeListener {
             // App language change
             val appLanguage: ListPreference? = findPreference("setting_app_language")
             if (appLanguage != null) {
+                // App language preference is not persistent so it has to be manually loaded
+                val langs = LocalizationManager.getLanguages()
+                val index = langs.indexOf((activity as ActivitySettings).getCurrentLanguage().language)
+                if (index >= 0)
+                    appLanguage.setValueIndex(index)
+
                 appLanguage.onPreferenceChangeListener =
                     Preference.OnPreferenceChangeListener { _, newValue ->
                         val language = newValue.toString()

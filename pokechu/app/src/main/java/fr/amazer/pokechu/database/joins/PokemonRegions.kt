@@ -1,10 +1,12 @@
 package fr.amazer.pokechu.enums
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Query
 import androidx.room.ColumnInfo
+import kotlinx.coroutines.flow.Flow
 
 @Entity(
     tableName = "pokemon_regions",
@@ -16,24 +18,19 @@ import androidx.room.ColumnInfo
 )
 class PokemonRegionsJoin(val pokemon_id: Int, val region_id: Int, val local_id: Int)
 
-data class NationalIdLocalId(
-    @ColumnInfo(name = "pokemon_id") val pokemon_id: Int,
-    @ColumnInfo(name = "local_id") val local_id: Int,
-)
-
 @Dao
 interface PokemonRegionsDao {
     @Query(
         "SELECT pokemon_id, local_id FROM regions " +
         "INNER JOIN pokemon_regions ON regions.id=pokemon_regions.region_id " +
-        "WHERE pokemon_regions.region_id=:region_id "+
+        "WHERE :region_id=0 OR pokemon_regions.region_id=:region_id "+
         "ORDER BY local_id ASC"
     )
-    fun findPokemonRegions(region_id: Int): List<NationalIdLocalId>
+    fun findPokemonRegions(region_id: Int): LiveData<List<NationalIdLocalId>>
 
     @Query(
         "SELECT pokemon_id FROM pokemon_regions " +
         "WHERE region_id = :region_id AND local_id = :local_id"
     )
-    fun localToNationalId(region_id: Int, local_id: Int): Int
+    fun localToNationalId(region_id: Int, local_id: Int): LiveData<Int>
 }

@@ -7,9 +7,13 @@ import pokebase
 import pickle
 
 import utils
+# import requests
+# import concurrent.futures
+# import time
+# import os
 
 from pokedex import Pokedex
-from data import PokedexType, PokemonType
+from data import Region, PokemonType
 
 POKEBASE_PICKLE_CACHE_FOLDER = "./output/cache/pokebase_pickle/"
 
@@ -19,9 +23,28 @@ class DataParser:
         self._verbose = verbose
 
     def process_pokemon_pages(self):
+
+        # with concurrent.futures.ThreadPoolExecutor() as executor:
+        #
+        #     futures = []
+        #
+        #     pokemon_ids = self._pokedex.get_pokemons_ids()
+        #     size = 100
+        #     splitted_ids = [pokemon_ids[i:i + size] for i in range(0, len(pokemon_ids), size)]
+        #
+        #     for split in splitted_ids:
+        #         # if int(unique_id) % 100 == 0:
+        #         # print(f"Processing data of pokemon {unique_id}")
+        #
+        #         futures.append(executor.submit(self.process_pokemon_pages_list, ids=split))
+        #
+        #     concurrent.futures.wait(futures, return_when=concurrent.futures.ALL_COMPLETED)  # ALL_COMPLETED is actually the
+            # for future in concurrent.futures.as_completed(futures):
+                # print(future.result())
+                # pass
+
         # pokemons = ["238", "260", "483", "484", "487", "492", "513", "617", "619", "626", "641", "642", "645", "710",
         #             "711", "718", "720", "745", "746", "774", "888", "889"]
-        # for unique_id in pokemons:
         for unique_id in self._pokedex.get_pokemons_ids():
 
             if int(unique_id)%100 == 0:
@@ -29,7 +52,13 @@ class DataParser:
 
             self.process_pokemon_page(unique_id)
 
+    def process_pokemon_pages_list(self, ids: list):
+        for id in ids:
+            self.process_pokemon_page(id)
+
     def process_pokemon_page(self, unique_id: str):
+        # print(f"Processing data of pokemon {unique_id}")
+
         # Fetch pokepedia page
         base_url = "https://www.pokepedia.fr/Pok%C3%A9mon_n%C2%B0"
 
@@ -120,8 +149,8 @@ class DataParser:
             region = regions_and_variants[i]
 
             pokedex_type = None
-            for type in PokedexType:
-                if region in PokedexType(type).abbrev_names:
+            for type in Region:
+                if region in Region(type).abbrev_names:
                     pokedex_type = type
                     break
 
@@ -130,7 +159,7 @@ class DataParser:
                     print("unknown region = " + region)
                 continue
 
-            # ids.append( { "type": PokedexType(pokedex_type).name, "id": region_ids[i] })
+            # ids.append( { "type": Region(pokedex_type).name, "id": region_ids[i] })
             ids.append( (pokedex_type, region_ids[i]) )
 
         self._pokedex.add_pokemon_ids(unique_id, ids)

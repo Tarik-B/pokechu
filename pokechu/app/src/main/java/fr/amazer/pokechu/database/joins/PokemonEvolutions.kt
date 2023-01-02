@@ -1,5 +1,6 @@
 package fr.amazer.pokechu.enums
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -39,7 +40,7 @@ interface PokemonEvolutionsDao {
         "FROM evolution_root "+
         "ORDER BY depth DESC LIMIT 1;"
     )
-    fun findPokemonEvolutionRoot(pokemon_id: Int): Int
+    fun findPokemonEvolutionRoot(pokemon_id: Int): LiveData<Int>
 
     @Query(
         "WITH RECURSIVE evolution_chain AS ( "+
@@ -54,5 +55,5 @@ interface PokemonEvolutionsDao {
         "SELECT base_id, evolved_id, condition_encoded FROM evolution_chain "+
         "JOIN pokemons p ON p.id = evolution_chain.evolved_id;"
     )
-    fun findPokemonEvolutions(pokemon_id: Int): List<BaseIdEvolvedIdCondition>
+    fun findPokemonEvolutions(pokemon_id: Int): LiveData<List<BaseIdEvolvedIdCondition>>
 }

@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.data
+package fr.amazer.pokechu.enums
 
 /* ************************************************************************** */
 /*    WARNING! Auto-generated file, all manual changes made will be lost!     */

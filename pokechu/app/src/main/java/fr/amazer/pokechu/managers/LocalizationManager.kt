@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.enums.EvolutionConditionType
-import fr.amazer.pokechu.enums.ItemType
-import fr.amazer.pokechu.enums.PokedexType
+import fr.amazer.pokechu.enums.EvolutionCondition
+import fr.amazer.pokechu.enums.EvolutionItem
+import fr.amazer.pokechu.enums.Region
 import java.util.*
 
 
@@ -26,23 +26,23 @@ object LocalizationManager {
         return getLocalizedName(context, "pokemon_name_${id}", language)
     }
 
-    fun getRegionName(context: Context, id: PokedexType, language: String = ""): String? {
+    fun getRegionName(context: Context, id: Region, language: String = ""): String? {
         return getLocalizedName(context, "region_name_${id.ordinal}", language)
     }
 
-    fun getItemName(context: Context, id: ItemType, language: String = ""): String? {
-        return getLocalizedName(context, "item_name_${id.ordinal}", language)
+    fun getItemName(context: Context, id: EvolutionItem, language: String = ""): String? {
+        return getLocalizedName(context, "evolution_item_name_${id.ordinal}", language)
     }
 
-    fun getConditionName(context: Context, id: EvolutionConditionType, language: String = ""): String? {
-        return getLocalizedName(context, "condition_name_${id.ordinal}", language)
+    fun getConditionName(context: Context, id: EvolutionCondition, language: String = ""): String? {
+        return getLocalizedName(context, "evolution_condition_name_${id.ordinal}", language)
     }
 
     fun getLocalizedName(context: Context, name: String, language: String = ""): String? {
 
         var lang = language
         if (lang == "")
-            lang = SettingsManager.getDataLanguage()
+            lang = SettingsManager.getSetting<String>(SettingType.DATA_LANGUAGE)
 
         val configuration = Configuration(context.resources.configuration)
         configuration.setLocale(Locale(lang))

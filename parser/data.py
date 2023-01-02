@@ -3,12 +3,12 @@
 from enum import Enum, unique
 
 # TODO AUTO GENERATE THIS USING FUNCTIONAL SYNTAX
-# PokedexType = Enum( "PokedexType", [
+# Region = Enum( "Region", [
 #     "NATIONAL",
 # ], start = 0 )
 
 @unique
-class PokedexType(Enum):
+class Region(Enum):
     pokepedia_shortcut: str
     abbrev_names: list
     name_fr: str
@@ -95,7 +95,7 @@ class PokemonType(Enum):
 
 
 @unique
-class ItemType(Enum):
+class EvolutionItem(Enum):
     name_fr: str
     name_en: str
 
@@ -151,7 +151,7 @@ class ItemType(Enum):
     MALICIOUS_ARMOR = ("armure de la rancune", "malicious armor")
 
 @unique
-class EvolutionConditionType(Enum):
+class EvolutionCondition(Enum):
     name_fr: str
     name_en: str
     patterns: list
@@ -176,9 +176,9 @@ class EvolutionConditionType(Enum):
     LEVEL_GAIN = ("gain de niveau", "level gain", [r"(?:gagner|gain|monter) (?:un|de|d'un) niveau"]) # Merge both with or
 
     # TODO Merge all items in one pattern with or |
-    ITEM_USE = ("utiliser", "use", [r"(?:au contact .*)?(" + ItemType(item_type).name_fr + r")" for
-                                    item_type in ItemType])
-    ITEM_HOLD = ("tenir", "hold", [r"en tenant\s(?:\w*[\s|\'])?(" + ItemType(item_type).name_fr + r")" for item_type in ItemType])
+    ITEM_USE = ("utiliser", "use", [r"(?:au contact .*)?(" + EvolutionItem(item_type).name_fr + r")" for
+                                    item_type in EvolutionItem])
+    ITEM_HOLD = ("tenir", "hold", [r"en tenant\s(?:\w*[\s|\'])?(" + EvolutionItem(item_type).name_fr + r")" for item_type in EvolutionItem])
 
     HAPPINESS = ("bonheur", "happiness", [r"bonheur"])
     MALE = ("male", "mâle", [r"mâle"])

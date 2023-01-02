@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:foreground="?selectableItemBackground"
-    app:cardCornerRadius="@dimen/card_recycler_corner_radius"
-    app:cardElevation="@dimen/card_recycler_elevation">
 
-    <LinearLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="imagePath"      type="String" />
+        <variable name="text"           type="String" />
+        <variable name="isDiscovered"   type="Boolean" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:foreground="?selectableItemBackground"
+        app:cardCornerRadius="@dimen/card_recycler_corner_radius"
+        app:cardElevation="@dimen/card_recycler_elevation">
 
-        <ImageView
-            android:id="@+id/imageThumbnail"
-            android:layout_width="56.0dip"
-            android:layout_height="56.0dip"
-            android:src="@drawable/ic_question_mark" />
-
-        <TextView
-            android:id="@+id/textName"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            tools:text="Node text here" />
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            <ImageView
+                android:layout_width="56.0dip"
+                android:layout_height="56.0dip"
+                bind:assetPath="@{imagePath}"
+                bind:tint="@{isDiscovered? @color/transparent : @color/black}"
+                android:tintMode="multiply"/>
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="@{text}" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -8,8 +8,8 @@ import dev.bandb.graphview.AbstractGraphAdapter
 import dev.bandb.graphview.graph.Node
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
-import fr.amazer.pokechu.enums.EvolutionConditionType
-import fr.amazer.pokechu.enums.ItemType
+import fr.amazer.pokechu.enums.EvolutionCondition
+import fr.amazer.pokechu.enums.EvolutionItem
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
@@ -152,11 +152,11 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
                 val id = match.groupValues[1].toInt()
                 if (match.groupValues[0].contains("item")) {
-                    val imgPath = AssetUtils.getItemThumbnailPath(ItemType.values()[id])
+                    val imgPath = AssetUtils.getItemThumbnailPath(EvolutionItem.values()[id])
                     images.add(ImageData(imgPath, start))
                 }
                 else if (match.groupValues[0].contains("condition")) {
-                    val imgPath = AssetUtils.getConditionThumbnailPath(EvolutionConditionType.values()[id])
+                    val imgPath = AssetUtils.getConditionThumbnailPath(EvolutionCondition.values()[id])
                     images.add(ImageData(imgPath, start))
                 }
             }
@@ -229,73 +229,73 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
             }
         }
         when(conditionData.type) {
-            EvolutionConditionType.UNKNOWN -> {
+            EvolutionCondition.UNKNOWN -> {
                 result += "unknown"
             }
-            EvolutionConditionType.AND -> {
-                val and = LocalizationManager.getConditionName(context, EvolutionConditionType.AND)
+            EvolutionCondition.AND -> {
+                val and = LocalizationManager.getConditionName(context, EvolutionCondition.AND)
                 result += conditionData.nested.joinToString(" ${and} ") {
                     it -> buildConditionStringHierarchy(it, discovered)
                 }
             }
-            EvolutionConditionType.OR -> {
-                val or = LocalizationManager.getConditionName(context, EvolutionConditionType.OR)
+            EvolutionCondition.OR -> {
+                val or = LocalizationManager.getConditionName(context, EvolutionCondition.OR)
                 result += conditionData.nested.joinToString(" $or ") {
                         it -> buildConditionStringHierarchy(it, discovered)
                 }
             }
-            EvolutionConditionType.LEVEL -> {
-                val level = LocalizationManager.getConditionName(context, EvolutionConditionType.LEVEL)?.let { capitalize(it) }
+            EvolutionCondition.LEVEL -> {
+                val level = LocalizationManager.getConditionName(context, EvolutionCondition.LEVEL)?.let { capitalize(it) }
                 result += "$level "
                 if (discovered)
                     result += conditionData.data.toInt()
                 else
                     result += "??"
             }
-            EvolutionConditionType.HAPPINESS,
-            EvolutionConditionType.DAY,
-            EvolutionConditionType.NIGHT,
-            EvolutionConditionType.LEVEL_GAIN,
-            EvolutionConditionType.TRADE,
-            EvolutionConditionType.MALE,
-            EvolutionConditionType.FEMALE -> {
+            EvolutionCondition.HAPPINESS,
+            EvolutionCondition.DAY,
+            EvolutionCondition.NIGHT,
+            EvolutionCondition.LEVEL_GAIN,
+            EvolutionCondition.TRADE,
+            EvolutionCondition.MALE,
+            EvolutionCondition.FEMALE -> {
                 result += "<condition_" + conditionData.type.ordinal + ">"
             }
-            EvolutionConditionType.ITEM_USE -> {
+            EvolutionCondition.ITEM_USE -> {
                 if (discovered)
-                    result += LocalizationManager.getItemName(context, ItemType.values()[conditionData.data.toInt()])?.let { capitalize(it) }
+                    result += LocalizationManager.getItemName(context, EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
                 else
                     result += "??"
 
                 result += " "
                 result += "<item_" + conditionData.data + ">"
             }
-            EvolutionConditionType.ITEM_HOLD -> {
-                val hold = LocalizationManager.getConditionName(context, EvolutionConditionType.ITEM_HOLD)?.let { capitalize(it) }
+            EvolutionCondition.ITEM_HOLD -> {
+                val hold = LocalizationManager.getConditionName(context, EvolutionCondition.ITEM_HOLD)?.let { capitalize(it) }
 
                 result += "$hold "
                 if (discovered)
-                    result += LocalizationManager.getItemName(context, ItemType.values()[conditionData.data.toInt()])?.let { capitalize(it) }
+                    result += LocalizationManager.getItemName(context, EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
                 else
                     result += "??"
 
                 result += " "
                 result += "<item_" + conditionData.data + ">"
             }
-            EvolutionConditionType.LOCATION -> {
-                val location = LocalizationManager.getConditionName(context, EvolutionConditionType.LOCATION)?.let { capitalize(it) }
+            EvolutionCondition.LOCATION -> {
+                val location = LocalizationManager.getConditionName(context, EvolutionCondition.LOCATION)?.let { capitalize(it) }
                 result += "$location"
             }
-            EvolutionConditionType.KNOW_SKILL -> {
-//                val know = LocalizationManager.getConditionName(context, EvolutionConditionType.KNOW_SKILL)?.let { capitalize(it) }
+            EvolutionCondition.KNOW_SKILL -> {
+//                val know = LocalizationManager.getConditionName(context, EvolutionCondition.KNOW_SKILL)?.let { capitalize(it) }
                 result += "know_skill "
                 if (discovered)
                     result += conditionData.data
                 else
                     result += "??"
             }
-            EvolutionConditionType.LEARN_SKILL -> {
-//                val learn = LocalizationManager.getConditionName(context, EvolutionConditionType.LEARN_SKILL)?.let { capitalize(it) }
+            EvolutionCondition.LEARN_SKILL -> {
+//                val learn = LocalizationManager.getConditionName(context, EvolutionCondition.LEARN_SKILL)?.let { capitalize(it) }
                 result += "learn_skill "
                 if (discovered)
                     result += conditionData.data

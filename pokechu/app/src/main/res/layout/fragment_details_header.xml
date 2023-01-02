@@ -9,7 +9,7 @@
 
         <variable name="height"         type="String" />
         <variable name="weight"         type="String" />
-        <variable name="imageBitmap"    type="Bitmap" />
+        <variable name="imagePath"      type="String" />
         <variable name="isDiscovered"   type="Boolean" />
         <variable name="typeBitmaps"    type="List&lt;Bitmap>" />
     </data>
@@ -112,7 +112,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="20dip"
-            bind:imageBitmap="@{imageBitmap}"
+            bind:assetPath="@{imagePath}"
             bind:tint="@{isDiscovered? @color/transparent : @color/black}"
             android:tintMode="multiply"
             android:scaleType="fitCenter"/>

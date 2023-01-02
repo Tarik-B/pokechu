@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="pokemon_type_name_0"/>
+    <string name="pokemon_type_name_1"/>
+    <string name="pokemon_type_name_2"/>
+    <string name="pokemon_type_name_3"/>
+    <string name="pokemon_type_name_4"/>
+    <string name="pokemon_type_name_5"/>
+    <string name="pokemon_type_name_6"/>
+    <string name="pokemon_type_name_7"/>
+    <string name="pokemon_type_name_8"/>
+    <string name="pokemon_type_name_9"/>
+    <string name="pokemon_type_name_10"/>
+    <string name="pokemon_type_name_11"/>
+    <string name="pokemon_type_name_12"/>
+    <string name="pokemon_type_name_13"/>
+    <string name="pokemon_type_name_14"/>
+    <string name="pokemon_type_name_15"/>
+    <string name="pokemon_type_name_16"/>
+    <string name="pokemon_type_name_17"/>
+</resources>
