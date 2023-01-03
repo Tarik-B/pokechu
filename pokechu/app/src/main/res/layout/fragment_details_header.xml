@@ -90,8 +90,8 @@
                 android:layout_margin="@dimen/text_margin_very_small"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                bind:typeBitmaps="@{typeBitmaps}"
-                bind:typeItemResId="@{@layout/details_type_item}">
+                typeBitmaps="@{typeBitmaps}"
+                typeItemResId="@{@layout/details_type_item}">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,8 +112,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="20dip"
-            bind:assetPath="@{imagePath}"
-            bind:tint="@{isDiscovered? @color/transparent : @color/black}"
+            assetPath="@{imagePath}"
+            tint="@{isDiscovered? @color/transparent : @color/black}"
             android:tintMode="multiply"
             android:scaleType="fitCenter"/>
 

@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments.tree
+package fr.amazer.pokechu.ui.details
 
 import android.content.Intent
 import android.graphics.Color
@@ -19,14 +19,15 @@ import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.EvolutionTreeNodeBinding
 import fr.amazer.pokechu.databinding.FragmentEvolutionTreeBinding
-import fr.amazer.pokechu.enums.BaseIdEvolvedIdCondition
+import fr.amazer.pokechu.database.joins.BaseIdEvolvedIdCondition
 import fr.amazer.pokechu.managers.SettingsManager
-import fr.amazer.pokechu.ui.activities.ActivityDetails
 import fr.amazer.pokechu.ui.RecyclerViewTouchListener
+import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionNodeData
+import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionNodeViewHolder
+import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionTreeEdgeDecoration
 import fr.amazer.pokechu.utils.ConditionUtils
 import fr.amazer.pokechu.utils.UIUtils
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutions
-import java.util.*
 
 private const val ARG_POKEMON_ID = "pokemonId"
 
@@ -35,7 +36,7 @@ class FragmentEvolutionTree : Fragment() {
 
     private lateinit var binding: FragmentEvolutionTreeBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AbstractGraphAdapter<NodeViewHolder>
+    private lateinit var adapter: AbstractGraphAdapter<EvolutionNodeViewHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -174,22 +175,19 @@ class FragmentEvolutionTree : Fragment() {
 
     private fun setupGraphView(graph: Graph) {
 
-        adapter = object : AbstractGraphAdapter<NodeViewHolder>() {
+        adapter = object : AbstractGraphAdapter<EvolutionNodeViewHolder>() {
 
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NodeViewHolder {
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EvolutionNodeViewHolder {
                 val binding = EvolutionTreeNodeBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
 
-
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.evolution_tree_node, parent, false)
-                return NodeViewHolder(binding)
+                return EvolutionNodeViewHolder(binding)
             }
 
-            override fun onBindViewHolder(holder: NodeViewHolder, position: Int) {
+            override fun onBindViewHolder(holder: EvolutionNodeViewHolder, position: Int) {
                 val nodeData = getNodeData(position) as EvolutionNodeData
                 holder.bind(context!!, nodeData, pokemonId)
             }

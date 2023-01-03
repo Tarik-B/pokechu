@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import fr.amazer.pokechu.PokechuApplication
 import fr.amazer.pokechu.data.DataRepositoryEvolutions
-import fr.amazer.pokechu.enums.BaseIdEvolvedIdCondition
+import fr.amazer.pokechu.database.joins.BaseIdEvolvedIdCondition
 
 class ViewModelEvolutions(application: Application) : AndroidViewModel(application) {
     private var repository: DataRepositoryEvolutions

@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import androidx.preference.PreferenceManager
 import fr.amazer.pokechu.enums.Region
+import fr.amazer.pokechu.managers.settings.LivePreference
+import fr.amazer.pokechu.managers.settings.MultiPrefixedLivePreference
 import io.reactivex.rxjava3.subjects.PublishSubject
 import java.util.*
 
@@ -44,10 +46,10 @@ object SettingsManager {
     }
 
     // Pokemon discovered/captured status
-    fun isPokemonDiscovered(pokemonId: Int): Boolean { return getSettingValue<Boolean>(settingsData[SettingType.DISCOVERED]!!.first + pokemonId, settingsData[SettingType.DISCOVERED]!!.second as Boolean)!! }
+    fun isPokemonDiscovered(pokemonId: Int): Boolean { return getSettingValue<Boolean>(settingsData[SettingType.DISCOVERED]!!.first + pokemonId, settingsData[SettingType.DISCOVERED]!!.second as Boolean) }
     fun setPokemonDiscovered(pokemonId: Int, discovered: Boolean) { setSettingValue<Boolean>(settingsData[SettingType.DISCOVERED]!!.first + pokemonId, discovered) }
     fun togglePokemonDiscovered(pokemonId: Int) { setPokemonDiscovered(pokemonId, !isPokemonDiscovered(pokemonId) ) }
-    fun isPokemonCaptured(pokemonId: Int): Boolean { return getSettingValue<Boolean>(settingsData[SettingType.CAPTURED]!!.first + pokemonId, settingsData[SettingType.DISCOVERED]!!.second as Boolean)!! }
+    fun isPokemonCaptured(pokemonId: Int): Boolean { return getSettingValue<Boolean>(settingsData[SettingType.CAPTURED]!!.first + pokemonId, settingsData[SettingType.DISCOVERED]!!.second as Boolean) }
     private fun setPokemonCaptured(pokemonId: Int, captured: Boolean) { setSettingValue<Boolean>(settingsData[SettingType.CAPTURED]!!.first + pokemonId, captured) }
     fun togglePokemonCaptured(pokemonId: Int) { setPokemonCaptured(pokemonId, !isPokemonCaptured(pokemonId) ) }
     fun clearPokemonDiscoveredAndCaptured() {

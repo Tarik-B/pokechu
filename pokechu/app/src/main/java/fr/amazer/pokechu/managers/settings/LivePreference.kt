@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.managers
+package fr.amazer.pokechu.managers.settings
 
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
@@ -8,33 +8,37 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 @Suppress("UNCHECKED_CAST")
-open class MultiLivePreference<T> constructor(
+class LivePreference<T> constructor(
     private val updates: Observable<String>,
     private val preferences: SharedPreferences,
-    private val keys: List<String>,
+    private val key: String,
     private val defaultValue: T?
-) : MutableLiveData<Map<String, T?>>() {
+) : MutableLiveData<T>() {
 
     private var disposable: Disposable? = null
-    private val values = mutableMapOf<String, T?>()
+    private var lastValue: T? = null
 
     init {
-        for (key in keys) {
-            values[key] = (preferences.all[key] as T) ?: defaultValue
-        }
-
-        value = values
+        lastValue = (preferences.all[key] as T) ?: defaultValue
+        value = lastValue
     }
 
     override fun onActive() {
         super.onActive()
+
+        // First condition prevents "null" from being posted after default value
+        // if the preference doesn't exist (fresh install)
+        if (preferences.all.containsKey(key) && lastValue != preferences.all[key]) {
+            lastValue = preferences.all[key] as T
+            postValue(lastValue)
+        }
+
         disposable = updates
-            .filter { t -> keys.contains(t) }
+            .filter { t -> t == key }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                values[it] = (preferences.all[it] as T) ?: defaultValue
-                postValue(values)
+                postValue((preferences.all[it] as T) ?: defaultValue)
             }
     }
 

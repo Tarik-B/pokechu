@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_weight="3"
                     android:layout_height="0dip"
-                    bind:assetPath="@{regionImgPath}"
+                    assetPath="@{regionImgPath}"
                     android:scaleType="fitCenter"/>
 
                 <TextView

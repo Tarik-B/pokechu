@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui
+package fr.amazer.pokechu.ui.main.list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.databinding.ListGridItemBinding
 import fr.amazer.pokechu.databinding.ListItemBinding
-import fr.amazer.pokechu.ui.fragments.list.ListViewHolder
 import fr.amazer.pokechu.viewmodel.ViewModelPokemonData
 
 

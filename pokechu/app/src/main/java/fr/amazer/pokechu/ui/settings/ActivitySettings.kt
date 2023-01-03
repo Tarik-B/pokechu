@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.activities
+package fr.amazer.pokechu.ui.settings
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.preference.PreferenceFragmentCompat
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
+import fr.amazer.pokechu.ui.BaseActivity
 
 interface PreferenceChangeListener {
     fun onLanguagePreferenceChanged(language: String)

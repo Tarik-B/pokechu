@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.enums
+package fr.amazer.pokechu.database.joins
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Query
 import androidx.room.ColumnInfo
+import fr.amazer.pokechu.database.entities.EntityPokemon
 
 @Entity(
     tableName = "pokemon_evolutions",

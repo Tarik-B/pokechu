@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.activities.compose
+package fr.amazer.pokechu.ui.compose
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -23,7 +23,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import fr.amazer.pokechu.BuildConfig
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.ui.activities.compose.ui.theme.Pokechu_appTheme
+import fr.amazer.pokechu.ui.compose.ui.theme.Pokechu_appTheme
 
 class ActivityAboutCompose : ComponentActivity() {
 
@@ -67,7 +67,7 @@ class ActivityAboutCompose : ComponentActivity() {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Content() {
-    val (ref_1) = createRefs()
+//    val (ref_1) = createRefs()
 
     Column(verticalArrangement = Arrangement.Center) {
 

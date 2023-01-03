@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.managers
+package fr.amazer.pokechu.managers.settings
 
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
@@ -50,13 +50,4 @@ class MultiPrefixedLivePreference<T> constructor(
         super.onInactive()
         disposable?.dispose()
     }
-}
-
-fun keysFromPrefix(preferences: SharedPreferences, prefix: String): List<String> {
-    val keys = mutableListOf<String>()
-    preferences.all.forEach { (key, value) ->
-        if (key.startsWith(prefix))
-            keys.add(key)
-    }
-    return keys
 }

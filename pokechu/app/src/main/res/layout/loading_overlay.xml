@@ -14,7 +14,7 @@
         android:animateLayoutChanges="true"
         android:clickable="true"
         android:background="@color/background_loading"
-        bind:visibleAnimated="@{isLoading}">
+        visibleAnimated="@{isLoading}">
     <!--    android:alpha="0.0"-->
     <!--    android:visibility="gone">-->
 

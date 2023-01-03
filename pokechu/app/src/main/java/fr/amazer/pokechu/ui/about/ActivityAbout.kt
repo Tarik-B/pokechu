@@ -1,9 +1,10 @@
-package fr.amazer.pokechu.ui.activities
+package fr.amazer.pokechu.ui.about
 
 import android.os.Bundle
 import fr.amazer.pokechu.BuildConfig
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.ActivityAboutBinding
+import fr.amazer.pokechu.ui.BaseActivity
 
 class ActivityAbout : BaseActivity() {
     private lateinit var binding: ActivityAboutBinding

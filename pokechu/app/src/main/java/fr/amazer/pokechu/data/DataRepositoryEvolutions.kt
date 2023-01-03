@@ -1,8 +1,8 @@
 package fr.amazer.pokechu.data
 
 import androidx.lifecycle.LiveData
-import fr.amazer.pokechu.enums.BaseIdEvolvedIdCondition
-import fr.amazer.pokechu.enums.PokechuDatabase
+import fr.amazer.pokechu.database.joins.BaseIdEvolvedIdCondition
+import fr.amazer.pokechu.database.PokechuDatabase
 
 class DataRepositoryEvolutions private constructor(
     private val database: PokechuDatabase

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.activities.ActivityMain">
+        tools:context=".ui.main.ActivityMain">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragmentList"
-                    android:name="fr.amazer.pokechu.ui.fragments.list.FragmentList"
+                    android:name="fr.amazer.pokechu.ui.main.FragmentList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -90,7 +90,7 @@
             <!--    TODO FIX THIS IS DRAWN OVER THE LIST (scroll to bottom of list to see the bug)-->
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_bottom_sheet"
-                android:name="fr.amazer.pokechu.ui.fragments.FragmentBottomSheet"
+                android:name="fr.amazer.pokechu.ui.main.FragmentBottomSheet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

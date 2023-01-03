@@ -1,7 +1,10 @@
-package fr.amazer.pokechu.enums
+package fr.amazer.pokechu.database.joins
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import fr.amazer.pokechu.database.entities.EntityPokemon
+import fr.amazer.pokechu.database.entities.EntityType
+import fr.amazer.pokechu.enums.PokemonType
 
 @Entity(
     tableName = "pokemon_types",

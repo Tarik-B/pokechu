@@ -16,7 +16,7 @@ import fr.amazer.pokechu.R
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.UIUtils
 
-@BindingAdapter("bind:visibleAnimated")
+@BindingAdapter("visibleAnimated")
 fun View.showHide(show: Boolean) {
     if (show) {
         visibility = View.VISIBLE
@@ -28,7 +28,7 @@ fun View.showHide(show: Boolean) {
     }
 }
 
-@BindingAdapter("bind:assetPath")
+@BindingAdapter("assetPath")
 fun ImageView.setAssetPath(imgPath: String?) {
     if (imgPath != null) {
         val assetManager: AssetManager? = context?.assets
@@ -38,17 +38,17 @@ fun ImageView.setAssetPath(imgPath: String?) {
     }
 }
 
-@BindingAdapter("bind:imageBitmap")
+@BindingAdapter("imageBitmap")
 fun ImageView.setImageBitmap(bitmap: Bitmap?) {
     setImageBitmap(bitmap)
 }
 
-@BindingAdapter("bind:tint")
+@BindingAdapter("tint")
 fun ImageView.setImageTint(@ColorInt color: Int) {
     setColorFilter(color)
 }
 
-@BindingAdapter(value = ["bind:filteredText", "bind:filter", "bind:filterColor"], requireAll = false)
+@BindingAdapter(value = ["filteredText", "filter", "filterColor"], requireAll = false)
 fun TextView.highlightFilteredText(text: String, filter: String, @ColorInt color: Int) {
 
     val spannableString = SpannableStringBuilder()
@@ -70,7 +70,7 @@ fun TextView.highlightFilteredText(text: String, filter: String, @ColorInt color
     setText(spannableString)
 }
 
-@BindingAdapter(value = ["bind:typeBitmaps", "bind:typeResIds", "bind:typeItemResId"], requireAll = false)
+@BindingAdapter(value = ["typeBitmaps", "typeResIds", "typeItemResId"], requireAll = false)
 fun ViewGroup.setTypeImages(typeBitmaps: List<Bitmap>?, typeResIds: List<Int>?, @LayoutRes resId: Int) {
     removeAllViews()
     fun createView(): ImageView {

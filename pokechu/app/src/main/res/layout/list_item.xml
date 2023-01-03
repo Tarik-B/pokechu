@@ -48,8 +48,8 @@
                     android:id="@+id/imageThumbnail"
                     android:layout_width="56.0dip"
                     android:layout_height="56.0dip"
-                    bind:assetPath="@{imagePath}"
-                    bind:tint="@{isDiscovered? @color/transparent : @color/black}"
+                    assetPath="@{imagePath}"
+                    tint="@{isDiscovered? @color/transparent : @color/black}"
                     android:tintMode="multiply"
                     android:scaleType="fitCenter"/>
             </LinearLayout>
@@ -66,9 +66,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:layout_marginBottom="@dimen/text_margin_very_small"
-                    bind:filteredText="@{text}"
-                    bind:filter="@{filter}"
-                    bind:filterColor="@{@color/colorPrimary}"
+                    filteredText="@{text}"
+                    filter="@{filter}"
+                    filterColor="@{@color/colorPrimary}"
                     android:textSize="17.5sp"/>
 
                 <LinearLayout
@@ -89,9 +89,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        bind:typeBitmaps="@{typeBitmaps}"
-                        bind:typeResIds="@{typeResIds}"
-                        bind:typeItemResId="@{@layout/main_type_item}"/>
+                        typeBitmaps="@{typeBitmaps}"
+                        typeResIds="@{typeResIds}"
+                        typeItemResId="@{@layout/main_type_item}"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout

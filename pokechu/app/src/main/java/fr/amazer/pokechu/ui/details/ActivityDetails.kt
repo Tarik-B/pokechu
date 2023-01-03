@@ -1,12 +1,11 @@
-package fr.amazer.pokechu.ui.activities
+package fr.amazer.pokechu.ui.details
 
 import android.os.Bundle
 import android.view.Menu
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.ActivityDetailsBinding
-import fr.amazer.pokechu.ui.fragments.FragmentDetailsHeader
 import fr.amazer.pokechu.managers.LocalizationManager
-import fr.amazer.pokechu.ui.fragments.tree.FragmentEvolutionTree
+import fr.amazer.pokechu.ui.BaseActivity
 
 
 class ActivityDetails : BaseActivity() {

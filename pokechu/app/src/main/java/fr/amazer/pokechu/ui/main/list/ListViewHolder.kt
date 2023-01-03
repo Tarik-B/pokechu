@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments.list
+package fr.amazer.pokechu.ui.main.list
 
 import android.content.Context
 import android.content.res.AssetManager
@@ -39,7 +39,7 @@ class ListViewHolder(
             nameText = "#${localId} - ${localizedName}"
         }
         else {
-            nameText = "#${localId} - ???"
+            nameText = "#${localId} - ?"
         }
         setText(nameText, filter)
 
@@ -58,7 +58,7 @@ class ListViewHolder(
         }
         else {
             val typeResIds = mutableListOf<Int>()
-            types.forEach { type ->
+            types.forEach { _ ->
                 val unknownImage = R.drawable.ic_question_mark
                 typeResIds.add(unknownImage)
             }

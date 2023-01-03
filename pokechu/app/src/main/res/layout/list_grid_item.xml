@@ -77,8 +77,8 @@
                             android:layout_weight="4"
                             android:layout_height="0dip"
                             android:adjustViewBounds="true"
-                            bind:assetPath="@{imagePath}"
-                            bind:tint="@{isDiscovered? @color/transparent : @color/black}"
+                            assetPath="@{imagePath}"
+                            tint="@{isDiscovered? @color/transparent : @color/black}"
                             android:tintMode="multiply"
                             android:scaleType="fitCenter"/>
                     </LinearLayout>
@@ -88,9 +88,9 @@
                         android:layout_height="fill_parent"
                         android:gravity="top|center_horizontal"
                         android:orientation="vertical"
-                        bind:typeBitmaps="@{typeBitmaps}"
-                        bind:typeResIds="@{typeResIds}"
-                        bind:typeItemResId="@{@layout/main_type_item}">
+                        typeBitmaps="@{typeBitmaps}"
+                        typeResIds="@{typeResIds}"
+                        typeItemResId="@{@layout/main_type_item}">
                     </LinearLayout>
 
                 </LinearLayout>
@@ -101,9 +101,9 @@
                     android:layout_height="0dip"
                     android:gravity="center"
                     android:fontFamily="sans-serif-medium"
-                    bind:filteredText="@{text}"
-                    bind:filter="@{filter}"
-                    bind:filterColor="@{@color/colorPrimary}"/>
+                    filteredText="@{text}"
+                    filter="@{filter}"
+                    filterColor="@{@color/colorPrimary}"/>
 
             </LinearLayout>
 

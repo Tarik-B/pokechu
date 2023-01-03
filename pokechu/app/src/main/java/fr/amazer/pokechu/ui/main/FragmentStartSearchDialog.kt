@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments
+package fr.amazer.pokechu.ui.main
 
 import android.app.AlertDialog
 import android.app.Dialog

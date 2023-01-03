@@ -1,13 +1,12 @@
 package fr.amazer.pokechu.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import fr.amazer.pokechu.PokechuApplication
 import fr.amazer.pokechu.data.DataRepositoryPokemons
-import fr.amazer.pokechu.enums.NationalIdLocalId
+import fr.amazer.pokechu.database.entities.NationalIdLocalId
 import fr.amazer.pokechu.enums.Region
-import fr.amazer.pokechu.enums.PokemonIdTypesId
+import fr.amazer.pokechu.database.joins.PokemonIdTypesId
 import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingType
@@ -60,7 +59,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
         val capturedOnlySetting = SettingsManager.getLiveSetting<Boolean>(SettingType.SHOW_CAPTURED_ONLY)
         val otherFilters = Transformations.switchMap(discoveredOnlySetting) { discoveredOnly ->
             Transformations.switchMap(capturedOnlySetting) { capturedOnly ->
-                return@switchMap MediatorLiveData(ViewModelFilters(0, discoveredOnly, capturedOnly))
+                MediatorLiveData(ViewModelFilters(0, discoveredOnly, capturedOnly))
             }
         } as MediatorLiveData<ViewModelFilters>
 
@@ -112,9 +111,9 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
                 pokemonData.postValue(map!!)
         }
 
-        pokemonData.addSource(pokemons) { value -> checkAndCombinePokemonData() }
-        pokemonData.addSource(pokemonTypes) { value -> checkAndCombinePokemonData() }
-        pokemonData.addSource(otherFilters) { value -> checkAndCombinePokemonData() }
+        pokemonData.addSource(pokemons) { _ -> checkAndCombinePokemonData() }
+        pokemonData.addSource(pokemonTypes) { _ -> checkAndCombinePokemonData() }
+        pokemonData.addSource(otherFilters) { _ -> checkAndCombinePokemonData() }
 
         // Discovered/captured counts
         discoveredCount = MediatorLiveData()
@@ -131,7 +130,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
         allFilters = Transformations.switchMap(selectedRegionSetting) { selectedRegion ->
             Transformations.switchMap(discoveredOnlySetting) { discoveredOnly ->
                 Transformations.switchMap(capturedOnlySetting) { capturedOnly ->
-                    return@switchMap MediatorLiveData(ViewModelFilters(selectedRegion, discoveredOnly, capturedOnly))
+                    MediatorLiveData(ViewModelFilters(selectedRegion, discoveredOnly, capturedOnly))
                 }
             }
         } as MediatorLiveData<ViewModelFilters>

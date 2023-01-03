@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments.tree
+package fr.amazer.pokechu.ui.details.evolution_tree
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +8,7 @@ import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
 
-class NodeViewHolder(
+class EvolutionNodeViewHolder(
     private val binding: EvolutionTreeNodeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -24,7 +24,7 @@ class NodeViewHolder(
         if ( pokemonId == currentId || isDiscovered || showUndiscoveredInfo )
             text = LocalizationManager.getPokemonName(context, pokemonId).toString()
         else
-            text = "???"
+            text = "?"
         binding.text = text
 
         // Set thumbnail image

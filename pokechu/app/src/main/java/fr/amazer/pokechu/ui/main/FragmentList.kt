@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments.list
+package fr.amazer.pokechu.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,14 +12,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.FragmentListBinding
 import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
-import fr.amazer.pokechu.ui.ListAdapter
+import fr.amazer.pokechu.ui.main.list.ListAdapter
 import fr.amazer.pokechu.ui.RecyclerViewTouchListener
-import fr.amazer.pokechu.ui.activities.ActivityDetails
+import fr.amazer.pokechu.ui.details.ActivityDetails
 import fr.amazer.pokechu.utils.UIUtils
 import fr.amazer.pokechu.viewmodel.ViewModelPokemonData
 import fr.amazer.pokechu.viewmodel.ViewModelPokemons
@@ -142,8 +141,8 @@ class FragmentList : Fragment() {
                             }
 
                             // Refresh data if required
-                            val capturedOnly = SettingsManager.getSetting<Boolean>(SettingType.SHOW_CAPTURED_ONLY)
-                            val discoveredOnly = SettingsManager.getSetting<Boolean>(SettingType.SHOW_DISCOVERED_ONLY)
+//                            val capturedOnly = SettingsManager.getSetting<Boolean>(SettingType.SHOW_CAPTURED_ONLY)
+//                            val discoveredOnly = SettingsManager.getSetting<Boolean>(SettingType.SHOW_DISCOVERED_ONLY)
                             // Refresh whole data set if captured/discovered only is checked
                             // and captured/discovered status has changed
 

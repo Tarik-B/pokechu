@@ -1,9 +1,9 @@
 package fr.amazer.pokechu.data
 
 import androidx.lifecycle.LiveData
-import fr.amazer.pokechu.enums.NationalIdLocalId
-import fr.amazer.pokechu.enums.PokechuDatabase
-import fr.amazer.pokechu.enums.PokemonIdTypesId
+import fr.amazer.pokechu.database.entities.NationalIdLocalId
+import fr.amazer.pokechu.database.PokechuDatabase
+import fr.amazer.pokechu.database.joins.PokemonIdTypesId
 
 class DataRepositoryPokemons private constructor(
     private val database: PokechuDatabase

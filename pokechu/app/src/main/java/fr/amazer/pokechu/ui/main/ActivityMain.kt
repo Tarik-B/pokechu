@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.activities
+package fr.amazer.pokechu.ui.main
 
 import android.app.SearchManager
 import android.content.Context
@@ -20,9 +20,10 @@ import fr.amazer.pokechu.databinding.ActivityMainBinding
 import fr.amazer.pokechu.enums.Region
 import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
-import fr.amazer.pokechu.ui.fragments.FragmentBottomSheet
-import fr.amazer.pokechu.ui.fragments.FragmentStartSearchDialog
-import fr.amazer.pokechu.ui.fragments.list.FragmentList
+import fr.amazer.pokechu.ui.about.ActivityAbout
+import fr.amazer.pokechu.ui.details.ActivityDetails
+import fr.amazer.pokechu.ui.BaseActivity
+import fr.amazer.pokechu.ui.settings.ActivitySettings
 import fr.amazer.pokechu.utils.UIUtils
 import fr.amazer.pokechu.viewmodel.ViewModelPokemons
 

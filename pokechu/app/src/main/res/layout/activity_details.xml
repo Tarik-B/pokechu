@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activities.ActivityDetails">
+    tools:context=".ui.details.ActivityDetails">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentHeader"
-                android:name="fr.amazer.pokechu.ui.fragments.FragmentDetailsHeader"
+                android:name="fr.amazer.pokechu.ui.details.FragmentDetailsHeader"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -35,7 +35,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentEvolutionTree"
-            android:name="fr.amazer.pokechu.ui.fragments.tree.FragmentEvolutionTree"
+            android:name="fr.amazer.pokechu.ui.details.FragmentEvolutionTree"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dip" />

@@ -1,8 +1,8 @@
 package fr.amazer.pokechu.data
 
 import androidx.lifecycle.LiveData
-import fr.amazer.pokechu.enums.EntityRegion
-import fr.amazer.pokechu.enums.PokechuDatabase
+import fr.amazer.pokechu.database.entities.EntityRegion
+import fr.amazer.pokechu.database.PokechuDatabase
 
 class DataRepositoryRegions private constructor(
     private val database: PokechuDatabase

@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments
+package fr.amazer.pokechu.ui.details
 
 import android.content.res.AssetManager
 import android.graphics.Bitmap
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import fr.amazer.pokechu.databinding.FragmentDetailsHeaderBinding
-import fr.amazer.pokechu.enums.EntityPokemon
+import fr.amazer.pokechu.database.entities.EntityPokemon
 import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
@@ -53,8 +53,8 @@ class FragmentDetailsHeader : Fragment() {
         binding.weight = pokemon.weight.toString()
 
         // Image
-        val imgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
-        binding.imagePath = imgPath
+        var thumbnailImgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
+        binding.imagePath = thumbnailImgPath
 
         // For black filter
         val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)

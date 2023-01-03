@@ -16,12 +16,6 @@ android {
 
         versionCode appVersionCode
         versionName appVersionName
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
     }
 
     buildTypes {
@@ -121,9 +115,6 @@ dependencies {
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     // (see https://github.com/ReactiveX/RxJava/releases for latest 3.x.x version)
     implementation "io.reactivex.rxjava3:rxjava:3.1.5"
-
-    // livedata-kit (for MergerLiveData)
-    implementation "com.github.DanielKnauf:livedata-kit:0.2.0"
 
     // SwipeRefreshLayout widget
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"

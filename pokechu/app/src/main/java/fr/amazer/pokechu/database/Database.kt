@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.enums
+package fr.amazer.pokechu.database
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
@@ -9,6 +9,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import fr.amazer.pokechu.ApplicationExecutors
+import fr.amazer.pokechu.database.entities.*
+import fr.amazer.pokechu.database.joins.*
+import fr.amazer.pokechu.enums.*
 
 @Database(
     entities = [

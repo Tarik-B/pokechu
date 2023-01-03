@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import fr.amazer.pokechu.PokechuApplication
 import fr.amazer.pokechu.data.DataRepositoryRegions
-import fr.amazer.pokechu.enums.EntityRegion
+import fr.amazer.pokechu.database.entities.EntityRegion
 
 class ViewModelRegions(application: Application) : AndroidViewModel(application) {
     private val repository: DataRepositoryRegions

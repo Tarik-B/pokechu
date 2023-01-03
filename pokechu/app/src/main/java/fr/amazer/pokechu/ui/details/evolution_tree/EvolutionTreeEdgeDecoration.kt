@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments.tree
+package fr.amazer.pokechu.ui.details.evolution_tree
 
 import android.content.Context
 import android.content.res.AssetManager
@@ -66,7 +66,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
                             val nodeData = child.data as EvolutionNodeData
                             val isDiscovered = SettingsManager.isPokemonDiscovered(nodeData.pokemonId)
-                            drawConditionText(node, child, isDiscovered)
+                            drawConditionText(child, isDiscovered)
 //                            if (isDiscovered) {
 //                                drawDiscoveredText(node, child)
 //                            }
@@ -130,7 +130,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 //        linePaint.textSize = beforeTextSize
 //    }
 
-    private fun drawConditionText(node: Node, child: Node, discovered: Boolean) {
+    private fun drawConditionText(child: Node, discovered: Boolean) {
         // Convert conditions data to string with '<>' for images
         val nodeData = child.data as EvolutionNodeData
         val originalText = buildConditionString(nodeData, discovered)//":(" //nodeData.conditions.toString()
@@ -250,7 +250,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 if (discovered)
                     result += conditionData.data.toInt()
                 else
-                    result += "??"
+                    result += "?"
             }
             EvolutionCondition.HAPPINESS,
             EvolutionCondition.DAY,
@@ -265,7 +265,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 if (discovered)
                     result += LocalizationManager.getItemName(context, EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
                 else
-                    result += "??"
+                    result += "?"
 
                 result += " "
                 result += "<item_" + conditionData.data + ">"
@@ -277,7 +277,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 if (discovered)
                     result += LocalizationManager.getItemName(context, EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
                 else
-                    result += "??"
+                    result += "?"
 
                 result += " "
                 result += "<item_" + conditionData.data + ">"
@@ -292,7 +292,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 if (discovered)
                     result += conditionData.data
                 else
-                    result += "??"
+                    result += "?"
             }
             EvolutionCondition.LEARN_SKILL -> {
 //                val learn = LocalizationManager.getConditionName(context, EvolutionCondition.LEARN_SKILL)?.let { capitalize(it) }
@@ -300,7 +300,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 if (discovered)
                     result += conditionData.data
                 else
-                    result += "??"
+                    result += "?"
             }
         }
 
@@ -311,7 +311,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
         var size = linePaint.textSize
         // Find text size that fits in height
-        var textHeight = 0.0f
+        var textHeight: Float
         do {
             linePaint.textSize = size
             val fm: Paint.FontMetrics = linePaint.fontMetrics
@@ -320,7 +320,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
         }while (textHeight >= maxHeight)
 
         // Find text size that fits in width
-        var textWidth = 0.0f
+        var textWidth: Float
         do {
             linePaint.textSize = size
             textWidth = linePaint.measureText(text)

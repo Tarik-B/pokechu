@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.enums
+package fr.amazer.pokechu.database.entities
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

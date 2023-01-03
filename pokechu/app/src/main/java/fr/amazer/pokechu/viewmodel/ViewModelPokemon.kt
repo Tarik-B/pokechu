@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import fr.amazer.pokechu.PokechuApplication
 import fr.amazer.pokechu.data.DataRepositoryPokemon
-import fr.amazer.pokechu.enums.EntityPokemon
+import fr.amazer.pokechu.database.entities.EntityPokemon
 
 class ViewModelPokemon(application: Application) : AndroidViewModel(application) {
     private val repository: DataRepositoryPokemon

@@ -6,7 +6,7 @@ import fr.amazer.pokechu.data.DataRepositoryEvolutions
 import fr.amazer.pokechu.data.DataRepositoryPokemon
 import fr.amazer.pokechu.data.DataRepositoryPokemons
 import fr.amazer.pokechu.data.DataRepositoryRegions
-import fr.amazer.pokechu.enums.PokechuDatabase
+import fr.amazer.pokechu.database.PokechuDatabase
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import java.util.*

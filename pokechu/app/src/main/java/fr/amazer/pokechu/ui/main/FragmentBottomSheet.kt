@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.fragments
+package fr.amazer.pokechu.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.card.MaterialCardView
 import fr.amazer.pokechu.databinding.BottomSheetRegionItemBinding
 import fr.amazer.pokechu.databinding.FragmentBottomSheetBinding
-import fr.amazer.pokechu.enums.EntityRegion
+import fr.amazer.pokechu.database.entities.EntityRegion
 import fr.amazer.pokechu.enums.Region
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingType

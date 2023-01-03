@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.activities.compose.ui.theme
+package fr.amazer.pokechu.ui.compose.ui.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.ui.activities
+package fr.amazer.pokechu.ui
 
 import android.content.pm.PackageManager
 import android.os.Bundle
