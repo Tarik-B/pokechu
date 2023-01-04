@@ -31,8 +31,7 @@ fun View.showHide(show: Boolean) {
 @BindingAdapter("assetPath")
 fun ImageView.setAssetPath(imgPath: String?) {
     if (imgPath != null) {
-        val assetManager: AssetManager? = context?.assets
-        val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
+        val bitmap = AssetUtils.getBitmapFromAsset(context, imgPath)
 
         setImageBitmap(bitmap)
     }

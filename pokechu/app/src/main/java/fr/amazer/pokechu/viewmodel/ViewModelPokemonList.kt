@@ -12,13 +12,6 @@ import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 
-data class ViewModelPokemonData(
-//    val pokemonId: Int,
-    val localId: Int,
-    val names: Map<String, String>,
-    val types: List<PokemonType>
-)
-
 data class ViewModelFilters(
     val selectedRegion: Int,
     val discoveredOnly: Boolean = false,
@@ -30,7 +23,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
 
     private val pokemons: LiveData<List<NationalIdLocalId>>
     private val pokemonTypes: LiveData<List<PokemonIdTypesId>>
-    private val pokemonData: MediatorLiveData<Map<Int, ViewModelPokemonData>>
+    private val pokemonData: MediatorLiveData<List<ViewModelPokemonListData>>
     private val discoveredCount: MediatorLiveData<Int>
     private val capturedCount: MediatorLiveData<Int>
     private val allFilters: MediatorLiveData<ViewModelFilters>
@@ -68,13 +61,13 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
             idsLiveData: LiveData<List<NationalIdLocalId>>,
             typesLiveData: LiveData<List<PokemonIdTypesId>>,
             filtersLiveData: MediatorLiveData<ViewModelFilters>
-        ): Map<Int, ViewModelPokemonData>? {
+        ): List<ViewModelPokemonListData>? {
 
             val ids = idsLiveData.value
             val types = typesLiveData.value
             val filters = filtersLiveData.value
 
-            // Don't send a success until we have both results
+            // Don't send a success until we have all results
             if (ids == null || types == null || filters == null) {
                 return null
             }
@@ -89,28 +82,23 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
             val filteredIds = ids.filter { isPokemonDisplayed(it.pokemon_id) }
             val filteredTypes = types.filter { isPokemonDisplayed(it.pokemon_id) }
 
-            val keys = List(filteredIds.size) { i ->
-                filteredIds[i].pokemon_id
-            }
-            val values = List(filteredIds.size) { i ->
+            val dataList = List(filteredIds.size) { i ->
                 val names = mutableMapOf<String, String>()
                 LocalizationManager.getLanguages().forEach { lang ->
                     names[lang] = LocalizationManager.getPokemonName(application.applicationContext, filteredIds[i].pokemon_id, lang) ?: ""
                 }
-                ViewModelPokemonData(filteredIds[i].local_id, names, filteredTypes[i].type_id_list)
+                ViewModelPokemonListData(filteredIds[i].pokemon_id, filteredIds[i].local_id, names, filteredTypes[i].type_id_list)
             }
 
-            return keys.zip(values).toMap()
+            return dataList
         }
 
         pokemonData = MediatorLiveData()
-
         fun checkAndCombinePokemonData() {
             val map = combinePokemonData(pokemons, pokemonTypes, otherFilters)
             if (map != null)
                 pokemonData.postValue(map!!)
         }
-
         pokemonData.addSource(pokemons) { _ -> checkAndCombinePokemonData() }
         pokemonData.addSource(pokemonTypes) { _ -> checkAndCombinePokemonData() }
         pokemonData.addSource(otherFilters) { _ -> checkAndCombinePokemonData() }
@@ -136,7 +124,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
         } as MediatorLiveData<ViewModelFilters>
     }
 
-    fun getPokemonData(): LiveData<Map<Int, ViewModelPokemonData>> {
+    fun getPokemonData(): LiveData<List<ViewModelPokemonListData>> {
         return pokemonData
     }
     fun getPokemonCount(): LiveData<Int> {

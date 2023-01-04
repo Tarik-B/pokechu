@@ -6,23 +6,23 @@ Yet Another Pokédex App, without spoilers
 
 Folders:
 
-- assets/: mostly original svgs of google icons
+- assets/: mostly original svgs of Google icons
 - data_viewer/: wip json data visualizer (discontinued)
-- parser/: pokemon data parser/exporter written in Python 3.10
+- parser/: Pokémon data parser/exporter written in Python 3.10
 - pokechu/: Android app written in Kotlin
 
 ## Parser
 
 Just launch main.py. It parses Poképedia pages and PokéAPI data and writes data to output/ folder:
 
-- db.sqlite: sqlite database containing pokemon, types, evolutions and regions data
-- multiple .kt files, one for each enum used in parser/db/app (to keep ids in sync)
-- images/ folder: downloaded thumbnails of pokemon, items, etc. (some were manually pre-downloaded)
-- values*/ folders: localized names of pokemon, items, regions, etc. as Android xml string files
+- db.sqlite: sqlite database containing Pokémon, types, evolutions and regions data
+- multiple .kt files, one for each enum used in parser/database/app (to keep indexes in sync)
+- images/ folder: downloaded thumbnails of Pokémon, items, etc. (some were manually pre-downloaded)
+- values*/ folders: localized names of Pokémon, items, regions, etc. as Android XML string files
 
 ## Pokechu Android app
 
-Kotlin Android application reading Pokémon data from SQLite database, assets images and xml strings
+Kotlin Android application reading Pokémon data from SQLite database, assets images and XML strings
 
 Copy parser output data as follows:
 

@@ -17,16 +17,14 @@ import dev.bandb.graphview.graph.Node
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.databinding.EvolutionTreeNodeBinding
 import fr.amazer.pokechu.databinding.FragmentEvolutionTreeBinding
-import fr.amazer.pokechu.database.joins.BaseIdEvolvedIdCondition
+import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.RecyclerViewTouchListener
-import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionNodeData
 import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionNodeViewHolder
+import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionTreeAdapter
 import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionTreeEdgeDecoration
-import fr.amazer.pokechu.utils.ConditionUtils
-import fr.amazer.pokechu.utils.UIUtils
+import fr.amazer.pokechu.viewmodel.ViewModelEvolutionData
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutions
 
 private const val ARG_POKEMON_ID = "pokemonId"
@@ -55,15 +53,14 @@ class FragmentEvolutionTree : Fragment() {
 
         setupUI()
 
-        // Request evolution root then evolution chain from root
-        val viewModel: ViewModelEvolutions = ViewModelProvider(this)[ViewModelEvolutions::class.java]
-        viewModel.getEvolutionRoot(pokemonId).observe(viewLifecycleOwner) { rootId ->
-            val id = if (rootId != 0) rootId else pokemonId
-            viewModel.getEvolutions(id).observe(viewLifecycleOwner) { evolutions ->
-                // Create graph
-                val graph = createGraph(evolutions)
-                setupGraphView(graph)
-            }
+        val factory = ViewModelEvolutions.Factory(requireActivity().application, pokemonId)
+        val viewModel: ViewModelEvolutions = ViewModelProvider(this, factory)[ViewModelEvolutions::class.java]
+
+        viewModel.getEvolutionData().observe(viewLifecycleOwner) { evolutionData ->
+            // Create graph
+            val graph = createGraph(evolutionData)
+            adapter.submitGraph(graph)
+            adapter.notifyDataSetChanged()
         }
     }
 
@@ -77,6 +74,9 @@ class FragmentEvolutionTree : Fragment() {
         val zoomLayout = requireView().findViewById(R.id.zoomLayout) as ZoomLayout
         zoomLayout.setMinZoom(0.8f)
         zoomLayout.setMaxZoom(10.0f)
+
+        adapter = EvolutionTreeAdapter(pokemonId)
+        recyclerView.adapter = adapter
     }
 
     private fun setLayoutManager() {
@@ -112,7 +112,7 @@ class FragmentEvolutionTree : Fragment() {
 
                     // Open details activity on click
                     override fun onClick(view: View?, position: Int) {
-                        val data = adapter.getNodeData(position) as EvolutionNodeData
+                        val data = adapter.getNodeData(position) as ViewModelEvolutionData
 
                         val intent = Intent(context, ActivityDetails::class.java)
                         intent.putExtra("PokemonId", data.pokemonId)
@@ -124,77 +124,34 @@ class FragmentEvolutionTree : Fragment() {
 
                     // Toggle discovered/captured status on long click
                     override fun onLongClick(view: View?, position: Int) {
-                        val data = adapter.getNodeData(position) as EvolutionNodeData
+                        val data = adapter.getNodeData(position) as ViewModelEvolutionData
 
                         SettingsManager.togglePokemonDiscovered(data.pokemonId)
-                        if ( data.pokemonId == pokemonId) {
-                            UIUtils.reloadActivity(requireActivity(), true)
-                        }
-                        else {
-                            adapter.notifyDataSetChanged()
-                        }
+                        adapter.notifyDataSetChanged()
                     }
                 }
             )
         )
     }
 
-    private fun createGraph(evolutions: List<BaseIdEvolvedIdCondition>): Graph {
+    private fun createGraph(evolutionData: List<ViewModelEvolutionData>): Graph {
         val graph = Graph()
 
-        if (!evolutions.isEmpty()){
-
-            // Iterate on evolution links but create each node only once
-            val nodes = HashMap<Int, Node>()
-            nodes[pokemonId] = Node(EvolutionNodeData(pokemonId, null))
-            evolutions.forEach { evolution ->
-
-                // Find or create both nodes
-                if (evolution.base_id !in nodes)
-                    nodes[evolution.base_id] = Node(EvolutionNodeData(evolution.base_id, null ) )
-
-                if (evolution.evolved_id !in nodes)
-                    nodes[evolution.evolved_id] = Node(EvolutionNodeData(evolution.evolved_id, null ) )
-
-                // Add decoded conditions to data
-                (nodes[evolution.evolved_id]?.data as EvolutionNodeData).conditions = ConditionUtils.parseEncodedCondition(evolution.condition_encoded)
-
-                // Create edge
-                graph.addEdge(nodes[evolution.base_id]!!, nodes[evolution.evolved_id]!!)
-            }
-
-            // Add root
-            graph.addNode(nodes[pokemonId]!!)
+        // Create nodes
+        val nodes = HashMap<Int, Node>()
+        evolutionData.forEach{ data ->
+            val node = Node(data)
+            nodes[data.pokemonId] = node
+            graph.addNode(node)
         }
-        else {
-            graph.addNode(Node(EvolutionNodeData(pokemonId, null)))
+
+        // Create edges
+        evolutionData.forEach{ data ->
+            if (data.baseId != 0) {
+                graph.addEdge(nodes[data.baseId]!!, nodes[data.pokemonId]!!)
+            }
         }
 
         return graph
-    }
-
-    private fun setupGraphView(graph: Graph) {
-
-        adapter = object : AbstractGraphAdapter<EvolutionNodeViewHolder>() {
-
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EvolutionNodeViewHolder {
-                val binding = EvolutionTreeNodeBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
-
-                return EvolutionNodeViewHolder(binding)
-            }
-
-            override fun onBindViewHolder(holder: EvolutionNodeViewHolder, position: Int) {
-                val nodeData = getNodeData(position) as EvolutionNodeData
-                holder.bind(context!!, nodeData, pokemonId)
-            }
-        }.apply {
-            this.submitGraph(graph)
-            recyclerView.adapter = this
-        }
-
     }
 }

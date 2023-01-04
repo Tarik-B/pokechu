@@ -1,6 +1,8 @@
 package fr.amazer.pokechu.ui.main
 
 import android.content.Intent
+import android.content.res.AssetManager
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +16,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.FragmentListBinding
+import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.main.list.ListAdapter
 import fr.amazer.pokechu.ui.RecyclerViewTouchListener
 import fr.amazer.pokechu.ui.details.ActivityDetails
+import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.UIUtils
-import fr.amazer.pokechu.viewmodel.ViewModelPokemonData
+import fr.amazer.pokechu.viewmodel.ViewModelPokemonListData
 import fr.amazer.pokechu.viewmodel.ViewModelPokemons
 
 class FragmentList : Fragment() {
@@ -71,8 +75,8 @@ class FragmentList : Fragment() {
 
     private fun loadData() {
         viewModel.getPokemonData().removeObservers(viewLifecycleOwner)
-        viewModel.getPokemonData().observe(viewLifecycleOwner) { dataMap ->
-            buildPokemonList(dataMap)
+        viewModel.getPokemonData().observe(viewLifecycleOwner) { dataList ->
+            buildPokemonList(dataList)
             triggerLoadedObservers(true)
         }
     }
@@ -158,10 +162,10 @@ class FragmentList : Fragment() {
         )
     }
 
-    private fun buildPokemonList(dataMap: Map<Int, ViewModelPokemonData>) {
+    private fun buildPokemonList(dataList: List<ViewModelPokemonListData>) {
         val gridEnabled = !SettingsManager.getSetting<Boolean>(SettingType.LIST_VIEW)
         // TODO dont reconstruct an adapter everytime, use diffutil stuff instead
-        adapter = ListAdapter(context, dataMap, gridEnabled)
+        adapter = ListAdapter(context, dataList, gridEnabled)
         binding.recyclerView.adapter = adapter
     }
 

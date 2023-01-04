@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import fr.amazer.pokechu.databinding.FragmentDetailsHeaderBinding
 import fr.amazer.pokechu.database.entities.EntityPokemon
 import fr.amazer.pokechu.enums.PokemonType
+import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.viewmodel.ViewModelPokemon
@@ -45,6 +46,12 @@ class FragmentDetailsHeader : Fragment() {
                 setHeaderData(pokemon, types)
             }
         }
+
+        // Update image filter on discovered status modifications
+        val discoveredSetting = SettingsManager.getLivePrefixedSettings<Boolean>(SettingType.DISCOVERED)
+        discoveredSetting.observe(viewLifecycleOwner){
+            updateDiscovered()
+        }
     }
 
     private fun setHeaderData(pokemon: EntityPokemon, types: List<Int>) {
@@ -56,19 +63,21 @@ class FragmentDetailsHeader : Fragment() {
         var thumbnailImgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
         binding.imagePath = thumbnailImgPath
 
-        // For black filter
-        val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
-        binding.isDiscovered = isDiscovered
-
-        val assetManager: AssetManager? = context?.assets
+        updateDiscovered()
 
         val typeBitmaps = mutableListOf<Bitmap>()
         types.forEach { type ->
             val imgPath = AssetUtils.getTypeThumbnailPath(PokemonType.values()[type])
-            val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
+            val bitmap = AssetUtils.getBitmapFromAsset(requireContext(), imgPath)
             if (bitmap != null)
                 typeBitmaps.add(bitmap)
         }
         binding.typeBitmaps = typeBitmaps
+    }
+
+    private fun updateDiscovered() {
+        // For black filter
+        val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
+        binding.isDiscovered = isDiscovered
     }
 }

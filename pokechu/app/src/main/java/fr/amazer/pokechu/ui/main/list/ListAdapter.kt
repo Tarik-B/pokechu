@@ -9,14 +9,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.databinding.ListGridItemBinding
 import fr.amazer.pokechu.databinding.ListItemBinding
-import fr.amazer.pokechu.viewmodel.ViewModelPokemonData
+import fr.amazer.pokechu.viewmodel.ViewModelPokemonListData
 
 
 class ListAdapter internal constructor(
-    private var context: Context?,
-    private var pokemonsMap: Map<Int, ViewModelPokemonData>,
-    private var gridEnabled: Boolean
-//    private var uiItemId: Int
+    private val context: Context?,
+    private val pokemonList: List<ViewModelPokemonListData>,
+    private val gridEnabled: Boolean
     ) : RecyclerView.Adapter<ListViewHolder>(), Filterable {
     private val pokemonIdsFull: List<Int>
     private var pokemonIdsFiltered: List<Int>
@@ -24,9 +23,8 @@ class ListAdapter internal constructor(
 
     init {
         // Build sorted national ids by local ids
-        val nationalIds = pokemonsMap.keys.toList()
-        val localIds = ArrayList<Int>()
-        nationalIds.forEach{ id -> pokemonsMap[id]?.let { localIds.add(it.localId) } }
+        val nationalIds = List(pokemonList.size){ it -> pokemonList[it].pokemonId}
+        val localIds = List(pokemonList.size){ it -> pokemonList[it].localId}
 
         val sortedLocalIds = localIds.sorted()
 
@@ -51,11 +49,10 @@ class ListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val currentId = pokemonIdsFiltered[position]
-        val currentLocalId = pokemonsMap[currentId]!!.localId
-        val currentData = pokemonsMap[currentId]
+        val currentData = getData(currentId)
 
         if (currentData != null)
-            holder.bind(context!!, currentId, currentLocalId, currentData, currentData.types, currentFilter)
+            holder.bind(context!!, currentData, currentFilter)
     }
 
     override fun getFilter(): Filter {
@@ -77,7 +74,7 @@ class ListAdapter internal constructor(
             }
 
             fun filterPokemon(id: Int, pattern: String): Boolean {
-                var pokemonData = pokemonsMap[id]
+                var pokemonData = getData(id)
                 pokemonData!!.names.forEach{ (_, name) ->
                     if (name.contains(pattern, true))
                         return true
@@ -101,5 +98,9 @@ class ListAdapter internal constructor(
 
     fun getCurrentIds():List<Int> {
         return pokemonIdsFiltered
+    }
+
+    private fun getData(id: Int): ViewModelPokemonListData? {
+        return pokemonList.find { data -> (data.pokemonId == id)  }
     }
 }

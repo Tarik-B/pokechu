@@ -42,7 +42,7 @@ object LocalizationManager {
 
         var lang = language
         if (lang == "")
-            lang = SettingsManager.getSetting<String>(SettingType.DATA_LANGUAGE)
+            lang = SettingsManager.getSetting(SettingType.DATA_LANGUAGE)
 
         val configuration = Configuration(context.resources.configuration)
         configuration.setLocale(Locale(lang))

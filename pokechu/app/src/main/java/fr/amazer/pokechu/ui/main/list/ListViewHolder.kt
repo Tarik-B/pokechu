@@ -12,23 +12,23 @@ import fr.amazer.pokechu.databinding.ListItemBinding
 import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
-import fr.amazer.pokechu.viewmodel.ViewModelPokemonData
+import fr.amazer.pokechu.viewmodel.ViewModelPokemonListData
 
 class ListViewHolder(
     private val binding: ViewDataBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(context: Context, id: Int, localId: Int, data: ViewModelPokemonData, types: List<PokemonType>, filter: String) {
+    fun bind(context: Context, data: ViewModelPokemonListData, filter: String) {
         // Setup image
-        val imgPath = AssetUtils.getPokemonThumbnailPath(id)
+        val imgPath = AssetUtils.getPokemonThumbnailPath(data.pokemonId)
         setImagePath(imgPath)
 
         // Show image if discovered or "show undiscovered info" checked
-        val isDiscovered = SettingsManager.isPokemonDiscovered(id)
+        val isDiscovered = SettingsManager.isPokemonDiscovered(data.pokemonId)
         val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(SettingType.SHOW_UNDISCOVERED_INFO)
         setIsDiscovered(isDiscovered || showUndiscoveredInfo)
 
-        val isCaptured = SettingsManager.isPokemonCaptured(id)
+        val isCaptured = SettingsManager.isPokemonCaptured(data.pokemonId)
         setIsCaptured(isCaptured)
 
         // Setup text, show name if discovered or "show undiscovered info" checked OR seach query isnt empty
@@ -36,20 +36,19 @@ class ListViewHolder(
         if (!filter.isEmpty() || isDiscovered || showUndiscoveredInfo) {
             val dataLanguage = SettingsManager.getSetting<String>(SettingType.DATA_LANGUAGE)
             val localizedName = data.names[dataLanguage]
-            nameText = "#${localId} - ${localizedName}"
+            nameText = "#${data.localId} - ${localizedName}"
         }
         else {
-            nameText = "#${localId} - ?"
+            nameText = "#${data.localId} - ?"
         }
         setText(nameText, filter)
 
         // Add type images
-        val assetManager: AssetManager? = context.assets
         if (isDiscovered || showUndiscoveredInfo) {
             val typeBitmaps = mutableListOf<Bitmap>()
-            types.forEach { type ->
+            data.types.forEach { type ->
                 val typeImgPath = AssetUtils.getTypeThumbnailPathRound(PokemonType.values()[type.ordinal])
-                val typeBitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, typeImgPath) }
+                val typeBitmap = AssetUtils.getBitmapFromAsset(context, typeImgPath)
                 if (typeBitmap != null)
                     typeBitmaps.add(typeBitmap)
             }
@@ -58,7 +57,7 @@ class ListViewHolder(
         }
         else {
             val typeResIds = mutableListOf<Int>()
-            types.forEach { _ ->
+            data.types.forEach { _ ->
                 val unknownImage = R.drawable.ic_question_mark
                 typeResIds.add(unknownImage)
             }

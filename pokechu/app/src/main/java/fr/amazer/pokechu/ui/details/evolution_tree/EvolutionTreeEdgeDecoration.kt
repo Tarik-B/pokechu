@@ -1,7 +1,6 @@
 package fr.amazer.pokechu.ui.details.evolution_tree
 
 import android.content.Context
-import android.content.res.AssetManager
 import android.graphics.*
 import androidx.recyclerview.widget.RecyclerView
 import dev.bandb.graphview.AbstractGraphAdapter
@@ -14,6 +13,7 @@ import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.EvolutionConditionData
+import fr.amazer.pokechu.viewmodel.ViewModelEvolutionData
 import java.util.*
 
 open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -64,7 +64,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
                             linePaint.style = Paint.Style.FILL
 
-                            val nodeData = child.data as EvolutionNodeData
+                            val nodeData = child.data as ViewModelEvolutionData
                             val isDiscovered = SettingsManager.isPokemonDiscovered(nodeData.pokemonId)
                             drawConditionText(child, isDiscovered)
 //                            if (isDiscovered) {
@@ -132,7 +132,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
     private fun drawConditionText(child: Node, discovered: Boolean) {
         // Convert conditions data to string with '<>' for images
-        val nodeData = child.data as EvolutionNodeData
+        val nodeData = child.data as ViewModelEvolutionData
         val originalText = buildConditionString(nodeData, discovered)//":(" //nodeData.conditions.toString()
         var text = originalText
 
@@ -184,9 +184,8 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
         }
         val imageWidthHeight = linePaint.textSize
         images.forEach{ data ->
-            val assetManager: AssetManager? = context.assets
             val imgPath = data.imgPath
-            val bitmap = assetManager?.let { AssetUtils.getBitmapFromAsset(it, imgPath) }
+            val bitmap = AssetUtils.getBitmapFromAsset(context, imgPath)
 
             if (bitmap != null) {
                 // Compute image position
@@ -210,11 +209,11 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
         linePaint.textSize = beforeTextSize
     }
 
-    private fun buildConditionString(nodeData: EvolutionNodeData, discovered: Boolean): String {
+    private fun buildConditionString(nodeData: ViewModelEvolutionData, discovered: Boolean): String {
         var result = ""
 
-        if (nodeData.conditions != null)
-            result = buildConditionStringHierarchy(nodeData.conditions!!, discovered)
+        if (nodeData.evolutionConditions != null)
+            result = buildConditionStringHierarchy(nodeData.evolutionConditions!!, discovered)
 
         return result
     }

@@ -6,7 +6,7 @@
     android:id="@+id/zoomLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.FragmentEvolutionTree"
+    tools:context=".ui.details.FragmentEvolutionTree"
     android:scrollbars="vertical|horizontal"
     app:hasClickableChildren="true">
 

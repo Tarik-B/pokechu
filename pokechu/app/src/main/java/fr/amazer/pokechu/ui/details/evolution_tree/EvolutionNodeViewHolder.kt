@@ -1,34 +1,30 @@
 package fr.amazer.pokechu.ui.details.evolution_tree
 
-import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.databinding.EvolutionTreeNodeBinding
-import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
-import fr.amazer.pokechu.utils.AssetUtils
+import fr.amazer.pokechu.viewmodel.ViewModelEvolutionData
 
 class EvolutionNodeViewHolder(
     private val binding: EvolutionTreeNodeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(context: Context, data: EvolutionNodeData, currentId: Int) {
+    fun bind(data: ViewModelEvolutionData, rootId: Int) {
         val pokemonId = data.pokemonId
 
-        val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
         val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(SettingType.SHOW_UNDISCOVERED_INFO)
-        binding.isDiscovered = (isDiscovered || showUndiscoveredInfo)
+        binding.isDiscovered = (data.isDiscovered || showUndiscoveredInfo)
 
         // Set pokemon name
-        val text: String
-        if ( pokemonId == currentId || isDiscovered || showUndiscoveredInfo )
-            text = LocalizationManager.getPokemonName(context, pokemonId).toString()
+        if ( pokemonId == rootId || data.isDiscovered || showUndiscoveredInfo )
+            binding.text = data.localizedName
         else
-            text = "?"
-        binding.text = text
+            binding.text = "?"
 
         // Set thumbnail image
-        val imgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
-        binding.imagePath = imgPath
+        binding.imagePath = data.thumbnailPath
+
+        binding.executePendingBindings()
     }
 }

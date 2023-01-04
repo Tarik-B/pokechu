@@ -1,6 +1,6 @@
 package fr.amazer.pokechu.utils
 
-import android.content.res.AssetManager
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import fr.amazer.pokechu.enums.EvolutionCondition
@@ -13,10 +13,11 @@ import java.io.InputStream
 class AssetUtils {
     companion object {
 
-        fun getBitmapFromAsset(assets: AssetManager, strName: String): Bitmap? {
+        fun getBitmapFromAsset(context: Context, strName: String): Bitmap? {
+            val assetManager = context.assets
             var istr: InputStream? = null
             try {
-                istr = assets.open(strName)
+                istr = assetManager.open(strName)
             } catch (e: IOException) {
                 e.printStackTrace()
             }

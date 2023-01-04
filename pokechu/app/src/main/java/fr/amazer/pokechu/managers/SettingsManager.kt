@@ -69,6 +69,11 @@ object SettingsManager {
         val defaultValue = settingsData[type]!!.second as T
         return getSettingValue(key, defaultValue)
     }
+    inline fun <reified T: Any> getSetting(type: SettingType, suffix: String): T {
+        val key = settingsData[type]!!.first + suffix
+        val defaultValue = settingsData[type]!!.second as T
+        return getSettingValue(key, defaultValue)
+    }
     inline fun <reified T: Any>  setSetting(type: SettingType, value: T) {
         val key = settingsData[type]!!.first
         setSettingValue(key, value)
@@ -94,8 +99,15 @@ object SettingsManager {
     inline fun <reified T: Any> getLiveSetting(type: SettingType): LivePreference<T> {
         val key = settingsData[type]!!.first
         val defaultValue = settingsData[type]!!.second as T
+
         return LivePreference(updates, preferences, key, defaultValue)
     }
+//    inline fun <reified T: Any> getLiveSetting(type: SettingType, suffix: String): LivePreference<T> {
+//        val key = settingsData[type]!!.first + suffix
+//        val defaultValue = settingsData[type]!!.second as T
+//
+//        return LivePreference(updates, preferences, key, defaultValue)
+//    }
     inline fun <reified T: Any> getLivePrefixedSettings(type: SettingType): MultiPrefixedLivePreference<T> {
         val prefix = settingsData[type]!!.first
         val defaultValue = settingsData[type]!!.second as T
