@@ -16,11 +16,11 @@ import fr.amazer.pokechu.R
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.UIUtils
 
-@BindingAdapter("visibleAnimated")
-fun View.showHide(show: Boolean) {
+@BindingAdapter(value = ["visibleAnimated", "visibleAlpha"], requireAll = false)
+fun View.showHide(show: Boolean, defaultAlpha: Float) {
     if (show) {
         visibility = View.VISIBLE
-        alpha = 1.0f
+        alpha = defaultAlpha
 //        UIUtils.animateView(this, View.VISIBLE, 1.0f, 100)
     }
     else {

@@ -12,10 +12,10 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:clickable="true"
-        android:background="@color/background_loading"
-        visibleAnimated="@{isLoading}">
-    <!--    android:alpha="0.0"-->
-    <!--    android:visibility="gone">-->
+        android:focusable="true"
+        android:background="@color/backgroundDefault"
+        visibleAnimated="@{isLoading}"
+        visibleAlpha="@{0.5f}">
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"
