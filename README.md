@@ -47,20 +47,15 @@ Code hierarchy:
 
 Main Pokemon list:
 
-<img src="screenshots/screenshot_regions.png" width="150">
-<img src="screenshots/screenshot_main_list.png" width="150">
-<img src="screenshots/screenshot_main_settings.png" width="150">
-<img src="screenshots/screenshot_fastscroll.png" width="150">
+<img src="screenshots/screenshot_regions.png" width="150"> <img src="screenshots/screenshot_main_list.png" width="150"> <img src="screenshots/screenshot_main_settings.png" width="150"> <img src="screenshots/screenshot_fastscroll.png" width="150">
 
 Search:
 
-<img src="screenshots/screenshot_search.png" width="150">
-<img src="screenshots/screenshot_id_search.png" width="150">
+<img src="screenshots/screenshot_search.png" width="150"> <img src="screenshots/screenshot_id_search.png" width="150">
 
 Details and evolution tree:
 
-<img src="screenshots/screenshot_details.png" width="150">
-<img src="screenshots/screenshot_tree.png" width="150">
+<img src="screenshots/screenshot_details.png" width="150"> <img src="screenshots/screenshot_tree.png" width="150">
 
 Settings:
 
