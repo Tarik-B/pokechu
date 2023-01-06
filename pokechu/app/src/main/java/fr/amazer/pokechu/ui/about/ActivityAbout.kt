@@ -37,7 +37,7 @@ class ActivityAbout : BaseActivity() {
             ++clickCount
             SettingsManager.setSetting(PreferenceType.DISPLAY_ZERO, (clickCount > requiredCount))
             if (clickCount == requiredCount)
-                UIUtils.createDefaultParticles(this, view, R.drawable.pokeball, 15, 5000L )
+                UIUtils.createDefaultParticles(this, view, R.drawable.particle_pokeball, 15, 5000L )
         }
     }
 }

@@ -48,9 +48,6 @@
     <string name="dialog_no">No</string>
     <string name="dialog_are_you_sure">Are you sure?</string>
 
-    <!-- Search dialog -->
-    <string name="search_dialog_title">Find Pokémon by ID</string>
-
     <!-- About activity -->
     <string name="about_created_by">Created by Tarik Belabbas</string>
     <string name="about_version_name">Version name:</string>

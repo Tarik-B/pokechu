@@ -4,8 +4,13 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Context
+import android.graphics.Insets
+import android.os.Build
+import android.util.DisplayMetrics
+import android.util.Size
 import android.view.View
 import android.view.ViewTreeObserver
+import android.view.WindowInsets
 import android.view.inputmethod.InputMethodManager
 import com.plattysoft.leonids.ParticleSystem
 import fr.amazer.pokechu.R
@@ -62,11 +67,29 @@ class UIUtils {
                 })
         }
 
-        fun createDefaultParticles(activity: Activity, view: View, resId: Int = R.drawable.star,
+        fun createDefaultParticles(activity: Activity, view: View, resId: Int = R.drawable.particle_star,
                                    numParticles: Int = 25, timeToLive: Long = 500L) {
             ParticleSystem(activity, numParticles, resId, timeToLive)
                 .setSpeedRange(0.1f, 0.25f)
                 .oneShot(view, numParticles)
         }
+
+        fun getScreenSize(activity: Activity): Size {
+
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val windowMetrics = activity.windowManager.currentWindowMetrics
+                val insets: Insets = windowMetrics.windowInsets
+                    .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
+
+                return Size(windowMetrics.bounds.width() - insets.left - insets.right,
+                    windowMetrics.bounds.height() - insets.top - insets.bottom)
+            } else {
+                val displayMetrics = DisplayMetrics()
+                activity.windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+                return Size(displayMetrics.widthPixels, displayMetrics.heightPixels)
+            }
+        }
+
     }
 }

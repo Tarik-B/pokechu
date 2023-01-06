@@ -51,9 +51,6 @@
     <string name="dialog_no" />
     <string name="dialog_are_you_sure" />
 
-    <!-- Search dialog -->
-    <string name="search_dialog_title" />
-
     <!-- About activity -->
     <string name="title_activity_about" translatable="false">@string/menu_main_about</string>
     <string name="about_created_by" />

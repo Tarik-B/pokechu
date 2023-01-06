@@ -48,9 +48,6 @@
     <string name="dialog_no">Non</string>
     <string name="dialog_are_you_sure">Êtes-vous sûr ?</string>
 
-    <!-- Search dialog -->
-    <string name="search_dialog_title">Recherche par ID</string>
-
     <!-- About activity -->
     <string name="about_created_by">Créé par Tarik Belabbas</string>
     <string name="about_version_name">Version :</string>
