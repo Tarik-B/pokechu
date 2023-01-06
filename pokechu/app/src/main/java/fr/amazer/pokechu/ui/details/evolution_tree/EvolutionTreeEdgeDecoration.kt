@@ -19,9 +19,9 @@ import java.util.*
 open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
     strokeWidth = 5f
     color = Color.BLACK
-    style = Paint.Style.STROKE
-    strokeJoin = Paint.Join.ROUND
-    pathEffect = CornerPathEffect(10f)
+//    style = Paint.Style.STROKE
+//    strokeJoin = Paint.Join.ROUND
+//    pathEffect = CornerPathEffect(10f)
     textSize = 50F
 }) : RecyclerView.ItemDecoration() {
 
