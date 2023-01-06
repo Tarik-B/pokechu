@@ -1,36 +1,35 @@
 #!/usr/bin/env python3
-import json
 import os
 
-import utils
-from data import Region, EvolutionItem, PokemonType, EvolutionCondition
+from utils import utils
+from data.data_enums import Region, EvolutionItem, PokemonType, EvolutionCondition
 
-from pokedex import Pokedex
+from data.pokedex import Pokedex
 
 class Exporter:
     def __init__(self, pokedex: Pokedex, verbose: bool):
         self._pokedex = pokedex
         self._verbose = verbose
 
-    def save_all(self, path: str):
+    def save_all(self, output_path: str):
         # self._pokedex.save_pokemon_list(path + "pokemon_list.json")
         # self._pokedex.save_evolution_trees(path + "pokemon_evolution_trees.json")
 
-        self.save_pokemon_names_xml(path, "pokemons.xml")
+        self.save_pokemon_names_xml(output_path, "pokemons.xml")
 
-        self.save_enum_names_xml(path, "regions.xml", Region, "region_name")
-        self.save_enum_names_xml(path, "pokemon_types.xml", PokemonType, "pokemon_type_name")
-        self.save_enum_names_xml(path, "evolution_items.xml", EvolutionItem, "evolution_item_name")
-        self.save_enum_names_xml(path, "evolution_conditions.xml", EvolutionCondition, "evolution_condition_name")
+        self.save_enum_names_xml(output_path, "regions.xml", Region, "region_name")
+        self.save_enum_names_xml(output_path, "pokemon_types.xml", PokemonType, "pokemon_type_name")
+        self.save_enum_names_xml(output_path, "evolution_items.xml", EvolutionItem, "evolution_item_name")
+        self.save_enum_names_xml(output_path, "evolution_conditions.xml", EvolutionCondition, "evolution_condition_name")
 
-        self.save_enums_kotlin(path, [Region, PokemonType, EvolutionItem, EvolutionCondition])
+        self.save_enums_kotlin(output_path, [Region, PokemonType, EvolutionItem, EvolutionCondition])
 
-    def save_enums_kotlin(self, file_path: str, enum_class_list: list):
+    def save_enums_kotlin(self, folder_path: str, enum_class_list: list):
 
         for enum_class in enum_class_list:
             class_name = enum_class.__name__
 
-            full_path = f"{file_path}{class_name}.kt"
+            full_path = f"{folder_path}/{class_name}.kt"
 
             with open(full_path, "w") as output_file:
                 output_file.write("package fr.amazer.pokechu.enums\n")
@@ -49,11 +48,11 @@ class Exporter:
             return
 
         # Save strings.xml ids declaration
-        self.save_pokemon_names_xml_lang(folder_path + "values/" + file_name, "")
+        self.save_pokemon_names_xml_lang(folder_path + "/values/" + file_name, "")
 
         # Save strings-XXX.xml with localized names
-        self.save_pokemon_names_xml_lang(folder_path + "values-fr/" + file_name, "fr")
-        self.save_pokemon_names_xml_lang(folder_path + "values-en/" + file_name, "en")
+        self.save_pokemon_names_xml_lang(folder_path + "/values-fr/" + file_name, "fr")
+        self.save_pokemon_names_xml_lang(folder_path + "/values-en/" + file_name, "en")
 
     def save_pokemon_names_xml_lang(self, file_path: str, lang: str):
 

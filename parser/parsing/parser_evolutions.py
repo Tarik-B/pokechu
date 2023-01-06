@@ -3,9 +3,9 @@
 import parsel
 import re
 
-import utils
+from utils import utils
 
-from pokedex import Pokedex
+from data.pokedex import Pokedex
 
 class EvolutionsParser:
     def __init__(self, pokedex: Pokedex, verbose: bool):

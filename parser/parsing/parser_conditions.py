@@ -2,9 +2,9 @@
 
 import re
 
-from pokedex import Pokedex
-from data import EvolutionItem
-from data import EvolutionCondition
+from data.pokedex import Pokedex
+from data.data_enums import EvolutionItem
+from data.data_enums import EvolutionCondition
 
 class ConditionsParser:
     def __init__(self, pokedex: Pokedex, verbose: bool):

@@ -2,22 +2,22 @@
 import sqlite3
 import contextlib
 
-import utils
-from data import Region, PokemonType
-from pokedex import Pokedex
+from utils import utils
+from data.data_enums import Region, PokemonType
+from data.pokedex import Pokedex
 
 class SQLiteExporter:
     def __init__(self, pokedex: Pokedex, verbose: bool):
         self._pokedex = pokedex
         self._verbose = verbose
 
-    def save_all(self, db_file_path: str):
-        db_clear = utils.read_file("./db/db_clear.sql")
-        db_init = utils.read_file("./db/db_init.sql")
+    def save_all(self, db_init_path: str, db_output_path: str):
+        db_clear = utils.read_file(db_init_path + "/db_clear.sql")
+        db_init = utils.read_file(db_init_path + "/db_init.sql")
         if not db_clear or not db_init:
             return
 
-        with contextlib.closing(sqlite3.connect(db_file_path)) as connection:
+        with contextlib.closing(sqlite3.connect(db_output_path)) as connection:
             with contextlib.closing(connection.cursor()) as cursor:
                 try:
                     # Reset and reinit db
@@ -34,7 +34,6 @@ class SQLiteExporter:
                 self.save_pokemon_regions(connection, cursor)
                 self.save_pokemon_evolutions(connection, cursor)
                 self.save_pokemon_types(connection, cursor)
-
 
     def save_pokemons(self, connection, cursor):
         if self._pokedex.get_pokemons_count() == 0:

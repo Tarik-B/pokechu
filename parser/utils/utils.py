@@ -8,7 +8,7 @@ import os
 import re
 import urllib
 
-PAGES_CACHE_FOLDER = "./output/cache/"
+PAGES_CACHE_FOLDER = ""
 
 
 def read_file(file_path: str, encoding="utf-8") -> str:
@@ -29,7 +29,7 @@ def download_page(url: str) -> str:
     if parsed_url.fragment:
         fullurl += f"#{parsed_url.fragment}"
 
-    full_path = f"{PAGES_CACHE_FOLDER}{parsed_url.netloc}{parsed_url.path}"
+    full_path = f"{PAGES_CACHE_FOLDER}/{parsed_url.netloc}{parsed_url.path}"
 
     # Check if file exists before dl it
     if os.path.exists(full_path):

@@ -3,17 +3,18 @@
 import time
 import pokebase.cache
 
-import utils
+from utils import utils
 
-from data import Region
-from parser_conditions import ConditionsParser
-from parser_data import DataParser
-from exporter import Exporter
-from pokedex import Pokedex
-from parser_list import ListParser
-from parser_evolutions import EvolutionsParser
-from exporter_sqlite import SQLiteExporter
+from data.data_enums import Region
+from parsing.parser_conditions import ConditionsParser
+from parsing.parser_data import DataParser
+from export.exporter import Exporter
+from data.pokedex import Pokedex
+from parsing.parser_list import ListParser
+from parsing.parser_evolutions import EvolutionsParser
+from export.exporter_sqlite import SQLiteExporter
 
+OUTPUT_FOLDER = "../parser_output"
 
 if __name__ == "__main__":
     # TODO use this syntax EVERYWHERE
@@ -30,6 +31,7 @@ if __name__ == "__main__":
     # print(f"Region.NATIONAL = {Region.NATIONAL.value}")
     # print(f"Region.PALDEA = {Region.PALDEA.value}")
 
+    utils.PAGES_CACHE_FOLDER = OUTPUT_FOLDER + "/cache"
     pokebase.cache.set_cache(utils.PAGES_CACHE_FOLDER + "/pokebase")
 
     total_start_time = time.time()
@@ -42,7 +44,7 @@ if __name__ == "__main__":
     block_start_time = time.time()
     print("+ Processing Pokemon list")
     list_parser = ListParser(pokedex=pokedex, verbose=True)
-    list_parser.process_pokedex_list_page(download_thumbnails=False)
+    list_parser.process_pokedex_list_page(download_thumbnails=False, output_path=OUTPUT_FOLDER + "/images/pokemons")
     print(f"Pokemon count = {pokedex.get_pokemons_count()}")
     print(f"Time = {time.time() - block_start_time}s")
     ##################################################
@@ -77,9 +79,9 @@ if __name__ == "__main__":
     block_start_time = time.time()
     print(f"+ Saving files and db")
     exporter = Exporter(pokedex=pokedex, verbose=True)
-    exporter.save_all("./output/")
+    exporter.save_all(OUTPUT_FOLDER)
     sqlite_exporter = SQLiteExporter(pokedex=pokedex, verbose=True)
-    sqlite_exporter.save_all("./output/db.sqlite")
+    sqlite_exporter.save_all("../db", OUTPUT_FOLDER + "/db.sqlite")
     print(f"Time = {time.time() - block_start_time}s")
     ##################################################
 

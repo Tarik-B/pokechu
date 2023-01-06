@@ -4,18 +4,17 @@ import re
 import parsel
 import pokebase
 # import pokepy # produces "AttributeError: module 'collections' has no attribute 'MutableMapping'"
-import pickle
 
-import utils
+from utils import utils
 # import requests
 # import concurrent.futures
 # import time
 # import os
 
-from pokedex import Pokedex
-from data import Region, PokemonType
+from data.pokedex import Pokedex
+from data.data_enums import Region, PokemonType
 
-POKEBASE_PICKLE_CACHE_FOLDER = "./output/cache/pokebase_pickle/"
+# POKEBASE_PICKLE_CACHE_FOLDER = "./output/cache/pokebase_pickle/"
 
 class DataParser:
     def __init__(self, pokedex: Pokedex, verbose: bool):

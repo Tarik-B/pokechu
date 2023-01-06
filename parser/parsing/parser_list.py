@@ -7,10 +7,10 @@ import os
 import os.path
 import urllib.parse
 
-import utils
+from utils import utils
 
-from pokedex import Pokedex
-from data import Region
+from data.pokedex import Pokedex
+from data.data_enums import Region
 
 
 class ListParser:
@@ -18,7 +18,7 @@ class ListParser:
         self._pokedex = pokedex
         self._verbose = verbose
 
-    def process_pokedex_list_page(self, download_thumbnails: bool):
+    def process_pokedex_list_page(self, download_thumbnails: bool, output_path: str):
         # Fetch pokemon list
         base_url = "https://www.pokepedia.fr"
         full_url = base_url + "/" + Region(self._pokedex.get_region()).pokepedia_shortcut
@@ -110,20 +110,20 @@ class ListParser:
             if download_thumbnails:
                 thumbnail_url = thumbnail_urls[pokemon_index]
 
-                self.download_thumbnail(thumbnail_url, str(int(unique_id)))
+                self.download_thumbnail(thumbnail_url, str(int(unique_id)), output_path)
 
             # Add pokemon to pokedex
             self._pokedex.add_pokemon_entry(unique_id, names)
 
 
-    def download_thumbnail(self, thumbnail_url: str, thumbnail_id: str):
+    def download_thumbnail(self, thumbnail_url: str, thumbnail_id: str, output_path: str):
         base_url = "https://www.pokepedia.fr"
         full_url = base_url + thumbnail_url
 
         url = urllib.parse.unquote(full_url)
         file_name = os.path.basename(url)
         file_name = thumbnail_id + os.path.splitext(file_name)[1]
-        file_path = "./output/images/pokemons/" + file_name
+        file_path = output_path + "/" + file_name
 
         # Check if file exists before dl it
         if not os.path.exists(file_path):
