@@ -1,27 +1,23 @@
 package fr.amazer.pokechu.ui.details
 
-import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import fr.amazer.pokechu.databinding.FragmentDetailsHeaderBinding
 import fr.amazer.pokechu.database.entities.EntityPokemon
 import fr.amazer.pokechu.enums.PokemonType
-import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.viewmodel.ViewModelPokemon
 
-private const val ARG_POKEMON_ID = "pokemonId"
-
 class FragmentDetailsHeader : Fragment() {
-    private var pokemonId: Int = 0
-
     private lateinit var binding: FragmentDetailsHeaderBinding
+
+    private val viewModelPokemon: ViewModelPokemon by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,27 +26,24 @@ class FragmentDetailsHeader : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDetailsHeaderBinding.inflate(layoutInflater)
 
-        pokemonId = requireArguments().getInt(ARG_POKEMON_ID)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel: ViewModelPokemon = ViewModelProvider(this)[ViewModelPokemon::class.java]
-
         // Request evolution root then evolution chain from root
-        viewModel.getPokemon(pokemonId).observe(viewLifecycleOwner) { pokemon ->
-            viewModel.getPokemonTypes(pokemonId).observe(viewLifecycleOwner) { types ->
-                setHeaderData(pokemon, types)
+        viewModelPokemon.getPokemon().observe(viewLifecycleOwner) { pokemon ->
+            viewModelPokemon.getPokemonTypes().observe(viewLifecycleOwner) { types ->
+                if ( pokemon != null && types != null)
+                    setHeaderData(pokemon, types)
             }
-        }
 
-        // Update image filter on discovered status modifications
-        val discoveredSetting = SettingsManager.getLivePrefixedSettings<Boolean>(SettingType.DISCOVERED)
-        discoveredSetting.observe(viewLifecycleOwner){
-            updateDiscovered()
+            // Update image filter on discovered status modifications
+            viewModelPokemon.getPokemonsDiscovered().observe(viewLifecycleOwner){
+                if (pokemon != null)
+                    updateDiscovered(pokemon)
+            }
         }
     }
 
@@ -60,10 +53,10 @@ class FragmentDetailsHeader : Fragment() {
         binding.weight = pokemon.weight.toString()
 
         // Image
-        var thumbnailImgPath = AssetUtils.getPokemonThumbnailPath(pokemonId)
+        var thumbnailImgPath = AssetUtils.getPokemonThumbnailPath(pokemon.id)
         binding.imagePath = thumbnailImgPath
 
-        updateDiscovered()
+        updateDiscovered(pokemon)
 
         val typeBitmaps = mutableListOf<Bitmap>()
         types.forEach { type ->
@@ -75,9 +68,9 @@ class FragmentDetailsHeader : Fragment() {
         binding.typeBitmaps = typeBitmaps
     }
 
-    private fun updateDiscovered() {
+    private fun updateDiscovered(pokemon: EntityPokemon) {
         // For black filter
-        val isDiscovered = SettingsManager.isPokemonDiscovered(pokemonId)
+        val isDiscovered = SettingsManager.isPokemonDiscovered(pokemon.id)
         binding.isDiscovered = isDiscovered
     }
 }

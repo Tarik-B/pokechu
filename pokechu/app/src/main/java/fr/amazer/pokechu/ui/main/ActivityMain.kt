@@ -4,27 +4,23 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import com.google.android.material.snackbar.Snackbar
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.ActivityMainBinding
+import fr.amazer.pokechu.enums.PreferenceType
 import fr.amazer.pokechu.enums.Region
-import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
+import fr.amazer.pokechu.ui.BaseActivity
 import fr.amazer.pokechu.ui.about.ActivityAbout
 import fr.amazer.pokechu.ui.details.ActivityDetails
-import fr.amazer.pokechu.ui.BaseActivity
 import fr.amazer.pokechu.ui.settings.ActivitySettings
-import fr.amazer.pokechu.utils.UIUtils
 import fr.amazer.pokechu.viewmodel.ViewModelPokemons
 
 
@@ -34,8 +30,6 @@ class ActivityMain : BaseActivity() {
     private lateinit var fragmentBottomSheet: FragmentBottomSheet
     private lateinit var menu: Menu
     private lateinit var loadingOverlay: View
-    private lateinit var detailsActivityLauncher: ActivityResultLauncher<Intent>
-    private lateinit var settingsActivityLauncher: ActivityResultLauncher<Intent>
 
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     private val viewModel: ViewModelPokemons by viewModels()
@@ -72,15 +66,6 @@ class ActivityMain : BaseActivity() {
 
         fragmentBottomSheet = binding.fragmentBottomSheet.getFragment<FragmentBottomSheet>()
 
-        // Create launcher for activities details/settings
-        detailsActivityLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { _ ->
-        }
-        settingsActivityLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { _ ->
-            fragmentList.notifyDataSetChanged()
-        }
-
         // Bottom search button
         binding.buttonSearch.setOnClickListener { view ->
             val newFragment = FragmentStartSearchDialog()
@@ -91,7 +76,8 @@ class ActivityMain : BaseActivity() {
                     if (searchedId > 0) {
                         val intent = Intent(applicationContext, ActivityDetails::class.java)
                         intent.putExtra("PokemonId", searchedId)
-                        detailsActivityLauncher.launch(intent)
+
+                        startActivity(intent)
                     }
                     else {
                         Snackbar.make(view, "ID ${pokemonId} not found ", Snackbar.LENGTH_LONG).show()
@@ -101,7 +87,7 @@ class ActivityMain : BaseActivity() {
                 var searchedId = pokemonId
 
                 // Check if id must be converted to national (unique id not checked)
-                val selectedRegion = SettingsManager.getSetting<Int>(SettingType.SELECTED_REGION)
+                val selectedRegion = SettingsManager.getSetting<Int>(PreferenceType.SELECTED_REGION)
                 if (!isNational && selectedRegion != Region.NATIONAL.ordinal) {
                     viewModel.localToNationalId(selectedRegion, searchedId).observe(this) { nationalId ->
                         openDetails(nationalId)
@@ -127,6 +113,13 @@ class ActivityMain : BaseActivity() {
             }
         })
     }
+
+    // Map of menu item id -> preference to toggle
+    private val MENU_ITEM_ID_TO_PREFERENCE_TYPE = mapOf(
+        R.id.show_undiscovered_info to PreferenceType.SHOW_UNDISCOVERED_INFO,
+        R.id.show_discovered_only to PreferenceType.SHOW_DISCOVERED_ONLY,
+        R.id.show_captured_only to PreferenceType.SHOW_CAPTURED_ONLY
+    )
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
@@ -155,7 +148,6 @@ class ActivityMain : BaseActivity() {
 
         menu.findItem(R.id.search).setOnActionExpandListener( object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(p0: MenuItem): Boolean {
-                Log.i(this::class.simpleName, "onMenuItemActionExpand")
                 return true
             }
 
@@ -165,43 +157,25 @@ class ActivityMain : BaseActivity() {
             }
         })
 
-        // Setup customize menu
-        val customizeButton = menu.findItem(R.id.button_customize)
-        customizeButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+        // Setup list/grid switch view button
+        val listButton = menu.findItem(R.id.button_list_view)
+        val gridButton = menu.findItem(R.id.button_grid_view)
+        viewModel.getListViewEnabled().observe(this) { enabled ->
+            gridButton.isVisible = enabled
+            listButton.isVisible = !enabled
+        }
+        listButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem): Boolean {
-                Log.i(this::class.simpleName, "onMenuItemActionExpand")
+                SettingsManager.setSetting(PreferenceType.LIST_VIEW, true)
                 return true
             }
         })
-
-        // Setup list/grid switch view button
-        val gridEnabled = !SettingsManager.getSetting<Boolean>(SettingType.LIST_VIEW)
-        val listButton = menu.findItem(R.id.button_list_view)
-        val gridButton = menu.findItem(R.id.button_grid_view)
-        val currentActivity = this
-        gridButton.isVisible = !gridEnabled
-        listButton.isVisible = gridEnabled
-        if ( gridEnabled ) {
-            listButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
-                override fun onMenuItemClick(item: MenuItem): Boolean {
-                    SettingsManager.setSetting(SettingType.LIST_VIEW, true)
-                    UIUtils.reloadActivity(currentActivity, true)
-
-                    return true
-                }
-            })
-        }
-        else {
-            gridButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
-                override fun onMenuItemClick(item: MenuItem): Boolean {
-                    SettingsManager.setSetting(SettingType.LIST_VIEW, false)
-                    UIUtils.reloadActivity(currentActivity, true)
-
-                    return true
-                }
-            })
-        }
-
+        gridButton.setOnMenuItemClickListener(object : MenuItem.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem): Boolean {
+                SettingsManager.setSetting(PreferenceType.LIST_VIEW, false)
+                return true
+            }
+        })
 
         // Required to make the searchview manually focusable
         searchView.isIconifiedByDefault = false
@@ -210,52 +184,33 @@ class ActivityMain : BaseActivity() {
         val customizeSubMenuItem = menu.findItem(R.id.button_customize)
         menuInflater.inflate(R.menu.menu_main_customize, customizeSubMenuItem.subMenu)
 
-        val showUndiscoveredInfoItem = menu.findItem(R.id.show_undiscovered_info)
-        showUndiscoveredInfoItem.isChecked = SettingsManager.getSetting<Boolean>(SettingType.SHOW_UNDISCOVERED_INFO)
-
-        val showDiscoveredOnlyItem = menu.findItem(R.id.show_discovered_only)
-        showDiscoveredOnlyItem.isChecked = SettingsManager.getSetting<Boolean>(SettingType.SHOW_DISCOVERED_ONLY)
-
-        val showCapturedOnlyItem = menu.findItem(R.id.show_captured_only)
-        showCapturedOnlyItem.isChecked = SettingsManager.getSetting<Boolean>(SettingType.SHOW_CAPTURED_ONLY)
+        // Initialize menu item checked status according to preference value
+        MENU_ITEM_ID_TO_PREFERENCE_TYPE.forEach { (itemId, preferenceType) ->
+            val menuItem = menu.findItem(itemId)
+            menuItem.isChecked = SettingsManager.getSetting(preferenceType)
+        }
 
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
+        // Map of menu item id -> activity to launch
+        val itemIdToLaunchActivity = mapOf(
+            R.id.action_settings to ActivitySettings::class.java,
+            R.id.action_about to ActivityAbout::class.java
+        )
+
         // Handle action bar item clicks
         when (item.itemId) {
-            R.id.action_settings -> {
-                val intent = Intent(this, ActivitySettings::class.java)
-                settingsActivityLauncher.launch(intent)
+            in itemIdToLaunchActivity -> {
+                val intent = Intent(this, itemIdToLaunchActivity[item.itemId])
+                startActivity(intent)
                 return true
             }
-            R.id.action_about -> {
-                val intent = Intent(this, ActivityAbout::class.java)
-                settingsActivityLauncher.launch(intent)
-                return true
-            }
-            // TODO refactor this into a generic case
-            R.id.show_undiscovered_info -> {
+            in MENU_ITEM_ID_TO_PREFERENCE_TYPE -> {
                 item.isChecked = !item.isChecked
-                SettingsManager.setSetting(SettingType.SHOW_UNDISCOVERED_INFO, item.isChecked)
-                fragmentList.notifyDataSetChanged()
-
-                return true
-            }
-            R.id.show_discovered_only -> {
-                item.isChecked = !item.isChecked
-                SettingsManager.setSetting(SettingType.SHOW_DISCOVERED_ONLY, item.isChecked)
-//                fragmentList.rebuildDataSet()
-
-                return true
-            }
-            R.id.show_captured_only -> {
-                item.isChecked = !item.isChecked
-                SettingsManager.setSetting(SettingType.SHOW_CAPTURED_ONLY, item.isChecked)
-//                fragmentList.rebuildDataSet()
-
+                SettingsManager.setSetting(MENU_ITEM_ID_TO_PREFERENCE_TYPE[item.itemId]!!, item.isChecked)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

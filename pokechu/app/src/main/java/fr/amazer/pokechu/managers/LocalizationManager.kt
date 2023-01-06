@@ -3,59 +3,111 @@ package fr.amazer.pokechu.managers
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import fr.amazer.pokechu.BuildConfig
+import fr.amazer.pokechu.PokechuApplication
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.enums.EvolutionCondition
 import fr.amazer.pokechu.enums.EvolutionItem
+import fr.amazer.pokechu.enums.PreferenceType
 import fr.amazer.pokechu.enums.Region
+import kotlinx.coroutines.*
 import java.util.*
 
 
 object LocalizationManager {
     private lateinit var languages: List<String>
+    private lateinit var pokemonNames: List<List<String>>
+    private lateinit var regionNames: List<List<String>>
+    private lateinit var itemNames: List<List<String>>
+    private lateinit var conditionNames: List<List<String>>
 
-    fun with(context: Context) {
-        val langs = context.resources.getStringArray(R.array.language_values)
+    fun with(application: PokechuApplication) {
+        val langs = application.resources.getStringArray(R.array.language_values)
         languages = langs.asList()
+
+        loadNames(application)
     }
 
     fun getLanguages(): List<String> {
         return languages
     }
 
-    fun getPokemonName(context: Context, id: Int, language: String = ""): String? {
-        return getLocalizedName(context, "pokemon_name_${id}", language)
+    private fun getDataLanguage(): String {
+        return SettingsManager.getSetting(PreferenceType.DATA_LANGUAGE)
     }
 
-    fun getRegionName(context: Context, id: Region, language: String = ""): String? {
-        return getLocalizedName(context, "region_name_${id.ordinal}", language)
+    private fun getPokemonNameKey(id: Int): String { return "pokemon_name_${id}" }
+    fun getPokemonName(id: Int, language: String = getDataLanguage()): String? {
+        val langIndex = languages.indexOf(language)
+        return if (langIndex >= 0) pokemonNames[langIndex][id] else null
+    }
+    private fun getRegionNameKey(id: Int): String { return "region_name_${id}" }
+    fun getRegionName(id: Region, language: String = getDataLanguage()): String? {
+        val langIndex = languages.indexOf(language)
+        return if (langIndex >= 0) regionNames[langIndex][id.ordinal] else null
+    }
+    private fun getItemNameKey(id: Int): String { return "evolution_item_name_${id}" }
+    fun getItemName(id: EvolutionItem, language: String = getDataLanguage()): String? {
+        val langIndex = languages.indexOf(language)
+        return if (langIndex >= 0) itemNames[langIndex][id.ordinal] else null
+    }
+    private fun getConditionNameKey(id: Int): String { return "evolution_condition_name_${id}" }
+    fun getConditionName(id: EvolutionCondition, language: String = getDataLanguage()): String? {
+        val langIndex = languages.indexOf(language)
+        return if (langIndex >= 0) conditionNames[langIndex][id.ordinal] else null
     }
 
-    fun getItemName(context: Context, id: EvolutionItem, language: String = ""): String? {
-        return getLocalizedName(context, "evolution_item_name_${id.ordinal}", language)
-    }
+    private fun loadNames(application: PokechuApplication) {
+        runBlocking {
+            launch(Dispatchers.IO) {
+                val langContexts = List<Context>(languages.size){ it ->
+                    val lang = languages[it]
+                    val configuration = Configuration(application.resources.configuration)
+                    configuration.setLocale(Locale(lang))
 
-    fun getConditionName(context: Context, id: EvolutionCondition, language: String = ""): String? {
-        return getLocalizedName(context, "evolution_condition_name_${id.ordinal}", language)
-    }
+                    application.createConfigurationContext(configuration)
+                }
 
-    fun getLocalizedName(context: Context, name: String, language: String = ""): String? {
+                val pokemonIds = application.getDatabase().getPokemonsDao().findAllIds()
+                pokemonNames = loadNames(langContexts, pokemonIds, ::getPokemonNameKey)
 
-        var lang = language
-        if (lang == "")
-            lang = SettingsManager.getSetting(SettingType.DATA_LANGUAGE)
+                val regionIds = application.getDatabase().getRegionsDao().findAllIds()
+                regionNames = loadNames(langContexts, regionIds, ::getRegionNameKey)
 
-        val configuration = Configuration(context.resources.configuration)
-        configuration.setLocale(Locale(lang))
+                val itemIds = List(EvolutionItem.values().size) { EvolutionItem.values()[it].ordinal }
+                itemNames = loadNames(langContexts, itemIds, ::getItemNameKey)
 
-        val newContext = context.createConfigurationContext(configuration)
-
-        val resId: Int = newContext.resources.getIdentifier(name, "string", "fr.amazer.pokechu")
-
-        try {
-            return newContext.resources.getString(resId)
+                val conditionIds = List(EvolutionCondition.values().size) { EvolutionCondition.values()[it].ordinal }
+                conditionNames = loadNames(langContexts, conditionIds, ::getConditionNameKey)
+            }
         }
-        catch (e: Resources.NotFoundException) {
-            return null
+    }
+
+    private fun loadNames(contexts: List<Context>, ids: List<Int>, getKeyFunction: (input: Int) -> String
+    ): MutableList<MutableList<String>> {
+        val namesByLangs = MutableList<MutableList<String>>(languages.size) { mutableListOf() }
+
+        languages.forEachIndexed{ langIndex, lang ->
+
+            val max = ids.max()
+
+            namesByLangs[langIndex] = MutableList(max + 1){ "" }
+            val names = namesByLangs[langIndex]
+
+            val langResources = contexts[langIndex].resources
+
+            ids.forEach { id ->
+                val key = getKeyFunction(id)
+                val resId = langResources.getIdentifier(key, "string", BuildConfig.APPLICATION_ID)
+                try {
+                    names[id] = langResources.getString(resId)
+                }
+                catch (e: Resources.NotFoundException) {
+
+                }
+            }
         }
+
+        return namesByLangs
     }
 }

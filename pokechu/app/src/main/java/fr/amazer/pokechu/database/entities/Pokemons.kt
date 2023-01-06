@@ -19,8 +19,8 @@ data class NationalIdLocalId(
 
 @Dao
 interface DaoPokemons {
-//    @Query("SELECT * FROM pokemons")
-//    fun findAll(): List<EntityPokemon>
+    @Query("SELECT id FROM pokemons")
+    fun findAllIds(): List<Int>
 
     @Query("SELECT COUNT(id) FROM pokemons")
     fun getCount(): LiveData<Int>
@@ -30,9 +30,6 @@ interface DaoPokemons {
 
     @Query("SELECT * FROM pokemons WHERE id = :id")
     fun findByIdNoFlow(id: Int): EntityPokemon
-
-//    @Query("SELECT id FROM pokemons")
-//    fun findAllIds(): LiveData<List<Int>>
 
     @Query("SELECT id as pokemon_id, id as local_id FROM pokemons")
     fun findAllNationalLocalIds(): LiveData<List<NationalIdLocalId>>

@@ -24,7 +24,7 @@ fun View.showHide(show: Boolean) {
 //        UIUtils.animateView(this, View.VISIBLE, 1.0f, 100)
     }
     else {
-        UIUtils.animateView(this, View.GONE, 0.0f, 100)
+        UIUtils.animateView(this, View.GONE, 0.0f, 250)
     }
 }
 

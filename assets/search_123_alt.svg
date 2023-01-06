@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="24px"
+   viewBox="0 0 24 24"
+   width="24px"
+   fill="#000000"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="search_123_alt.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="29.431121"
+     inkscape:cx="9.2079401"
+     inkscape:cy="10.07437"
+     inkscape:window-width="1920"
+     inkscape:window-height="1000"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <path
+     d="M -0.04292548,-0.04228131 H 20.743743 V 20.744387 H -0.04292548 Z"
+     fill="none"
+     id="path2"
+     style="stroke-width:0.866111" />
+  <path
+     d="m 19.710355,17.393551 h -1.234032 l -0.437376,-0.421756 c 1.530823,-1.780753 2.45244,-4.092606 2.45244,-6.60753 0,-5.6078082 -4.545606,-10.15341301 -10.153413,-10.15341301 -5.607809,0 -10.15341398,4.54560481 -10.15341398,10.15341301 0,5.607809 4.54560498,10.153415 10.15341398,10.153415 2.514922,0 4.826775,-0.921618 6.607528,-2.452441 l 0.421756,0.437377 v 1.234031 l 7.810318,7.794697 2.327476,-2.327475 z m -9.372381,0 c -3.889539,0 -7.0292869,-3.139747 -7.0292869,-7.029286 0,-3.8895381 3.1397479,-7.029286 7.0292869,-7.029286 3.889537,0 7.029284,3.1397479 7.029284,7.029286 0,3.889539 -3.139747,7.029286 -7.029284,7.029286 z"
+     id="path4"
+     style="stroke-width:1.56207" />
+  <g
+     id="g8"
+     transform="matrix(0.77044454,0,0,0.77044454,1.2976852,1.0812002)">
+    <path
+       d="M 7,15 H 5.5 V 10.5 H 4 V 9 h 3 z m 6.5,-1.5 h -3 v -1 h 2 c 0.55,0 1,-0.45 1,-1 V 10 c 0,-0.55 -0.45,-1 -1,-1 H 9 v 1.5 h 3 v 1 h -2 c -0.55,0 -1,0.45 -1,1 V 15 h 4.5 z m 6,0.5 v -4 c 0,-0.55 -0.45,-1 -1,-1 H 15 v 1.5 h 3 v 1 h -2 v 1 h 2 v 1 H 15 V 15 h 3.5 c 0.55,0 1,-0.45 1,-1 z"
+       id="path6" />
+  </g>
+</svg>

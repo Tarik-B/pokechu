@@ -15,6 +15,9 @@ data class EntityRegion(
 
 @Dao
 interface DaoRegions {
+    @Query("SELECT id FROM regions")
+    fun findAllIds(): List<Int>
+
     @Query("SELECT * FROM regions")
     fun findAll(): LiveData<List<EntityRegion>>
 }

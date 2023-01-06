@@ -5,6 +5,7 @@
 <!-- *********************************************************************** -->
 
 <resources>
+    <string name="pokemon_name_0">MissingNo.</string>
     <string name="pokemon_name_1">Bulbasaur</string>
     <string name="pokemon_name_2">Ivysaur</string>
     <string name="pokemon_name_3">Venusaur</string>

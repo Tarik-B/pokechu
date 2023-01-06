@@ -14,12 +14,11 @@ class DataRepositoryRegions private constructor(
 
     companion object {
         private var sInstance: DataRepositoryRegions? = null
-        fun getInstance(database: PokechuDatabase?): DataRepositoryRegions? {
+        fun getInstance(database: PokechuDatabase): DataRepositoryRegions? {
             if (sInstance == null) {
                 synchronized(DataRepositoryRegions::class.java) {
                     if (sInstance == null) {
-                        sInstance =
-                            database?.let { DataRepositoryRegions(it) }
+                        sInstance = DataRepositoryRegions(database)
                     }
                 }
             }

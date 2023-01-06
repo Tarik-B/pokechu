@@ -116,6 +116,6 @@ dependencies {
     // (see https://github.com/ReactiveX/RxJava/releases for latest 3.x.x version)
     implementation "io.reactivex.rxjava3:rxjava:3.1.5"
 
-    // SwipeRefreshLayout widget
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    // RecyclerView-FastScroll
+    implementation "com.simplecityapps:recyclerview-fastscroll:2.0.1"
 }

@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.managers.settings
+package fr.amazer.pokechu.data.preferences
 
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData

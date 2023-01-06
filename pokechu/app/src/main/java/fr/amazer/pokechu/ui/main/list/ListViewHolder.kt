@@ -1,53 +1,57 @@
 package fr.amazer.pokechu.ui.main.list
 
 import android.content.Context
-import android.content.res.AssetManager
 import android.graphics.Bitmap
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.databinding.ListGridItemBinding
 import fr.amazer.pokechu.databinding.ListItemBinding
-import fr.amazer.pokechu.managers.SettingType
+import fr.amazer.pokechu.enums.PreferenceType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
-import fr.amazer.pokechu.viewmodel.ViewModelPokemonListData
 
 class ListViewHolder(
     private val binding: ViewDataBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(context: Context, data: ViewModelPokemonListData, filter: String) {
+    fun bind(context: Context, holderData: ListViewHolderData) {
+
+        val data = holderData.viewModelData
+
         // Setup image
-        val imgPath = AssetUtils.getPokemonThumbnailPath(data.pokemonId)
-        setImagePath(imgPath)
+        setImagePath(data.thumbnailPath)
 
-        // Show image if discovered or "show undiscovered info" checked
-        val isDiscovered = SettingsManager.isPokemonDiscovered(data.pokemonId)
-        val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(SettingType.SHOW_UNDISCOVERED_INFO)
-        setIsDiscovered(isDiscovered || showUndiscoveredInfo)
-
-        val isCaptured = SettingsManager.isPokemonCaptured(data.pokemonId)
-        setIsCaptured(isCaptured)
+        bindIsDiscovered(data.isDiscovered)
+        bindIsCaptured(data.isCaptured)
 
         // Setup text, show name if discovered or "show undiscovered info" checked OR seach query isnt empty
+        val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(PreferenceType.SHOW_UNDISCOVERED_INFO)
+
+//        var localizedName: String
+//        if (holderData.filter.isEmpty()) {
+//            val dataLanguage = SettingsManager.getSetting<String>(PreferenceType.DATA_LANGUAGE)
+//            localizedName = data.names[dataLanguage]?: ""
+//        }
+//        else {
+//            localizedName = data.names.values.find { value -> value.contains(holderData.filter, true) }?: ""
+//        }
+
         val nameText: String
-        if (!filter.isEmpty() || isDiscovered || showUndiscoveredInfo) {
-            val dataLanguage = SettingsManager.getSetting<String>(SettingType.DATA_LANGUAGE)
-            val localizedName = data.names[dataLanguage]
-            nameText = "#${data.localId} - ${localizedName}"
+        if (!holderData.filter.isEmpty() || data.isDiscovered || showUndiscoveredInfo) {
+            val dataLanguage = SettingsManager.getSetting<String>(PreferenceType.DATA_LANGUAGE)
+            nameText = "#${data.localId} - ${data.names[dataLanguage]}"
+//            nameText = "#${data.localId} - ${localizedName}"
         }
         else {
             nameText = "#${data.localId} - ?"
         }
-        setText(nameText, filter)
+        setText(nameText, holderData.filter)
 
         // Add type images
-        if (isDiscovered || showUndiscoveredInfo) {
+        if (data.isDiscovered || showUndiscoveredInfo) {
             val typeBitmaps = mutableListOf<Bitmap>()
-            data.types.forEach { type ->
-                val typeImgPath = AssetUtils.getTypeThumbnailPathRound(PokemonType.values()[type.ordinal])
+            data.typeImagePaths?.forEach { typeImgPath ->
                 val typeBitmap = AssetUtils.getBitmapFromAsset(context, typeImgPath)
                 if (typeBitmap != null)
                     typeBitmaps.add(typeBitmap)
@@ -57,7 +61,7 @@ class ListViewHolder(
         }
         else {
             val typeResIds = mutableListOf<Int>()
-            data.types.forEach { _ ->
+            data.typeImagePaths?.forEach { _ ->
                 val unknownImage = R.drawable.ic_question_mark
                 typeResIds.add(unknownImage)
             }
@@ -66,6 +70,16 @@ class ListViewHolder(
         }
 
         binding.executePendingBindings()
+    }
+
+    fun bindIsDiscovered(isDiscovered: Boolean) {
+        // Show image if discovered or "show undiscovered info" checked
+        val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(PreferenceType.SHOW_UNDISCOVERED_INFO)
+        setIsDiscovered(isDiscovered || showUndiscoveredInfo)
+    }
+
+    fun bindIsCaptured(isCaptured: Boolean) {
+        setIsCaptured(isCaptured)
     }
 
     // TODO find a way for ListItemBinding and ListGridItemBinding to have a common interface (other than ViewBinding)
@@ -85,25 +99,25 @@ class ListViewHolder(
             binding.filter = filter
         }
     }
-    fun setIsDiscovered(discovered: Boolean) {
+    private fun setIsDiscovered(discovered: Boolean) {
         if (binding is ListItemBinding)
             binding.isDiscovered = discovered
         else if (binding is ListGridItemBinding)
             binding.isDiscovered = discovered
     }
-    fun setIsCaptured(captured: Boolean) {
+    private fun setIsCaptured(captured: Boolean) {
         if (binding is ListItemBinding)
             binding.isCaptured = captured
         else if (binding is ListGridItemBinding)
             binding.isCaptured = captured
     }
-    fun setTypeBitmaps(types: List<Bitmap>?) {
+    private fun setTypeBitmaps(types: List<Bitmap>?) {
         if (binding is ListItemBinding)
             binding.typeBitmaps = types
         else if (binding is ListGridItemBinding)
             binding.typeBitmaps = types
     }
-    fun setTypeResIds(types: List<Int>?) {
+    private fun setTypeResIds(types: List<Int>?) {
         if (binding is ListItemBinding)
             binding.typeResIds = types
         else if (binding is ListGridItemBinding)

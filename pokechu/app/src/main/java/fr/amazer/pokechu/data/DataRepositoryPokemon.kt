@@ -18,12 +18,11 @@ class DataRepositoryPokemon private constructor(
 
     companion object {
         private var sInstance: DataRepositoryPokemon? = null
-        fun getInstance(database: PokechuDatabase?): DataRepositoryPokemon? {
+        fun getInstance(database: PokechuDatabase): DataRepositoryPokemon? {
             if (sInstance == null) {
                 synchronized(DataRepositoryPokemon::class.java) {
                     if (sInstance == null) {
-                        sInstance =
-                            database?.let { DataRepositoryPokemon(it) }
+                        sInstance = DataRepositoryPokemon(database)
                     }
                 }
             }

@@ -22,6 +22,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
     style = Paint.Style.STROKE
     strokeJoin = Paint.Join.ROUND
     pathEffect = CornerPathEffect(10f)
+    textSize = 50F
 }) : RecyclerView.ItemDecoration() {
 
     private lateinit var context: Context
@@ -232,19 +233,19 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 result += "unknown"
             }
             EvolutionCondition.AND -> {
-                val and = LocalizationManager.getConditionName(context, EvolutionCondition.AND)
+                val and = LocalizationManager.getConditionName(EvolutionCondition.AND)
                 result += conditionData.nested.joinToString(" ${and} ") {
                     it -> buildConditionStringHierarchy(it, discovered)
                 }
             }
             EvolutionCondition.OR -> {
-                val or = LocalizationManager.getConditionName(context, EvolutionCondition.OR)
+                val or = LocalizationManager.getConditionName(EvolutionCondition.OR)
                 result += conditionData.nested.joinToString(" $or ") {
                         it -> buildConditionStringHierarchy(it, discovered)
                 }
             }
             EvolutionCondition.LEVEL -> {
-                val level = LocalizationManager.getConditionName(context, EvolutionCondition.LEVEL)?.let { capitalize(it) }
+                val level = LocalizationManager.getConditionName(EvolutionCondition.LEVEL)?.let { capitalize(it) }
                 result += "$level "
                 if (discovered)
                     result += conditionData.data.toInt()
@@ -262,7 +263,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
             }
             EvolutionCondition.ITEM_USE -> {
                 if (discovered)
-                    result += LocalizationManager.getItemName(context, EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
+                    result += LocalizationManager.getItemName(EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
                 else
                     result += "?"
 
@@ -270,11 +271,11 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 result += "<item_" + conditionData.data + ">"
             }
             EvolutionCondition.ITEM_HOLD -> {
-                val hold = LocalizationManager.getConditionName(context, EvolutionCondition.ITEM_HOLD)?.let { capitalize(it) }
+                val hold = LocalizationManager.getConditionName(EvolutionCondition.ITEM_HOLD)?.let { capitalize(it) }
 
                 result += "$hold "
                 if (discovered)
-                    result += LocalizationManager.getItemName(context, EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
+                    result += LocalizationManager.getItemName(EvolutionItem.values()[conditionData.data.toInt()])?.let { capitalize(it) }
                 else
                     result += "?"
 
@@ -282,11 +283,11 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                 result += "<item_" + conditionData.data + ">"
             }
             EvolutionCondition.LOCATION -> {
-                val location = LocalizationManager.getConditionName(context, EvolutionCondition.LOCATION)?.let { capitalize(it) }
+                val location = LocalizationManager.getConditionName(EvolutionCondition.LOCATION)?.let { capitalize(it) }
                 result += "$location"
             }
             EvolutionCondition.KNOW_SKILL -> {
-//                val know = LocalizationManager.getConditionName(context, EvolutionCondition.KNOW_SKILL)?.let { capitalize(it) }
+//                val know = LocalizationManager.getConditionName(EvolutionCondition.KNOW_SKILL)?.let { capitalize(it) }
                 result += "know_skill "
                 if (discovered)
                     result += conditionData.data
@@ -294,7 +295,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                     result += "?"
             }
             EvolutionCondition.LEARN_SKILL -> {
-//                val learn = LocalizationManager.getConditionName(context, EvolutionCondition.LEARN_SKILL)?.let { capitalize(it) }
+//                val learn = LocalizationManager.getConditionName(EvolutionCondition.LEARN_SKILL)?.let { capitalize(it) }
                 result += "learn_skill "
                 if (discovered)
                     result += conditionData.data

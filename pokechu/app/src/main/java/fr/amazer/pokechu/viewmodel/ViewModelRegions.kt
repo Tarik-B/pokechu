@@ -11,7 +11,8 @@ class ViewModelRegions(application: Application) : AndroidViewModel(application)
     private val repository: DataRepositoryRegions
 
     init {
-        repository = (application as PokechuApplication).getRepositoryRegions()!!
+        (application as PokechuApplication)
+        repository = application.getRepositoryRegions()!!
     }
 
     fun getRegions(): LiveData<List<EntityRegion>> {

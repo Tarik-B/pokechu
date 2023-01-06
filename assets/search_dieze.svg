@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="24px"
+   viewBox="0 0 24 24"
+   width="24px"
+   fill="#000000"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="search_dieze.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="8.6145348"
+     inkscape:cx="4.6433152"
+     inkscape:cy="-8.0677601"
+     inkscape:window-width="1920"
+     inkscape:window-height="1000"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <path
+     d="M0 0h24v24H0V0z"
+     fill="none"
+     id="path2" />
+  <path
+     d="m 16.328488,14.599398 h -0.910654 l -0.322763,-0.311236 c 1.129672,-1.314108 1.809781,-3.020143 1.809781,-4.8760332 0,-4.1382885 -3.354435,-7.4927228 -7.4927232,-7.4927228 -4.1382885,0 -7.4927228,3.3544343 -7.4927228,7.4927228 0,4.1382882 3.3544343,7.4927232 7.4927228,7.4927232 1.8558902,0 3.5619252,-0.680109 4.8760332,-1.809781 l 0.311236,0.322763 v 0.910654 l 5.763633,5.752106 1.717563,-1.717563 z m -6.9163592,0 c -2.8702892,0 -5.1872697,-2.31698 -5.1872697,-5.1872692 0,-2.8702892 2.3169805,-5.1872697 5.1872697,-5.1872697 2.8702892,0 5.1872692,2.3169805 5.1872692,5.1872697 0,2.8702892 -2.31698,5.1872692 -5.1872692,5.1872692 z"
+     id="path4"
+     style="stroke-width:1.15273" />
+  <g
+     id="g4"
+     transform="matrix(0.50117038,0,0,0.50117038,3.272133,3.307421)">
+    <rect
+       fill="none"
+       height="24"
+       width="24"
+       id="rect2"
+       x="0"
+       y="0" />
+  </g>
+  <g
+     id="g8"
+     transform="matrix(0.41782736,0,0,0.41782736,4.2722492,4.3075372)">
+    <path
+       d="M 20.5,10 21,8 H 17 L 18,4 H 16 L 15,8 H 11 L 12,4 H 10 L 9,8 H 5 l -0.5,2 h 4 l -1,4 h -4 L 3,16 h 4 l -1,4 h 2 l 1,-4 h 4 l -1,4 h 2 l 1,-4 h 4 l 0.5,-2 h -4 l 1,-4 z m -7,4 h -4 l 1,-4 h 4 z"
+       id="path6" />
+  </g>
+</svg>

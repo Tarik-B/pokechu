@@ -1,14 +1,11 @@
 package fr.amazer.pokechu.ui.details
 
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.otaliastudios.zoom.ZoomLayout
 import dev.bandb.graphview.AbstractGraphAdapter
@@ -18,7 +15,6 @@ import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.FragmentEvolutionTreeBinding
-import fr.amazer.pokechu.managers.SettingType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.RecyclerViewTouchListener
 import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionNodeViewHolder
@@ -26,15 +22,15 @@ import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionTreeAdapter
 import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionTreeEdgeDecoration
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutionData
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutions
-
-private const val ARG_POKEMON_ID = "pokemonId"
+import fr.amazer.pokechu.viewmodel.ViewModelPokemon
 
 class FragmentEvolutionTree : Fragment() {
-    private var pokemonId: Int = 0
-
     private lateinit var binding: FragmentEvolutionTreeBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AbstractGraphAdapter<EvolutionNodeViewHolder>
+
+    private val viewModelPokemon: ViewModelPokemon by activityViewModels()
+    private val viewModelEvolutions: ViewModelEvolutions by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +39,6 @@ class FragmentEvolutionTree : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentEvolutionTreeBinding.inflate(layoutInflater)
 
-        pokemonId = requireArguments().getInt(ARG_POKEMON_ID)
-
         return binding.root
     }
 
@@ -52,11 +46,12 @@ class FragmentEvolutionTree : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUI()
+        loadData()
+    }
 
-        val factory = ViewModelEvolutions.Factory(requireActivity().application, pokemonId)
-        val viewModel: ViewModelEvolutions = ViewModelProvider(this, factory)[ViewModelEvolutions::class.java]
-
-        viewModel.getEvolutionData().observe(viewLifecycleOwner) { evolutionData ->
+    private fun loadData() {
+        viewModelEvolutions.getEvolutionData().removeObservers(viewLifecycleOwner)
+        viewModelEvolutions.getEvolutionData().observe(viewLifecycleOwner) { evolutionData ->
             // Create graph
             val graph = createGraph(evolutionData)
             adapter.submitGraph(graph)
@@ -68,14 +63,14 @@ class FragmentEvolutionTree : Fragment() {
         // Setup graph view
         recyclerView = requireView().findViewById(R.id.recycler)
         setLayoutManager()
-        setEdgeDecoration()
+        recyclerView.addItemDecoration(EvolutionTreeEdgeDecoration())
         setTouchListeners()
 
         val zoomLayout = requireView().findViewById(R.id.zoomLayout) as ZoomLayout
         zoomLayout.setMinZoom(0.8f)
         zoomLayout.setMaxZoom(10.0f)
 
-        adapter = EvolutionTreeAdapter(pokemonId)
+        adapter = EvolutionTreeAdapter()
         recyclerView.adapter = adapter
     }
 
@@ -86,20 +81,7 @@ class FragmentEvolutionTree : Fragment() {
             .setSubtreeSeparation(100)
             .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
             .build()
-        recyclerView.layoutManager = context?.let { BuchheimWalkerLayoutManager(it, configuration) }
-    }
-
-    private fun setEdgeDecoration() {
-        val edgeStyle = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            strokeWidth = 5f
-            color = Color.BLACK
-//            style = Paint.Style.STROKE
-//            strokeJoin = Paint.Join.ROUND
-//            pathEffect = CornerPathEffect(10f)
-            textSize = 50F
-        }
-
-        recyclerView.addItemDecoration(EvolutionTreeEdgeDecoration(edgeStyle))
+        recyclerView.layoutManager = BuchheimWalkerLayoutManager(requireContext(), configuration)
     }
 
     private fun setTouchListeners() {
@@ -113,21 +95,14 @@ class FragmentEvolutionTree : Fragment() {
                     // Open details activity on click
                     override fun onClick(view: View?, position: Int) {
                         val data = adapter.getNodeData(position) as ViewModelEvolutionData
-
-                        val intent = Intent(context, ActivityDetails::class.java)
-                        intent.putExtra("PokemonId", data.pokemonId)
-
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_TASK_ON_HOME
-                        requireActivity().startActivity(intent)
-                        requireActivity().finish()
+                            viewModelPokemon.setPokemonId(data.pokemonId)
+                            viewModelEvolutions.setPokemonId(data.pokemonId)
                     }
 
                     // Toggle discovered/captured status on long click
                     override fun onLongClick(view: View?, position: Int) {
                         val data = adapter.getNodeData(position) as ViewModelEvolutionData
-
                         SettingsManager.togglePokemonDiscovered(data.pokemonId)
-                        adapter.notifyDataSetChanged()
                     }
                 }
             )
@@ -147,7 +122,7 @@ class FragmentEvolutionTree : Fragment() {
 
         // Create edges
         evolutionData.forEach{ data ->
-            if (data.baseId != 0) {
+            if (data.baseId != null) {
                 graph.addEdge(nodes[data.baseId]!!, nodes[data.pokemonId]!!)
             }
         }

@@ -1,4 +1,4 @@
-package fr.amazer.pokechu.managers.settings
+package fr.amazer.pokechu.data.preferences
 
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
@@ -18,10 +18,7 @@ class MultiPrefixedLivePreference<T> constructor(
     private val values = mutableMapOf<String, T?>()
 
     init {
-        initializeValues()
-    }
-
-    private fun initializeValues() {
+        // On initialize, update values and trigger change event
         preferences.all.forEach { (key, value) ->
             if (key.startsWith(prefix))
                 values[key] = value as T
@@ -32,9 +29,19 @@ class MultiPrefixedLivePreference<T> constructor(
     override fun onActive() {
         super.onActive()
 
-        // TODO done this to rescan discovered/captured preference keys on main activity
-        // getting active back again (back from settings)
-        initializeValues()
+        // On reactivation, only trigger change event if data actually changed
+        // (code executed when getting back to main activity from details/settings activity)
+        var different = false
+        preferences.all.forEach { (key, value) ->
+            if (key.startsWith(prefix)) {
+                if (!values.containsKey(key) || values[key] != value) {
+                    values[key] = value as T
+                    different = true
+                }
+            }
+        }
+        if (different)
+            value = values
 
         disposable = updates
             .filter { t -> t.startsWith(prefix) }

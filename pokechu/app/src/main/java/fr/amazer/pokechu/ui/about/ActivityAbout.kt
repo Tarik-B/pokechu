@@ -4,10 +4,15 @@ import android.os.Bundle
 import fr.amazer.pokechu.BuildConfig
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.ActivityAboutBinding
+import fr.amazer.pokechu.enums.PreferenceType
+import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.BaseActivity
+import fr.amazer.pokechu.utils.UIUtils
 
 class ActivityAbout : BaseActivity() {
     private lateinit var binding: ActivityAboutBinding
+    private var clickCount = 0
+    private val requiredCount = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,5 +32,12 @@ class ActivityAbout : BaseActivity() {
         binding.buildDate = BuildConfig.BUILD_DATE
         binding.buildTime = BuildConfig.BUILD_TIME
 
+        binding.logo.setOnClickListener { view ->
+            // Easter egg
+            ++clickCount
+            SettingsManager.setSetting(PreferenceType.DISPLAY_ZERO, (clickCount > requiredCount))
+            if (clickCount == requiredCount)
+                UIUtils.createDefaultParticles(this, view, R.drawable.pokeball, 15, 5000L )
+        }
     }
 }

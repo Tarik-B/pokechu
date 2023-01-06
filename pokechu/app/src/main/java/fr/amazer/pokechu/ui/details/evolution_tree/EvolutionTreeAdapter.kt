@@ -6,10 +6,7 @@ import dev.bandb.graphview.AbstractGraphAdapter
 import fr.amazer.pokechu.databinding.EvolutionTreeNodeBinding
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutionData
 
-class EvolutionTreeAdapter (
-    private val rootId: Int
-) : AbstractGraphAdapter<EvolutionNodeViewHolder>() {
-
+class EvolutionTreeAdapter : AbstractGraphAdapter<EvolutionNodeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EvolutionNodeViewHolder {
         val binding = EvolutionTreeNodeBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -22,7 +19,7 @@ class EvolutionTreeAdapter (
 
     override fun onBindViewHolder(holder: EvolutionNodeViewHolder, position: Int) {
         val nodeData = getNodeData(position) as ViewModelEvolutionData
-        holder.bind(nodeData, rootId)
+        holder.bind(nodeData)
     }
 }
 

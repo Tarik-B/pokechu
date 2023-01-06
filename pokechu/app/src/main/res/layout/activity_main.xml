@@ -102,9 +102,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_search"
+            android:layout_marginBottom="@dimen/fab_margin"
+
+            android:src="@drawable/ic_search_123"
+            android:scaleType="center"
+
+            android:alpha="0.75"
             app:backgroundTint="@color/colorPrimary"/>
+<!--            app:maxImageSize="40dp"-->
+<!--            app:fabCustomSize="60dp"-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

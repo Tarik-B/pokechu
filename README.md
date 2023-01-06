@@ -46,13 +46,15 @@ Code hierarchy:
 to Poképédia, Bulbapedia and PokéAPI contributors and maintainers!
 
 ## Credits
-- GraphView library by the Block brothers [Link][graphview]
-- Localization library by Akexorcist [Link][localization]
-- Leonids particles library by Platty Soft [Link][particles], updated by Jenna Vassar [Link][particles_update]
-- LivePreferences library by İbrahim Süren [Link][livepreferences]
+- [GraphView][graphview] library by the Block brothers
+- [Localization][localization] library by Akexorcist
+- [Leonids][particles] particles library by Platty Soft, [updated][particles_update] by Jenna Vassar
+- [LivePreferences][livepreferences] library by İbrahim Süren
+- [RecyclerView-FastScroll][fastscroll] library by Tim Malseed
 
 [graphview]: https://github.com/oss-bandb/GraphView
 [localization]: https://github.com/akexorcist/Localization
 [particles]: https://github.com/plattysoft/Leonids
 [particles_update]: https://github.com/bigcartel/leonids-android
 [livepreferences]: https://github.com/ibrahimsn98/live-preferences
+[fastscroll]: https://github.com/timusus/RecyclerView-FastScroll

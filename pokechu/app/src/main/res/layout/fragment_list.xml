@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipeRefresh"
+<!-- "descendantFocusability" to make the recyclerView not scrolls to the top itself -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabToTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="23dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:fabCustomSize="46dp"
+        app:fabSize="auto"
+
+        android:src="@drawable/ic_baseline_arrow_upward"
+        android:scaleType="center"
+        app:maxImageSize="23dp"
+
+        android:alpha="0.5"
+        app:backgroundTint="@color/colorPrimary"
+        android:visibility="gone"/>
+
+    <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        tools:context=".ui.main.FragmentList">
+        tools:context=".ui.main.FragmentList"
 
-    </androidx.recyclerview.widget.RecyclerView>
+        app:fastScrollPopupBgColor="@color/colorAccent"
+        app:fastScrollThumbColor="@color/colorAccent"
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        app:fastScrollPopupTextSize="23sp"
+        app:fastScrollPopupBackgroundSize="40dp"/>
 
+    </RelativeLayout>

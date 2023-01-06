@@ -18,12 +18,11 @@ class DataRepositoryEvolutions private constructor(
 
     companion object {
         private var sInstance: DataRepositoryEvolutions? = null
-        fun getInstance(database: PokechuDatabase?): DataRepositoryEvolutions? {
+        fun getInstance(database: PokechuDatabase): DataRepositoryEvolutions? {
             if (sInstance == null) {
                 synchronized(DataRepositoryEvolutions::class.java) {
                     if (sInstance == null) {
-                        sInstance =
-                            database?.let { DataRepositoryEvolutions(it) }
+                        sInstance = DataRepositoryEvolutions(database)
                     }
                 }
             }
