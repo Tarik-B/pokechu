@@ -106,31 +106,31 @@ class ListParser:
                     paldea_id = ids[pokemon_index]
                     local_ids.append({Region.PALDEA: paldea_id})
 
-            thumbnail_url = thumbnail_urls[pokemon_index]
-            url = urllib.parse.unquote(thumbnail_url)
-            thumbnail_filename = os.path.basename(url)
-
             # Download thumbnail
             if download_thumbnails:
-                self.download_thumbnail(thumbnail_url)
+                thumbnail_url = thumbnail_urls[pokemon_index]
+
+                self.download_thumbnail(thumbnail_url, str(int(unique_id)))
 
             # Add pokemon to pokedex
-            self._pokedex.add_pokemon_entry(unique_id, names, thumbnail_filename)
-
-            # self.fetch_pokemon_page(unique_id, name_fr)
+            self._pokedex.add_pokemon_entry(unique_id, names)
 
 
-    def download_thumbnail(self, thumbnail_url: str):
+    def download_thumbnail(self, thumbnail_url: str, thumbnail_id: str):
         base_url = "https://www.pokepedia.fr"
         full_url = base_url + thumbnail_url
 
         url = urllib.parse.unquote(full_url)
         file_name = os.path.basename(url)
+        file_name = thumbnail_id + os.path.splitext(file_name)[1]
         file_path = "./output/images/pokemons/" + file_name
 
         # Check if file exists before dl it
         if not os.path.exists(file_path):
             resp = requests.get(full_url)
+
+            dir_path = os.path.dirname(file_path)
+            os.makedirs(dir_path, exist_ok=True)
 
             with open(file_path, "wb") as file:
                 file.write(resp.content)

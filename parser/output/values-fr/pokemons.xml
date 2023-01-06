@@ -5,6 +5,7 @@
 <!-- *********************************************************************** -->
 
 <resources>
+    <string name="pokemon_name_0">MissingNo.</string>
     <string name="pokemon_name_1">Bulbizarre</string>
     <string name="pokemon_name_2">Herbizarre</string>
     <string name="pokemon_name_3">Florizarre</string>

@@ -5,6 +5,7 @@
 <!-- *********************************************************************** -->
 
 <resources>
+    <string name="pokemon_name_0"/>
     <string name="pokemon_name_1"/>
     <string name="pokemon_name_2"/>
     <string name="pokemon_name_3"/>

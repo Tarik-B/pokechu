@@ -1,5 +1,7 @@
 -- SQLite
 
+SELECT * FROM pokemons;
+
 -- SELECT COUNT(id) FROM pokemons;
 
 -- Pokemon ids by region
@@ -81,11 +83,12 @@
 -- ;
 
 -- Pokemons (list) types
-SELECT pokemons.id as pokemon_id, GROUP_CONCAT(type_id) as type_ids
-FROM pokemons
-LEFT JOIN pokemon_types ON pokemon_types.pokemon_id = pokemons.id
-GROUP BY pokemons.id
-;
+-- SELECT pokemons.id as pokemon_id, GROUP_CONCAT(type_id) as type_ids
+-- FROM pokemons
+-- LEFT JOIN pokemon_types ON pokemon_types.pokemon_id = pokemons.id
+-- WHERE pokemons.id IN (2,3)
+-- GROUP BY pokemons.id
+-- ;
 
 
 -- SELECT *

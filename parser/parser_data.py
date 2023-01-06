@@ -66,6 +66,7 @@ class DataParser:
         html = utils.download_page(full_url)
         if not html:
             print(f"error while downloading page '{full_url}'")
+            return
 
         # Get pokeapi data
         # pokeapi_url = "https://pokeapi.co/api/v2/pokemon/" + str(int(unique_id))

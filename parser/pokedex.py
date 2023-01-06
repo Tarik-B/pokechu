@@ -6,10 +6,9 @@ from data import Region
 
 
 class Pokemon:
-    def __init__(self, unique_id: int, names: dict, thumbnail_filename: str):
+    def __init__(self, unique_id: int, names: dict):
         self._unique_id = unique_id
         self._names = names # dict {'fr': string, 'en': string}
-        self._thumbnail_filename = thumbnail_filename
         self._ids = list() # of dict {'type': Region, 'id': int}
         self._types = list() # of PokemonType
         self._height = -1.0 # in cm
@@ -53,8 +52,8 @@ class Pokedex:
     def get_pokemon_names_keys(self) -> list: return self._pokemon_names.keys()
     def get_pokemon_names(self, key: str) -> dict: return self._pokemon_names[key] if key in self._pokemon_names else None
 
-    def add_pokemon_entry(self, unique_id: str, names: dict, thumbnail_filename: str):
-        self._pokemons[unique_id] = Pokemon(int(unique_id), names, thumbnail_filename)
+    def add_pokemon_entry(self, unique_id: str, names: dict):
+        self._pokemons[unique_id] = Pokemon(int(unique_id), names)
 
         self._pokemon_names[unique_id] = names
 

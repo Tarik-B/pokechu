@@ -35,6 +35,8 @@ if __name__ == "__main__":
     total_start_time = time.time()
 
     pokedex = Pokedex(Region.NATIONAL)
+    pokedex.add_pokemon_entry("000", {"fr": "MissingNo.", "en": "MissingNo."})
+    pokedex.add_pokemon_ids("000", [(Region.KANTO, "000")])
 
     ##################################################
     block_start_time = time.time()
