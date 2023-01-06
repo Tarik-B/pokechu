@@ -2,7 +2,9 @@
 
 Yet Another Pokédex App, without spoilers
 
-<img src="screenshot.png" width="200">
+<p align="center">
+    <img src="screenshots/screenshot_main.png" width="200">
+</p>
 
 Folders:
 
@@ -40,6 +42,29 @@ Code hierarchy:
 - ui/: activities, fragments, etc.
 - utils/: static utilitary functions
 - viewmodel/: MVVM viewmodels classes
+
+## Gallery
+
+Main Pokemon list:
+
+<img src="screenshots/screenshot_regions.png" width="150">
+<img src="screenshots/screenshot_main_list.png" width="150">
+<img src="screenshots/screenshot_main_settings.png" width="150">
+<img src="screenshots/screenshot_fastscroll.png" width="150">
+
+Search:
+
+<img src="screenshots/screenshot_search.png" width="150">
+<img src="screenshots/screenshot_id_search.png" width="150">
+
+Details and evolution tree:
+
+<img src="screenshots/screenshot_details.png" width="150">
+<img src="screenshots/screenshot_tree.png" width="150">
+
+Settings:
+
+<img src="screenshots/screenshot_settings.png" width="150">
 
 ## Special thanks
 
