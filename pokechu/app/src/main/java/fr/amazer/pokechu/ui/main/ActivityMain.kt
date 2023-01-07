@@ -186,8 +186,10 @@ class ActivityMain : BaseActivity() {
 
         // Initialize menu item checked status according to preference value
         MENU_ITEM_ID_TO_PREFERENCE_TYPE.forEach { (itemId, preferenceType) ->
-            val menuItem = menu.findItem(itemId)
-            menuItem.isChecked = SettingsManager.getSetting(preferenceType)
+            viewModel.getLiveSetting<Boolean>(preferenceType).observe(this) { value ->
+                val menuItem = menu.findItem(itemId)
+                menuItem.isChecked = SettingsManager.getSetting(preferenceType)
+            }
         }
 
         return true
@@ -211,6 +213,15 @@ class ActivityMain : BaseActivity() {
             in MENU_ITEM_ID_TO_PREFERENCE_TYPE -> {
                 item.isChecked = !item.isChecked
                 SettingsManager.setSetting(MENU_ITEM_ID_TO_PREFERENCE_TYPE[item.itemId]!!, item.isChecked)
+
+                // If show discovered/captured only is checked, uncheck the other
+                if (item.isChecked) {
+                    if (MENU_ITEM_ID_TO_PREFERENCE_TYPE[item.itemId]!! == PreferenceType.SHOW_DISCOVERED_ONLY)
+                        SettingsManager.setSetting(PreferenceType.SHOW_CAPTURED_ONLY, false)
+                    else if (MENU_ITEM_ID_TO_PREFERENCE_TYPE[item.itemId]!! == PreferenceType.SHOW_CAPTURED_ONLY)
+                        SettingsManager.setSetting(PreferenceType.SHOW_DISCOVERED_ONLY, false)
+                }
+
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

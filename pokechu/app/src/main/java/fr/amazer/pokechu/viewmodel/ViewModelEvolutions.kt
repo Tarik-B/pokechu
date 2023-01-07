@@ -19,7 +19,7 @@ class ViewModelEvolutions(application: Application) : AndroidViewModel(applicati
     private var repositoryPreferences: DataRepositoryPreferences
 
     // TODO should not be initialized to 0 and initial id should be passed as constructor param
-    private var pokemonId: MutableLiveData<Int> = MutableLiveData(0)
+    private var pokemonId: MutableLiveData<Int> = MutableLiveData()
     private val evolutionChain: MediatorLiveData<List<BaseIdEvolvedIdCondition>>
     private val evolutionData: MediatorLiveData<List<ViewModelEvolutionData>>
 

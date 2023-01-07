@@ -28,8 +28,9 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
     private val pokemons: LiveData<List<NationalIdLocalId>>
     private val pokemonTypes: LiveData<List<PokemonIdTypesId>>
     private val pokemonData: MediatorLiveData<List<ViewModelPokemonListData>>
-    private val discoveredCount: MediatorLiveData<Int>
-    private val capturedCount: MediatorLiveData<Int>
+    private val totalCount: MutableLiveData<Int> = MutableLiveData(0)
+    private val discoveredCount: MutableLiveData<Int> = MutableLiveData(0)
+    private val capturedCount: MutableLiveData<Int> = MutableLiveData(0)
 
     init {
         (application as PokechuApplication) // TODO find out how this works
@@ -92,6 +93,8 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
             val filteredIds = ids.filter { isPokemonDisplayed(it.pokemon_id) }
             val filteredTypes = types.filter { isPokemonDisplayed(it.pokemon_id) }
 
+            var countDiscovered = 0
+            var countCaptured = 0
             val dataList = List(filteredIds.size) { i ->
                 val pokemonId = filteredIds[i].pokemon_id
 
@@ -104,16 +107,29 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
                     AssetUtils.getTypeThumbnailPathRound(PokemonType.values()[filteredTypes[i].type_id_list[index].ordinal])
                 }
 
+                val isDiscovered = SettingsManager.getSetting<Boolean>(PreferenceType.DISCOVERED, pokemonId.toString())
+                val isCaptured = SettingsManager.getSetting<Boolean>(PreferenceType.CAPTURED, pokemonId.toString())
+
+                if (isDiscovered)
+                    ++countDiscovered
+                if (isCaptured)
+                    ++countCaptured
+
                 ViewModelPokemonListData(
                     pokemonId = pokemonId,
                     localId = filteredIds[i].local_id,
                     names = names,
-                    isDiscovered = SettingsManager.getSetting<Boolean>(PreferenceType.DISCOVERED, pokemonId.toString()),
-                    isCaptured = SettingsManager.getSetting<Boolean>(PreferenceType.CAPTURED, pokemonId.toString()),
+                    isDiscovered = isDiscovered,
+                    isCaptured = isCaptured,
                     thumbnailPath = AssetUtils.getPokemonThumbnailPath(pokemonId),
                     typeImagePaths = typeImagePaths,
                 )
             }
+
+            // Discovered/captured counts
+            discoveredCount.postValue(countDiscovered)
+            capturedCount.postValue(countCaptured)
+            totalCount.postValue(dataList.size)
 
             return dataList
         }
@@ -140,24 +156,13 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
         pokemonData.addSource(pokemonTypes) { _ -> checkAndCombinePokemonData() }
         pokemonData.addSource(otherFilters) { _ -> checkAndCombinePokemonData() }
         pokemonData.addSource(otherParams) { _ -> checkAndCombinePokemonData() }
-
-        // Discovered/captured counts
-        discoveredCount = MediatorLiveData()
-        discoveredCount.addSource(repositoryPreferences.getLivePrefixedSettings<Boolean>(PreferenceType.DISCOVERED)) { map ->
-            discoveredCount.postValue(map.count { it.value == true })
-        }
-
-        capturedCount = MediatorLiveData()
-        capturedCount.addSource(repositoryPreferences.getLivePrefixedSettings<Boolean>(PreferenceType.CAPTURED)) { map ->
-            capturedCount.postValue(map.count { it.value == true })
-        }
     }
 
     fun getPokemonData(): LiveData<List<ViewModelPokemonListData>> {
         return pokemonData
     }
     fun getPokemonCount(): LiveData<Int> {
-        return repository.getPokemonCount()
+        return totalCount
     }
     fun getPokemonDiscoveredCount(): LiveData<Int> {
         return discoveredCount
@@ -168,16 +173,25 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
     fun localToNationalId(region_id: Int, local_id: Int): LiveData<Int> {
         return repository.localToNationalId(region_id, local_id)
     }
+    fun <T: Any> getLiveSetting(type: PreferenceType): LivePreference<T> {
+        return repositoryPreferences.getLiveSetting(type)
+    }
     fun getSelectedRegion(): LivePreference<Int> {
-        return repositoryPreferences.getLiveSetting<Int>(PreferenceType.SELECTED_REGION)
+        return repositoryPreferences.getLiveSetting(PreferenceType.SELECTED_REGION)
     }
     fun getShowUndiscoveredInfo(): LivePreference<Boolean> {
-        return repositoryPreferences.getLiveSetting<Boolean>(PreferenceType.SHOW_UNDISCOVERED_INFO)
+        return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_UNDISCOVERED_INFO)
+    }
+    fun getShowDiscoveredOnly(): LivePreference<Boolean> {
+        return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_DISCOVERED_ONLY)
+    }
+    fun getShowCapturedOnly(): LivePreference<Boolean> {
+        return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_CAPTURED_ONLY)
     }
     fun getDataLanguage(): LivePreference<String> {
-        return repositoryPreferences.getLiveSetting<String>(PreferenceType.DATA_LANGUAGE)
+        return repositoryPreferences.getLiveSetting(PreferenceType.DATA_LANGUAGE)
     }
     fun getListViewEnabled(): LivePreference<Boolean> {
-        return repositoryPreferences.getLiveSetting<Boolean>(PreferenceType.LIST_VIEW)
+        return repositoryPreferences.getLiveSetting(PreferenceType.LIST_VIEW)
     }
 }

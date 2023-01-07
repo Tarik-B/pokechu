@@ -17,7 +17,7 @@ class ViewModelPokemon(application: Application) : AndroidViewModel(application)
     private var repositoryPreferences: DataRepositoryPreferences
 
     // TODO should not be initialized to 0 and initial id should be passed as constructor param
-    private var pokemonId: MutableLiveData<Int> = MutableLiveData(0)
+    private var pokemonId: MutableLiveData<Int> = MutableLiveData()
     private val pokemon: LiveData<EntityPokemon>
     private val pokemonTypes: LiveData<List<Int>>
 

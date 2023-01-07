@@ -35,7 +35,7 @@ class ActivityAbout : BaseActivity() {
         binding.logo.setOnClickListener { view ->
             // Easter egg
             ++clickCount
-            SettingsManager.setSetting(PreferenceType.DISPLAY_ZERO, (clickCount > requiredCount))
+            SettingsManager.setSetting(PreferenceType.DISPLAY_ZERO, (clickCount >= requiredCount))
             if (clickCount == requiredCount)
                 UIUtils.createDefaultParticles(this, view, R.drawable.particle_pokeball, 15, 5000L )
         }
