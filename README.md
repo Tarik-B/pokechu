@@ -6,6 +6,37 @@ Yet Another Pokédex App, without spoilers
     <img src="screenshots/screenshot_main.png" width="200">
 </p>
 
+
+## Features
+
+## TODO
+
+Major:
+- [ ] Filter by games
+- [ ] List of games in pokemon details
+- [ ] Add pokedex official description(s?) in details
+- [ ] Add pokemon cries (trigger on opening details?)
+- [ ] Pokemon variants (Alola, mega evolutions, gigamax, etc.)
+- [ ] Filter main list by types/etc.
+
+Minor:
+- [ ] Find a way to display all searched fields of pokemon when searching
+- [ ] Auto close keyboard when clicking on main list while searching
+- [ ] Decrease height of list (not grid) items to make list view actually useful (display more items than grid view)
+
+## Known bugs
+
+- [ ] Bottom sheet overlaps bottom (and thus also the end) of main list
+- [ ] Main activity something refreshes (loading overlay + list transition animation) when coming back from details(/settings?) for no reason
+- [ ] Captured/discovered count icons not vertically centered
+- [ ] "Follow system" theme follows system theme as it was on app launch
+- [ ] List view holders not fading after turning on "show undiscovered info"
+- [ ] Details thumbnail/infos not fading
+- [ ] Tree view holders not fading either
+- [X] Everything that works
+
+## Repository hierarchy
+
 Folders:
 
 - assets/: mostly original svgs of Google icons
