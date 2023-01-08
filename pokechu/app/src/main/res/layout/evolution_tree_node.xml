@@ -28,8 +28,9 @@
                 android:layout_width="56.0dip"
                 android:layout_height="56.0dip"
                 assetPath="@{imagePath}"
-                tint="@{isDiscovered? @color/transparent : @color/black}"
-                android:tintMode="multiply"/>
+                tint="@{isDiscovered? @color/transparent : @color/pokechuPrimaryDarker}"
+                android:tintMode="multiply"
+                android:alpha="@{isDiscovered? 1.0f : 0.5f}"/>
 
             <TextView
                 android:id="@+id/textName"

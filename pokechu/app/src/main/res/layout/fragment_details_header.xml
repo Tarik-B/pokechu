@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <import type="java.util.List"/>
@@ -113,8 +112,9 @@
             android:layout_weight="1"
             android:padding="20dip"
             assetPath="@{imagePath}"
-            tint="@{isDiscovered? @color/transparent : @color/black}"
+            tint="@{isDiscovered? @color/transparent : @color/pokechuPrimaryDarker}"
             android:tintMode="multiply"
+            android:alpha="@{isDiscovered? 1.0f : 0.5f}"
             android:scaleType="fitCenter"/>
 
     </LinearLayout>
