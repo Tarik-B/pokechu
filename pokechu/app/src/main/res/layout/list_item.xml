@@ -9,7 +9,8 @@
         <import type="android.graphics.Bitmap"/>
 
         <variable name="imagePath"      type="String" />
-        <variable name="text"           type="String" />
+        <variable name="id"           type="String" />
+        <variable name="name"           type="String" />
         <variable name="filter"         type="String" />
         <variable name="isDiscovered"   type="Boolean" />
         <variable name="isCaptured"     type="Boolean" />
@@ -24,12 +25,11 @@
         android:layout_marginTop="@dimen/main_card_margin_vertical"
         android:layout_marginEnd="@dimen/my_apps_card_margin_horizontal"
         android:layout_marginBottom="@dimen/main_card_margin_vertical"
-        android:background="#ffffffff"
         android:foreground="?selectableItemBackground"
         app:cardCornerRadius="@dimen/card_recycler_corner_radius"
         app:cardElevation="@dimen/card_recycler_elevation"
-        app:strokeColor="@color/colorAccent"
-        app:strokeWidth="@{isCaptured? 10 : 0}">
+        app:strokeColor="@{isCaptured? @color/pokechuAccent : @color/pokechuPrimaryDarker}"
+        app:strokeWidth="@{isCaptured? 10 : 5}">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -49,9 +49,10 @@
                     android:layout_width="56.0dip"
                     android:layout_height="56.0dip"
                     assetPath="@{imagePath}"
-                    tint="@{isDiscovered? @color/transparent : @color/black}"
+                    tint="@{isDiscovered? @color/transparent : @color/pokechuPrimaryDarker}"
                     android:tintMode="multiply"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitCenter"
+                    android:alpha="@{isDiscovered? 1.0f : 0.5f}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -66,9 +67,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
                     android:layout_marginBottom="@dimen/text_margin_very_small"
-                    filteredText="@{text}"
+                    filteredText="@{`#` + id + ` - ` + name}"
                     filter="@{filter}"
-                    filterColor="@{@color/colorPrimary}"
+                    filterColor="@{@color/pokechuPrimary}"
                     android:textSize="17.5sp"/>
 
                 <LinearLayout

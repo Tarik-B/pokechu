@@ -9,4 +9,20 @@
         <item>en</item>
         <item>fr</item>
     </string-array>
+
+    <string-array name="night_mode_entries">
+        <item>@string/settings_night_mode_off</item>
+        <item>@string/settings_night_mode_on</item>
+        <item>@string/settings_night_mode_system</item>
+    </string-array>
+
+    <!-- TODO find a way to avoid having to keep this in sync with values in NightMode enum -->
+    <!-- (integer-array cannot be used with preferences, trigger a NullPointerException -->
+    <!-- when loading the listpreference) -->
+    <string-array name="night_mode_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>

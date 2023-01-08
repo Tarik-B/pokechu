@@ -52,10 +52,6 @@ class FragmentList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUI()
-
-        loadData()
-
         viewModel.getListViewEnabled().observe(viewLifecycleOwner) { enabled ->
             val gridEnabled = !enabled
             setGridEnabled(gridEnabled)
@@ -75,6 +71,11 @@ class FragmentList : Fragment() {
         viewModel.getDataLanguage().observe(viewLifecycleOwner) {
             adapter?.notifyDataSetChanged()
         }
+
+        setupUI()
+
+        loadData()
+
 
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="backgroundDefault">@color/m3_sys_color_dark_background</color>
+    <color name="backgroundInvert">@color/m3_sys_color_light_background</color>
+</resources>

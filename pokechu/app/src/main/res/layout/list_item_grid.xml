@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.util.List"/>
+        <import type="android.graphics.Bitmap"/>
+
+        <variable name="imagePath"      type="String" />
+        <variable name="id"           type="String" />
+        <variable name="name"           type="String" />
+        <variable name="filter"         type="String" />
+        <variable name="isDiscovered"   type="Boolean" />
+        <variable name="isCaptured"     type="Boolean" />
+        <variable name="typeBitmaps"    type="List&lt;Bitmap>" />
+        <variable name="typeResIds"     type="List&lt;Integer>" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/my_apps_card_margin_horizontal"
+        android:layout_marginTop="@dimen/main_card_margin_vertical"
+        android:layout_marginEnd="@dimen/my_apps_card_margin_horizontal"
+        android:layout_marginBottom="@dimen/main_card_margin_vertical"
+        app:cardCornerRadius="@dimen/card_recycler_corner_radius"
+        app:cardElevation="@dimen/card_recycler_elevation"
+        app:strokeColor="@{isCaptured? @color/pokechuAccent : @color/pokechuPrimaryDarker}"
+        app:strokeWidth="@{isCaptured? 10 : 5}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/text_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:gravity="center"
+                android:orientation="vertical"
+                bind:ignore="MissingConstraints">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="6"
+                    android:layout_height="0dip"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:layout_gravity="top">
+
+                        <ImageView
+                            android:id="@+id/imagePokeballCaptured"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitCenter"
+                            android:src="@{isCaptured ? @drawable/ic_pokeball : @drawable/ic_pokeball_empty}" />
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageThumbnail"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            assetPath="@{imagePath}"
+                            tint="@{isDiscovered? @color/transparent : @color/pokechuPrimaryDarker}"
+                            android:tintMode="multiply"
+                            android:alpha="@{isDiscovered? 1.0f : 0.5f}"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:layout_gravity="top"
+                        android:orientation="vertical"
+                        typeBitmaps="@{typeBitmaps}"
+                        typeResIds="@{typeResIds}"
+                        typeItemResId="@{@layout/main_type_item}">
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dip"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="15sp"
+                    filteredText="@{name}"
+                    filter="@{filter}"
+                    filterColor="@{@color/pokechuPrimary}"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dip"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="15sp"
+                    filteredText="@{`#` + id}"
+                    filter="@{filter}"
+                    filterColor="@{@color/pokechuPrimary}"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

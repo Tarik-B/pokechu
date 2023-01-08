@@ -16,50 +16,35 @@
             android:exported="false"
             android:label="@string/title_activity_about"
             android:theme="@style/Theme.Pokechu">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value=""/>
         </activity>
         <activity
             android:name="fr.amazer.pokechu.ui.about.ActivityAbout"
             android:exported="false"
             android:label="@string/title_activity_about">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name="fr.amazer.pokechu.ui.settings.ActivitySettings"
             android:configChanges="locale"
             android:exported="false"
             android:label="@string/title_activity_settings">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+<!--            android:configChanges="uiMode"-->
         </activity>
         <activity
             android:name="fr.amazer.pokechu.ui.details.ActivityDetails"
             android:exported="false"
             android:label="@string/placeholder_string"
             android:theme="@style/Theme.Pokechu.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name="fr.amazer.pokechu.ui.main.ActivityMain"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Pokechu">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
     </application>
 

@@ -17,7 +17,7 @@
         app:behavior_hideable="false"
         app:behavior_peekHeight="50dp"
         android:maxHeight="500dp"
-        android:background="@color/cardview_light_background">
+        android:background="@color/backgroundDefault">
 
         <!-- Drag handle for accessibility -->
         <com.google.android.material.bottomsheet.BottomSheetDragHandleView

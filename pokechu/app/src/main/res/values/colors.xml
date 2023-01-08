@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--   color for the app bar and other primary UI elements -->
-    <color name="colorPrimary">#F44336</color>
-
+    <color name="pokechuPrimary">#F44336</color>
     <!--   a darker variant of the primary color, used for
            the status bar (on Android 5.0+) and contextual app bars -->
-    <color name="colorPrimaryDark">#B71C1C</color>
-
+    <color name="pokechuPrimaryDark">#B71C1C</color>
+    <color name="pokechuPrimaryDarker">#801313</color>
     <!--   a secondary color for controls like checkboxes and text fields -->
-    <color name="colorAccent">#E57373</color>*
+    <color name="pokechuAccent">#E57373</color>
 
-    <color name="backgroundDefault">#fffbfe</color>
+    <color name="backgroundDefault">@color/m3_sys_color_light_background</color>
+    <color name="backgroundInvert">@color/m3_sys_color_dark_background</color>
 
     <color name="black">#000000</color>
+    <color name="grey">#FF797679</color>
     <color name="transparent">#00FFFFFF</color>
-
 </resources>

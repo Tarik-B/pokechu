@@ -9,8 +9,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-import fr.amazer.pokechu.databinding.ListGridItemBinding
 import fr.amazer.pokechu.databinding.ListItemBinding
+import fr.amazer.pokechu.databinding.ListItemGridBinding
 import fr.amazer.pokechu.viewmodel.ViewModelPokemonListData
 
 val diffUtil = object : DiffUtil.ItemCallback<ListViewHolderData>(){
@@ -62,7 +62,7 @@ class ListGridAdapter internal constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
 
         val binding: ViewDataBinding = when (viewType) {
-            ViewType.GRID.ordinal -> ListGridItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ViewType.GRID.ordinal -> ListItemGridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             ViewType.LIST.ordinal -> ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             else -> throw Exception()
         }
@@ -150,8 +150,8 @@ class ListGridAdapter internal constructor(
 
     inner class ListFilter : Filter() {
 
-        public var newOriginalList: List<ListViewHolderData>? = null
-        public var callback: Runnable? = null
+        var newOriginalList: List<ListViewHolderData>? = null
+        var callback: Runnable? = null
 
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             filterPattern = constraint?.toString() ?: ""

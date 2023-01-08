@@ -1,5 +1,6 @@
 package fr.amazer.pokechu.enums
 
+import androidx.appcompat.app.AppCompatDelegate
 import java.util.*
 
 enum class PreferenceType {
@@ -12,6 +13,13 @@ enum class PreferenceType {
     CAPTURED,
     DISCOVERED,
     DISPLAY_ZERO,
+    NIGHT_MODE,
+}
+
+enum class NightMode {
+    OFF,
+    ON,
+    SYSTEM,
 }
 
 object PreferenceData {
@@ -24,7 +32,14 @@ object PreferenceData {
         PreferenceType.SELECTED_REGION         to Pair("setting_selected_region", Region.NATIONAL.ordinal),
         PreferenceType.DISCOVERED              to Pair("pokemon_discovered_", false),
         PreferenceType.CAPTURED                to Pair("pokemon_captured_", false),
-        PreferenceType.DISPLAY_ZERO            to Pair("display_zero", false),
+        PreferenceType.DISPLAY_ZERO            to Pair("setting_display_zero", false),
+        PreferenceType.NIGHT_MODE              to Pair("setting_night_mode", NightMode.SYSTEM.ordinal.toString()),
+    )
+
+    private val nightModeToAppCompatMap = mapOf(
+        NightMode.OFF to AppCompatDelegate.MODE_NIGHT_NO,
+        NightMode.ON to AppCompatDelegate.MODE_NIGHT_YES,
+        NightMode.SYSTEM to AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
     )
 
     fun getKey(preference: PreferenceType): String {
@@ -32,5 +47,8 @@ object PreferenceData {
     }
     fun getDefaultValue(preference: PreferenceType): Any? {
         return data[preference]!!.second
+    }
+    fun nightModeToAppCompat(value: NightMode): Int {
+        return nightModeToAppCompatMap[value]!!
     }
 }

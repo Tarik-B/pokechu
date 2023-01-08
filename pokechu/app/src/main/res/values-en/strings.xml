@@ -35,6 +35,11 @@
     <string name="language_french">French</string>
 
     <!-- Settings activity -->
+    <string name="settings_general">General</string>
+    <string name="settings_night_mode">Theme</string>
+    <string name="settings_night_mode_off">Light</string>
+    <string name="settings_night_mode_on">Dark</string>
+    <string name="settings_night_mode_system">Follow system</string>
     <string name="settings_language">Languages</string>
     <string name="settings_app_language">Application language</string>
     <string name="settings_data_language">Data language</string>

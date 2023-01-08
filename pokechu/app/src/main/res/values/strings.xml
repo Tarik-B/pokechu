@@ -38,6 +38,11 @@
 
     <!-- Settings activity -->
     <string name="title_activity_settings" translatable="false">@string/menu_main_settings</string>
+    <string name="settings_general" />
+    <string name="settings_night_mode" />
+    <string name="settings_night_mode_off" />
+    <string name="settings_night_mode_on" />
+    <string name="settings_night_mode_system" />
     <string name="settings_language" />
     <string name="settings_app_language" />
     <string name="settings_data_language" />

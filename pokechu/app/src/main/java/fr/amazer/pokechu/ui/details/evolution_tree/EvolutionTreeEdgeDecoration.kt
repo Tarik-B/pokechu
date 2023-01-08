@@ -7,6 +7,7 @@ import dev.bandb.graphview.AbstractGraphAdapter
 import dev.bandb.graphview.graph.Node
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerConfiguration
 import dev.bandb.graphview.layouts.tree.BuchheimWalkerLayoutManager
+import fr.amazer.pokechu.R
 import fr.amazer.pokechu.enums.EvolutionCondition
 import fr.amazer.pokechu.enums.EvolutionItem
 import fr.amazer.pokechu.managers.LocalizationManager
@@ -33,6 +34,11 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
 
+        context = parent.context
+        canvas = c
+
+        linePaint.color = context.resources.getColor(R.color.backgroundInvert);
+
         val adapter = parent.adapter
         if (parent.layoutManager == null || adapter == null)
             return
@@ -44,9 +50,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
         if (layout !is BuchheimWalkerLayoutManager)
             throw RuntimeException("TreeEdgeDecoration only works with ${BuchheimWalkerLayoutManager::class.simpleName}")
 
-        context = parent.context
         configuration = layout.configuration
-        canvas = c
 
         val graph = adapter.graph
         if (graph != null && graph.hasNodes()) {
@@ -199,7 +203,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
             }
             //(text, x, y, linePaint )
         }
-        linePaint.colorFilter = ColorFilter()
+        linePaint.colorFilter = null
 
         // Debug  line
 //        canvas.drawLine(x, y, x+textWidth, y, linePaint)

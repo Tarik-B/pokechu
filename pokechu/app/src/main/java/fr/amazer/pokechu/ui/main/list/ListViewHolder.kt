@@ -5,8 +5,8 @@ import android.graphics.Bitmap
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.databinding.ListGridItemBinding
 import fr.amazer.pokechu.databinding.ListItemBinding
+import fr.amazer.pokechu.databinding.ListItemGridBinding
 import fr.amazer.pokechu.enums.PreferenceType
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
@@ -40,13 +40,13 @@ class ListViewHolder(
         val nameText: String
         if (!holderData.filter.isEmpty() || data.isDiscovered || showUndiscoveredInfo) {
             val dataLanguage = SettingsManager.getSetting<String>(PreferenceType.DATA_LANGUAGE)
-            nameText = "#${data.localId} - ${data.names[dataLanguage]}"
+            nameText = data.names[dataLanguage]!!
 //            nameText = "#${data.localId} - ${localizedName}"
         }
         else {
-            nameText = "#${data.localId} - ?"
+            nameText = "?"
         }
-        setText(nameText, holderData.filter)
+        setText(nameText, data.localId.toString(), holderData.filter)
 
         // Add type images
         if (data.isDiscovered || showUndiscoveredInfo) {
@@ -82,45 +82,47 @@ class ListViewHolder(
         setIsCaptured(isCaptured)
     }
 
-    // TODO find a way for ListItemBinding and ListGridItemBinding to have a common interface (other than ViewBinding)
+    // TODO find a way for ListItemBinding and ListItemGridBinding to have a common interface (other than ViewBinding)
     fun setImagePath(imgPath: String) {
         if (binding is ListItemBinding)
             binding.imagePath = imgPath
-        else if (binding is ListGridItemBinding)
+        else if (binding is ListItemGridBinding)
             binding.imagePath = imgPath
     }
-    fun setText(text: String, filter: String) {
+    fun setText(name: String, id: String, filter: String) {
         if (binding is ListItemBinding) {
-            binding.text = text
+            binding.name = name
+            binding.id = id
             binding.filter = filter
         }
-        else if (binding is ListGridItemBinding) {
-            binding.text = text
+        else if (binding is ListItemGridBinding) {
+            binding.name = name
+            binding.id = id
             binding.filter = filter
         }
     }
     private fun setIsDiscovered(discovered: Boolean) {
         if (binding is ListItemBinding)
             binding.isDiscovered = discovered
-        else if (binding is ListGridItemBinding)
+        else if (binding is ListItemGridBinding)
             binding.isDiscovered = discovered
     }
     private fun setIsCaptured(captured: Boolean) {
         if (binding is ListItemBinding)
             binding.isCaptured = captured
-        else if (binding is ListGridItemBinding)
+        else if (binding is ListItemGridBinding)
             binding.isCaptured = captured
     }
     private fun setTypeBitmaps(types: List<Bitmap>?) {
         if (binding is ListItemBinding)
             binding.typeBitmaps = types
-        else if (binding is ListGridItemBinding)
+        else if (binding is ListItemGridBinding)
             binding.typeBitmaps = types
     }
     private fun setTypeResIds(types: List<Int>?) {
         if (binding is ListItemBinding)
             binding.typeResIds = types
-        else if (binding is ListGridItemBinding)
+        else if (binding is ListItemGridBinding)
             binding.typeResIds = types
     }
 }

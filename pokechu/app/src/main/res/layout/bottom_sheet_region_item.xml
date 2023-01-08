@@ -15,9 +15,8 @@
         app:cardCornerRadius="@dimen/card_recycler_corner_radius"
         app:cardElevation="@dimen/card_recycler_elevation"
         android:id="@+id/rootCardView"
-        app:strokeColor="@color/colorAccent"
-        app:strokeWidth="0dp"
-        android:theme="@style/Theme.MaterialComponents.Light">
+        app:strokeColor="@color/pokechuAccent"
+        app:strokeWidth="0dp">
 
         <RelativeLayout
             android:layout_width="123dip"

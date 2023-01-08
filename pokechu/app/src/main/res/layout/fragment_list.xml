@@ -18,13 +18,13 @@
         app:fabCustomSize="46dp"
         app:fabSize="auto"
 
-        android:src="@drawable/ic_baseline_arrow_upward"
+        android:src="@drawable/outline_keyboard_arrow_up_24"
         android:scaleType="center"
         app:maxImageSize="23dp"
 
-        android:alpha="0.5"
-        app:backgroundTint="@color/colorPrimary"
-        android:visibility="gone"/>
+        app:backgroundTint="@color/pokechuPrimary"
+        android:visibility="gone"
+        android:alpha="0.75"/>
 
     <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
         android:id="@+id/recyclerView"
@@ -32,10 +32,11 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.FragmentList"
 
-        app:fastScrollPopupBgColor="@color/colorAccent"
-        app:fastScrollThumbColor="@color/colorAccent"
+        app:fastScrollPopupBgColor="@color/pokechuAccent"
+        app:fastScrollThumbColor="@color/pokechuAccent"
+        app:fastScrollPopupTextColor="@color/black"
 
-        app:fastScrollPopupTextSize="23sp"
-        app:fastScrollPopupBackgroundSize="40dp"/>
+        app:fastScrollPopupTextSize="15sp"
+        app:fastScrollPopupBackgroundSize="30dp"/>
 
     </RelativeLayout>
