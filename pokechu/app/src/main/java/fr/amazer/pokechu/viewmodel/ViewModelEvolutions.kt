@@ -18,7 +18,7 @@ class ViewModelEvolutions(application: Application) : AndroidViewModel(applicati
     private var repository: DataRepositoryEvolutions
     private var repositoryPreferences: DataRepositoryPreferences
 
-    // TODO should not be initialized to 0 and initial id should be passed as constructor param
+    // TODO initial id should be passed as constructor param
     private var pokemonId: MutableLiveData<Int> = MutableLiveData()
     private val evolutionChain: MediatorLiveData<List<BaseIdEvolvedIdCondition>>
     private val evolutionData: MediatorLiveData<List<ViewModelEvolutionData>>
@@ -28,6 +28,7 @@ class ViewModelEvolutions(application: Application) : AndroidViewModel(applicati
         repository = application.getRepositoryEvolutions()!!
         repositoryPreferences = application.getRepositoryPreference()!!
 
+        // TODO replace all this by a single sqlite query?
         evolutionChain = Transformations.switchMap(pokemonId) { id ->
             Transformations.switchMap(repository.getEvolutionRoot(id)) { rootId ->
                 val actualRootId = if (rootId != 0) rootId else id
@@ -52,9 +53,6 @@ class ViewModelEvolutions(application: Application) : AndroidViewModel(applicati
                 return null
             }
 
-            if ( pokemonId == 0)
-                return null
-
             val evolutionData = mutableListOf<ViewModelEvolutionData>()
 
             fun buildEvolutionData(id: Int, evolution: BaseIdEvolvedIdCondition?): ViewModelEvolutionData {
@@ -78,10 +76,12 @@ class ViewModelEvolutions(application: Application) : AndroidViewModel(applicati
                 )
             }
 
+            // Add root
             val rootId = if (evolutions.isNotEmpty()) evolutions[0].base_id else pokemonId
             val rootData = buildEvolutionData(rootId, null)
             evolutionData.add(rootData)
 
+            // Then the others
             evolutions.forEach { evolution ->
                 val nodeData = buildEvolutionData(evolution.evolved_id, evolution)
                 evolutionData.add(nodeData)

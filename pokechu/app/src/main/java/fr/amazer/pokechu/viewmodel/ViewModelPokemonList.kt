@@ -37,6 +37,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
         repository = application.getRepositoryPokemons()!!
         repositoryPreferences = application.getRepositoryPreference()!!
 
+        // TODO replace all this by a single sqlite query?
         // Get pokemon list and types
         val selectedRegionSetting = repositoryPreferences.getLiveSetting<Int>(PreferenceType.SELECTED_REGION)
         pokemons = Transformations.switchMap(selectedRegionSetting) { selectedRegion ->
