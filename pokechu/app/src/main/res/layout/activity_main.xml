@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -10,7 +11,7 @@
         <variable name="isLoading"          type="Boolean" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -34,11 +35,14 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:orientation="vertical"
-                tools:ignore="MissingConstraints"
-                app:layout_constraintBottom_toTopOf="@id/fragment_bottom_sheet">
+                app:layout_constraintBottom_toBottomOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -57,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/text_margin_very_small"
                         android:layout_marginRight="@dimen/text_margin"
-                        android:text="@{capturedCount + ` / ` + totalCount}"/>
+                        android:text="@{capturedCount + ` / ` + totalCount}" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -69,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/text_margin_very_small"
                         android:layout_marginRight="@dimen/text_margin"
-                        android:text="@{discoveredCount + ` / ` + totalCount}"/>
+                        android:text="@{discoveredCount + ` / ` + totalCount}" />
 
                 </LinearLayout>
 
@@ -77,22 +81,35 @@
                     android:id="@+id/fragmentList"
                     android:name="fr.amazer.pokechu.ui.main.FragmentList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    tools:layout="@layout/fragment_list" />
 
             </LinearLayout>
 
-            <!-- Progress bar overlay; shown while loading is in progress -->
-            <include
-                android:id="@+id/loadOverlay"
-                app:isLoading="@{isLoading}"
-                layout="@layout/loading_overlay"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.87" />
 
-            <!--    TODO FIX THIS IS DRAWN OVER THE LIST (scroll to bottom of list to see the bug)-->
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_bottom_sheet"
                 android:name="fr.amazer.pokechu.ui.main.FragmentBottomSheet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_width="413dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                tools:layout="@layout/fragment_bottom_sheet" />
+
+            <!-- Loading overlay; shown while loading is in progress -->
+            <include
+                android:id="@+id/loadOverlay"
+                app:isLoading="@{isLoading}"
+                layout="@layout/loading_overlay"
+                android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -104,11 +121,12 @@
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
 
-            android:src="@drawable/ic_search_123"
-            android:scaleType="center"
+            android:alpha="0.75"
+            android:contentDescription="@string/menu_main_search"
 
-            android:alpha="1.0"
-            app:backgroundTint="@color/pokechuPrimary"/>
+            android:scaleType="center"
+            android:src="@drawable/ic_search_123"
+            app:backgroundTint="@color/pokechuPrimary" />
 <!--            app:maxImageSize="40dp"-->
 <!--            app:fabCustomSize="60dp"-->
 
