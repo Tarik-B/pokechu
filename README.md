@@ -28,7 +28,7 @@ Minor:
 ## Known bugs
 
 - [X] Bottom sheet overlaps bottom (and thus also the end) of main list
-- [ ] Main activity something refreshes (loading overlay + list transition animation) when coming back from details(/settings?) for no reason
+- [X] Main activity something refreshes (loading overlay + list transition animation) when coming back from details(/settings?) for no reason
 - [X] Captured/discovered count icons not vertically centered
 - [ ] "Follow system" theme follows system theme as it was on app launch: https://github.com/Tarik-B/pokechu/issues/1
 - [ ] List view holders not fading after turning on "show undiscovered info"

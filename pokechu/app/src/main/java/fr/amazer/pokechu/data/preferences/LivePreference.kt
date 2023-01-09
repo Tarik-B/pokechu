@@ -38,7 +38,8 @@ class LivePreference<T> constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                postValue((preferences.all[it] as T) ?: defaultValue)
+                lastValue = (preferences.all[it] as T ?: defaultValue)
+                postValue(lastValue)
             }
     }
 
