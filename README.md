@@ -102,6 +102,7 @@ to Poképédia, Bulbapedia and PokéAPI contributors and maintainers!
 - [Leonids][particles] particles library by Platty Soft, [updated][particles_update] by Jenna Vassar
 - [LivePreferences][livepreferences] library by İbrahim Süren
 - [RecyclerView-FastScroll][fastscroll] library by Tim Malseed
+- [CollapsingAvatarToolbarSample][collapsing_toolbar] (FlingBehavior) by Sergey Burlaka
 
 [graphview]: https://github.com/oss-bandb/GraphView
 [localization]: https://github.com/akexorcist/Localization
@@ -109,3 +110,4 @@ to Poképédia, Bulbapedia and PokéAPI contributors and maintainers!
 [particles_update]: https://github.com/bigcartel/leonids-android
 [livepreferences]: https://github.com/ibrahimsn98/live-preferences
 [fastscroll]: https://github.com/timusus/RecyclerView-FastScroll
+[collapsing_toolbar]: https://github.com/SergeyBurlaka/CollapsingAvatarToolbarSample

@@ -51,6 +51,18 @@ class FragmentEvolutionTree : Fragment() {
 
         setupUI(true)
         loadData()
+
+        // Vertical/horizontal tree switch
+        binding.treeToggleButtons.check(R.id.verticalButton)
+        binding.treeToggleButtons.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
+            if (isChecked) {
+                when (checkedId) {
+                    R.id.verticalButton -> { setupUI(true) }
+                    R.id.horizontalButton -> { setupUI(false) }
+                }
+                loadData()
+            }
+        }
     }
 
     private fun loadData() {

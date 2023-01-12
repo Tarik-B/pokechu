@@ -1,122 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="java.util.List"/>
-        <import type="android.graphics.Bitmap"/>
+        <import type="java.util.List" />
+        <import type="android.graphics.Bitmap" />
 
-        <variable name="height"         type="String" />
-        <variable name="weight"         type="String" />
-        <variable name="imagePath"      type="String" />
-        <variable name="isDiscovered"   type="Boolean" />
-        <variable name="typeBitmaps"    type="List&lt;Bitmap>" />
+        <variable name="height" type="String" />
+        <variable name="weight" type="String" />
+        <variable name="typeBitmaps" type="List&lt;Bitmap>" />
     </data>
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:gravity="center"
         android:orientation="horizontal"
         tools:context=".ui.fragments.FragmentEvolutionTree">
 
-        <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="bottom|right"
-            android:orientation="vertical"
-            android:padding="10dip">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_margin_very_small">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textViewHeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin_very_small"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginEnd="@dimen/text_margin_very_small"
+                android:padding="@dimen/text_margin_very_small"
+                android:text="@string/details_height"
+                android:textColor="@color/backgroundInvert"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/separator"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/details_height"
-                    android:textSize="16sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=": " />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/text_margin_very_small"
-                    android:text="@{height}" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/details_meters_abbrev" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/textViewWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin_very_small"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginEnd="@dimen/text_margin_very_small"
+                android:padding="@dimen/text_margin_very_small"
+                android:text="@string/details_weight"
+                android:textColor="@color/backgroundInvert"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/separator"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewHeight" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/details_weight"
-                    android:textSize="16sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=": " />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/text_margin_very_small"
-                    android:text="@{weight}" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/details_kilograms_abbrev" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/textViewTypes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin_very_small"
+                android:layout_marginEnd="@dimen/text_margin_very_small"
+                android:padding="@dimen/text_margin_very_small"
+                android:text="@string/details_types"
+                android:textColor="@color/backgroundInvert"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayoutTypes"
+                app:layout_constraintEnd_toStartOf="@+id/separator"
+                app:layout_constraintTop_toBottomOf="@+id/textViewWeight" />
+
+            <View
+                android:id="@+id/separator"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/pokechuPrimaryDarker"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textViewHeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_margin_very_small"
+                android:padding="@dimen/text_margin_very_small"
+                android:text="@{height + @string/details_meters_abbrev, default=`23m`}"
+                android:textColor="@color/backgroundInvert"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewHeight"
+                app:layout_constraintStart_toEndOf="@+id/separator"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeight" />
+
+            <TextView
+                android:id="@+id/textViewWeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_margin_very_small"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:padding="@dimen/text_margin_very_small"
+                android:text="@{weight + @string/details_kilograms_abbrev, default=`23kg`}"
+                android:textColor="@color/backgroundInvert"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewWeight"
+                app:layout_constraintStart_toEndOf="@+id/separator"
+                app:layout_constraintTop_toTopOf="@+id/textViewWeight" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutTypes"
+                typeBitmaps="@{typeBitmaps}"
+                typeItemResId="@{@layout/details_type_item}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_margin_very_small"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                typeBitmaps="@{typeBitmaps}"
-                typeItemResId="@{@layout/details_type_item}">
+                android:padding="@dimen/text_margin_very_small"
+                app:layout_constraintStart_toEndOf="@+id/separator"
+                app:layout_constraintTop_toBottomOf="@+id/textViewWeight">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/details_types"
-                    android:textSize="16sp" />
+                <include layout="@layout/details_type_item" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=": " />
+                <include layout="@layout/details_type_item" />
+
+                <include layout="@layout/details_type_item" />
             </LinearLayout>
 
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="20dip"
-            assetPath="@{imagePath}"
-            tint="@{isDiscovered? @color/transparent : @color/pokechuPrimaryDarker}"
-            android:tintMode="multiply"
-            android:alpha="@{isDiscovered? 1.0f : 0.5f}"
-            android:scaleType="fitCenter"/>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
+
+
 
 </layout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.details.ActivityDetails"
+    tools:showIn="@layout/activity_details"
+    android:layout_margin="@dimen/text_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/text_margin_very_small"
+            android:textSize="@dimen/details_title_size"
+            android:text="@string/details_general_info" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentHeader"
+            android:name="fr.amazer.pokechu.ui.details.FragmentDetailsHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutMode="clipBounds"
+            tools:layout="@layout/fragment_details_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleInfo"
+            android:layout_marginTop="@dimen/text_margin_very_small" />
+
+        <include
+            android:id="@+id/separator0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentHeader"
+            layout="@layout/separator_horizontal" />
+
+        <TextView
+            android:id="@+id/titleTree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator0"
+            android:layout_margin="@dimen/text_margin_very_small"
+            android:textSize="@dimen/details_title_size"
+            android:text="@string/details_evolution_tree" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentEvolutionTree"
+            android:name="fr.amazer.pokechu.ui.details.FragmentEvolutionTree"
+            android:layout_width="match_parent"
+            android:layout_height="500dip"
+            android:padding="10dip"
+            app:layout_constraintTop_toBottomOf="@id/titleTree"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            tools:layout="@layout/fragment_evolution_tree"
+            android:layout_marginTop="@dimen/text_margin_very_small" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

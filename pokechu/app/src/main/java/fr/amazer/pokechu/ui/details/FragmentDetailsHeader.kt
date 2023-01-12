@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import fr.amazer.pokechu.databinding.FragmentDetailsHeaderBinding
 import fr.amazer.pokechu.database.entities.EntityPokemon
 import fr.amazer.pokechu.enums.PokemonType
-import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.viewmodel.ViewModelPokemon
 
@@ -38,12 +37,6 @@ class FragmentDetailsHeader : Fragment() {
                 if ( pokemon != null && types != null)
                     setHeaderData(pokemon, types)
             }
-
-            // Update image filter on discovered status modifications
-            viewModelPokemon.getPokemonsDiscovered().observe(viewLifecycleOwner){
-                if (pokemon != null)
-                    updateDiscovered(pokemon)
-            }
         }
     }
 
@@ -51,12 +44,6 @@ class FragmentDetailsHeader : Fragment() {
         // Header text
         binding.height = pokemon.height.toString()
         binding.weight = pokemon.weight.toString()
-
-        // Image
-        var thumbnailImgPath = AssetUtils.getPokemonThumbnailPath(pokemon.id)
-        binding.imagePath = thumbnailImgPath
-
-        updateDiscovered(pokemon)
 
         val typeBitmaps = mutableListOf<Bitmap>()
         types.forEach { type ->
@@ -66,11 +53,5 @@ class FragmentDetailsHeader : Fragment() {
                 typeBitmaps.add(bitmap)
         }
         binding.typeBitmaps = typeBitmaps
-    }
-
-    private fun updateDiscovered(pokemon: EntityPokemon) {
-        // For black filter
-        val isDiscovered = SettingsManager.isPokemonDiscovered(pokemon.id)
-        binding.isDiscovered = isDiscovered
     }
 }

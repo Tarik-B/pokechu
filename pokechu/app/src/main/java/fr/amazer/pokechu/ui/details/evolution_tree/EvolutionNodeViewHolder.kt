@@ -16,9 +16,9 @@ class EvolutionNodeViewHolder(
 
         // Set pokemon name
         if ( data.isDiscovered || showUndiscoveredInfo )
-            binding.text = data.localizedName
+            binding.name = data.localizedName
         else
-            binding.text = "?"
+            binding.name = "?"
 
         // Set thumbnail image
         binding.imagePath = data.thumbnailPath

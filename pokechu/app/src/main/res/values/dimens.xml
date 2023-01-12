@@ -12,5 +12,16 @@
 
     <dimen name="text_margin">16.0dip</dimen>
     <dimen name="text_margin_very_small">4.0dip</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
+
+    <dimen name="details_title_size">23sp</dimen>
+
+    <!-- Collapsing toolbal/fling behavior   -->
+    <dimen name="activity_margin">24dp</dimen>
+
+    <dimen name="top_head_height">195dp</dimen>
+    <dimen name="top_head_background_height">175dp</dimen>
+
+    <dimen name="default_collapsed_image_size">45dp</dimen>
+    <dimen name="default_expanded_image_size">135dp</dimen>
+
 </resources>

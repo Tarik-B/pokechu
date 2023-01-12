@@ -13,6 +13,7 @@
     <color name="backgroundInvert">@color/m3_sys_color_dark_background</color>
 
     <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
     <color name="grey">#FF797679</color>
     <color name="transparent">#00FFFFFF</color>
 </resources>

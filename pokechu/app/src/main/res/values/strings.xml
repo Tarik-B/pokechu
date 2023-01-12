@@ -31,6 +31,8 @@
     <string name="details_weight" />
     <string name="details_kilograms_abbrev" />
     <string name="details_types" />
+    <string name="details_general_info" />
+    <string name="details_evolution_tree" />
 
     <!-- Languages -->
     <string name="language_english" />
