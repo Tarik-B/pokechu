@@ -23,6 +23,10 @@ import fr.amazer.pokechu.ui.details.evolution_tree.EvolutionTreeEdgeDecoration
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutionData
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutions
 import fr.amazer.pokechu.viewmodel.ViewModelPokemon
+import kotlin.collections.HashMap
+import kotlin.collections.List
+import kotlin.collections.forEach
+import kotlin.collections.set
 
 class FragmentEvolutionTree : Fragment() {
     private lateinit var binding: FragmentEvolutionTreeBinding
@@ -45,7 +49,7 @@ class FragmentEvolutionTree : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUI()
+        setupUI(true)
         loadData()
     }
 
@@ -59,10 +63,11 @@ class FragmentEvolutionTree : Fragment() {
         }
     }
 
-    private fun setupUI() {
+    private fun setupUI(vertical: Boolean) {
         // Setup graph view
-        recyclerView = requireView().findViewById(R.id.recycler)
-        setLayoutManager()
+        recyclerView = binding.recycler
+
+        setLayoutManager(vertical)
         recyclerView.addItemDecoration(EvolutionTreeEdgeDecoration())
         setTouchListeners()
 
@@ -74,12 +79,12 @@ class FragmentEvolutionTree : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun setLayoutManager() {
+    private fun setLayoutManager(vertical: Boolean) {
         val configuration = BuchheimWalkerConfiguration.Builder()
-            .setSiblingSeparation(100)
-            .setLevelSeparation(100)
-            .setSubtreeSeparation(100)
-            .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
+            .setSiblingSeparation(250)
+            .setLevelSeparation(250)
+            .setSubtreeSeparation(250)
+            .setOrientation( if(vertical) BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM else BuchheimWalkerConfiguration.ORIENTATION_LEFT_RIGHT)
             .build()
         recyclerView.layoutManager = BuchheimWalkerLayoutManager(requireContext(), configuration)
     }

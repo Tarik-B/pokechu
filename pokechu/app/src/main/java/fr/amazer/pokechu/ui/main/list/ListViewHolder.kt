@@ -78,18 +78,18 @@ class ListViewHolder(
         setIsDiscovered(isDiscovered || showUndiscoveredInfo)
     }
 
-    fun bindIsCaptured(isCaptured: Boolean) {
+    private fun bindIsCaptured(isCaptured: Boolean) {
         setIsCaptured(isCaptured)
     }
 
     // TODO find a way for ListItemBinding and ListItemGridBinding to have a common interface (other than ViewBinding)
-    fun setImagePath(imgPath: String) {
+    private fun setImagePath(imgPath: String) {
         if (binding is ListItemBinding)
             binding.imagePath = imgPath
         else if (binding is ListItemGridBinding)
             binding.imagePath = imgPath
     }
-    fun setText(name: String, id: String, filter: String) {
+    private fun setText(name: String, id: String, filter: String) {
         if (binding is ListItemBinding) {
             binding.name = name
             binding.id = id

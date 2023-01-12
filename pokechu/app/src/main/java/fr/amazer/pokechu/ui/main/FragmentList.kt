@@ -191,7 +191,7 @@ class FragmentList : Fragment() {
         )
 
         // Create adapter
-        adapter = ListGridAdapter(context)
+        adapter = ListGridAdapter(requireContext())
         binding.recyclerView.adapter = adapter
     }
 

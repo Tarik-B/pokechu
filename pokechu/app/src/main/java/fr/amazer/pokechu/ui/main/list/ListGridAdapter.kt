@@ -47,7 +47,7 @@ data class ListViewHolderData(
 )
 
 class ListGridAdapter internal constructor(
-    private val context: Context?,
+    private val context: Context
     ) : ListAdapter<ListViewHolderData, ListViewHolder>(diffUtil), Filterable, FastScrollRecyclerView.SectionedAdapter {
     private var originalList: List<ListViewHolderData> = currentList.toList()
     private var gridEnabled: Boolean = false
@@ -74,7 +74,7 @@ class ListGridAdapter internal constructor(
         val currentData = currentList[position]
 
         if (currentData != null)
-            holder.bind(context!!, currentData)
+            holder.bind(context, currentData)
     }
 
 //    override fun onBindViewHolder(holder: PokemonListViewHolder, position: Int, payloads: MutableList<Any>) {

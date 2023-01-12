@@ -23,7 +23,7 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 //    style = Paint.Style.STROKE
 //    strokeJoin = Paint.Join.ROUND
 //    pathEffect = CornerPathEffect(10f)
-    textSize = 50F
+    textSize = 75f
 }) : RecyclerView.ItemDecoration() {
 
     private lateinit var context: Context
@@ -63,7 +63,8 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
                     linePath.reset()
                     when (configuration.orientation) {
-                        BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM -> {
+                        BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM,
+                        BuchheimWalkerConfiguration.ORIENTATION_LEFT_RIGHT-> {
 
                             drawEdge(node, child)
 
@@ -72,14 +73,12 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
                             val nodeData = child.data as ViewModelEvolutionData
                             val isDiscovered = SettingsManager.isPokemonDiscovered(nodeData.pokemonId)
                             drawConditionText(child, isDiscovered)
-//                            if (isDiscovered) {
-//                                drawDiscoveredText(node, child)
-//                            }
-//                            else {
-//                                drawUndiscoveredText(node, child)
-//                            }
 
                             linePaint.style = Paint.Style.STROKE
+                        }
+                        BuchheimWalkerConfiguration.ORIENTATION_BOTTOM_TOP,
+                        BuchheimWalkerConfiguration.ORIENTATION_RIGHT_LEFT -> {
+                            throw RuntimeException("unsupported graphview orientation")
                         }
                     }
 
@@ -91,29 +90,55 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
     }
 
     private fun drawEdge(node: Node, child: Node) {
-        // position at the middle-top of the child
-        linePath.moveTo(child.x + child.width / 2f, child.y)
-        // draws a line from the child's middle-top halfway up to its parent
-        linePath.lineTo(
-            child.x + child.width / 2f,
-            child.y - configuration.levelSeparation / 2f
-        )
-        // draws a line from the previous point to the middle of the parents width
-        linePath.lineTo(
-            node.x + node.width / 2f,
-            child.y - configuration.levelSeparation / 2f
-        )
+        when (configuration.orientation) {
+            BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM -> {
+                // position at the middle-top of the child
+                linePath.moveTo(child.x + child.width / 2f, child.y)
+                // draws a line from the child's middle-top halfway up to its parent
+                linePath.lineTo(
+                    child.x + child.width / 2f,
+                    child.y - configuration.levelSeparation / 2f
+                )
+                // draws a line from the previous point to the middle of the parents width
+                linePath.lineTo(
+                    node.x + node.width / 2f,
+                    child.y - configuration.levelSeparation / 2f
+                )
 
-        // position at the middle of the level separation under the parent
-        linePath.moveTo(
-            node.x + node.width / 2f,
-            child.y - configuration.levelSeparation / 2f
-        )
-        // draws a line up to the parents middle-bottom
-        linePath.lineTo(
-            node.x + node.width / 2f,
-            node.y + node.height
-        )
+                // position at the middle of the level separation under the parent
+                linePath.moveTo(
+                    node.x + node.width / 2f,
+                    child.y - configuration.levelSeparation / 2f
+                )
+                // draws a line up to the parents middle-bottom
+                linePath.lineTo(
+                    node.x + node.width / 2f,
+                    node.y + node.height
+                )
+            }
+            BuchheimWalkerConfiguration.ORIENTATION_LEFT_RIGHT -> {
+                linePaint.style = Paint.Style.STROKE
+
+                linePath.moveTo(child.x, child.y + child.height / 2f)
+                linePath.lineTo(
+                    child.x - configuration.levelSeparation / 2f,
+                    child.y + child.height / 2f
+                )
+                linePath.lineTo(
+                    child.x - configuration.levelSeparation / 2f,
+                    node.y + node.height / 2f
+                )
+
+                linePath.moveTo(
+                    child.x - configuration.levelSeparation / 2f,
+                    node.y + node.height / 2f
+                )
+                linePath.lineTo(
+                    node.x + node.width,
+                    node.y + node.height / 2f
+                )
+            }
+        }
     }
 
 //    private fun drawUndiscoveredText(node: Node, child: Node) {
@@ -177,7 +202,11 @@ open class EvolutionTreeEdgeDecoration constructor(private val linePaint: Paint 
 
         // Draw the text without images
         val x = child.x + child.width / 2f - textWidth/2
-        val y = child.y - textHeight/4.0f// - configuration.levelSeparation / 4f
+        val y = when (configuration.orientation) {
+            BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM -> {child.y + textHeight} // - configuration.levelSeparation / 4f}
+            BuchheimWalkerConfiguration.ORIENTATION_LEFT_RIGHT -> {child.y + child.height - textHeight/2}
+            else -> throw RuntimeException("unsupported graphview orientation")
+        }
         canvas.drawText(text, x, y, linePaint )
 
         // Draw the images
