@@ -21,6 +21,7 @@ Major:
 
 Minor:
 
+- [ ] Merge all data filtering code in viewmodels into single sql queries
 - [ ] Find a way to display all searched fields of Pokémon when searching
 - [ ] Auto close keyboard when clicking on main list while searching
 - [ ] Decrease height of list (not grid) items to make list view actually useful (display more items than grid view)
@@ -103,6 +104,7 @@ to Poképédia, Bulbapedia and PokéAPI contributors and maintainers!
 - [LivePreferences][livepreferences] library by İbrahim Süren
 - [RecyclerView-FastScroll][fastscroll] library by Tim Malseed
 - [CollapsingAvatarToolbarSample][collapsing_toolbar] (FlingBehavior) by Sergey Burlaka
+- Pokemon GB font by Jackster Productions
 
 [graphview]: https://github.com/oss-bandb/GraphView
 [localization]: https://github.com/akexorcist/Localization
