@@ -120,4 +120,6 @@ dependencies {
 
     // RecyclerView-FastScroll
     implementation "com.simplecityapps:recyclerview-fastscroll:2.0.1"
+
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha01"
 }

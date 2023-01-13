@@ -28,7 +28,7 @@ class ViewModelEvolutions(application: Application) : AndroidViewModel(applicati
         repository = application.getRepositoryEvolutions()!!
         repositoryPreferences = application.getRepositoryPreference()!!
 
-        // TODO replace all this by a single sqlite query?
+        // TODO replace all this by a single sqlite query
         evolutionChain = Transformations.switchMap(pokemonId) { id ->
             Transformations.switchMap(repository.getEvolutionRoot(id)) { rootId ->
                 val actualRootId = if (rootId != 0) rootId else id

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Pokechu</string>
+    <string name="app_name" translatable="false">Pokéchu</string>
 
     <string name="placeholder_string" />
     <string name="placeholder_string_short" />

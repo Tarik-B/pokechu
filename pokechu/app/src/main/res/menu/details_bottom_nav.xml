@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/generalInfo"
+        android:icon="@drawable/outline_badge_24"
+        android:title="@string/details_general_info" />
+    <item
+        android:id="@+id/evolutionTree"
+        android:icon="@drawable/ic_tree_vertical"
+        android:title="@string/details_evolution_tree" />
+</menu>

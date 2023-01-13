@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.main.FragmentBottomSheet">
+    tools:context=".ui.main.FragmentBottomSheet"
+    style="@style/Widget.MaterialComponents.BottomSheet">
 
     <LinearLayout
         android:id="@+id/bottomSheet"
@@ -15,7 +16,7 @@
         android:orientation="vertical"
         app:layout_behavior="@string/bottom_sheet_behavior"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="100dp"
+        app:behavior_peekHeight="110dp"
         android:maxHeight="500dp"
         android:background="@color/backgroundDefault">
 

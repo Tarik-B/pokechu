@@ -18,18 +18,116 @@
         tools:context=".ui.main.ActivityMain">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            app:layout_behavior=".ui.FlingBehavior"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Theme.Pokechu.AppBarOverlay">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingLayout"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="@dimen/top_head_height"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                android:fitsSystemWindows="true"
+                app:toolbarId="@id/toolbar"
+                app:collapsedTitleGravity="left"
+                app:collapsedTitleTextColor="@color/white"
+                app:expandedTitleGravity="top|left"
+                app:expandedTitleTextColor="@color/pokechuPrimary">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax"
+                    android:fitsSystemWindows="true">
+
+                    <FrameLayout
+                        android:id="@+id/topHeadColored"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/top_head_background_height"
+                        android:background="@color/pokechuPrimary" />
+                </FrameLayout>
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/Theme.Pokechu.PopupOverlay" />
+
+                <FrameLayout
+                    android:id="@+id/workaround"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dip"
+                    android:layout_gravity="center_horizontal"
+                    tools:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/imageHeader"
+                    android:layout_width="@dimen/default_expanded_image_size"
+                    android:layout_height="@dimen/default_expanded_image_size"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo"
+                    android:tintMode="multiply"
+                    android:transitionName="imageTransition"
+                    android:layout_marginBottom="8.0dip"/>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
+<!---->
+<!--        <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fitsSystemWindows="true">-->
+<!---->
+<!--            <com.google.android.material.appbar.MaterialToolbar-->
+<!--                android:id="@+id/toolbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="?attr/actionBarSize"/>-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/text_margin_very_small">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pokeball" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_margin_very_small"
+                    android:layout_marginRight="@dimen/text_margin"
+                    android:text="@{capturedCount + ` / ` + totalCount}"
+                    android:textColor="@color/backgroundInvert"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/outline_visibility_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_margin_very_small"
+                    android:layout_marginRight="@dimen/text_margin"
+                    android:text="@{discoveredCount + ` / ` + totalCount}"
+                    android:textColor="@color/backgroundInvert"/>
+
+            </LinearLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -43,39 +141,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
-                    android:orientation="horizontal"
-                    tools:ignore="MissingConstraints">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_pokeball" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/text_margin_very_small"
-                        android:layout_marginRight="@dimen/text_margin"
-                        android:text="@{capturedCount + ` / ` + totalCount}" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/outline_visibility_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/text_margin_very_small"
-                        android:layout_marginRight="@dimen/text_margin"
-                        android:text="@{discoveredCount + ` / ` + totalCount}" />
-
-                </LinearLayout>
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragmentList"
@@ -93,25 +158,28 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.87" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_bottom_sheet"
-                android:name="fr.amazer.pokechu.ui.main.FragmentBottomSheet"
-                android:layout_width="413dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout"
-                tools:layout="@layout/fragment_bottom_sheet" />
-
             <!-- Loading overlay; shown while loading is in progress -->
             <include
                 android:id="@+id/loadOverlay"
-                app:isLoading="@{isLoading}"
                 layout="@layout/loading_overlay"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:isLoading="@{isLoading}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_bottom_sheet"
+            android:name="fr.amazer.pokechu.ui.main.FragmentBottomSheet"
+            android:layout_width="413dp"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/constraintLayout"
+            app:layout_anchorGravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            tools:layout="@layout/fragment_bottom_sheet" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/buttonSearch"
@@ -121,7 +189,6 @@
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
 
-            android:alpha="0.75"
             android:contentDescription="@string/menu_main_search"
 
             android:scaleType="center"

@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import fr.amazer.pokechu.databinding.FragmentDetailsHeaderBinding
+import fr.amazer.pokechu.databinding.FragmentGeneralInfoBinding
 import fr.amazer.pokechu.database.entities.EntityPokemon
 import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.viewmodel.ViewModelPokemon
 
-class FragmentDetailsHeader : Fragment() {
-    private lateinit var binding: FragmentDetailsHeaderBinding
+class FragmentGeneralInfo : Fragment() {
+    private lateinit var binding: FragmentGeneralInfoBinding
 
     private val viewModelPokemon: ViewModelPokemon by activityViewModels()
 
@@ -23,7 +23,7 @@ class FragmentDetailsHeader : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDetailsHeaderBinding.inflate(layoutInflater)
+        binding = FragmentGeneralInfoBinding.inflate(layoutInflater)
 
         return binding.root
     }
@@ -35,12 +35,12 @@ class FragmentDetailsHeader : Fragment() {
         viewModelPokemon.getPokemon().observe(viewLifecycleOwner) { pokemon ->
             viewModelPokemon.getPokemonTypes().observe(viewLifecycleOwner) { types ->
                 if ( pokemon != null && types != null)
-                    setHeaderData(pokemon, types)
+                    setData(pokemon, types)
             }
         }
     }
 
-    private fun setHeaderData(pokemon: EntityPokemon, types: List<Int>) {
+    private fun setData(pokemon: EntityPokemon, types: List<Int>) {
         // Header text
         binding.height = pokemon.height.toString()
         binding.weight = pokemon.weight.toString()

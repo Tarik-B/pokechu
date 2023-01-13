@@ -29,7 +29,7 @@
     <string name="details_weight">Poids</string>
     <string name="details_kilograms_abbrev">kg</string>
     <string name="details_types">Type(s)</string>
-    <string name="details_general_info">Informations générales</string>
+    <string name="details_general_info">Infos</string>
     <string name="details_evolution_tree">Arbre d\'évolution</string>
 
     <!-- Languages -->

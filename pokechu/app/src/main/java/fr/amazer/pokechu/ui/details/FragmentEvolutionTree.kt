@@ -32,6 +32,7 @@ class FragmentEvolutionTree : Fragment() {
     private lateinit var binding: FragmentEvolutionTreeBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AbstractGraphAdapter<EvolutionNodeViewHolder>
+    private var touchListener: RecyclerViewTouchListener? = null
 
     private val viewModelPokemon: ViewModelPokemon by activityViewModels()
     private val viewModelEvolutions: ViewModelEvolutions by activityViewModels()
@@ -49,19 +50,17 @@ class FragmentEvolutionTree : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUI(true)
+        setupUI(vertical = false)
         loadData()
 
-        // Vertical/horizontal tree switch
-        binding.treeToggleButtons.check(R.id.verticalButton)
-        binding.treeToggleButtons.addOnButtonCheckedListener { toggleButton, checkedId, isChecked ->
-            if (isChecked) {
-                when (checkedId) {
-                    R.id.verticalButton -> { setupUI(true) }
-                    R.id.horizontalButton -> { setupUI(false) }
-                }
-                loadData()
-            }
+        // Tree orientation switching
+        binding.buttonTreeVertical.setOnClickListener { _ ->
+            setupUI(true)
+            loadData()
+        }
+        binding.buttonTreeHorizontal.setOnClickListener { _ ->
+            setupUI(false)
+            loadData()
         }
     }
 
@@ -84,11 +83,13 @@ class FragmentEvolutionTree : Fragment() {
         setTouchListeners()
 
         val zoomLayout = requireView().findViewById(R.id.zoomLayout) as ZoomLayout
-        zoomLayout.setMinZoom(0.8f)
+        zoomLayout.setMinZoom(0.5f)
         zoomLayout.setMaxZoom(10.0f)
 
         adapter = EvolutionTreeAdapter()
         recyclerView.adapter = adapter
+
+        showHideOrientationButtons(vertical)
     }
 
     private fun setLayoutManager(vertical: Boolean) {
@@ -103,27 +104,30 @@ class FragmentEvolutionTree : Fragment() {
 
     private fun setTouchListeners() {
         // Add click/long click listeners on items
-        recyclerView.addOnItemTouchListener(
-            RecyclerViewTouchListener(
-                context,
-                recyclerView,
-                object : RecyclerViewTouchListener.ClickListener {
+        if (touchListener != null)
+            recyclerView.removeOnItemTouchListener(touchListener!!)
 
-                    // Open details activity on click
-                    override fun onClick(view: View?, position: Int) {
-                        val data = adapter.getNodeData(position) as ViewModelEvolutionData
-                            viewModelPokemon.setPokemonId(data.pokemonId)
-                            viewModelEvolutions.setPokemonId(data.pokemonId)
-                    }
+        touchListener = RecyclerViewTouchListener(
+            context,
+            recyclerView,
+            object : RecyclerViewTouchListener.ClickListener {
 
-                    // Toggle discovered/captured status on long click
-                    override fun onLongClick(view: View?, position: Int) {
-                        val data = adapter.getNodeData(position) as ViewModelEvolutionData
-                        SettingsManager.togglePokemonDiscovered(data.pokemonId)
-                    }
+                // Open details activity on click
+                override fun onClick(view: View?, position: Int) {
+                    val data = adapter.getNodeData(position) as ViewModelEvolutionData
+                    viewModelPokemon.setPokemonId(data.pokemonId)
+                    viewModelEvolutions.setPokemonId(data.pokemonId)
                 }
-            )
+
+                // Toggle discovered/captured status on long click
+                override fun onLongClick(view: View?, position: Int) {
+                    val data = adapter.getNodeData(position) as ViewModelEvolutionData
+                    SettingsManager.togglePokemonDiscovered(data.pokemonId)
+                }
+            }
         )
+
+        recyclerView.addOnItemTouchListener(touchListener!!)
     }
 
     private fun createGraph(evolutionData: List<ViewModelEvolutionData>): Graph {
@@ -145,5 +149,10 @@ class FragmentEvolutionTree : Fragment() {
         }
 
         return graph
+    }
+
+    private fun showHideOrientationButtons(vertical: Boolean) {
+        binding.buttonTreeHorizontal.visibility = if(vertical) View.VISIBLE else View.GONE
+        binding.buttonTreeVertical.visibility = if(!vertical) View.VISIBLE else View.GONE
     }
 }

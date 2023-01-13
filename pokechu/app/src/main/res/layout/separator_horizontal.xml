@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:padding="@dimen/text_margin">
+    android:padding="@dimen/text_margin_very_small">
 
     <View
         android:layout_width="0dip"

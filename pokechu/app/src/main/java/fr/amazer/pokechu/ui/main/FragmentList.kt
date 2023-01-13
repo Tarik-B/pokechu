@@ -1,5 +1,6 @@
 package fr.amazer.pokechu.ui.main
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -145,11 +147,24 @@ class FragmentList : Fragment() {
 
                     // Open details activity on click
                     override fun onClick(view: View?, position: Int) {
+
+                        // Get the common element for the transition in this activity
+                        val thumbnail = view?.findViewById<ImageView>(R.id.imageThumbnail)
+
+                        val sharedElementName = "imageTransition"
+//                        if (thumbnail != null) {
+//                            thumbnail.transitionName = sharedElementName
+//                        }
+
+                        // Create the transition animation - the images in the layouts
+                        // of both activities are defined with android:transitionName="robot"
+                        val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), thumbnail, sharedElementName)
+
                         val pokemonId = adapter?.getCurrentData()?.get(position)?.viewModelData?.pokemonId
                         val intent = Intent(context, ActivityDetails::class.java)
                         intent.putExtra("PokemonId", pokemonId)
 
-                        requireActivity().startActivity(intent)
+                        requireActivity().startActivity(intent, options.toBundle())
                     }
 
                     // Toggle discovered/captured status on long click

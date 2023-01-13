@@ -18,6 +18,7 @@ import fr.amazer.pokechu.enums.PreferenceType
 import fr.amazer.pokechu.enums.Region
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.BaseActivity
+import fr.amazer.pokechu.ui.FlingHelper
 import fr.amazer.pokechu.ui.about.ActivityAbout
 import fr.amazer.pokechu.ui.details.ActivityDetails
 import fr.amazer.pokechu.ui.settings.ActivitySettings
@@ -34,6 +35,8 @@ class ActivityMain : BaseActivity() {
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     private val viewModel: ViewModelPokemons by viewModels()
 
+    private lateinit var flingHelper: FlingHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
@@ -43,6 +46,14 @@ class ActivityMain : BaseActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+
+        // Animated collapsing image
+        flingHelper = FlingHelper(applicationContext,
+            binding.appBarLayout,
+            binding.toolbar,
+            binding.imageHeader,
+            binding.workaround,
+            0)
 
         // Show loading overlay (with animation):
         loadingOverlay = binding.loadOverlay.loadingFrame
@@ -112,6 +123,13 @@ class ActivityMain : BaseActivity() {
                 }
             }
         })
+
+        // Listen for any clicks on appbar to toggle bottom sheet
+        // TODO not perfect, settings opening and list/grid toggle dont trigger it
+        binding.toolbar.setOnClickListener{ _ ->
+            if (fragmentBottomSheet.isExpanded())
+                fragmentBottomSheet.toggleExpanded()
+        }
     }
 
     // Map of menu item id -> preference to toggle
@@ -196,6 +214,10 @@ class ActivityMain : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        // Listen for any clicks on appbar to toggle bottom sheet
+        if (fragmentBottomSheet.isExpanded())
+            fragmentBottomSheet.toggleExpanded()
 
         // Map of menu item id -> activity to launch
         val itemIdToLaunchActivity = mapOf(

@@ -15,6 +15,7 @@ class FlingHelper(
     private val toolbar: MaterialToolbar,
     private val imageHeader: ImageView,
     private val workaround: FrameLayout,
+    private val translateDirectionX: Int,
 ) {
 
     private var cashCollapseState: Pair<Int, Int>? = null
@@ -28,16 +29,16 @@ class FlingHelper(
     }
 
     private fun setupAppBar() {
-        val EXPAND_AVATAR_SIZE = context.resources.getDimension(R.dimen.default_expanded_image_size)
+        val EXPAND_IMAGE_SIZE = context.resources.getDimension(R.dimen.default_expanded_image_size)
         val COLLAPSE_IMAGE_SIZE = context.resources.getDimension(R.dimen.default_collapsed_image_size)
-        val horizontalToolbarAvatarMargin = context.resources.getDimension(R.dimen.activity_margin)
+        val horizontalToolbarImageMargin = context.resources.getDimension(R.dimen.activity_margin)
 
         (toolbar.height - COLLAPSE_IMAGE_SIZE) * 2
         /**/
         appBarLayout.addOnOffsetChangedListener { appBarLayout, i ->
             if (isCalculated.not()) {
                 imageAnimateStartPointY =
-                    Math.abs((appBarLayout.height - (EXPAND_AVATAR_SIZE + horizontalToolbarAvatarMargin)) / appBarLayout.totalScrollRange)
+                    Math.abs((appBarLayout.height - (EXPAND_IMAGE_SIZE + horizontalToolbarImageMargin)) / appBarLayout.totalScrollRange)
                 imageCollapseAnimationChangeWeight = 1 / (1 - imageAnimateStartPointY)
                 verticalToolbarImageMargin = (toolbar.height - COLLAPSE_IMAGE_SIZE) * 2
                 isCalculated = true
@@ -48,9 +49,9 @@ class FlingHelper(
     }
 
     private fun updateViews(offset: Float) {
-        val EXPAND_AVATAR_SIZE = context.resources.getDimension(R.dimen.default_expanded_image_size)
+        val EXPAND_IMAGE_SIZE = context.resources.getDimension(R.dimen.default_expanded_image_size)
         val COLLAPSE_IMAGE_SIZE = context.resources.getDimension(R.dimen.default_collapsed_image_size)
-        val horizontalToolbarAvatarMargin = context.resources.getDimension(R.dimen.activity_margin)
+        val horizontalToolbarImageMargin = context.resources.getDimension(R.dimen.activity_margin)
 
         val SWITCH_BOUND = 0.8f
         val TO_EXPANDED = 0
@@ -67,8 +68,10 @@ class FlingHelper(
                 cashCollapseState != null && cashCollapseState != this -> {
                     when (first) {
                         TO_EXPANDED -> {
-                            // set avatar on start position (center of parent frame layout)
-                            imageHeader.translationX = 0F
+                            if (translateDirectionX != 0) {
+                                // set image on start position (center of parent frame layout)
+                                imageHeader.translationX = 0F
+                            }
                         }
                         TO_COLLAPSED -> {
                         }
@@ -80,29 +83,33 @@ class FlingHelper(
                 }
             }
 
-            // Collapse avatar img
+            // Collapse image
             imageHeader.apply {
                 when {
                     offset > imageAnimateStartPointY -> {
-                        val avatarCollapseAnimateOffset = (offset - imageAnimateStartPointY) * imageCollapseAnimationChangeWeight
-                        val avatarSize = EXPAND_AVATAR_SIZE - (EXPAND_AVATAR_SIZE - COLLAPSE_IMAGE_SIZE) * avatarCollapseAnimateOffset
+                        val imageCollapseAnimateOffset = (offset - imageAnimateStartPointY) * imageCollapseAnimationChangeWeight
+                        val imageSize = EXPAND_IMAGE_SIZE - (EXPAND_IMAGE_SIZE - COLLAPSE_IMAGE_SIZE) * imageCollapseAnimateOffset
                         this.layoutParams.also {
-                            it.height = Math.round(avatarSize)
-                            it.width = Math.round(avatarSize)
+                            it.height = Math.round(imageSize)
+                            it.width = Math.round(imageSize)
                         }
                         val offsetDip = offset / (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
                         workaround.setLayoutHeight(offsetDip.roundToInt())
 
-                        this.translationX = ((appBarLayout.width - horizontalToolbarAvatarMargin - avatarSize) / 2) * avatarCollapseAnimateOffset
-                        this.translationY = ((toolbar.height  - verticalToolbarImageMargin - avatarSize ) / 2) * avatarCollapseAnimateOffset
+                        if (translateDirectionX != 0) {
+                            this.translationX = (translateDirectionX*(appBarLayout.width - horizontalToolbarImageMargin - imageSize) / 2) * imageCollapseAnimateOffset
+                        }
+                        this.translationY = ((toolbar.height - verticalToolbarImageMargin - imageSize) / 2) * imageCollapseAnimateOffset
                     }
                     else -> this.layoutParams.also {
-                        if (it.height != EXPAND_AVATAR_SIZE.toInt()) {
-                            it.height = EXPAND_AVATAR_SIZE.toInt()
-                            it.width = EXPAND_AVATAR_SIZE.toInt()
+                        if (it.height != EXPAND_IMAGE_SIZE.toInt()) {
+                            it.height = EXPAND_IMAGE_SIZE.toInt()
+                            it.width = EXPAND_IMAGE_SIZE.toInt()
                             this.layoutParams = it
                         }
-                        translationX = 0f
+                        if (translateDirectionX != 0) {
+                            translationX = 0f
+                        }
                     }
                 }
             }

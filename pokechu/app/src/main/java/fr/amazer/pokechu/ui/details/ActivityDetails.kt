@@ -3,16 +3,21 @@ package fr.amazer.pokechu.ui.details
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.ActivityDetailsBinding
+import fr.amazer.pokechu.enums.PreferenceType
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.ui.BaseActivity
 import fr.amazer.pokechu.ui.FlingHelper
+import fr.amazer.pokechu.ui.SwipeTouchListener
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutions
 import fr.amazer.pokechu.viewmodel.ViewModelPokemon
-
 
 class ActivityDetails : BaseActivity() {
     private lateinit var binding: ActivityDetailsBinding
@@ -22,6 +27,8 @@ class ActivityDetails : BaseActivity() {
     private val viewModelPokemon: ViewModelPokemon by viewModels()
     private val viewModelEvolutions: ViewModelEvolutions by viewModels()
     private lateinit var flingHelper: FlingHelper
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +40,22 @@ class ActivityDetails : BaseActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Bottom nav bar
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.nav_host_container
+        ) as NavHostFragment
+        navController = navHostFragment.navController
+        val navGraph = navController.navInflater.inflate(R.navigation.details_nav_graph)
+        // Restore last displayed fragment
+        val startDestination = SettingsManager.getSetting<Int>(PreferenceType.DETAILS_START_VIEW)
+        if (startDestination != 0)
+            navGraph.setStartDestination(startDestination)
+        navController.graph = navGraph
+
+        // Setup the bottom navigation view with navController
+        val bottomNavigationView = binding.bottomNav
+        bottomNavigationView.setupWithNavController(navController)
+
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -42,10 +65,11 @@ class ActivityDetails : BaseActivity() {
             binding.appBarLayout,
             binding.toolbar,
             binding.imageHeader,
-            binding.workaround)
+            binding.workaround,
+            1)
 
+        // Update action bar title/image/filter
         updateActionBarTitle(pokemonId)
-
         viewModelPokemon.getPokemonId().observe(this) { id ->
             // Image
             var thumbnailImgPath = AssetUtils.getPokemonThumbnailPath(id)
@@ -58,9 +82,28 @@ class ActivityDetails : BaseActivity() {
                 updateDiscovered(id)
             }
         }
+
+        // Left/right swipe for fragment navigation
+        binding.root.setOnTouchListener(object: SwipeTouchListener(applicationContext) {
+            override fun onSwipeLeft() {
+                navController.navigate(R.id.action_details_to_evolution_tree)
+            }
+            override fun onSwipeRight() {
+                navController.navigate(R.id.action_evolution_tree_to_details)
+            }
+        })
+
+        // Update fragment title on change
+        navController.addOnDestinationChangedListener(object: NavController.OnDestinationChangedListener{
+            override fun onDestinationChanged(
+                controller: NavController,
+                destination: NavDestination,
+                arguments: Bundle?
+            ) {
+                binding.fragmentTitle = destination.label.toString()
+            }
+        })
     }
-
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -71,14 +114,28 @@ class ActivityDetails : BaseActivity() {
 
     private fun updateActionBarTitle(id: Int) {
         val localizedName = LocalizationManager.getPokemonName(id)
-//        supportActionBar?.title = "#${id} - ${localizedName}"
-//        binding.toolbar.title = "#${id} - ${localizedName}"
-        binding.collapsingLayout.title ="#${id} - ${localizedName}"
+        binding.name ="#${id} - ${localizedName}"
     }
 
     private fun updateDiscovered(id: Int) {
         // For black filter
         val isDiscovered = SettingsManager.isPokemonDiscovered(id)
         binding.isDiscovered = isDiscovered
+    }
+
+    override fun onBackPressed() {
+        // Prevent navController from catching back (to pop last fragment in its stack)
+//        if(navController.graph.startDestinationId == navController.currentDestination?.id) {
+            finish()
+//        } else {
+//            super.onBackPressed()
+//        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Save last displayed fragment
+        navController.currentDestination?.let { SettingsManager.setSetting<Int>(PreferenceType.DETAILS_START_VIEW, it.id) }
     }
 }

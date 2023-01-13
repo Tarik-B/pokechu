@@ -8,6 +8,7 @@ data class ViewModelPokemonListData(
 
     val isDiscovered: Boolean,
     val isCaptured: Boolean,
+//    val hasEvolutionTree: Boolean,
 
     val thumbnailPath: String,
     val typeImagePaths: List<String>,

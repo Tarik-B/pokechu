@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_nav_graph"
+    app:startDestination="@id/generalInfo">
+
+    <fragment
+        android:id="@+id/generalInfo"
+        android:name="fr.amazer.pokechu.ui.details.FragmentGeneralInfo"
+        android:label="@string/details_general_info"
+        tools:layout="@layout/fragment_general_info">
+
+        <action
+            android:id="@+id/action_details_to_evolution_tree"
+            app:destination="@id/evolutionTree" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/evolutionTree"
+        android:name="fr.amazer.pokechu.ui.details.FragmentEvolutionTree"
+        android:label="@string/details_evolution_tree"
+        tools:layout="@layout/fragment_evolution_tree">
+
+        <action
+            android:id="@+id/action_evolution_tree_to_details"
+            app:destination="@id/generalInfo" />
+    </fragment>
+</navigation>

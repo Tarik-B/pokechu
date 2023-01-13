@@ -36,7 +36,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@{isCaptured? @color/pokechuAccent : @color/pokechuPrimaryDarker}"
-            app:strokeWidth="@{isCaptured? 10 : 5}">
+            app:strokeWidth="@{isCaptured? 10 : 5}"
+            style="@style/Widget.MaterialComponents.CardView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -55,6 +56,7 @@
 
                 <ImageView
                     android:id="@+id/imageThumbnail"
+                    android:transitionName="imageTransition"
                     assetPath="@{imagePath}"
                     tint="@{isDiscovered? @color/transparent : @color/pokechuPrimaryDarker, default=@drawable/ic_pokeball}"
                     android:layout_width="0dp"

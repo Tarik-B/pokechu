@@ -18,8 +18,8 @@
     <!-- Collapsing toolbal/fling behavior   -->
     <dimen name="activity_margin">24dp</dimen>
 
-    <dimen name="top_head_height">195dp</dimen>
-    <dimen name="top_head_background_height">175dp</dimen>
+    <dimen name="top_head_height">180dp</dimen>
+    <dimen name="top_head_background_height">144dip</dimen>
 
     <dimen name="default_collapsed_image_size">45dp</dimen>
     <dimen name="default_expanded_image_size">135dp</dimen>

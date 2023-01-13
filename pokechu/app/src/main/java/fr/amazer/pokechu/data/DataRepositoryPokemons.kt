@@ -21,9 +21,6 @@ class DataRepositoryPokemons private constructor(
     fun getPokemonsTypesByRegion(regionId: Int): LiveData<List<PokemonIdTypesId>> {
         return database.getPokemonTypesDao().findPokemonsTypesByRegion(regionId)
     }
-    fun getPokemonCount(): LiveData<Int> {
-        return database.getPokemonsDao().getCount()
-    }
     fun localToNationalId(region_id: Int, local_id: Int): LiveData<Int> {
         return database.getPokemonRegionsDao().localToNationalId(region_id, local_id)
     }

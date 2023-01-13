@@ -14,6 +14,7 @@ enum class PreferenceType {
     DISCOVERED,
     DISPLAY_ZERO,
     NIGHT_MODE,
+    DETAILS_START_VIEW,
 }
 
 enum class NightMode {
@@ -34,6 +35,7 @@ object PreferenceData {
         PreferenceType.CAPTURED                to Pair("pokemon_captured_", false),
         PreferenceType.DISPLAY_ZERO            to Pair("setting_display_zero", false),
         PreferenceType.NIGHT_MODE              to Pair("setting_night_mode", NightMode.SYSTEM.ordinal.toString()),
+        PreferenceType.DETAILS_START_VIEW      to Pair("setting_details_start_view", 0),
     )
 
     private val nightModeToAppCompatMap = mapOf(
