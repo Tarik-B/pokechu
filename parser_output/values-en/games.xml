@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="game_name_0">Pokémon Red</string>
+    <string name="game_name_1">Pokémon Blue</string>
+    <string name="game_name_2">Pokémon Yellow</string>
+    <string name="game_name_3">Pokémon Gold</string>
+    <string name="game_name_4">Pokémon Silver</string>
+    <string name="game_name_5">Pokémon Crystal</string>
+    <string name="game_name_6">Pokémon Ruby</string>
+    <string name="game_name_7">Pokémon Sapphire</string>
+    <string name="game_name_8">Pokémon FireRed</string>
+    <string name="game_name_9">Pokémon LeafGreen</string>
+    <string name="game_name_10">Pokémon Emerald</string>
+    <string name="game_name_11">Pokémon Diamond</string>
+    <string name="game_name_12">Pokémon Pearl</string>
+    <string name="game_name_13">Pokémon Platinum</string>
+    <string name="game_name_14">Pokémon HeartGold</string>
+    <string name="game_name_15">Pokémon SoulSilver</string>
+    <string name="game_name_16">Pokémon Black</string>
+    <string name="game_name_17">Pokémon White</string>
+    <string name="game_name_18">Pokémon Black 2</string>
+    <string name="game_name_19">Pokémon White 2</string>
+    <string name="game_name_20">Pokémon X</string>
+    <string name="game_name_21">Pokémon Y</string>
+    <string name="game_name_22">Pokémon Omega Ruby</string>
+    <string name="game_name_23">Pokémon Alpha Sapphire</string>
+    <string name="game_name_24">Pokémon Sun</string>
+    <string name="game_name_25">Pokémon Moon</string>
+    <string name="game_name_26">Pokémon Ultra Sun</string>
+    <string name="game_name_27">Pokémon Ultra Moon</string>
+    <string name="game_name_28">Pokémon Let\'s Go, Pikachu!</string>
+    <string name="game_name_29">Pokémon Let\'s Go, Eevee!</string>
+    <string name="game_name_30">Pokémon Sword</string>
+    <string name="game_name_31">Pokémon Shield</string>
+    <string name="game_name_32">The Isle of Armor</string>
+    <string name="game_name_33">The Crown Tundra</string>
+    <string name="game_name_34">Pokémon Brilliant Diamond</string>
+    <string name="game_name_35">Pokémon Shining Pearl</string>
+    <string name="game_name_36">Pokémon Legends: Arceus</string>
+    <string name="game_name_37">Pokémon Scarlet</string>
+    <string name="game_name_38">Pokémon Violet</string>
+</resources>

@@ -25,6 +25,7 @@ Minor:
 - [ ] Find a way to display all searched fields of Pokémon when searching
 - [ ] Auto close keyboard when clicking on main list while searching
 - [ ] Decrease height of list (not grid) items to make list view actually useful (display more items than grid view)
+- [ ] Remove all localized names from db
 
 ## Known bugs
 

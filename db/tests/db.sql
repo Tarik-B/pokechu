@@ -1,6 +1,6 @@
 -- SQLite
 
-SELECT * FROM pokemons;
+-- SELECT * FROM pokemons;
 
 -- SELECT COUNT(id) FROM pokemons;
 
@@ -225,3 +225,5 @@ LEFT JOIN recipes r ON ir.recipe_id = r.id
 WHERE ir.recipe_id IS NOT NULL;
 LEFT JOIN recipes r ON ir.recipe_id = r.id
 */
+
+SELECT * FROM games;

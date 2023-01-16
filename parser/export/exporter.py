@@ -2,7 +2,7 @@
 import os
 
 from utils import utils
-from data.data_enums import Region, EvolutionItem, PokemonType, EvolutionCondition
+from data.data_enums import Region, EvolutionItem, PokemonType, EvolutionCondition, Game
 
 from data.pokedex import Pokedex
 
@@ -21,8 +21,10 @@ class Exporter:
         self.save_enum_names_xml(output_path, "pokemon_types.xml", PokemonType, "pokemon_type_name")
         self.save_enum_names_xml(output_path, "evolution_items.xml", EvolutionItem, "evolution_item_name")
         self.save_enum_names_xml(output_path, "evolution_conditions.xml", EvolutionCondition, "evolution_condition_name")
+        self.save_enum_names_xml(output_path, "evolution_conditions.xml", EvolutionCondition, "evolution_condition_name")
+        self.save_enum_names_xml(output_path, "games.xml", Game, "game_name")
 
-        self.save_enums_kotlin(output_path, [Region, PokemonType, EvolutionItem, EvolutionCondition])
+        self.save_enums_kotlin(output_path, [Region, PokemonType, EvolutionItem, EvolutionCondition, Game])
 
     def save_enums_kotlin(self, folder_path: str, enum_class_list: list):
 

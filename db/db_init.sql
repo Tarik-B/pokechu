@@ -13,6 +13,13 @@ CREATE TABLE types (
     id INTEGER PRIMARY KEY NOT NULL UNIQUE,
     name TEXT NOT NULL
 );
+CREATE TABLE games (
+    id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    region_id INTEGER NOT NULL,
+    
+    FOREIGN KEY (region_id) REFERENCES regions(id) ON DELETE CASCADE
+);
 CREATE TABLE pokemon_regions (
     pokemon_id INTEGER NOT NULL,
     region_id INTEGER NOT NULL,

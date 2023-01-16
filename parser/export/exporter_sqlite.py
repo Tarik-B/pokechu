@@ -3,7 +3,7 @@ import sqlite3
 import contextlib
 
 from utils import utils
-from data.data_enums import Region, PokemonType
+from data.data_enums import Region, PokemonType, Game
 from data.pokedex import Pokedex
 
 class SQLiteExporter:
@@ -30,6 +30,7 @@ class SQLiteExporter:
                 self.save_pokemons(connection, cursor)
                 self.save_regions(connection, cursor)
                 self.save_types(connection, cursor)
+                self.save_games(connection, cursor)
 
                 self.save_pokemon_regions(connection, cursor)
                 self.save_pokemon_evolutions(connection, cursor)
@@ -74,6 +75,18 @@ class SQLiteExporter:
             connection.commit()
         except Exception as err:
             print("error while inserting types into db = " + str(err))
+
+    def save_games(self, connection, cursor):
+        query = "INSERT INTO games (id, name, region_id) VALUES "
+        tuples = [(game.value, game.name, game.region) for game in Game]
+        query += ", ".join(f"({game}, '{name}', '{region_enum.value}')" for game, name, region_enum in tuples)
+        query += ";"
+
+        try:
+            cursor.execute(query)
+            connection.commit()
+        except Exception as err:
+            print("error while inserting games into db = " + str(err))
 
     def save_pokemon_regions(self, connection, cursor):
         query = "INSERT INTO pokemon_regions (pokemon_id, region_id, local_id) VALUES "
