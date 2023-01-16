@@ -162,6 +162,13 @@ class DataParser:
             # ids.append( { "type": Region(pokedex_type).name, "id": region_ids[i] })
             ids.append( (pokedex_type, region_ids[i]) )
 
+            # FIX add all pokemons from kanto to kanto lgpe too
+            # FIX add all pokemons from sinnoh to sinnoh pt too
+            if (pokedex_type is Region.KANTO):
+                ids.append((Region.KANTO_PE, region_ids[i]))
+            elif (pokedex_type is Region.SINNOH):
+                ids.append((Region.SINNOH_PT, region_ids[i]))
+
         self._pokedex.add_pokemon_ids(unique_id, ids)
 
     def process_pokemon_data(self, unique_id: str, html_table: str, pokeapi_data: dict):
