@@ -2,6 +2,7 @@ package fr.amazer.pokechu.ui.details
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -112,6 +113,17 @@ class ActivityDetails : BaseActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                supportFinishAfterTransition()
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun updateActionBarTitle(id: Int) {
         val localizedName = LocalizationManager.getPokemonName(id)
         binding.name ="#${id} - ${localizedName}"
@@ -126,7 +138,8 @@ class ActivityDetails : BaseActivity() {
     override fun onBackPressed() {
         // Prevent navController from catching back (to pop last fragment in its stack)
 //        if(navController.graph.startDestinationId == navController.currentDestination?.id) {
-            finish()
+//            finish()
+        supportFinishAfterTransition()
 //        } else {
 //            super.onBackPressed()
 //        }
