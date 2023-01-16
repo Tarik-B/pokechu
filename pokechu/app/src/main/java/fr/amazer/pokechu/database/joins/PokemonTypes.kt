@@ -14,9 +14,9 @@ import fr.amazer.pokechu.enums.PokemonType
         ForeignKey(entity = EntityType::class, parentColumns = arrayOf("id"), childColumns = arrayOf("type_id"), onDelete = ForeignKey.CASCADE)
     ]
 )
-class PokemonTypesJoin(val pokemon_id: Int, val type_id: Int)
+class JoinPokemonTypes(val pokemon_id: Int, val type_id: Int)
 
-data class PokemonIdTypesId(
+data class PokemonIdTypeIds(
     @ColumnInfo(name = "pokemon_id") val pokemon_id: Int,
     @ColumnInfo(name = "type_ids") val type_ids: String?,
 ) {
@@ -25,14 +25,14 @@ data class PokemonIdTypesId(
 }
 
 @Dao
-interface PokemonTypesDao {
+interface DaoPokemonTypes {
     @Query(
         "SELECT pokemons.id as pokemon_id, GROUP_CONCAT(type_id) as type_ids " +
         "FROM pokemons " +
             "LEFT JOIN pokemon_types ON pokemon_types.pokemon_id = pokemons.id " +
         "GROUP BY pokemons.id "
     )
-    fun findPokemonsTypes(): LiveData<List<PokemonIdTypesId>>
+    fun findPokemonsTypes(): LiveData<List<PokemonIdTypeIds>>
 
     @Query(
         "SELECT pokemons.id as pokemon_id, GROUP_CONCAT(type_id) as type_ids " +
@@ -43,7 +43,7 @@ interface PokemonTypesDao {
         "GROUP BY pokemons.id " +
         "ORDER BY pokemon_regions.local_id ASC"
     )
-    fun findPokemonsTypesByRegion(regionId: Int): LiveData<List<PokemonIdTypesId>>
+    fun findPokemonsTypesByRegion(regionId: Int): LiveData<List<PokemonIdTypeIds>>
 
     @Query(
         "SELECT type_id FROM pokemon_types " +

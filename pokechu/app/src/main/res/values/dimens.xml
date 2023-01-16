@@ -24,4 +24,6 @@
     <dimen name="default_collapsed_image_size">45dp</dimen>
     <dimen name="default_expanded_image_size">135dp</dimen>
 
+    <dimen name="navigation_bar_height">48dip</dimen>
+
 </resources>

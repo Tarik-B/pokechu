@@ -62,6 +62,8 @@
     <string name="about_build_date">Date de compilation :</string>
     <string name="about_build_time">Heure de compilation :</string>
     <string name="about_thanks">Merci aux contributeurs et administrateurs de Poképédia, Bulbapedia et PokéAPI !</string>
+    <string name="about_copyright">Pokémon © 2002-2022 Pokémon. © 1995-2022 Nintendo/Creatures Inc./GAME FREAK inc. TM, ® ainsi que les noms de personnages Pokémon sont des marques déposées de Nintendo</string>
 
     <string name="bottom_sheet_regions">Régions</string>
+    <string name="bottom_sheet_games">Jeux</string>
 </resources>

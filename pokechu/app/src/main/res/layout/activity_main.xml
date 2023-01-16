@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="fr.amazer.pokechu.BuildConfig"/>
+
         <variable name="capturedCount"      type="Integer" />
         <variable name="discoveredCount"    type="Integer" />
         <variable name="totalCount"         type="Integer" />
@@ -34,7 +36,7 @@
                 android:fitsSystemWindows="true"
                 app:toolbarId="@id/toolbar"
                 app:collapsedTitleGravity="left"
-                app:collapsedTitleTextColor="@color/white"
+                app:collapsedTitleTextColor="@color/backgroundInvert"
                 app:expandedTitleGravity="top|left"
                 app:expandedTitleTextColor="@color/pokechuPrimary">
 
@@ -48,7 +50,23 @@
                         android:id="@+id/topHeadColored"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/top_head_background_height"
-                        android:background="@color/pokechuPrimary" />
+                        android:background="@color/pokechuPrimary">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right|center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/text_margin_very_small"
+                                android:text="@{`Version ` + BuildConfig.VERSION_NAME}"
+                                android:textColor="@color/backgroundInvert" />
+
+                        </LinearLayout>
+                    </FrameLayout>
+
                 </FrameLayout>
 
                 <com.google.android.material.appbar.MaterialToolbar
@@ -77,24 +95,13 @@
                     android:layout_marginBottom="8.0dip"/>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
-<!--        </com.google.android.material.appbar.AppBarLayout>-->
-<!---->
-<!--        <com.google.android.material.appbar.AppBarLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fitsSystemWindows="true">-->
-<!---->
-<!--            <com.google.android.material.appbar.MaterialToolbar-->
-<!--                android:id="@+id/toolbar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"/>-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center_vertical"
-                android:orientation="horizontal"
-                android:layout_margin="@dimen/text_margin_very_small">
+                android:layout_margin="@dimen/text_margin_very_small"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -107,7 +114,7 @@
                     android:layout_marginLeft="@dimen/text_margin_very_small"
                     android:layout_marginRight="@dimen/text_margin"
                     android:text="@{capturedCount + ` / ` + totalCount}"
-                    android:textColor="@color/backgroundInvert"/>
+                    android:textColor="@color/backgroundInvert" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -120,7 +127,7 @@
                     android:layout_marginLeft="@dimen/text_margin_very_small"
                     android:layout_marginRight="@dimen/text_margin"
                     android:text="@{discoveredCount + ` / ` + totalCount}"
-                    android:textColor="@color/backgroundInvert"/>
+                    android:textColor="@color/backgroundInvert" />
 
             </LinearLayout>
 
@@ -167,20 +174,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_bottom_sheet"
-            android:name="fr.amazer.pokechu.ui.main.FragmentBottomSheet"
-            android:layout_width="413dp"
-            android:layout_height="wrap_content"
-            app:layout_anchor="@id/constraintLayout"
-            app:layout_anchorGravity="bottom"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout"
-            tools:layout="@layout/fragment_bottom_sheet" />
-
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/buttonSearch"
             android:layout_width="wrap_content"
@@ -194,8 +187,22 @@
             android:scaleType="center"
             android:src="@drawable/ic_search_123"
             app:backgroundTint="@color/pokechuPrimary" />
-<!--            app:maxImageSize="40dp"-->
-<!--            app:fabCustomSize="60dp"-->
+        <!--            app:maxImageSize="40dp"-->
+        <!--            app:fabCustomSize="60dp"-->
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_bottom_sheet"
+            android:name="fr.amazer.pokechu.ui.main.FragmentBottomSheet"
+            android:layout_width="413dp"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/constraintLayout"
+            app:layout_anchorGravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            tools:layout="@layout/fragment_bottom_sheet" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

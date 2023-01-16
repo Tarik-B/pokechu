@@ -19,7 +19,7 @@ class LivePreference<T> constructor(
     private var lastValue: T? = null
 
     init {
-        lastValue = (preferences.all[key] as T) ?: defaultValue
+        lastValue = getPreferenceValue(key) ?: defaultValue
         value = lastValue
     }
 
@@ -28,8 +28,8 @@ class LivePreference<T> constructor(
 
         // First condition prevents "null" from being posted after default value
         // if the preference doesn't exist (fresh install)
-        if (preferences.all.containsKey(key) && lastValue != preferences.all[key]) {
-            lastValue = preferences.all[key] as T
+        if (preferences.all.containsKey(key) && lastValue != getPreferenceValue(key)) {
+            lastValue = getPreferenceValue(key)
             postValue(lastValue)
         }
 
@@ -38,7 +38,7 @@ class LivePreference<T> constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                lastValue = (preferences.all[it] as T ?: defaultValue)
+                lastValue = (getPreferenceValue(it) ?: defaultValue)
                 postValue(lastValue)
             }
     }
@@ -46,5 +46,9 @@ class LivePreference<T> constructor(
     override fun onInactive() {
         super.onInactive()
         disposable?.dispose()
+    }
+
+    private fun getPreferenceValue(key: String): T {
+        return preferences.all[key] as T
     }
 }

@@ -12,7 +12,7 @@ Pokémon and stuff
 
 Major:
 
-- [ ] Filter by games
+- [X] Filter by games
 - [ ] List of games in Pokémon details
 - [ ] Add Pokedex official description(s?) in details
 - [ ] Add Pokémon cries (trigger on opening details?)

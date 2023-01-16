@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- *********************************************************************** -->
+<!--   WARNING! Auto-generated file, all manual changes made will be lost!   -->
+<!-- *********************************************************************** -->
+
+<resources>
+    <string name="game_name_0">Pokémon Rouge</string>
+    <string name="game_name_1">Pokémon Bleu</string>
+    <string name="game_name_2">Pokémon Jaune</string>
+    <string name="game_name_3">Pokémon Or</string>
+    <string name="game_name_4">Pokémon Argent</string>
+    <string name="game_name_5">Pokémon Cristal</string>
+    <string name="game_name_6">Pokémon Rubis</string>
+    <string name="game_name_7">Pokémon Saphir</string>
+    <string name="game_name_8">Pokémon Rouge Feu</string>
+    <string name="game_name_9">Pokémon Vert Feuille</string>
+    <string name="game_name_10">Pokémon Émeraude</string>
+    <string name="game_name_11">Pokémon Diamant</string>
+    <string name="game_name_12">Pokémon Perle</string>
+    <string name="game_name_13">Pokémon Platine</string>
+    <string name="game_name_14">Pokémon Or HeartGold</string>
+    <string name="game_name_15">Pokémon Argent SoulSilver</string>
+    <string name="game_name_16">Pokémon Noir</string>
+    <string name="game_name_17">Pokémon Blanc</string>
+    <string name="game_name_18">Pokémon Noir 2</string>
+    <string name="game_name_19">Pokémon Blanc 2</string>
+    <string name="game_name_20">Pokémon X</string>
+    <string name="game_name_21">Pokémon Y</string>
+    <string name="game_name_22">Pokémon Rubis Oméga</string>
+    <string name="game_name_23">Pokémon Saphir Alpha</string>
+    <string name="game_name_24">Pokémon Soleil</string>
+    <string name="game_name_25">Pokémon Lune</string>
+    <string name="game_name_26">Pokémon Ultra-Soleil</string>
+    <string name="game_name_27">Pokémon Ultra-Lune</string>
+    <string name="game_name_28">Pokémon : Let\'s Go, Pikachu</string>
+    <string name="game_name_29">Pokémon : Let\'s Go, Évoli</string>
+    <string name="game_name_30">Pokémon Épée</string>
+    <string name="game_name_31">Pokémon Bouclier</string>
+    <string name="game_name_32">L\'île solitaire de l\'Armure</string>
+    <string name="game_name_33">Les terres enneigées de la Couronne</string>
+    <string name="game_name_34">Pokémon Diamant Étincelant</string>
+    <string name="game_name_35">Pokémon Perle Scintillante</string>
+    <string name="game_name_36">Légendes Pokémon : Arceus</string>
+    <string name="game_name_37">Pokémon Écarlate</string>
+    <string name="game_name_38">Pokémon Violet</string>
+</resources>

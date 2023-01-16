@@ -15,8 +15,8 @@ import fr.amazer.pokechu.enums.*
 
 @Database(
     entities = [
-        EntityPokemon::class, EntityRegion::class, EntityType::class,
-        PokemonRegionsJoin::class, PokemonEvolutionsJoin::class, PokemonTypesJoin::class
+        EntityPokemon::class, EntityRegion::class, EntityType::class, EntityGame::class,
+        JoinPokemonRegions::class, JoinPokemonEvolutions::class, JoinPokemonTypes::class
     ],
     version = 2,
     exportSchema = false
@@ -24,10 +24,11 @@ import fr.amazer.pokechu.enums.*
 abstract class PokechuDatabase: RoomDatabase() {
     abstract fun getPokemonsDao(): DaoPokemons
     abstract fun getRegionsDao(): DaoRegions
+    abstract fun getGamesDao(): DaoGames
 
-    abstract fun getPokemonRegionsDao(): PokemonRegionsDao
-    abstract fun getPokemonEvolutionsDao(): PokemonEvolutionsDao
-    abstract fun getPokemonTypesDao(): PokemonTypesDao
+    abstract fun getPokemonRegionsDao(): DaoPokemonRegions
+    abstract fun getPokemonEvolutionsDao(): DaoPokemonEvolutions
+    abstract fun getPokemonTypesDao(): DaoPokemonTypes
 
     private val mIsDatabaseCreated = MutableLiveData<Boolean>()
 

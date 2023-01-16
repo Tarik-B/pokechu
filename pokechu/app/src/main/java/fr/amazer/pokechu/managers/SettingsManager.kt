@@ -6,6 +6,7 @@ import androidx.preference.PreferenceManager
 import fr.amazer.pokechu.enums.PreferenceData
 import fr.amazer.pokechu.enums.PreferenceType
 
+const val LIST_SETTING_SEPARATOR = ","
 
 object SettingsManager {
     lateinit var preferences: SharedPreferences
@@ -59,15 +60,33 @@ object SettingsManager {
             Boolean::class -> preferences.getBoolean(key, defaultValue as Boolean) as T
             String::class -> preferences.getString(key, defaultValue as String) as T
             Integer::class -> preferences.getInt(key, defaultValue as Int) as T
+            List::class -> {
+                getListSettingValue(key, defaultValue as List<Any>) as T
+            }
             else -> throw Exception()
         }
+    }
+    inline fun <reified T: Any> getListSettingValue(key: String, defaultValue: List<T>): List<T> {
+        val defaultValueListString = (defaultValue as List<*>).joinToString(LIST_SETTING_SEPARATOR)
+        val listString = preferences.getString(key, defaultValueListString )!!
+        val stringList = listString.split(LIST_SETTING_SEPARATOR).toList()
+        val valueList = List<T>(stringList.size){ index -> stringList[index].toInt() as T }
+
+        return valueList
     }
     inline fun <reified T: Any> setSettingValue(key: String, value: T) {
         when(T::class) {
             Boolean::class -> preferences.edit().putBoolean(key, value as Boolean).apply()
             String::class -> preferences.edit().putString(key, value as String).apply()
             Integer::class -> preferences.edit().putInt(key, value as Int).apply()
+            List::class -> {
+                setListSettingValue(key, value as List<Any>)
+            }
             else -> throw Exception()
         }
+    }
+    inline fun <reified T: Any> setListSettingValue(key: String, value: T) {
+        val valueListString = (value as List<*>).joinToString(LIST_SETTING_SEPARATOR)
+        preferences.edit().putString(key, valueListString).apply()
     }
 }

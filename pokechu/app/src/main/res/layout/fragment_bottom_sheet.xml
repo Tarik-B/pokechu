@@ -18,34 +18,26 @@
         app:behavior_hideable="false"
         app:behavior_peekHeight="110dp"
         android:maxHeight="500dp"
-        android:background="@color/backgroundDefault">
+        android:background="@color/pokechuPrimary">
 
         <!-- Drag handle for accessibility -->
         <com.google.android.material.bottomsheet.BottomSheetDragHandleView
             android:layout_width="match_parent"
             android:layout_height="40dp"/>
 
-        <TextView
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/bottom_sheet_regions"
-            tools:ignore="MissingConstraints" />
+            android:background="@color/pokechuPrimary"
+            app:tabTextColor="@color/backgroundInvert"
+            app:tabSelectedTextColor="@color/backgroundDefault" />
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <GridLayout
-                android:id="@+id/regionGridContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:useDefaultMargins="true"
-                android:layout_gravity="center_horizontal">
-
-            </GridLayout>
-
-        </androidx.core.widget.NestedScrollView>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/navigation_bar_height">
+        </androidx.viewpager2.widget.ViewPager2>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,11 +6,10 @@ import android.content.res.Resources
 import fr.amazer.pokechu.BuildConfig
 import fr.amazer.pokechu.PokechuApplication
 import fr.amazer.pokechu.R
-import fr.amazer.pokechu.enums.EvolutionCondition
-import fr.amazer.pokechu.enums.EvolutionItem
-import fr.amazer.pokechu.enums.PreferenceType
-import fr.amazer.pokechu.enums.Region
-import kotlinx.coroutines.*
+import fr.amazer.pokechu.enums.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
 
 
@@ -20,6 +19,7 @@ object LocalizationManager {
     private lateinit var regionNames: List<List<String>>
     private lateinit var itemNames: List<List<String>>
     private lateinit var conditionNames: List<List<String>>
+    private lateinit var gameNames: List<List<String>>
 
     fun with(application: PokechuApplication) {
         val langs = application.resources.getStringArray(R.array.language_values)
@@ -56,6 +56,12 @@ object LocalizationManager {
         val langIndex = languages.indexOf(language)
         return if (langIndex >= 0) conditionNames[langIndex][id.ordinal] else null
     }
+    private fun getGameNameKey(id: Int): String { return "game_name_${id}" }
+    fun getGameName(id: Game, language: String = getDataLanguage()): String? {
+        val langIndex = languages.indexOf(language)
+        return if (langIndex >= 0) gameNames[langIndex][id.ordinal] else null
+    }
+
 
     private fun loadNames(application: PokechuApplication) {
         runBlocking {
@@ -79,6 +85,10 @@ object LocalizationManager {
 
                 val conditionIds = List(EvolutionCondition.values().size) { EvolutionCondition.values()[it].ordinal }
                 conditionNames = loadNames(langContexts, conditionIds, ::getConditionNameKey)
+
+                val gameIds = List(Game.values().size) { Game.values()[it].ordinal }
+                gameNames = loadNames(langContexts, gameIds, ::getGameNameKey)
+
             }
         }
     }

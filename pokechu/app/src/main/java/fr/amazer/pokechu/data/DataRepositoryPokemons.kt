@@ -1,9 +1,9 @@
 package fr.amazer.pokechu.data
 
 import androidx.lifecycle.LiveData
-import fr.amazer.pokechu.database.entities.NationalIdLocalId
 import fr.amazer.pokechu.database.PokechuDatabase
-import fr.amazer.pokechu.database.joins.PokemonIdTypesId
+import fr.amazer.pokechu.database.entities.NationalIdLocalId
+import fr.amazer.pokechu.database.joins.PokemonIdTypeIds
 
 class DataRepositoryPokemons private constructor(
     private val database: PokechuDatabase
@@ -15,10 +15,10 @@ class DataRepositoryPokemons private constructor(
     fun getPokemonsIdsByRegion(regionId: Int): LiveData<List<NationalIdLocalId>> {
         return database.getPokemonRegionsDao().findPokemonRegions(regionId)
     }
-    fun getPokemonsTypes(): LiveData<List<PokemonIdTypesId>> {
+    fun getPokemonsTypes(): LiveData<List<PokemonIdTypeIds>> {
         return database.getPokemonTypesDao().findPokemonsTypes()
     }
-    fun getPokemonsTypesByRegion(regionId: Int): LiveData<List<PokemonIdTypesId>> {
+    fun getPokemonsTypesByRegion(regionId: Int): LiveData<List<PokemonIdTypeIds>> {
         return database.getPokemonTypesDao().findPokemonsTypesByRegion(regionId)
     }
     fun localToNationalId(region_id: Int, local_id: Int): LiveData<Int> {

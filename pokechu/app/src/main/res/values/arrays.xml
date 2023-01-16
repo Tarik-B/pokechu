@@ -25,4 +25,9 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="bottom_sheet_page_titles">
+        <item>@string/bottom_sheet_regions</item>
+        <item>@string/bottom_sheet_games</item>
+    </string-array>
+
 </resources>

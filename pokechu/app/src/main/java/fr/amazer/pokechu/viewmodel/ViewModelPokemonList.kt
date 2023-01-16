@@ -7,11 +7,11 @@ import fr.amazer.pokechu.data.DataRepositoryPokemons
 import fr.amazer.pokechu.data.DataRepositoryPreferences
 import fr.amazer.pokechu.data.preferences.LivePreference
 import fr.amazer.pokechu.database.entities.NationalIdLocalId
-import fr.amazer.pokechu.enums.Region
-import fr.amazer.pokechu.database.joins.PokemonIdTypesId
+import fr.amazer.pokechu.database.joins.PokemonIdTypeIds
 import fr.amazer.pokechu.enums.PokemonType
-import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.enums.PreferenceType
+import fr.amazer.pokechu.enums.Region
+import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
 import fr.amazer.pokechu.utils.AssetUtils
 
@@ -26,7 +26,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
     private var repositoryPreferences: DataRepositoryPreferences
 
     private val pokemons: LiveData<List<NationalIdLocalId>>
-    private val pokemonTypes: LiveData<List<PokemonIdTypesId>>
+    private val pokemonTypes: LiveData<List<PokemonIdTypeIds>>
     private val pokemonData: MediatorLiveData<List<ViewModelPokemonListData>>
     private val totalCount: MutableLiveData<Int> = MutableLiveData(0)
     private val discoveredCount: MutableLiveData<Int> = MutableLiveData(0)
@@ -66,7 +66,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
         // Build pokemon data map
         fun combinePokemonData(
             idsLiveData: LiveData<List<NationalIdLocalId>>,
-            typesLiveData: LiveData<List<PokemonIdTypesId>>,
+            typesLiveData: LiveData<List<PokemonIdTypeIds>>,
             filtersLiveData: MediatorLiveData<ViewModelFilters>,
             paramsLiveData: LiveData<Boolean>
         ): List<ViewModelPokemonListData>? {
@@ -183,12 +183,12 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
     fun getShowUndiscoveredInfo(): LivePreference<Boolean> {
         return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_UNDISCOVERED_INFO)
     }
-    fun getShowDiscoveredOnly(): LivePreference<Boolean> {
-        return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_DISCOVERED_ONLY)
-    }
-    fun getShowCapturedOnly(): LivePreference<Boolean> {
-        return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_CAPTURED_ONLY)
-    }
+//    fun getShowDiscoveredOnly(): LivePreference<Boolean> {
+//        return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_DISCOVERED_ONLY)
+//    }
+//    fun getShowCapturedOnly(): LivePreference<Boolean> {
+//        return repositoryPreferences.getLiveSetting(PreferenceType.SHOW_CAPTURED_ONLY)
+//    }
     fun getDataLanguage(): LivePreference<String> {
         return repositoryPreferences.getLiveSetting(PreferenceType.DATA_LANGUAGE)
     }

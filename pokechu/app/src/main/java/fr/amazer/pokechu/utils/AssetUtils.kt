@@ -3,10 +3,7 @@ package fr.amazer.pokechu.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import fr.amazer.pokechu.enums.EvolutionCondition
-import fr.amazer.pokechu.enums.EvolutionItem
-import fr.amazer.pokechu.enums.Region
-import fr.amazer.pokechu.enums.PokemonType
+import fr.amazer.pokechu.enums.*
 import java.io.IOException
 import java.io.InputStream
 
@@ -35,6 +32,9 @@ class AssetUtils {
         }
         fun getRegionThumbnailPath(type: Region): String {
             return "images/regions/${type.ordinal}.png"
+        }
+        fun getGameThumbnailPath(type: Game): String {
+            return "images/games/${type.ordinal}.png"
         }
         fun getItemThumbnailPath(type: EvolutionItem): String {
             return "images/items/${type.ordinal}.png"

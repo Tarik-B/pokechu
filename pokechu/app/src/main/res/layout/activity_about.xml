@@ -171,6 +171,19 @@
                     android:layout_margin="@dimen/text_margin_very_small"
                     android:src="@drawable/ic_pokeball" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/about_copyright"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="23dip"
+                    android:layout_height="23dip"
+                    android:layout_margin="@dimen/text_margin_very_small"
+                    android:src="@drawable/ic_pokeball" />
+
             </LinearLayout>
 
         </LinearLayout>

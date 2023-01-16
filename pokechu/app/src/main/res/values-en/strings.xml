@@ -62,7 +62,9 @@
     <string name="about_build_date">Build date:</string>
     <string name="about_build_time">Build time:</string>
     <string name="about_thanks">Special thanks to Poképédia, Bulbapedia and PokéAPI contributors and maintainers!</string>
+    <string name="about_copyright">Pokémon © 2002-2023 Pokémon. © 1995-2023 Nintendo/Creatures Inc./GAME FREAK inc. TM, ® and Pokémon character names are trademarks of Nintendo</string>
 
     <!-- Bottom sheet -->
     <string name="bottom_sheet_regions">Regions</string>
+    <string name="bottom_sheet_games">Games</string>
 </resources>

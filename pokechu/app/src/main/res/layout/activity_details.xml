@@ -38,8 +38,8 @@
                 app:expandedTitleMargin="17dip"
                 app:expandedTitleGravity="top|center_horizontal"
                 app:collapsedTitleGravity="left"
-                app:expandedTitleTextColor="@color/white"
-                app:collapsedTitleTextColor="@color/white">
+                app:expandedTitleTextColor="@color/backgroundInvert"
+                app:collapsedTitleTextColor="@color/backgroundInvert">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             app:menu="@menu/details_bottom_nav"
             android:layout_gravity="bottom"
-            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"/>
+            style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

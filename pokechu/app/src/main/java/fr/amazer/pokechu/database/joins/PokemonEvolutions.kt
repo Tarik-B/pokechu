@@ -1,11 +1,7 @@
 package fr.amazer.pokechu.database.joins
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Query
-import androidx.room.ColumnInfo
+import androidx.room.*
 import fr.amazer.pokechu.database.entities.EntityPokemon
 
 @Entity(
@@ -16,7 +12,7 @@ import fr.amazer.pokechu.database.entities.EntityPokemon
         ForeignKey(entity = EntityPokemon::class, parentColumns = arrayOf("id"), childColumns = arrayOf("evolved_id"), onDelete = ForeignKey.CASCADE)
     ]
 )
-class PokemonEvolutionsJoin(val base_id: Int, val evolved_id: Int, val condition_raw: String, val condition_encoded: String)
+class JoinPokemonEvolutions(val base_id: Int, val evolved_id: Int, val condition_raw: String, val condition_encoded: String)
 
 data class BaseIdEvolvedIdCondition(
     @ColumnInfo(name = "base_id") val base_id: Int,
@@ -26,7 +22,7 @@ data class BaseIdEvolvedIdCondition(
 }
 
 @Dao
-interface PokemonEvolutionsDao {
+interface DaoPokemonEvolutions {
     @Query(
         "WITH RECURSIVE evolution_root AS ("+
             "SELECT pe.base_id, pe.evolved_id, 0 as depth "+

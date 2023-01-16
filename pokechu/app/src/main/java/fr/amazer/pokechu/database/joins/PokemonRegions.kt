@@ -17,10 +17,10 @@ import fr.amazer.pokechu.database.entities.NationalIdLocalId
         ForeignKey(entity = EntityRegion::class, parentColumns = arrayOf("id"), childColumns = arrayOf("region_id"), onDelete = ForeignKey.CASCADE)
     ]
 )
-class PokemonRegionsJoin(val pokemon_id: Int, val region_id: Int, val local_id: Int)
+class JoinPokemonRegions(val pokemon_id: Int, val region_id: Int, val local_id: Int)
 
 @Dao
-interface PokemonRegionsDao {
+interface DaoPokemonRegions {
     @Query(
         "SELECT pokemon_id, local_id FROM regions " +
         "INNER JOIN pokemon_regions ON regions.id=pokemon_regions.region_id " +
@@ -28,6 +28,14 @@ interface PokemonRegionsDao {
         "ORDER BY local_id ASC"
     )
     fun findPokemonRegions(region_id: Int): LiveData<List<NationalIdLocalId>>
+
+    @Query(
+        "SELECT pokemon_id, local_id FROM regions " +
+        "INNER JOIN pokemon_regions ON regions.id=pokemon_regions.region_id " +
+        "WHERE pokemon_regions.region_id IN (:region_ids) "+
+        "ORDER BY local_id ASC"
+    )
+    fun findPokemonRegions(region_ids: List<Int>): LiveData<List<NationalIdLocalId>>
 
     @Query(
         "SELECT pokemon_id FROM pokemon_regions " +

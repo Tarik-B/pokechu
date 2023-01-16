@@ -66,7 +66,9 @@
     <string name="about_build_date" />
     <string name="about_build_time" />
     <string name="about_thanks" />
+    <string name="about_copyright" />
 
     <!-- Bottom sheet -->
     <string name="bottom_sheet_regions" />
+    <string name="bottom_sheet_games" />
 </resources>

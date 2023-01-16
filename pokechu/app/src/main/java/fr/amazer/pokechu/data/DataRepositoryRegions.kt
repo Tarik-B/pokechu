@@ -1,8 +1,9 @@
 package fr.amazer.pokechu.data
 
 import androidx.lifecycle.LiveData
-import fr.amazer.pokechu.database.entities.EntityRegion
 import fr.amazer.pokechu.database.PokechuDatabase
+import fr.amazer.pokechu.database.entities.EntityGame
+import fr.amazer.pokechu.database.entities.EntityRegion
 
 class DataRepositoryRegions private constructor(
     private val database: PokechuDatabase
@@ -10,6 +11,10 @@ class DataRepositoryRegions private constructor(
 
     fun getRegions(): LiveData<List<EntityRegion>> {
         return database.getRegionsDao().findAll()
+    }
+
+    fun getGames(): LiveData<List<EntityGame>> {
+        return database.getGamesDao().findAll()
     }
 
     companion object {

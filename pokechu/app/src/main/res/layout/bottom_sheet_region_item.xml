@@ -5,8 +5,8 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-        <variable name="regionName"     type="String" />
-        <variable name="regionImgPath"   type="String" />
+        <variable name="name"     type="String" />
+        <variable name="imagePath"   type="String" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -15,35 +15,37 @@
         app:cardCornerRadius="@dimen/card_recycler_corner_radius"
         app:cardElevation="@dimen/card_recycler_elevation"
         android:id="@+id/rootCardView"
-        app:strokeColor="@color/pokechuAccent"
+        app:strokeColor="@color/backgroundInvert"
         app:strokeWidth="0dp">
 
         <RelativeLayout
             android:layout_width="123dip"
             android:layout_height="123dip"
             android:gravity="center"
-            android:padding="@dimen/text_margin">
+            android:padding="@dimen/text_margin_very_small">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
+                    assetPath="@{imagePath}"
                     android:layout_width="match_parent"
-                    android:layout_weight="3"
                     android:layout_height="0dip"
-                    assetPath="@{regionImgPath}"
-                    android:scaleType="fitCenter"/>
+                    android:layout_weight="2"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_pokeball" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
                     android:layout_height="0dip"
-                    android:gravity="center"
+                    android:layout_weight="1"
                     android:fontFamily="sans-serif-medium"
-                    android:text="@{regionName}" />
+                    android:gravity="center"
+                    android:text="@{name, default=`Text`}"
+                    android:textColor="@color/backgroundInvert" />
 
             </LinearLayout>
 
