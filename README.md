@@ -107,6 +107,8 @@ to Poképédia, Bulbapedia and PokéAPI contributors and maintainers!
 - [CollapsingAvatarToolbarSample][collapsing_toolbar] (FlingBehavior) by Sergey Burlaka
 - Pokemon GB font by Jackster Productions
 
+Pokémon © 2002-2023 Pokémon. © 1995-2023 Nintendo/Creatures Inc./GAME FREAK inc. TM, ® and Pokémon character names are trademarks of Nintendo
+
 [graphview]: https://github.com/oss-bandb/GraphView
 [localization]: https://github.com/akexorcist/Localization
 [particles]: https://github.com/plattysoft/Leonids
