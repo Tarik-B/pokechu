@@ -91,8 +91,7 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/logo"
                     android:tintMode="multiply"
-                    android:transitionName="imageTransition"
-                    android:layout_marginBottom="8.0dip"/>
+                    android:transitionName="imageTransition"/>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -175,21 +174,30 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/buttonSearch"
+            android:id="@+id/buttonIdSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin"
-
-            android:contentDescription="@string/menu_main_search"
-
+            android:layout_marginBottom="75dp"
+            app:layout_anchor="@id/bottomSheet"
+            app:layout_anchorGravity="right|top"
             android:scaleType="center"
             android:src="@drawable/ic_search_123"
             app:backgroundTint="@color/pokechuPrimary" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="150dp"
+            app:layout_anchor="@id/bottomSheet"
+            app:layout_anchorGravity="right|top"
+            android:scaleType="center"
+            android:src="@drawable/ic_search"
+            app:backgroundTint="@color/pokechuPrimary" />
         <!--            app:maxImageSize="40dp"-->
         <!--            app:fabCustomSize="60dp"-->
-
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_bottom_sheet"
@@ -198,10 +206,6 @@
             android:layout_height="wrap_content"
             app:layout_anchor="@id/constraintLayout"
             app:layout_anchorGravity="bottom"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout"
             tools:layout="@layout/fragment_bottom_sheet" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

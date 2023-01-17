@@ -3,7 +3,9 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical"
+    android:fadeScrollbars="false"
+    android:scrollbarSize="@dimen/text_margin_very_small">
 
     <GridLayout
         android:id="@+id/gridContainer"

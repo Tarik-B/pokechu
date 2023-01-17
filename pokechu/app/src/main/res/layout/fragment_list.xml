@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:descendantFocusability="blocksDescendants">
     <!-- "descendantFocusability" to make the recyclerView not scrolls to the top itself -->
     <!-- TODO what does the preceding comment even mean? -->
@@ -13,31 +14,31 @@
         android:id="@+id/fabToTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="23dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        app:fabCustomSize="46dp"
-        app:fabSize="auto"
+        android:alpha="0.75"
+        android:maxWidth="23dp"
+        android:scaleType="center"
 
         android:src="@drawable/outline_keyboard_arrow_up_24"
-        android:scaleType="center"
-        app:maxImageSize="23dp"
-
-        app:backgroundTint="@color/pokechuPrimary"
         android:visibility="gone"
-        android:alpha="0.75"/>
+        app:backgroundTint="@color/pokechuPrimary"
+
+        app:fabCustomSize="46dp"
+        app:fabSize="auto"
+        app:maxImageSize="23dp" />
 
     <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.FragmentList"
 
+        app:fastScrollPopupBackgroundSize="30dp"
         app:fastScrollPopupBgColor="@color/pokechuAccent"
-        app:fastScrollThumbColor="@color/pokechuAccent"
+
         app:fastScrollPopupTextColor="@color/black"
-
         app:fastScrollPopupTextSize="15sp"
-        app:fastScrollPopupBackgroundSize="30dp"/>
+        app:fastScrollThumbColor="@color/pokechuAccent"
+        tools:context=".ui.main.FragmentList" />
 
-    </RelativeLayout>
+</RelativeLayout>
