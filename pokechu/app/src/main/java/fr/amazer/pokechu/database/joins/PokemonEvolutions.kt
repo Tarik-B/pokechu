@@ -3,6 +3,7 @@ package fr.amazer.pokechu.database.joins
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import fr.amazer.pokechu.database.entities.EntityPokemon
+import fr.amazer.pokechu.enums.PokemonType
 
 @Entity(
     tableName = "pokemon_evolutions",
@@ -20,6 +21,11 @@ data class BaseIdEvolvedIdCondition(
     @ColumnInfo(name = "condition_encoded") val condition_encoded: String
 ) {
 }
+
+data class PokemonIdEvolutionLinkCount(
+    @ColumnInfo(name = "pokemon_id") val pokemon_id: Int,
+    @ColumnInfo(name = "link_count") val link_count: Int,
+)
 
 @Dao
 interface DaoPokemonEvolutions {
@@ -53,4 +59,25 @@ interface DaoPokemonEvolutions {
         "JOIN pokemons p ON p.id = evolution_chain.evolved_id;"
     )
     fun findPokemonEvolutions(pokemon_id: Int): LiveData<List<BaseIdEvolvedIdCondition>>
+
+    @Query(
+        "SELECT pokemons.id as pokemon_id, ( " +
+                "SELECT COUNT(*) FROM pokemon_evolutions " +
+                "WHERE pokemon_evolutions.base_id = pokemons.id OR pokemon_evolutions.evolved_id = pokemons.id " +
+        " ) as link_count " +
+        "FROM pokemons"
+    )
+    fun findPokemonsEvolutionLinkCount(): LiveData<List<PokemonIdEvolutionLinkCount>>
+
+    @Query(
+        "SELECT pokemons.id as pokemon_id, ( " +
+            "SELECT COUNT(*) FROM pokemon_evolutions " +
+            "WHERE pokemon_evolutions.base_id = pokemons.id OR pokemon_evolutions.evolved_id = pokemons.id " +
+        " ) as link_count " +
+        "FROM pokemons " +
+        "JOIN pokemon_regions ON pokemon_regions.pokemon_id = pokemons.id " +
+        "WHERE pokemon_regions.region_id = :regionId " +
+        "GROUP BY pokemons.id;"
+    )
+    fun findPokemonsEvolutionLinkCountByRegion(regionId: Int): LiveData<List<PokemonIdEvolutionLinkCount>>
 }

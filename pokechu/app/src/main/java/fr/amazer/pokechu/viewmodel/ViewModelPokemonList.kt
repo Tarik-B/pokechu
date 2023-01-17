@@ -2,11 +2,13 @@ package fr.amazer.pokechu.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
+import fr.amazer.pokechu.BR
 import fr.amazer.pokechu.PokechuApplication
 import fr.amazer.pokechu.data.DataRepositoryPokemons
 import fr.amazer.pokechu.data.DataRepositoryPreferences
 import fr.amazer.pokechu.data.preferences.LivePreference
 import fr.amazer.pokechu.database.entities.NationalIdLocalId
+import fr.amazer.pokechu.database.joins.PokemonIdEvolutionLinkCount
 import fr.amazer.pokechu.database.joins.PokemonIdTypeIds
 import fr.amazer.pokechu.enums.PokemonType
 import fr.amazer.pokechu.enums.PreferenceType
@@ -27,6 +29,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
 
     private val pokemons: LiveData<List<NationalIdLocalId>>
     private val pokemonTypes: LiveData<List<PokemonIdTypeIds>>
+    private val pokemonEvolutionLinkCount: LiveData<List<PokemonIdEvolutionLinkCount>>
     private val pokemonData: MediatorLiveData<List<ViewModelPokemonListData>>
     private val totalCount: MutableLiveData<Int> = MutableLiveData(0)
     private val discoveredCount: MutableLiveData<Int> = MutableLiveData(0)
@@ -53,6 +56,13 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
             else
                 repository.getPokemonsTypesByRegion(selectedRegion)
         }
+        pokemonEvolutionLinkCount = Transformations.switchMap(pokemons) { _ ->
+            val selectedRegion = SettingsManager.getSetting<Int>(PreferenceType.SELECTED_REGION)
+            if (selectedRegion == Region.NATIONAL.ordinal)
+                repository.getPokemonsEvolutionLinkCount()
+            else
+                repository.getPokemonEvolutionLinkCountByRegion(selectedRegion)
+        }
 
         // Merge other filters
         val discoveredOnlySetting = repositoryPreferences.getLiveSetting<Boolean>(PreferenceType.SHOW_DISCOVERED_ONLY)
@@ -67,20 +77,23 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
         fun combinePokemonData(
             idsLiveData: LiveData<List<NationalIdLocalId>>,
             typesLiveData: LiveData<List<PokemonIdTypeIds>>,
+            evolutionLinkCountLiveData: LiveData<List<PokemonIdEvolutionLinkCount>>,
             filtersLiveData: MediatorLiveData<ViewModelFilters>,
             paramsLiveData: LiveData<Boolean>
         ): List<ViewModelPokemonListData>? {
 
             val ids = idsLiveData.value
             val types = typesLiveData.value
+            val evolutionLinkCount = evolutionLinkCountLiveData.value
             val filters = filtersLiveData.value
             val params = paramsLiveData.value
 
             // Don't send a success until we have all results
-            if (ids == null || types == null || filters == null || params == null )
+            if (ids == null || types == null || evolutionLinkCount == null
+                || filters == null || params == null )
                 return null
 
-            if (ids.size != types.size)
+            if (ids.size != types.size || ids.size != evolutionLinkCount.size)
                 return null
 
             fun isPokemonDisplayed(id: Int): Boolean {
@@ -93,6 +106,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
 
             val filteredIds = ids.filter { isPokemonDisplayed(it.pokemon_id) }
             val filteredTypes = types.filter { isPokemonDisplayed(it.pokemon_id) }
+            val filteredEvolutionLinkCount = evolutionLinkCount.filter { isPokemonDisplayed(it.pokemon_id) }
 
             var countDiscovered = 0
             var countCaptured = 0
@@ -122,6 +136,7 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
                     names = names,
                     isDiscovered = isDiscovered,
                     isCaptured = isCaptured,
+                    hasEvolutionTree = filteredEvolutionLinkCount.find { it.pokemon_id == pokemonId }?.link_count ?: 0 != 0,
                     thumbnailPath = AssetUtils.getPokemonThumbnailPath(pokemonId),
                     typeImagePaths = typeImagePaths,
                 )
@@ -149,12 +164,13 @@ class ViewModelPokemons(application: Application) : AndroidViewModel(application
 
         pokemonData = MediatorLiveData()
         fun checkAndCombinePokemonData() {
-            val map = combinePokemonData(pokemons, pokemonTypes, otherFilters, otherParams)
+            val map = combinePokemonData(pokemons, pokemonTypes, pokemonEvolutionLinkCount, otherFilters, otherParams)
             if (map != null)
                 pokemonData.postValue(map!!)
         }
         pokemonData.addSource(pokemons) { _ -> checkAndCombinePokemonData() }
         pokemonData.addSource(pokemonTypes) { _ -> checkAndCombinePokemonData() }
+        pokemonData.addSource(pokemonEvolutionLinkCount) { _ -> checkAndCombinePokemonData() }
         pokemonData.addSource(otherFilters) { _ -> checkAndCombinePokemonData() }
         pokemonData.addSource(otherParams) { _ -> checkAndCombinePokemonData() }
     }

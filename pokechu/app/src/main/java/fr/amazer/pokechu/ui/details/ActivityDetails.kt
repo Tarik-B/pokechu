@@ -17,6 +17,7 @@ import fr.amazer.pokechu.ui.BaseActivity
 import fr.amazer.pokechu.ui.FlingHelper
 import fr.amazer.pokechu.ui.SwipeTouchListener
 import fr.amazer.pokechu.utils.AssetUtils
+import fr.amazer.pokechu.viewmodel.ViewModelEvolutionData
 import fr.amazer.pokechu.viewmodel.ViewModelEvolutions
 import fr.amazer.pokechu.viewmodel.ViewModelPokemon
 
@@ -104,6 +105,11 @@ class ActivityDetails : BaseActivity() {
                 binding.fragmentTitle = destination.label.toString()
             }
         })
+
+        binding.imageHeader.setOnLongClickListener { _ ->
+            SettingsManager.togglePokemonDiscovered(pokemonId)
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

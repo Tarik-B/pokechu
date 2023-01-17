@@ -22,12 +22,13 @@ class ListViewHolder(
         // Setup image
         setImagePath(data.thumbnailPath)
 
-        bindIsDiscovered(data.isDiscovered)
-        bindIsCaptured(data.isCaptured)
+        // Show image if discovered or "show undiscovered info" checked
+        val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(PreferenceType.SHOW_UNDISCOVERED_INFO)
+        setIsDiscovered(data.isDiscovered || showUndiscoveredInfo)
+        setIsCaptured(data.isCaptured)
+        setHasEvolutionTree(data.hasEvolutionTree)
 
         // Setup text, show name if discovered or "show undiscovered info" checked OR seach query isnt empty
-        val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(PreferenceType.SHOW_UNDISCOVERED_INFO)
-
 //        var localizedName: String
 //        if (holderData.filter.isEmpty()) {
 //            val dataLanguage = SettingsManager.getSetting<String>(PreferenceType.DATA_LANGUAGE)
@@ -72,16 +73,6 @@ class ListViewHolder(
         binding.executePendingBindings()
     }
 
-    fun bindIsDiscovered(isDiscovered: Boolean) {
-        // Show image if discovered or "show undiscovered info" checked
-        val showUndiscoveredInfo = SettingsManager.getSetting<Boolean>(PreferenceType.SHOW_UNDISCOVERED_INFO)
-        setIsDiscovered(isDiscovered || showUndiscoveredInfo)
-    }
-
-    private fun bindIsCaptured(isCaptured: Boolean) {
-        setIsCaptured(isCaptured)
-    }
-
     // TODO find a way for ListItemBinding and ListItemGridBinding to have a common interface (other than ViewBinding)
     private fun setImagePath(imgPath: String) {
         if (binding is ListItemBinding)
@@ -112,6 +103,12 @@ class ListViewHolder(
             binding.isCaptured = captured
         else if (binding is ListItemGridBinding)
             binding.isCaptured = captured
+    }
+    private fun setHasEvolutionTree(hasEvolutionTree: Boolean) {
+        if (binding is ListItemBinding)
+            binding.hasEvolutionTree = hasEvolutionTree
+        else if (binding is ListItemGridBinding)
+            binding.hasEvolutionTree = hasEvolutionTree
     }
     private fun setTypeBitmaps(types: List<Bitmap>?) {
         if (binding is ListItemBinding)

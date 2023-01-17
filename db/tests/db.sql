@@ -158,72 +158,19 @@
 -- -- GROUP BY evolution_chain.base_id
 -- ;
 
+-- SELECT * FROM games;
 
--- DROP TABLE IF EXISTS categories;
--- CREATE TABLE IF NOT EXISTS categories (
---     id INTEGER PRIMARY KEY AUTOINCREMENT,
---     name VARCHAR(255) NOT NULL,
---     parent_id INTEGER,
---     FOREIGN KEY (parent_id) REFERENCES categories(id) ON DELETE CASCADE
--- );
--- -- DELETE FROM categories;
--- INSERT INTO categories
--- VALUES  (10, "Poisson", NULL),
---         (11, "Requin", 10),
---         (12, "Requin blanc", 11),
---         (13, "Grand requin blanc", 12),
---         (14, "Petit requin blanc", 12);
+-- Evolution link count
+-- SELECT id, (
+--     SELECT COUNT(*) FROM pokemon_evolutions pe WHERE pe.base_id = p.id OR pe.evolved_id = p.id
+-- ) AS evolution_links
+-- FROM pokemons p
 
--- SELECT * FROM categories;
-
--- WITH RECURSIVE children (id, name, parent_id, level, path) AS (
---     SELECT id, name, parent_id, 0, ""
---     FROM categories
---     WHERE id = 11
-    
---     UNION ALL
-    
---     SELECT
---         c.id,
---         c.name,
---         c.parent_id,
---         children.level + 1,
---         children.path || children.name || " > "
---     FROM categories c, children
---     WHERE c.parent_id = children.id
--- )
--- SELECT id, name, level, path FROM children;
-
-/*
-SELECT r.title
-FROM ingredients i
-JOIN ingredients_recipes ir ON ir.ingredient_id = i.id 
-JOIN recipes r ON ir.recipe_id = r.id
-WHERE i.name = 'Oeuf';
-
-SELECT * FROM recipes WHERE id = 2;
-
-SELECT ir.quantity, ir.unit, i.name
-FROM ingredients_recipes ir 
-JOIN ingredients i ON ir.ingredient_id = i.id
-WHERE ir.recipe_id = 2;
-*/
-
--- SELECT i.name, COUNT(ir.recipe_id) as count
--- FROM ingredients i 
--- LEFT JOIN ingredients_recipes ir ON ir.ingredient_id = i.id
--- LEFT JOIN recipes r ON ir.recipe_id = r.id
--- GROUP BY i.name
--- ORDER BY count DESC, i.name ASC
--- LIMIT 3 OFFSET 3;
-
-/*
-SELECT DISTINCT i.name
-FROM ingredients i 
-LEFT JOIN ingredients_recipes ir ON ir.ingredient_id = i.id
-LEFT JOIN recipes r ON ir.recipe_id = r.id
-WHERE ir.recipe_id IS NOT NULL;
-LEFT JOIN recipes r ON ir.recipe_id = r.id
-*/
-
-SELECT * FROM games;
+-- Evolution link count by region
+SELECT id, (
+    SELECT COUNT(*) FROM pokemon_evolutions pe WHERE pe.base_id = p.id OR pe.evolved_id = p.id
+) AS evolution_links
+FROM pokemons p
+    JOIN pokemon_regions pr ON pr.pokemon_id = p.id
+WHERE pr.region_id = 3
+GROUP BY p.id

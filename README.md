@@ -1,4 +1,4 @@
-# Pokechu
+# Pokéchu
 
 Yet Another Pokédex App, without spoilers
 
@@ -6,7 +6,16 @@ Yet Another Pokédex App, without spoilers
 
 ## Features
 
-Pokémon and stuff
+- Pokedex selection by region or game
+- Hidden undiscovered Pokémons name/thumbnail
+- Toggleable captured/discovered statuses
+- Filter captured/discovered Pokémons only
+- Search by names (any language)
+- Quick search by ID (national or local)
+- Basic information sheet (types, height, weight)
+- Evolution tree (vertical or horizontal) 
+- Data language (for Pokémon names, locations, etc.) disctinct from app language
+- Day/night (light/dark) modes
 
 ## Todo
 
@@ -18,6 +27,10 @@ Major:
 - [ ] Add Pokémon cries (trigger on opening details?)
 - [ ] Pokémon variants (Alola, mega evolutions, gigamax, etc.)
 - [ ] Filter main list by types/etc.
+- [ ] Bottom sheet pages async loading
+- [X] Retrieve "has evolution tree" data
+- [ ] Add splash screen
+- [ ] Add open sources notices/licences
 
 Minor:
 
@@ -26,6 +39,9 @@ Minor:
 - [ ] Auto close keyboard when clicking on main list while searching
 - [ ] Decrease height of list (not grid) items to make list view actually useful (display more items than grid view)
 - [ ] Remove all localized names from db
+- [ ] Close bottom sheet by scrolling down the scrollview while already at top
+- [ ] Toggle captured from details activity
+- [ ] Wrong return shared element transition from details activity after changing selected pokemon in details
 
 ## Known bugs
 
@@ -36,6 +52,7 @@ Minor:
 - [ ] List view holders not fading after turning on "show undiscovered info"
 - [ ] Details thumbnail/infos not fading
 - [ ] Tree view holders not fading either
+- [ ] Bottom sheet not refreshed on data language changes
 - [X] Everything that works
 
 ## Development
@@ -60,7 +77,7 @@ Just launch main.py. It parses Poképedia pages and PokéAPI data and writes dat
 | images/ folder | downloaded thumbnails of Pokémon, items, etc. (some were manually pre-downloaded) |
 | values*/ folders | localized names of Pokémon, items, regions, etc. as Android XML string files |
 
-### Pokechu Android app
+### Pokéchu Android app
 
 Kotlin Android application reading Pokémon data from SQLite database, assets images and XML strings
 

@@ -3,6 +3,7 @@ package fr.amazer.pokechu.data
 import androidx.lifecycle.LiveData
 import fr.amazer.pokechu.database.PokechuDatabase
 import fr.amazer.pokechu.database.entities.NationalIdLocalId
+import fr.amazer.pokechu.database.joins.PokemonIdEvolutionLinkCount
 import fr.amazer.pokechu.database.joins.PokemonIdTypeIds
 
 class DataRepositoryPokemons private constructor(
@@ -23,6 +24,12 @@ class DataRepositoryPokemons private constructor(
     }
     fun localToNationalId(region_id: Int, local_id: Int): LiveData<Int> {
         return database.getPokemonRegionsDao().localToNationalId(region_id, local_id)
+    }
+    fun getPokemonsEvolutionLinkCount(): LiveData<List<PokemonIdEvolutionLinkCount>> {
+        return database.getPokemonEvolutionsDao().findPokemonsEvolutionLinkCount()
+    }
+    fun getPokemonEvolutionLinkCountByRegion(regionId: Int): LiveData<List<PokemonIdEvolutionLinkCount>> {
+        return database.getPokemonEvolutionsDao().findPokemonsEvolutionLinkCountByRegion(regionId)
     }
 
     companion object {

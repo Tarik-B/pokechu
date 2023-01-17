@@ -7,7 +7,6 @@
         <import type="java.util.List"/>
         <import type="android.graphics.Bitmap"/>
         <import type="android.view.View"/>
-        <import type="android.view.ViewGroup.LayoutParams"/>
 
         <variable name="imagePath"          type="String" />
         <variable name="id"                 type="String" />
@@ -76,7 +75,7 @@
                     typeItemResId="@{@layout/main_type_item}"
                     typeResIds="@{typeResIds}"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="bottom"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +94,8 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_tree_vertical"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:visibility="@{hasEvolutionTree ? View.VISIBLE : View.GONE}"/>
 
                 <TextView
                     android:id="@+id/textView"

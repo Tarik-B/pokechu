@@ -14,13 +14,14 @@
         <variable name="filter"         type="String" />
         <variable name="isDiscovered"   type="Boolean" />
         <variable name="isCaptured"     type="Boolean" />
+        <variable name="hasEvolutionTree"   type="Boolean" />
         <variable name="typeBitmaps"    type="List&lt;Bitmap>" />
         <variable name="typeResIds"     type="List&lt;Integer>" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dip"
         android:layout_marginStart="@dimen/my_apps_card_margin_horizontal"
         android:layout_marginTop="@dimen/main_card_margin_vertical"
         android:layout_marginEnd="@dimen/my_apps_card_margin_horizontal"
@@ -46,54 +47,48 @@
 
                 <ImageView
                     android:id="@+id/imageThumbnail"
-                    android:layout_width="56.0dip"
-                    android:layout_height="56.0dip"
                     assetPath="@{imagePath}"
                     tint="@{isDiscovered? @color/transparent : @color/pokechuPrimaryDarker}"
-                    android:tintMode="multiply"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:alpha="@{isDiscovered? 1.0f : 0.5f}"
                     android:scaleType="fitCenter"
-                    android:alpha="@{isDiscovered? 1.0f : 0.5f}"/>
+                    android:src="@drawable/ic_pokeball"
+                    android:tintMode="multiply" />
+
+                <LinearLayout
+                    typeBitmaps="@{typeBitmaps}"
+                    typeItemResId="@{@layout/main_type_item}"
+                    typeResIds="@{typeResIds}"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/main_type_item" />
+
+                    <include layout="@layout/main_type_item" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dip"
-                android:layout_weight="4"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center_vertical">
+                android:layout_weight="4"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginBottom="@dimen/text_margin_very_small"
-                    filteredText="@{`#` + id + ` - ` + name}"
                     filter="@{filter}"
                     filterColor="@{@color/pokechuPrimary}"
-                    android:textSize="17.5sp"/>
+                    filteredText="@{`#` + id + ` - ` + name}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/text_margin"
+                    android:gravity="center_vertical"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="16sp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/details_types" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:text=":" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        typeBitmaps="@{typeBitmaps}"
-                        typeResIds="@{typeResIds}"
-                        typeItemResId="@{@layout/main_type_item}"/>
-                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dip"
@@ -107,7 +102,7 @@
                     android:layout_width="23dip"
                     android:layout_height="23dip"
                     android:scaleType="fitCenter"
-                    android:src="@{isCaptured ? @drawable/ic_pokeball : @drawable/ic_pokeball_empty}" />
+                    android:src="@{isCaptured ? @drawable/ic_pokeball : @drawable/ic_pokeball_empty, default=@drawable/ic_pokeball}" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
