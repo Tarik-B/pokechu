@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_general_info">
 
         <action
-            android:id="@+id/action_details_to_evolution_tree"
+            android:id="@+id/action_general_info_to_evolution_tree"
             app:destination="@id/evolutionTree" />
     </fragment>
 
@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_evolution_tree">
 
         <action
-            android:id="@+id/action_evolution_tree_to_details"
+            android:id="@+id/action_evolution_tree_to_general_info"
             app:destination="@id/generalInfo" />
     </fragment>
 </navigation>

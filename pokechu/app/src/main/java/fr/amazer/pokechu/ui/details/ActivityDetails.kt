@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.databinding.ActivityDetailsBinding
+import fr.amazer.pokechu.enums.DetailsView
 import fr.amazer.pokechu.enums.PreferenceType
 import fr.amazer.pokechu.managers.LocalizationManager
 import fr.amazer.pokechu.managers.SettingsManager
@@ -49,8 +50,13 @@ class ActivityDetails : BaseActivity() {
         navController = navHostFragment.navController
         val navGraph = navController.navInflater.inflate(R.navigation.details_nav_graph)
         // Restore last displayed fragment
-        val startDestination = SettingsManager.getSetting<Int>(PreferenceType.DETAILS_START_VIEW)
-        if (startDestination != 0)
+        val savedDestination = SettingsManager.getSetting<Int>(PreferenceType.DETAILS_START_VIEW)
+        val startDestination = when(savedDestination) {
+            DetailsView.GENERAL_INFO.ordinal -> R.id.generalInfo
+            DetailsView.EVOLUTION_TREE.ordinal -> R.id.evolutionTree
+            else -> -1
+        }
+        if (startDestination != -1)
             navGraph.setStartDestination(startDestination)
         navController.graph = navGraph
 
@@ -88,10 +94,10 @@ class ActivityDetails : BaseActivity() {
         // Left/right swipe for fragment navigation
         binding.root.setOnTouchListener(object: SwipeTouchListener(applicationContext) {
             override fun onSwipeLeft() {
-                navController.navigate(R.id.action_details_to_evolution_tree)
+                navController.navigate(R.id.action_general_info_to_evolution_tree)
             }
             override fun onSwipeRight() {
-                navController.navigate(R.id.action_evolution_tree_to_details)
+                navController.navigate(R.id.action_evolution_tree_to_general_info)
             }
         })
 
@@ -155,6 +161,16 @@ class ActivityDetails : BaseActivity() {
         super.onDestroy()
 
         // Save last displayed fragment
-        navController.currentDestination?.let { SettingsManager.setSetting<Int>(PreferenceType.DETAILS_START_VIEW, it.id) }
+        val currentDestination = navController.currentDestination
+        if (currentDestination != null) {
+            val savedDestination = when (currentDestination.id) {
+                R.id.generalInfo -> DetailsView.GENERAL_INFO.ordinal
+                R.id.evolutionTree -> DetailsView.EVOLUTION_TREE.ordinal
+                else -> -1
+            }
+
+            if (savedDestination != -1)
+                SettingsManager.setSetting<Int>(PreferenceType.DETAILS_START_VIEW, savedDestination)
+        }
     }
 }

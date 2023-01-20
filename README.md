@@ -21,16 +21,16 @@ Yet Another Pokédex App, without spoilers
 
 Major:
 
-- [X] Filter by games
-- [ ] List of games in Pokémon details
 - [ ] Add Pokedex official description(s?) in details
 - [ ] Add Pokémon cries (trigger on opening details?)
 - [ ] Pokémon variants (Alola, mega evolutions, gigamax, etc.)
 - [ ] Filter main list by types/etc.
 - [ ] Bottom sheet pages async loading
-- [X] Retrieve "has evolution tree" data
 - [ ] Add splash screen
 - [ ] Add open sources notices/licences
+- [ ] List of games in Pokémon details
+- [X] Filter by games
+- [X] Retrieve "has evolution tree" data
 
 Minor:
 
@@ -45,14 +45,14 @@ Minor:
 
 ## Known bugs
 
-- [X] Bottom sheet overlaps bottom (and thus also the end) of main list
-- [X] Main activity something refreshes (loading overlay + list transition animation) when coming back from details(/settings?) for no reason
-- [X] Captured/discovered count icons not vertically centered
 - [ ] "Follow system" theme follows system theme as it was on app launch: https://github.com/Tarik-B/pokechu/issues/1
 - [ ] List view holders not fading after turning on "show undiscovered info"
 - [ ] Details thumbnail/infos not fading
 - [ ] Tree view holders not fading either
 - [ ] Bottom sheet not refreshed on data language changes
+- [X] Bottom sheet overlaps bottom (and thus also the end) of main list
+- [X] Main activity something refreshes (loading overlay + list transition animation) when coming back from details(/settings?) for no reason
+- [X] Captured/discovered count icons not vertically centered
 - [X] Everything that works
 
 ## Development

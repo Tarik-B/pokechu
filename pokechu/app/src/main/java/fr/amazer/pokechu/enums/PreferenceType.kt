@@ -23,6 +23,11 @@ enum class NightMode {
     SYSTEM,
 }
 
+enum class DetailsView {
+    GENERAL_INFO,
+    EVOLUTION_TREE,
+}
+
 object PreferenceData {
     private val data = mapOf(
         PreferenceType.SHOW_UNDISCOVERED_INFO  to Pair("setting_show_undiscovered_info", false),
@@ -35,7 +40,7 @@ object PreferenceData {
         PreferenceType.CAPTURED                to Pair("pokemon_captured_", false),
         PreferenceType.DISPLAY_ZERO            to Pair("setting_display_zero", false),
         PreferenceType.NIGHT_MODE              to Pair("setting_night_mode", NightMode.SYSTEM.ordinal.toString()),
-        PreferenceType.DETAILS_START_VIEW      to Pair("setting_details_start_view", 0),
+        PreferenceType.DETAILS_START_VIEW      to Pair("setting_details_start_view", DetailsView.GENERAL_INFO.ordinal),
     )
 
     private val nightModeToAppCompatMap = mapOf(
