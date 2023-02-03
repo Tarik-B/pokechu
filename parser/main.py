@@ -71,7 +71,7 @@ if __name__ == "__main__":
     print(f"+ Processing evolution conditions")
     conditions_parser = ConditionsParser(pokedex=pokedex, verbose=True)
     conditions_parser.process_evolution_trees_conditions()
-    print(f"Processed conditions count = {conditions_parser._processed_condition_count}")
+    print(f"Processed conditions count = {conditions_parser.get_processed_condition_count()}")
     print(f"Time = {time.time() - block_start_time}s")
     ##################################################
 

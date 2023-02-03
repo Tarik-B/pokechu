@@ -110,13 +110,13 @@ class ListParser:
             if download_thumbnails:
                 thumbnail_url = thumbnail_urls[pokemon_index]
 
-                self.download_thumbnail(thumbnail_url, str(int(unique_id)), output_path)
+                self._download_thumbnail(thumbnail_url, str(int(unique_id)), output_path)
 
             # Add pokemon to pokedex
             self._pokedex.add_pokemon_entry(unique_id, names)
 
 
-    def download_thumbnail(self, thumbnail_url: str, thumbnail_id: str, output_path: str):
+    def _download_thumbnail(self, thumbnail_url: str, thumbnail_id: str, output_path: str):
         base_url = "https://www.pokepedia.fr"
         full_url = base_url + thumbnail_url
 

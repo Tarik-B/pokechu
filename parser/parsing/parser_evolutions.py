@@ -32,15 +32,15 @@ class EvolutionsParser:
             results = xpath_selector.xpath("//table[@class = 'roundy']").getall()
 
         # Clean tables and split in rows
-        evolution_rows = self.split_html_tables_in_rows(lang, results)
+        evolution_rows = self._split_html_tables_in_rows(lang, results)
 
         # Build evolution trees
-        self.process_evolution_rows(lang, evolution_rows)
+        self._process_evolution_rows(lang, evolution_rows)
 
         # Remove trees with only one node
         self._pokedex.remove_single_node_evolution_trees()
 
-    def split_html_tables_in_rows(self, lang: str, tables: list) ->  list:
+    def _split_html_tables_in_rows(self, lang: str, tables: list) ->  list:
 
         EVOLUTION_FAMILY_STRING = "famille"
         EVOLUTION_FAMILY_STRING_ENGLISH = "family"
@@ -147,7 +147,7 @@ class EvolutionsParser:
 
         return cleaned_rows
 
-    def process_evolution_rows(self, lang: str, cleaned_rows: list):
+    def _process_evolution_rows(self, lang: str, cleaned_rows: list):
         for row in cleaned_rows:
 
             current_tree = None

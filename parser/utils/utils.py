@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 import bs4
 import bs4.element
 import itertools
@@ -9,7 +8,6 @@ import re
 import urllib
 
 PAGES_CACHE_FOLDER = ""
-
 
 def read_file(file_path: str, encoding="utf-8") -> str:
     with open(file_path, "r", encoding=encoding) as file:
@@ -22,14 +20,12 @@ def read_file(file_path: str, encoding="utf-8") -> str:
 
 def download_page(url: str) -> str:
     parsed_url = urllib.parse.urlparse(urllib.parse.unquote(url))
-    fullurl = f"{parsed_url.scheme}://{parsed_url.netloc}{parsed_url.path}"
-
-    if parsed_url.query:
-        fullurl += f"?{parsed_url.query}"
-    if parsed_url.fragment:
-        fullurl += f"#{parsed_url.fragment}"
 
     full_path = f"{PAGES_CACHE_FOLDER}/{parsed_url.netloc}{parsed_url.path}"
+    if parsed_url.query:
+        full_path += f"?{parsed_url.query}"
+    if parsed_url.fragment:
+        full_path += f"#{parsed_url.fragment}"
 
     # Check if file exists before dl it
     if os.path.exists(full_path):
@@ -165,3 +161,8 @@ def get_generated_warning_kotlin():
               "/*    WARNING! Auto-generated file, all manual changes made will be lost!     */\n" \
               "/* ************************************************************************** */"
     return warning
+
+def uniqify_list(seq: list):
+    seen = set()
+    seen_add = seen.add
+    return [x for x in seq if not (x in seen or seen_add(x))]
