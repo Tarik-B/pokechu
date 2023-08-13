@@ -1,8 +1,9 @@
 package fr.amazer.pokechu.ui
 
-import android.content.res.AssetManager
+import android.content.Context
 import android.graphics.Bitmap
 import android.text.SpannableStringBuilder
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import androidx.databinding.BindingAdapter
 import fr.amazer.pokechu.R
 import fr.amazer.pokechu.utils.AssetUtils
 import fr.amazer.pokechu.utils.UIUtils
+import kotlin.math.roundToInt
 
 @BindingAdapter(value = ["visibleAnimated", "visibleAlpha"], requireAll = false)
 fun View.showHide(show: Boolean, defaultAlpha: Float) {
@@ -88,4 +90,31 @@ fun ViewGroup.setTypeImages(typeBitmaps: List<Bitmap>?, typeResIds: List<Int>?, 
         val imageView = createView()
         imageView.setImageResource(typeResId)
     }
+}
+
+fun dipToPixels(context: Context, dipValue: Int): Int {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        dipValue.toFloat(),
+        context.resources.displayMetrics).roundToInt()
+}
+
+@BindingAdapter("android:custom_width")
+fun View.setLayoutWidth(width: Int) {
+    val layoutParams: ViewGroup.LayoutParams = this.layoutParams
+    if (width > 0)
+        layoutParams.width = dipToPixels(context, width)
+    else
+        layoutParams.width = width
+    this.layoutParams = layoutParams
+}
+
+@BindingAdapter("android:custom_height")
+fun View.setLayoutHeight(height: Int) {
+    val layoutParams: ViewGroup.LayoutParams = this.layoutParams
+    if (height > 0)
+        layoutParams.height = dipToPixels(context, height)
+    else
+        layoutParams.height = height
+    this.layoutParams = layoutParams
 }
